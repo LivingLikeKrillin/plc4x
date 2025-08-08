@@ -205,7 +205,7 @@ public class S7HMuxImpl extends MessageToMessageCodec<ByteBuf, ByteBuf> implemen
         }
 
         if (evt instanceof DisconnectEvent) {
-//            logger.debug("userEventTriggered -> DisconnectEvent");
+            logger.info("userEventTriggered -> DisconnectEvent");
         }
         
         // trigger other event handlers after IS_CONNECTED was set
@@ -315,7 +315,7 @@ public class S7HMuxImpl extends MessageToMessageCodec<ByteBuf, ByteBuf> implemen
                 embededChannel.attr(IS_PRIMARY).set(true);
 
                 if (tcpChannel.isActive()) {
-                    logger.debug("Reassigns the inactive primary channel and send ConnectEvent..");
+                    logger.info("Reassigns the inactive primary channel and send ConnectEvent..");
                     embedCtx.fireUserEventTriggered(new ConnectEvent());
                 }
             }
@@ -325,7 +325,7 @@ public class S7HMuxImpl extends MessageToMessageCodec<ByteBuf, ByteBuf> implemen
                 this.primaryChannel = primary_channel;
                 tcpChannel = primary_channel;
                 embededChannel.attr(IS_PRIMARY).set(true);
-                logger.debug("Reassigns the primary channel and send ConnectEvent.");
+                logger.info("Reassigns the primary channel and send ConnectEvent.");
                 if (tcpChannel.isActive()) {
                     embedCtx.fireUserEventTriggered(new ConnectEvent());
                 }
