@@ -24,7 +24,7 @@
   <parent>
     <groupId>org.apache</groupId>
     <artifactId>apache</artifactId>
-    <version>36</version>
+    <version>37</version>
     <relativePath />
   </parent>
 
@@ -104,12 +104,12 @@
 
     <antlr.version>4.13.2</antlr.version>
     <apiguardian.version>1.1.2</apiguardian.version>
-    <assertj.version>3.27.6</assertj.version>
+    <assertj.version>3.27.7</assertj.version>
     <awaitility.version>4.3.0</awaitility.version>
     <!-- The currently available version is 2.0.5 and anything above 1.4.3 is no longer compatible with our code -->
     <bit-io.version>1.4.3</bit-io.version>
     <bouncycastle.version>1.83</bouncycastle.version>
-    <byte-buddy.version>1.18.3</byte-buddy.version>
+    <byte-buddy.version>1.18.4</byte-buddy.version>
     <cmake.version>3.31.5-b1</cmake.version>
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
     <commons-cli.version>1.11.0</commons-cli.version>
@@ -125,15 +125,15 @@
     <commons-text.version>1.15.0</commons-text.version>
     <commons-csv.version>1.14.1</commons-csv.version>
     <dom4j.version>2.2.0</dom4j.version>
-    <equalsverifier.version>4.3</equalsverifier.version>
+    <equalsverifier.version>4.3.1</equalsverifier.version>
     <freemarker.version>2.3.34</freemarker.version>
-    <groovy.version>5.0.3</groovy.version>
+    <groovy.version>5.0.4</groovy.version>
     <guava.version>33.5.0-jre</guava.version>
     <hamcrest.version>3.0</hamcrest.version>
     <httpclient.version>4.5.14</httpclient.version>
     <httpcore.version>4.4.16</httpcore.version>
-    <jackson.version>2.20.1</jackson.version>
-    <jackson.broken.version>2.20</jackson.broken.version>
+    <jackson.version>2.21.0</jackson.version>
+    <jackson.broken.version>2.21</jackson.broken.version>
     <woodstox-core.version>7.1.1</woodstox-core.version>
     <!-- When updating this to the latest version, we're getting errors in the opcua server tests -->
     <jaxb.version>4.0.4</jaxb.version>
@@ -142,7 +142,7 @@
     <jserialcom.version>2.11.4</jserialcom.version>
     <junit.jupiter.version>6.0.2</junit.jupiter.version>
     <junit.platform.version>1.8.2</junit.platform.version>
-    <logback.version>1.5.24</logback.version>
+    <logback.version>1.5.26</logback.version>
     <maven.clean.plugin.version>3.2.0</maven.clean.plugin.version>
     <milo.version>0.6.16</milo.version>
     <mockito.version>5.21.0</mockito.version>
@@ -554,7 +554,7 @@
       <dependency>
         <groupId>tel.schich</groupId>
         <artifactId>javacan-core</artifactId>
-        <version>3.5.0</version>
+        <version>3.5.2</version>
       </dependency>
 
       <dependency>
@@ -1048,6 +1048,24 @@
             <!-- Make sure the parameter names are available via reflection -->
             <parameters>true</parameters>
           </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-compiler-api</artifactId>
+              <version>2.16.2</version>
+            </dependency>
+            <dependency>
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-compiler-eclipse</artifactId>
+              <version>2.16.1</version>
+            </dependency>
+            <!-- Redundant import, however we might need to bump this version more often -->
+            <dependency>
+              <groupId>org.eclipse.jdt</groupId>
+              <artifactId>ecj</artifactId>
+              <version>3.44.0</version>
+            </dependency>
+          </dependencies>
         </plugin>
 
         <plugin>
