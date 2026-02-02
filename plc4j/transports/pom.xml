@@ -44,9 +44,9 @@
     <module>pcap-shared</module>
     <module>raw-socket</module>
     <module>socketcan</module>
-    <module>serial</module>
+    <module>serial</module-->
     <module>tcp</module>
-    <module>udp</module>
+    <!--module>udp</module>
     <module>virtualcan</module>
     <module>test</module-->
   </modules>
