@@ -210,6 +210,11 @@
         <artifactId>osgi.core</artifactId>
         <version>8.0.0</version>
       </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.service.component.annotations</artifactId>
+        <version>1.5.1</version>
+      </dependency>
 
       <dependency>
         <groupId>io.netty</groupId>
@@ -481,6 +486,13 @@
         <groupId>org.mockito</groupId>
         <artifactId>mockito-junit-jupiter</artifactId>
         <version>${mockito.version}</version>
+      </dependency>
+
+      <!-- OSGi Dependencies -->
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.service.component.annotations</artifactId>
+        <version>1.5.1</version>
       </dependency>
 
       <!-- TODO: Eliminate the usage of AssertJ (OPM and OPC-UA Driver) -->
