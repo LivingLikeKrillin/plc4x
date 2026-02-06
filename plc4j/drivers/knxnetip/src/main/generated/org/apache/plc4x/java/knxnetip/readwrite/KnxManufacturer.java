@@ -667,7 +667,7 @@ public enum KnxManufacturer {
 
   M_FINDER((int) 320, (int) 371, "Finder"),
 
-  M_FUJITSU_GENERAL_LIMITED((int) 321, (int) 372, "Fujitsu General Limited"),
+  M_GENERAL_INC_((int) 321, (int) 372, "GENERAL Inc."),
 
   M_ZF_FRIEDRICHSHAFEN_AG((int) 322, (int) 373, "ZF Friedrichshafen AG"),
 
@@ -1353,7 +1353,7 @@ public enum KnxManufacturer {
 
   M_KNXES_COMPANY_LIMITED((int) 663, (int) 721, "KNXES COMPANY LIMITED"),
 
-  M_AKUVOX((int) 664, (int) 722, "Akuvox"),
+  M_AKUBELA((int) 664, (int) 722, "akubela"),
 
   M_NINGBO_YINZHOU_SHENGRUIJIE_ELECTRONICS_CO__LTD_((int) 665, (int) 723, "NingBo Yinzhou ShengRuiJie Electronics Co. Ltd."),
 
@@ -1589,9 +1589,11 @@ public enum KnxManufacturer {
 
   M_ZHEJIANG_CHATNOW_NEW_MATERIAL_TECHNOLOGY_CO___LTD((int) 781, (int) 842, "Zhejiang Chatnow New Material Technology Co., Ltd"),
 
-  M_ABB___RESERVED((int) 782, (int) 43954, "ABB - reserved"),
+  M_OCCHIO_GMBH((int) 782, (int) 843, "Occhio GmbH"),
 
-  M_BUSCH_JAEGER_ELEKTRO___RESERVED((int) 783, (int) 43959, "Busch-Jaeger Elektro - reserved");
+  M_ABB___RESERVED((int) 783, (int) 43954, "ABB - reserved"),
+
+  M_BUSCH_JAEGER_ELEKTRO___RESERVED((int) 784, (int) 43959, "Busch-Jaeger Elektro - reserved");
 
   private static final Map<Integer, KnxManufacturer> map;
 
