@@ -27,7 +27,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 /**
  * Tests for SerialTransportInstance.
@@ -43,13 +46,22 @@ class SerialTransportInstanceTest {
 
     @BeforeEach
     void setUp() throws Exception {
+        boolean socatAvailable = false;
         if (!System.getProperty("os.name").toLowerCase().contains("win")) {
-            process = new ProcessBuilder("socat","-d","-d",
-                "pty,raw,echo=0,link=/tmp/ttyV0",
-                "pty,raw,echo=0,link=/tmp/ttyV1").start();
-            // Give socat a moment to create links; optionally read its stderr for "N PTY is ..."
-            Thread.sleep(500);
+            try {
+                Process check = new ProcessBuilder("which", "socat").start();
+                socatAvailable = (check.waitFor() == 0);
+            } catch (IOException e) {
+                socatAvailable = false;
+            }
         }
+        assumeTrue(socatAvailable, "socat is not installed - skipping serial transport integration tests (install socat to enable)");
+
+        process = new ProcessBuilder("socat", "-d", "-d",
+            "pty,raw,echo=0,link=/tmp/ttyV0",
+            "pty,raw,echo=0,link=/tmp/ttyV1").start();
+        // Give socat a moment to create links; optionally read its stderr for "N PTY is ..."
+        Thread.sleep(500);
 
         config = new SerialTransportConfiguration();
         config.baudRate = 9600;
