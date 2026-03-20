@@ -45,10 +45,10 @@
     <!--module>socketcan</module-->
     <module>serial</module>
     <module>test</module>
+    <module>tls</module>
     <module>tcp</module>
     <module>udp</module>
-    <!--module>virtualcan</module>
-    <module>test</module-->
+    <!--module>virtualcan</module-->
   </modules>
 
 </project>
