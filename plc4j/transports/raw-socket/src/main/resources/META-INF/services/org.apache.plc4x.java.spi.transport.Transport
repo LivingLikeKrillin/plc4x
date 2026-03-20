@@ -17,4 +17,3 @@
 # under the License.
 #
 org.apache.plc4x.java.transport.rawsocket.RawSocketTransport
-org.apache.plc4x.java.transport.rawsocketpassive.RawSocketPassiveTransport
