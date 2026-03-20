@@ -39,9 +39,9 @@
 
   <modules>
     <module>api</module>
-    <!--module>can</module>
+    <!--module>can</module-->
     <module>pcap-replay</module>
-    <module>pcap-shared</module>
+    <!--module>pcap-shared</module>
     <module>raw-socket</module>
     <module>socketcan</module-->
     <module>serial</module>

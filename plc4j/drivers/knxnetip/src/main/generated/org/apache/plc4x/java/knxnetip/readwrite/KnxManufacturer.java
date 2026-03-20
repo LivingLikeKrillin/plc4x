@@ -1579,7 +1579,7 @@ public enum KnxManufacturer {
 
   M_LEXA_LIFESTYLE((int) 776, (int) 837, "Lexa LIFESTYLE"),
 
-  M_CASAMBI((int) 777, (int) 838, "casambi"),
+  M_CASAMBI_TECHNOLOGIES_OY((int) 777, (int) 838, "Casambi Technologies Oy"),
 
   M_BELCAB_UK_LTD((int) 778, (int) 839, "BELCAB UK LTD"),
 
@@ -1591,9 +1591,25 @@ public enum KnxManufacturer {
 
   M_OCCHIO_GMBH((int) 782, (int) 843, "Occhio GmbH"),
 
-  M_ABB___RESERVED((int) 783, (int) 43954, "ABB - reserved"),
+  M_INSTELL((int) 783, (int) 844, "Instell"),
 
-  M_BUSCH_JAEGER_ELEKTRO___RESERVED((int) 784, (int) 43959, "Busch-Jaeger Elektro - reserved");
+  M_VOKA_VOGTLAENDISCHES_KABELWERK_GMBH((int) 784, (int) 845, "VOKA Vogtländisches Kabelwerk GmbH"),
+
+  M_QINGDAO_MAISI_INTELLIGENT_TECHNOLOGY_CO__LTD((int) 785, (int) 846, "Qingdao Maisi Intelligent Technology Co.,Ltd"),
+
+  M_CHONGQING_MEXIN_MESSON_DOORS_INDUSTRY_CO___LTD__((int) 786, (int) 847, "Chongqing Mexin Messon Doors Industry Co., Ltd.,"),
+
+  M_HOLFMANN_CULTURE_ART_CO__LTD((int) 787, (int) 848, "Holfmann Culture Art Co.,LTD"),
+
+  M_GUANGZHOU_BAITE_IOT_TECHNOLOGY_CO___LTD((int) 788, (int) 849, "Guangzhou Baite IoT Technology Co., Ltd"),
+
+  M_OWL_AUTOMATA((int) 789, (int) 850, "OWL Automata"),
+
+  M_AUTOMATED_PTY_LTD((int) 790, (int) 851, "Automated Pty Ltd"),
+
+  M_ABB___RESERVED((int) 791, (int) 43954, "ABB - reserved"),
+
+  M_BUSCH_JAEGER_ELEKTRO___RESERVED((int) 792, (int) 43959, "Busch-Jaeger Elektro - reserved");
 
   private static final Map<Integer, KnxManufacturer> map;
 

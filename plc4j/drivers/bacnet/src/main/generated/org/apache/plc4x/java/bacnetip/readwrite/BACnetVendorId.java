@@ -3195,6 +3195,28 @@ public enum BACnetVendorId {
 
   ALLBEEBV((int) 1594, (int) 1594, "Allbee B.V."),
 
+  KAMPMANN_GMBH_COKG((int) 1595, (int) 1595, "Kampmann GmbH & Co. KG"),
+
+  COSEL_ELEKTRONIK_OTOMASYON_SISTEMLERI_SAN_TIC_LTD_STI((int) 1596, (int) 1596, "Cosel Elektronik Otomasyon Sistemleri San. Tic. Ltd. Sti."),
+
+  RACTL_DESIGNS((int) 1597, (int) 1597, "Ractl Designs"),
+
+  DATABRIDGE_DYNAMIC_PVT_LTD((int) 1598, (int) 1598, "Databridge Dynamic Pvt Ltd"),
+
+  EVOLO_TECHNOLOGIESAS((int) 1599, (int) 1599, "Evolo Technologies AS"),
+
+  ENERGY_PLUS_TEKNOLOJI_IMALAT_ITHALATVE_IHRACAT_SANAYIAS((int) 1600, (int) 1600, "EnergyPlus Teknoloji Imalat Ithalat ve Ihracat Sanayi AS"),
+
+  GAIAMESH_INC((int) 1601, (int) 1601, "Gaiamesh Inc."),
+
+  LOVATO_ELECTRICSPA((int) 1602, (int) 1602, "Lovato Electric S.P.A."),
+
+  QPAC_SYSTEMS_INC((int) 1603, (int) 1603, "Q-PAC Systems, Inc."),
+
+  YOBIIQ_INTELLIGENCEBV((int) 1604, (int) 1604, "Yobiiq Intelligence B.V."),
+
+  CAMFILUSA_INC((int) 1605, (int) 1605, "Camfil USA Inc."),
+
   UNKNOWN_VENDOR((int) 0xFFFF, (int) 0xFFFF, "Unknown");
 
   private static final Map<Integer, BACnetVendorId> map;
