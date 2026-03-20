@@ -16,30 +16,24 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package io.netty.bootstrap;
+package org.apache.plc4x.java.transport.test.config;
 
-import io.netty.channel.Channel;
+import org.apache.plc4x.java.spi.config.annotations.ConfigurationParameter;
+import org.apache.plc4x.java.spi.config.annotations.defaults.IntDefaultValue;
+import org.apache.plc4x.java.spi.transports.api.config.TransportConfiguration;
 
-public class EmbeddedBootstrap extends Bootstrap {
+/**
+ * Configuration for the test transport.
+ * This transport is used for testing purposes and allows simulating
+ * communication using in-memory byte streams.
+ */
+public class TestTransportConfiguration implements TransportConfiguration {
 
-    @Override
-    public Bootstrap validate() {
-        if(channelFactory() != null) {
-            if (config().handler() == null) {
-                throw new IllegalStateException("handler not set");
-            }
-        } else {
-            return super.validate();
-        }
-        return this;
-    }
-
-    @Override
-    void init(Channel channel) {
-        if((group == null) && (channel instanceof EventLoopProvider)) {
-            group = ((EventLoopProvider) channel).getEventLoop();
-        }
-        super.init(channel);
-    }
+    /**
+     * Receive buffer size in bytes.
+     */
+    @ConfigurationParameter("receive-buffer-size")
+    @IntDefaultValue(81920)
+    public int receiveBufferSize;
 
 }
