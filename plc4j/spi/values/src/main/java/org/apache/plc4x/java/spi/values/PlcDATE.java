@@ -78,6 +78,20 @@ public class PlcDATE extends PlcIECValue<LocalDate> {
             Instant.ofEpochSecond(((long) daysSinceEpoch) * 86400), ZoneOffset.UTC).toLocalDate());
     }
 
+    /**
+     * Creates a PlcDATE from explicit date components.
+     * Used by protocols that transmit date as individual BCD-encoded fields
+     * (e.g., Schneider UMAS).
+     *
+     * @param year  the year (e.g., 2026)
+     * @param month the month (1-12)
+     * @param day   the day of month (1-31)
+     * @return the PlcDATE value
+     */
+    public static PlcDATE ofSegments(int year, int month, int day) {
+        return new PlcDATE(LocalDate.of(year, month, day));
+    }
+
     public PlcDATE(LocalDate value) {
         this.value = value;
         this.isNullable = false;

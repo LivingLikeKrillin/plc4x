@@ -275,4 +275,25 @@ public class PlcTIME_OF_DAYTest {
         assertNotNull(str);
         assertTrue(str.contains("12") || str.contains("30"));
     }
+
+    @Test
+    void testOfSegments() {
+        PlcTIME_OF_DAY tod = PlcTIME_OF_DAY.ofSegments(14, 30, 15, 50);
+        LocalTime expected = LocalTime.of(14, 30, 15, 500_000_000);
+        assertEquals(expected, tod.getTime());
+    }
+
+    @Test
+    void testOfSegmentsMidnight() {
+        PlcTIME_OF_DAY tod = PlcTIME_OF_DAY.ofSegments(0, 0, 0, 0);
+        assertEquals(LocalTime.MIDNIGHT, tod.getTime());
+    }
+
+    @Test
+    void testOfSegmentsEndOfDay() {
+        PlcTIME_OF_DAY tod = PlcTIME_OF_DAY.ofSegments(23, 59, 59, 99);
+        assertEquals(23, tod.getTime().getHour());
+        assertEquals(59, tod.getTime().getMinute());
+        assertEquals(59, tod.getTime().getSecond());
+    }
 }

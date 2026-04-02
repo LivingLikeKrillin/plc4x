@@ -215,4 +215,16 @@ public class PlcDATETest {
         PlcDATE value = new PlcDATE(date);
         assertNotNull(value.toString());
     }
+
+    @Test
+    void testOfSegments() {
+        PlcDATE plcDATE = PlcDATE.ofSegments(2026, 4, 2);
+        assertEquals(LocalDate.of(2026, 4, 2), plcDATE.getDate());
+    }
+
+    @Test
+    void testOfSegmentsLeapYear() {
+        PlcDATE plcDATE = PlcDATE.ofSegments(2024, 2, 29);
+        assertEquals(LocalDate.of(2024, 2, 29), plcDATE.getDate());
+    }
 }

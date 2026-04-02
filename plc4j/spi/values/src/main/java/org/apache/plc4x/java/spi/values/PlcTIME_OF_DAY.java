@@ -68,6 +68,25 @@ public class PlcTIME_OF_DAY extends PlcIECValue<LocalTime> {
         return new PlcTIME_OF_DAY(LocalTime.ofNanoOfDay(millisecondsSinceMidnight * 1000_000));
     }
 
+    /**
+     * Creates a PlcTIME_OF_DAY from explicit time-of-day components.
+     * Used by protocols that transmit TOD as individual BCD-encoded fields
+     * (e.g., Schneider UMAS where TOD is [centiseconds][seconds][minutes][hours]).
+     *
+     * @param hours        the hour (0-23)
+     * @param minutes      the minute (0-59)
+     * @param seconds      the second (0-59)
+     * @param centiseconds hundredths of a second (0-99)
+     * @return the PlcTIME_OF_DAY value
+     */
+    public static PlcTIME_OF_DAY ofSegments(int hours, int minutes, int seconds, int centiseconds) {
+        long totalNanos = ((long) hours * 3_600_000_000_000L)
+            + ((long) minutes * 60_000_000_000L)
+            + ((long) seconds * 1_000_000_000L)
+            + ((long) centiseconds * 10_000_000L);
+        return new PlcTIME_OF_DAY(LocalTime.ofNanoOfDay(totalNanos));
+    }
+
     public PlcTIME_OF_DAY(Byte secondsSinceMidnight) {
         this.value = LocalTime.ofSecondOfDay(secondsSinceMidnight);
         this.isNullable = false;

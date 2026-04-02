@@ -393,6 +393,9 @@ public class DataIoGenerator extends BaseGenerator<DataIoTypeDefinition> {
                             parseIfElseBuilder.addStatement("return $T.ofDaysSinceEpoch(daysSinceEpoch)", casePlcValueType);
                         } else if (hasFieldsWithNames(caseDefinition.getFields(), "daysSinceSiemensEpoch")) {
                             parseIfElseBuilder.addStatement("return $T.ofDaysSinceSiemensEpoch(daysSinceSiemensEpoch)", casePlcValueType);
+                        } else if (hasFieldsWithNames(caseDefinition.getFields(), "year", "month", "day")) {
+                            // BCD-encoded date components (e.g., Schneider UMAS)
+                            parseIfElseBuilder.addStatement("return $T.ofSegments((int) year, (int) month, (int) day)", casePlcValueType);
                         }
                         break;
                     }
@@ -405,6 +408,9 @@ public class DataIoGenerator extends BaseGenerator<DataIoTypeDefinition> {
                     case "TIME_OF_DAY": {
                         if (hasFieldsWithNames(caseDefinition.getFields(), "millisecondsSinceMidnight")) {
                             parseIfElseBuilder.addStatement("return $T.ofMillisecondsSinceMidnight(millisecondsSinceMidnight)", casePlcValueType);
+                        } else if (hasFieldsWithNames(caseDefinition.getFields(), "hours", "minutes", "seconds", "centiseconds")) {
+                            // BCD-encoded time-of-day components (e.g., Schneider UMAS)
+                            parseIfElseBuilder.addStatement("return $T.ofSegments((int) hours, (int) minutes, (int) seconds, (int) centiseconds)", casePlcValueType);
                         }
                         break;
                     }
@@ -419,6 +425,9 @@ public class DataIoGenerator extends BaseGenerator<DataIoTypeDefinition> {
                             parseIfElseBuilder.addStatement("return $T.ofSegments(year, (month == 0) ? 1 : month, (day == 0) ? 1 : day, hour, minutes, seconds, millisecondsOfSecond * 1000000)", casePlcValueType);
                         } else if (hasFieldsWithNames(caseDefinition.getFields(), "year", "month", "day", "hour", "minutes", "seconds", "nannosecondsOfSecond")) {
                             parseIfElseBuilder.addStatement("return $T.ofSegments(year, (month == 0) ? 1 : month, (day == 0) ? 1 : day, hour, minutes, seconds, nannosecondsOfSecond)", casePlcValueType);
+                        } else if (hasFieldsWithNames(caseDefinition.getFields(), "year", "month", "day", "hour", "minutes", "seconds")) {
+                            // No sub-second precision (e.g., Schneider UMAS DATE_AND_TIME)
+                            parseIfElseBuilder.addStatement("return $T.ofSegments(year, (month == 0) ? 1 : month, (day == 0) ? 1 : day, hour, minutes, seconds, 0)", casePlcValueType);
                         } else if (hasFieldsWithNames(caseDefinition.getFields(), "secondsSinceEpoch")) {
                             parseIfElseBuilder.addStatement("return $T.ofSecondsSinceEpoch(secondsSinceEpoch)", casePlcValueType);
                         }
