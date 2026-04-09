@@ -42,6 +42,7 @@
     <module>can</module>
     <module>can-socketcan</module>
     <module>can-virtualcan</module>
+    <module>cotp</module>
     <module>pcap-replay</module>
     <module>raw-socket</module>
     <module>serial</module>
