@@ -1893,7 +1893,7 @@ public enum BACnetVendorId {
 
   CAV_UFF_GIACOMO_CIMBERIO_SPA((int) 938, (int) 938, "Cav. Uff. Giacomo Cimberio S.p.A"),
 
-  PKE_ELECTRONICSAG((int) 939, (int) 939, "PKE Electronics AG"),
+  PKE_SOFTWARE_SOLUTIONS_GMBH((int) 939, (int) 939, "PKE Software Solutions GmbH"),
 
   ALLEN((int) 940, (int) 940, "Allen"),
 
@@ -3216,6 +3216,22 @@ public enum BACnetVendorId {
   YOBIIQ_INTELLIGENCEBV((int) 1604, (int) 1604, "Yobiiq Intelligence B.V."),
 
   CAMFILUSA_INC((int) 1605, (int) 1605, "Camfil USA Inc."),
+
+  RADNOX((int) 1606, (int) 1606, "Radnox"),
+
+  OPTOSPARK_SDN_BHD((int) 1607, (int) 1607, "Optospark Sdn. Bhd."),
+
+  CONTROLBRIGHT((int) 1608, (int) 1608, "Controlbright"),
+
+  PENTAIR_RESIDENTIAL_FILTRATION((int) 1609, (int) 1609, "Pentair Residential Filtration"),
+
+  VENAERA_INC((int) 1610, (int) 1610, "Venaera Inc."),
+
+  HUMI_PURE((int) 1611, (int) 1611, "HumiPure"),
+
+  HUMBER_HORIZONS((int) 1612, (int) 1612, "Humber Horizons"),
+
+  AUTOMATED_FACILITY_SYSTEMS_INC((int) 1613, (int) 1613, "Automated Facility Systems, Inc."),
 
   UNKNOWN_VENDOR((int) 0xFFFF, (int) 0xFFFF, "Unknown");
 

@@ -1607,9 +1607,17 @@ public enum KnxManufacturer {
 
   M_AUTOMATED_PTY_LTD((int) 790, (int) 851, "Automated Pty Ltd"),
 
-  M_ABB___RESERVED((int) 791, (int) 43954, "ABB - reserved"),
+  M_HIKVISION((int) 791, (int) 852, "HIKVISION"),
 
-  M_BUSCH_JAEGER_ELEKTRO___RESERVED((int) 792, (int) 43959, "Busch-Jaeger Elektro - reserved");
+  M_WIREN_BOARD((int) 792, (int) 853, "Wiren Board"),
+
+  M_DEGSON_TECHNOLOGY_CO_LTD_((int) 793, (int) 854, "DEGSON TECHNOLOGY CO LTD."),
+
+  M_SHENZHEN_HONGSHENGXU_INTELLIGENT_TECH_CO___LTD_((int) 794, (int) 855, "Shenzhen Hongshengxu Intelligent Tech Co., Ltd."),
+
+  M_ABB___RESERVED((int) 795, (int) 43954, "ABB - reserved"),
+
+  M_BUSCH_JAEGER_ELEKTRO___RESERVED((int) 796, (int) 43959, "Busch-Jaeger Elektro - reserved");
 
   private static final Map<Integer, KnxManufacturer> map;
 
