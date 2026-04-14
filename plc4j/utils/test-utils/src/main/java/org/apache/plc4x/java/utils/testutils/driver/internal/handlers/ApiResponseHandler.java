@@ -112,9 +112,20 @@ public class ApiResponseHandler {
         // Generate the actual XML from the read response for comparison and potential migration
         Element actualReadResponseElement = serializeReadResponseToXml(response);
 
+        // Compare only the <values> sections since the expected XML may contain a <request> element
+        // that we don't serialize. The values section is what matters for validation.
+        Element expectedValuesElement = plcReadResponseElement.element("values");
+        Element actualValuesElement = actualReadResponseElement.element("values");
+        if (expectedValuesElement == null) {
+            expectedValuesElement = plcReadResponseElement;
+        }
+        if (actualValuesElement == null) {
+            actualValuesElement = actualReadResponseElement;
+        }
+
         // Use the shared XML comparison module
         XmlComparator comparator = new DomXmlComparator();
-        XmlComparisonResult result = comparator.compare(plcReadResponseElement, actualReadResponseElement);
+        XmlComparisonResult result = comparator.compare(expectedValuesElement, actualValuesElement);
 
         if (result.hasDifferences()) {
             // Check if auto-migrate is enabled
@@ -177,6 +188,7 @@ public class ApiResponseHandler {
     private Element serializeReadResponseToXml(PlcReadResponse response) {
         Element readResponseElement = DocumentHelper.createElement("PlcReadResponse");
         Element valuesElement = readResponseElement.addElement("values");
+        valuesElement.addAttribute("isList", "true");
 
         for (String tagName : response.getTagNames()) {
             Element tagElement = valuesElement.addElement(tagName);

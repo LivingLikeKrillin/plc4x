@@ -61,10 +61,4 @@
     <module>all</module>
   </modules>
 
-  <!-- TODO: Remove this when porting the drivers themselves to SPI3 -->
-  <build>
-    <sourceDirectory>src/main/temp</sourceDirectory>
-    <testSourceDirectory>lalala</testSourceDirectory>
-  </build>
-
 </project>

@@ -36,6 +36,9 @@
   </properties>
 
   <build>
+    <!-- Override the path of the sources roots until the code is ported  -->
+    <sourceDirectory>src/main/temp</sourceDirectory>
+    <testSourceDirectory>src/test/temp</testSourceDirectory>
     <plugins>
       <!--
         In theory, we should be able to generate the API from the openApi specs, however are

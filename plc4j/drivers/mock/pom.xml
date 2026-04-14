@@ -36,6 +36,12 @@
     <project.build.outputTimestamp>2025-08-02T13:55:11Z</project.build.outputTimestamp>
   </properties>
 
+  <build>
+    <!-- Override the path of the sources roots until the code is ported  -->
+    <sourceDirectory>src/main/temp</sourceDirectory>
+    <testSourceDirectory>src/test/temp</testSourceDirectory>
+  </build>
+
   <dependencies>
     <dependency>
       <groupId>org.junit.jupiter</groupId>

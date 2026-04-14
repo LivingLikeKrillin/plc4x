@@ -70,8 +70,8 @@ public class ConnectionManager {
      */
     public PlcConnection createConnection(String driver, Map<String, String> parameters) {
         try {
-            // Extract transport parameter if present
-            String transport = parameters.get("transport");
+            // Extract transport parameter if present, default to "test" for driver test suites
+            String transport = parameters.getOrDefault("transport", "test");
             String host = parameters.getOrDefault("host", "localhost");
 
             // Build connection URL

@@ -70,15 +70,19 @@ public class ApiRequestHandler {
 
         switch (requestType) {
             case "PlcReadRequest":
+            case "TestReadRequest":
                 executeReadRequest(connection, context);
                 break;
             case "PlcWriteRequest":
+            case "TestWriteRequest":
                 executeWriteRequest(connection, context);
                 break;
             case "PlcBrowseRequest":
+            case "TestBrowseRequest":
                 executeBrowseRequest(connection, context);
                 break;
             case "PlcSubscriptionRequest":
+            case "TestSubscriptionRequest":
                 executeSubscriptionRequest(connection, context);
                 break;
             default:
@@ -423,11 +427,17 @@ public class ApiRequestHandler {
     }
 
     private PlcValue parseValue(String valueStr) {
-        // Try to parse as different types
+        // Try to parse as different types, from narrowest to widest
         try {
             return new PlcDINT(Integer.parseInt(valueStr));
         } catch (NumberFormatException e) {
             // Not an integer
+        }
+
+        try {
+            return new PlcLINT(Long.parseLong(valueStr));
+        } catch (NumberFormatException e) {
+            // Not a long
         }
 
         try {

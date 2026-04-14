@@ -39,6 +39,7 @@
   <modules>
     <module>buffers</module>
     <module>config</module>
+    <module>drivers</module>
     <module>fields</module>
     <module>utils</module>
     <module>values</module>

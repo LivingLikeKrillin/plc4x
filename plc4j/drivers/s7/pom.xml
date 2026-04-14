@@ -36,7 +36,10 @@
   </properties>
 
   <build>
-    <plugins>   
+    <!-- Override the path of the sources roots until the code is ported  -->
+    <sourceDirectory>src/main/temp</sourceDirectory>
+    <testSourceDirectory>src/test/temp</testSourceDirectory>
+    <plugins>
         <plugin> 
         <groupId>org.apache.karaf.tooling</groupId>
         <artifactId>karaf-maven-plugin</artifactId>
