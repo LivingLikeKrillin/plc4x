@@ -25,8 +25,10 @@ public class ByteOrderBigEndian implements ByteOrder {
 
     public static final String NAME = "BIG_ENDIAN";
 
+    private static final WithOption OPTION = WithByteBasedOption.WithByteOrder(NAME);
+
     public static WithOption optionByteOrderBigEndian() {
-        return WithByteBasedOption.WithByteOrder(NAME);
+        return OPTION;
     }
 
     @Override

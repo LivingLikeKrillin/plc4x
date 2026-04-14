@@ -419,6 +419,8 @@ public class TcpTransportInstance extends BaseTransportInstance<TcpTransportConf
 
                     if (key.isReadable()) {
                         // Data available - read it into the ring buffer
+                        boolean notifyListener = false;
+                        boolean connectionClosed = false;
                         readLock.lock();
                         try {
                             // Check available space in ring buffer before reading
@@ -448,20 +450,29 @@ public class TcpTransportInstance extends BaseTransportInstance<TcpTransportConf
                                     getAuditLog().write(AuditLogEventType.ERROR, message);
                                 }
 
-                                // Notify the listener that data is available
-                                Runnable listener = dataListener;
-                                if (listener != null) {
-                                    listener.run();
-                                }
+                                notifyListener = true;
                             } else if (bytesRead == -1) {
                                 // Connection closed gracefully by remote
                                 LOGGER.info("Connection closed by remote");
                                 open = false;
-                                notifyDisconnect(null);  // null indicates graceful close
-                                break;
+                                connectionClosed = true;
                             }
                         } finally {
                             readLock.unlock();
+                        }
+
+                        // Notify listener OUTSIDE the readLock — the data is already
+                        // in the ring buffer, so holding the lock during response
+                        // processing would unnecessarily block the I/O path and cause
+                        // reentrant lock overhead in processIncomingData().
+                        if (notifyListener) {
+                            Runnable listener = dataListener;
+                            if (listener != null) {
+                                listener.run();
+                            }
+                        } else if (connectionClosed) {
+                            notifyDisconnect(null);
+                            break;
                         }
                     }
                 }

@@ -30,8 +30,10 @@ public class EncodingBCD extends BaseEncodingDefault {
 
     public static final String NAME = "BCD";
 
+    private static final WithOption OPTION = WithOption.WithEncoding(NAME);
+
     public static WithOption optionEncodingBCD() {
-        return WithOption.WithEncoding(NAME);
+        return OPTION;
     }
 
     @Override

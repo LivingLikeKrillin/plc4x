@@ -30,8 +30,10 @@ public class EncodingIEEE754 extends BaseEncodingDefault {
 
     public static final String NAME = "IEEE754";
 
+    private static final WithOption OPTION = WithOption.WithEncoding(NAME);
+
     public static WithOption optionEncodingIEEE754() {
-        return WithOption.WithEncoding(NAME);
+        return OPTION;
     }
 
     @Override

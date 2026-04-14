@@ -45,8 +45,10 @@ public class EncodingVarLengthSignedInteger extends BaseEncodingRaw {
 
     public static final String NAME = "VAR-SIGNED";
 
+    private static final WithOption OPTION = WithOption.WithEncoding(NAME);
+
     public static WithOption optionEncodingVarLengthSignedInteger() {
-        return WithOption.WithEncoding(NAME);
+        return OPTION;
     }
 
     @Override

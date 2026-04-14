@@ -26,8 +26,10 @@ public class EncodingWindows1252 extends BaseStringEncoding {
 
     public static final String NAME = "WINDOWS1252";
 
+    private static final WithOption OPTION = WithOption.WithEncoding(NAME);
+
     public static WithOption optionEncodingWINDOWS1252() {
-        return WithOption.WithEncoding(NAME);
+        return OPTION;
     }
 
     @Override

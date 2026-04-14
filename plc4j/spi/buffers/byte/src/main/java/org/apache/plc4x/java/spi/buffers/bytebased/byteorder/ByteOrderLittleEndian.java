@@ -25,8 +25,10 @@ public class ByteOrderLittleEndian implements ByteOrder {
 
     public static final String NAME = "LITTLE_ENDIAN";
 
+    private static final WithOption OPTION = WithByteBasedOption.WithByteOrder(NAME);
+
     public static WithOption optionByteOrderLittleEndian() {
-        return WithByteBasedOption.WithByteOrder(NAME);
+        return OPTION;
     }
 
     @Override

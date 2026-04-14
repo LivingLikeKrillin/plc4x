@@ -27,8 +27,10 @@ public class EncodingUTF16LE extends BaseStringEncoding {
 
     public static final String NAME = "UTF16LE";
 
+    private static final WithOption OPTION = WithOption.WithEncoding(NAME);
+
     public static WithOption optionEncodingUTF16LE() {
-        return WithOption.WithEncoding(NAME);
+        return OPTION;
     }
 
     @Override

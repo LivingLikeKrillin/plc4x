@@ -26,8 +26,10 @@ public class EncodingTwosComplement extends BaseEncodingDefault {
 
     public static final String NAME = "twos-complement";
 
+    private static final WithOption OPTION = WithOption.WithEncoding(NAME);
+
     public static WithOption optionEncodingTwosComplement() {
-        return WithOption.WithEncoding(NAME);
+        return OPTION;
     }
 
     @Override

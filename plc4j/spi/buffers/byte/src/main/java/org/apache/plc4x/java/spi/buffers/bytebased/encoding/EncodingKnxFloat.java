@@ -27,8 +27,10 @@ public class EncodingKnxFloat extends BaseEncodingDefault {
 
     public static final String NAME = "KNXFloat";
 
+    private static final WithOption OPTION = WithOption.WithEncoding(NAME);
+
     public static WithOption optionEncodingKNXFloat() {
-        return WithOption.WithEncoding(NAME);
+        return OPTION;
     }
 
     @Override

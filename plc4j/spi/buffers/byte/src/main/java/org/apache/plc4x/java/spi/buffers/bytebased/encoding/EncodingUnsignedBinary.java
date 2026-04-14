@@ -27,8 +27,10 @@ public class EncodingUnsignedBinary extends BaseEncodingDefault {
 
     public static final String NAME = "unsigned-binary";
 
+    private static final WithOption OPTION = WithOption.WithEncoding(NAME);
+
     public static WithOption optionEncodingUnsignedBinary() {
-        return WithOption.WithEncoding(NAME);
+        return OPTION;
     }
 
     @Override

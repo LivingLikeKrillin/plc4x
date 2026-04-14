@@ -31,8 +31,10 @@ public class EncodingASCII extends BaseStringEncoding {
 
     public static final String NAME = "ASCII";
 
+    private static final WithOption OPTION = WithOption.WithEncoding(NAME);
+
     public static WithOption optionEncodingASCII() {
-        return WithOption.WithEncoding(NAME);
+        return OPTION;
     }
 
     @Override

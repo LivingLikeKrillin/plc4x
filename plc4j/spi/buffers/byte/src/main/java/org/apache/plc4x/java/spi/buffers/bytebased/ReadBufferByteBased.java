@@ -39,8 +39,8 @@ public class ReadBufferByteBased extends AbstractBufferByteBased implements Read
 
     private ReadBufferByteBased(byte[] buffer, int startBit, int sizeInBits, WithOption... options) {
         super(buffer, startBit, sizeInBits,
-            WithByteBasedOption.extractByteOrderManager(options).orElse(new ByteOrderManager()),
-            WithByteBasedOption.extractEncodingManager(options).orElse(new EncodingManager()),
+            WithByteBasedOption.extractByteOrderManager(options).orElseGet(ByteOrderManager::getDefault),
+            WithByteBasedOption.extractEncodingManager(options).orElseGet(EncodingManager::getDefault),
             options);
     }
 

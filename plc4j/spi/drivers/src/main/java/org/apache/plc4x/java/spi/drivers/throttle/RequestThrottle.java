@@ -45,6 +45,21 @@ public class RequestThrottle {
         LOGGER.debug("Request throttle initialized with {} max concurrent requests", maxConcurrentRequests);
     }
 
+    /**
+     * Acquires a permit, blocking until one is available.
+     * Must be paired with {@link #release()} — typically in a response callback.
+     */
+    public void acquire() throws InterruptedException {
+        semaphore.acquire();
+    }
+
+    /**
+     * Releases a permit previously acquired via {@link #acquire()}.
+     */
+    public void release() {
+        semaphore.release();
+    }
+
     public <T> CompletableFuture<T> execute(Supplier<CompletableFuture<T>> requestSupplier) {
         try {
             semaphore.acquire();
@@ -57,16 +72,15 @@ public class RequestThrottle {
                 return CompletableFuture.failedFuture(e);
             }
 
-            CompletableFuture<T> resultFuture = new CompletableFuture<>();
-            requestFuture.whenComplete((result, error) -> {
+            // Use handle() to release the semaphore and propagate the result in a
+            // single stage, avoiding the extra CompletableFuture + whenComplete overhead.
+            return requestFuture.handle((result, error) -> {
                 semaphore.release();
                 if (error != null) {
-                    resultFuture.completeExceptionally(error);
-                } else {
-                    resultFuture.complete(result);
+                    throw (error instanceof RuntimeException re) ? re : new RuntimeException(error);
                 }
+                return result;
             });
-            return resultFuture;
 
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();

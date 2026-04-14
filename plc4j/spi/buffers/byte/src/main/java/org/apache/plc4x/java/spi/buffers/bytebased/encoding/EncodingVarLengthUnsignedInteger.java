@@ -40,8 +40,10 @@ public class EncodingVarLengthUnsignedInteger extends BaseEncodingRaw {
 
     public static final String NAME = "VAR-UNSIGNED";
 
+    private static final WithOption OPTION = WithOption.WithEncoding(NAME);
+
     public static WithOption optionEncodingVarLengthUnsignedInteger() {
-        return WithOption.WithEncoding(NAME);
+        return OPTION;
     }
 
     @Override

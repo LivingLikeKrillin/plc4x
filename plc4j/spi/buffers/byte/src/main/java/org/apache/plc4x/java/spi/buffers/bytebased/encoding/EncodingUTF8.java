@@ -27,8 +27,10 @@ public class EncodingUTF8 extends BaseStringEncoding {
 
     public static final String NAME = "UTF8";
 
+    private static final WithOption OPTION = WithOption.WithEncoding(NAME);
+
     public static WithOption optionEncodingUTF8() {
-        return WithOption.WithEncoding(NAME);
+        return OPTION;
     }
 
     @Override

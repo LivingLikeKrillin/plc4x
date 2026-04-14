@@ -27,8 +27,10 @@ public class EncodingIso88591 extends BaseStringEncoding {
 
     public static final String NAME = "ISO-8859-1";
 
+    private static final WithOption OPTION = WithOption.WithEncoding(NAME);
+
     public static WithOption optionEncodingIso88591() {
-        return WithOption.WithEncoding(NAME);
+        return OPTION;
     }
 
     @Override

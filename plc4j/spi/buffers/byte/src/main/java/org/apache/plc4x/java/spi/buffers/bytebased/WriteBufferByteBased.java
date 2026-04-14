@@ -40,8 +40,8 @@ public class WriteBufferByteBased extends AbstractBufferByteBased implements Wri
 
     public WriteBufferByteBased(byte[] buffer, int startBit, int sizeInBits, WithOption... defaultOptions) {
         super(buffer, startBit, sizeInBits,
-            WithByteBasedOption.extractByteOrderManager(defaultOptions).orElse(new ByteOrderManager()),
-            WithByteBasedOption.extractEncodingManager(defaultOptions).orElse(new EncodingManager()),
+            WithByteBasedOption.extractByteOrderManager(defaultOptions).orElseGet(ByteOrderManager::getDefault),
+            WithByteBasedOption.extractEncodingManager(defaultOptions).orElseGet(EncodingManager::getDefault),
             defaultOptions);
     }
 

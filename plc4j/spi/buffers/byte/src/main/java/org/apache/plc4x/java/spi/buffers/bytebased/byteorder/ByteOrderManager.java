@@ -25,6 +25,24 @@ import java.util.ServiceLoader;
 
 public class ByteOrderManager {
 
+    /** Lazily-initialized default instance to avoid repeated ServiceLoader scans. */
+    private static volatile ByteOrderManager defaultInstance;
+
+    /**
+     * Returns a shared default instance, creating it on first access.
+     * This avoids expensive ServiceLoader classpath scans on every buffer creation.
+     */
+    public static ByteOrderManager getDefault() {
+        if (defaultInstance == null) {
+            synchronized (ByteOrderManager.class) {
+                if (defaultInstance == null) {
+                    defaultInstance = new ByteOrderManager();
+                }
+            }
+        }
+        return defaultInstance;
+    }
+
     private final Map<String, ByteOrder> byteOrderMap;
 
     public ByteOrderManager() {
