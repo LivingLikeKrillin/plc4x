@@ -27,7 +27,7 @@
     <version>0.14.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>plc4j-transport-can-virtualcan</artifactId>
+  <artifactId>plc4j-transports-can-virtualcan</artifactId>
   <name>PLC4J: Transports: CAN (VirtualCAN)</name>
 
   <properties>
@@ -37,7 +37,7 @@
   <dependencies>
     <dependency>
       <groupId>org.apache.plc4x</groupId>
-      <artifactId>plc4j-transport-can</artifactId>
+      <artifactId>plc4j-transports-can</artifactId>
       <version>0.14.0-SNAPSHOT</version>
     </dependency>
 

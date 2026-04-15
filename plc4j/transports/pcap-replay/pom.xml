@@ -27,7 +27,7 @@
     <version>0.14.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>plc4j-transport-pcap-replay</artifactId>
+  <artifactId>plc4j-transports-pcap-replay</artifactId>
   <name>PLC4J: Transports: PCAP Replay</name>
   <description>Transport using libpcap to replay pcapng files to simulate a raw socket.</description>
 

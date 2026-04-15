@@ -27,7 +27,7 @@
     <version>0.14.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>plc4j-transport-socketcan</artifactId>
+  <artifactId>plc4j-transports-socketcan</artifactId>
   <name>PLC4J: Transports: SocketCAN</name>
   <description>Base classes needed to implement plc4x drivers based on SocketCAN connections. Powered by javacan library.</description>
 
@@ -68,7 +68,7 @@
     </dependency>
     <dependency>
       <groupId>org.apache.plc4x</groupId>
-      <artifactId>plc4j-transport-can</artifactId>
+      <artifactId>plc4j-transports-can</artifactId>
       <version>0.14.0-SNAPSHOT</version>
     </dependency>
     <dependency>

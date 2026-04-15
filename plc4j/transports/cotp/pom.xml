@@ -27,7 +27,7 @@
     <version>0.14.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>plc4j-transport-cotp</artifactId>
+  <artifactId>plc4j-transports-cotp</artifactId>
 
   <name>PLC4J: Transports: COTP</name>
   <description>COTP (Connection Oriented Transport Protocol) transport layer over TCP with TPKT framing</description>
@@ -56,7 +56,7 @@
     <!-- TCP Transport (COTP wraps TCP) -->
     <dependency>
       <groupId>org.apache.plc4x</groupId>
-      <artifactId>plc4j-transport-tcp</artifactId>
+      <artifactId>plc4j-transports-tcp</artifactId>
       <version>0.14.0-SNAPSHOT</version>
     </dependency>
 

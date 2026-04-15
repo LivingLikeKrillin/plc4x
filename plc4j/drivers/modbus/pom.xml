@@ -200,7 +200,7 @@
     </dependency>
     <dependency>
       <groupId>org.apache.plc4x</groupId>
-      <artifactId>plc4j-transport-tcp</artifactId>
+      <artifactId>plc4j-transports-tcp</artifactId>
       <version>0.14.0-SNAPSHOT</version>
     </dependency>
 
@@ -228,7 +228,7 @@
 
     <dependency>
       <groupId>org.apache.plc4x</groupId>
-      <artifactId>plc4j-transport-serial</artifactId>
+      <artifactId>plc4j-transports-serial</artifactId>
       <version>0.14.0-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>

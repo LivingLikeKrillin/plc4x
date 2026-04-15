@@ -147,7 +147,7 @@
 
     <dependency>
       <groupId>org.apache.plc4x</groupId>
-      <artifactId>plc4j-transport-test</artifactId>
+      <artifactId>plc4j-transports-test</artifactId>
       <version>0.14.0-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
