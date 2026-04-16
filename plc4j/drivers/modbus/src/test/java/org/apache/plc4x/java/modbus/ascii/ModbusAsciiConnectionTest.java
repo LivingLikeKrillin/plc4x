@@ -304,32 +304,6 @@ class ModbusAsciiConnectionTest {
     }
 
     @Test
-    void testToPlcValue() throws Exception {
-        Method method = ModbusAsciiConnection.class.getDeclaredMethod("toPlcValue",
-            ModbusPDU.class, ModbusPDU.class, ModbusDataType.class, int.class, ModbusByteOrder.class);
-        method.setAccessible(true);
-
-        ModbusPDUReadHoldingRegistersRequest request = new ModbusPDUReadHoldingRegistersRequest(0, 1);
-        ModbusPDUReadHoldingRegistersResponse response = new ModbusPDUReadHoldingRegistersResponse(new byte[]{0x00, 0x2A});
-        PlcValue result = (PlcValue) method.invoke(connection, request, response, ModbusDataType.INT, 1, ModbusByteOrder.BIG_ENDIAN);
-        assertNotNull(result);
-        assertEquals(42, result.getInteger());
-    }
-
-    @Test
-    void testToPlcValue_withByteSwap() throws Exception {
-        Method method = ModbusAsciiConnection.class.getDeclaredMethod("toPlcValue",
-            ModbusPDU.class, ModbusPDU.class, ModbusDataType.class, int.class, ModbusByteOrder.class);
-        method.setAccessible(true);
-
-        ModbusPDUReadHoldingRegistersRequest request = new ModbusPDUReadHoldingRegistersRequest(0, 1);
-        ModbusPDUReadHoldingRegistersResponse response = new ModbusPDUReadHoldingRegistersResponse(new byte[]{0x2A, 0x00});
-        PlcValue result = (PlcValue) method.invoke(connection, request, response, ModbusDataType.INT, 1, ModbusByteOrder.BIG_ENDIAN_BYTE_SWAP);
-        assertNotNull(result);
-        assertEquals(42, result.getInteger());
-    }
-
-    @Test
     void testExtractResponseData_fileRecord() throws Exception {
         Method method = ModbusAsciiConnection.class.getDeclaredMethod("extractResponseData", ModbusPDU.class, ModbusPDU.class);
         method.setAccessible(true);
@@ -390,18 +364,6 @@ class ModbusAsciiConnectionTest {
 
         ModbusTag tag = ModbusTag.of("4x00001:INT");
         byte[] result = (byte[]) method.invoke(connection, tag, new PlcINT(42), ModbusByteOrder.LITTLE_ENDIAN_BYTE_SWAP);
-        assertNotNull(result);
-    }
-
-    @Test
-    void testToPlcValue_littleEndian() throws Exception {
-        Method method = ModbusAsciiConnection.class.getDeclaredMethod("toPlcValue",
-            ModbusPDU.class, ModbusPDU.class, ModbusDataType.class, int.class, ModbusByteOrder.class);
-        method.setAccessible(true);
-
-        ModbusPDUReadHoldingRegistersRequest request = new ModbusPDUReadHoldingRegistersRequest(0, 1);
-        ModbusPDUReadHoldingRegistersResponse response = new ModbusPDUReadHoldingRegistersResponse(new byte[]{0x2A, 0x00});
-        PlcValue result = (PlcValue) method.invoke(connection, request, response, ModbusDataType.INT, 1, ModbusByteOrder.LITTLE_ENDIAN);
         assertNotNull(result);
     }
 

@@ -25,6 +25,7 @@ import org.apache.plc4x.java.api.model.PlcTag;
 import org.apache.plc4x.java.api.types.ConnectionStateChangeType;
 import org.apache.plc4x.java.api.types.PlcResponseCode;
 import org.apache.plc4x.java.api.value.PlcValue;
+import org.apache.plc4x.java.modbus.base.optimizer.ModbusReadOptimizer;
 import org.apache.plc4x.java.modbus.base.tag.*;
 import org.apache.plc4x.java.modbus.readwrite.*;
 import org.apache.plc4x.java.modbus.rtu.config.ModbusRtuConfiguration;
@@ -37,6 +38,7 @@ import org.apache.plc4x.java.spi.drivers.ConnectionBase;
 import org.apache.plc4x.java.spi.drivers.exceptions.MessageCodecException;
 import org.apache.plc4x.java.spi.drivers.messages.*;
 import org.apache.plc4x.java.spi.drivers.messages.items.DefaultPlcResponseItem;
+import org.apache.plc4x.java.spi.drivers.messages.items.PlcResponseItem;
 import org.apache.plc4x.java.spi.drivers.tags.PlcTagHandler;
 import org.apache.plc4x.java.spi.transports.api.TransportInstance;
 import org.apache.plc4x.java.spi.values.DefaultPlcValueHandler;
@@ -204,48 +206,76 @@ public class ModbusRtuConnection extends ConnectionBase<ModbusRtuConfiguration> 
     protected CompletableFuture<PlcReadResponse> onRead(PlcReadRequest readRequest) {
         DefaultPlcReadRequest request = (DefaultPlcReadRequest) readRequest;
 
-        if (request.getTagNames().size() == 1) {
-            String tagName = request.getTagNames().iterator().next();
-            ModbusTag tag = (ModbusTag) request.getTag(tagName);
-            ModbusPDU requestPdu = getReadRequestPdu(tag);
-            short unitId = getUnitId(tag);
-
-            ModbusRtuADU modbusRtuADU = new ModbusRtuADU(unitId, requestPdu);
-            return executeThrottled(() ->
-                sendRequest(modbusRtuADU, unitId).thenApply(responseAdu -> {
-                    ModbusPDU responsePdu = responseAdu.getPdu();
-                    PlcValue plcValue = null;
-                    PlcResponseCode responseCode;
-
-                    if (responsePdu instanceof ModbusPDUError errorResponse) {
-                        responseCode = getErrorCode(errorResponse);
-                    } else {
-                        try {
-                            ModbusByteOrder byteOrder = getConfiguration().getDefaultPayloadByteOrder();
-                            if (tag.getByteOrder() != null) {
-                                byteOrder = tag.getByteOrder();
-                            }
-                            plcValue = toPlcValue(requestPdu, responsePdu, tag.getDataType(), tag.getNumberOfElements(), byteOrder);
-                            responseCode = PlcResponseCode.OK;
-                        } catch (Exception e) {
-                            LOGGER.error("Error parsing read response for tag '{}'", tagName, e);
-                            responseCode = PlcResponseCode.INTERNAL_ERROR;
-                        }
-                    }
-
-                    if (auditLog.isEnabled()) {
-                        auditLog.write(AuditLogEventType.API_RESPONSE,
-                            "Read response for '" + tagName + "': " + responseCode);
-                    }
-
-                    return (PlcReadResponse) new DefaultPlcReadResponse(request,
-                        Collections.singletonMap(tagName, new DefaultPlcResponseItem<>(responseCode, plcValue)));
-                })
-            );
-        } else {
-            return CompletableFuture.failedFuture(
-                new PlcRuntimeException("Modbus only supports single tag requests"));
+        // Collect all tags
+        LinkedHashMap<String, ModbusTag> tagsByName = new LinkedHashMap<>();
+        for (String tagName : request.getTagNames()) {
+            tagsByName.put(tagName, (ModbusTag) request.getTag(tagName));
         }
+
+        // Use the optimizer to merge adjacent tags into block reads
+        ModbusReadOptimizer optimizer = new ModbusReadOptimizer(
+            getConfiguration().getMaxCoilsPerRequest(),
+            getConfiguration().getMaxRegistersPerRequest(),
+            getConfiguration().getDefaultPayloadByteOrder());
+        List<ModbusReadOptimizer.OptimizedRead> optimizedReads = optimizer.optimizeReads(tagsByName);
+
+        // Execute each optimized block read sequentially (RTU uses unit address for correlation)
+        List<CompletableFuture<Map<String, PlcResponseItem<PlcValue>>>> blockFutures = new ArrayList<>();
+        for (ModbusReadOptimizer.OptimizedRead optimizedRead : optimizedReads) {
+            blockFutures.add(executeOptimizedRead(optimizer, optimizedRead));
+        }
+
+        CompletableFuture<Void> allDone = CompletableFuture.allOf(
+            blockFutures.toArray(new CompletableFuture[0]));
+
+        return allDone.thenApply(v -> {
+            Map<String, PlcResponseItem<PlcValue>> responseItems = new LinkedHashMap<>();
+            for (CompletableFuture<Map<String, PlcResponseItem<PlcValue>>> blockFuture : blockFutures) {
+                try {
+                    responseItems.putAll(blockFuture.join());
+                } catch (Exception e) {
+                    LOGGER.error("Error in optimized block read", e);
+                }
+            }
+            for (String tagName : request.getTagNames()) {
+                if (!responseItems.containsKey(tagName)) {
+                    responseItems.put(tagName, new DefaultPlcResponseItem<>(PlcResponseCode.INTERNAL_ERROR, null));
+                }
+            }
+            return (PlcReadResponse) new DefaultPlcReadResponse(request, responseItems);
+        });
+    }
+
+    private CompletableFuture<Map<String, PlcResponseItem<PlcValue>>> executeOptimizedRead(
+            ModbusReadOptimizer optimizer, ModbusReadOptimizer.OptimizedRead optimizedRead) {
+        ModbusTag mergedTag = optimizedRead.mergedTag;
+        ModbusPDU requestPdu = getReadRequestPdu(mergedTag);
+        short unitId = getUnitId(mergedTag);
+
+        ModbusRtuADU modbusRtuADU = new ModbusRtuADU(unitId, requestPdu);
+        return executeThrottled(() ->
+            sendRequest(modbusRtuADU, unitId).thenApply(responseAdu -> {
+                ModbusPDU responsePdu = responseAdu.getPdu();
+
+                if (responsePdu instanceof ModbusPDUError errorResponse) {
+                    PlcResponseCode errorCode = getErrorCode(errorResponse);
+                    return optimizer.splitResponse(optimizedRead, errorCode, null);
+                }
+
+                byte[] blockData = extractResponseData(requestPdu, responsePdu);
+                if (blockData == null) {
+                    return optimizer.splitResponse(optimizedRead, PlcResponseCode.INTERNAL_ERROR, null);
+                }
+
+                if (auditLog.isEnabled()) {
+                    auditLog.write(AuditLogEventType.API_RESPONSE,
+                        "Block read response: " + blockData.length + " bytes for " +
+                            optimizedRead.originalTagNames.size() + " tags");
+                }
+
+                return optimizer.splitResponse(optimizedRead, PlcResponseCode.OK, blockData);
+            })
+        );
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -396,22 +426,6 @@ public class ModbusRtuConnection extends ConnectionBase<ModbusRtuConfiguration> 
             return new ModbusPDUWriteFileRecordRequest(itemArray);
         }
         throw new PlcRuntimeException("Unsupported write tag type " + tag.getClass().getName());
-    }
-
-    private PlcValue toPlcValue(ModbusPDU request, ModbusPDU response, ModbusDataType dataType, int numberOfElements, ModbusByteOrder byteOrder) throws BufferException {
-        byte[] responseData = extractResponseData(request, response);
-        if (responseData == null) {
-            return null;
-        }
-
-        // Apply byte-swap if needed (before parsing)
-        if (byteOrder == ModbusByteOrder.BIG_ENDIAN_BYTE_SWAP || byteOrder == ModbusByteOrder.LITTLE_ENDIAN_BYTE_SWAP) {
-            responseData = byteSwap(responseData);
-        }
-
-        boolean bigEndian = (byteOrder == ModbusByteOrder.BIG_ENDIAN || byteOrder == ModbusByteOrder.BIG_ENDIAN_BYTE_SWAP);
-        ReadBufferByteBased readBuffer = new ReadBufferByteBased(responseData);
-        return DataItem.staticParse(readBuffer, dataType, numberOfElements, bigEndian);
     }
 
     private byte[] extractResponseData(ModbusPDU request, ModbusPDU response) {

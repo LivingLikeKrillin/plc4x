@@ -27,6 +27,7 @@ import java.util.function.Consumer;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class ModbusAsciiMessageCodecTest {
 
@@ -54,7 +55,7 @@ class ModbusAsciiMessageCodecTest {
 
     @SuppressWarnings("unchecked")
     @Test
-    void testCalculateTotalMessageSize_returnsAvailableBytes() throws Exception {
+    void testCalculateTotalMessageSize_findsFrameEnd() throws Exception {
         TransportInstance<?> transportInstance = mock(TransportInstance.class);
         Consumer<ModbusAsciiADU> handler = mock(Consumer.class);
         ModbusAsciiMessageCodec codec = new ModbusAsciiMessageCodec(transportInstance, handler);
@@ -62,8 +63,14 @@ class ModbusAsciiMessageCodecTest {
         Method method = codec.getClass().getDeclaredMethod("calculateTotalMessageSize", byte[].class, int.class);
         method.setAccessible(true);
 
-        // ASCII has no explicit length header, so it returns the available bytes
-        byte[] header = new byte[9];
-        assertEquals(15, method.invoke(codec, header, 15));
+        // Simulate a complete ASCII frame: ':01030000000AFC\r\n' (17 bytes)
+        byte[] frameData = ":01030000000AFC\r\n".getBytes(java.nio.charset.StandardCharsets.US_ASCII);
+        when(transportInstance.peekReadableBytes(frameData.length)).thenReturn(frameData);
+        assertEquals(frameData.length, method.invoke(codec, new byte[9], frameData.length));
+
+        // Simulate incomplete frame (no CR+LF yet) — should return -1
+        byte[] incompleteData = ":01030000000AFC".getBytes(java.nio.charset.StandardCharsets.US_ASCII);
+        when(transportInstance.peekReadableBytes(incompleteData.length)).thenReturn(incompleteData);
+        assertEquals(-1, method.invoke(codec, new byte[9], incompleteData.length));
     }
 }

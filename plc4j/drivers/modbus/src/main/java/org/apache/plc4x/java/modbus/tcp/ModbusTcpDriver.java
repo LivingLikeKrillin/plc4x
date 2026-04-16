@@ -20,11 +20,8 @@ package org.apache.plc4x.java.modbus.tcp;
 
 import org.apache.plc4x.java.modbus.base.tag.ModbusTag;
 import org.apache.plc4x.java.modbus.readwrite.Constants;
-import org.apache.plc4x.java.modbus.tcp.config.ModbusTcpConfiguration;
-import org.apache.plc4x.java.modbus.tcp.config.ModbusTcpPskTlsTransportConfiguration;
-import org.apache.plc4x.java.modbus.tcp.config.ModbusTcpTcpTransportConfiguration;
+import org.apache.plc4x.java.modbus.tcp.config.*;
 import org.apache.plc4x.java.api.messages.PlcDiscoveryRequest;
-import org.apache.plc4x.java.modbus.tcp.config.ModbusTcpTlsTransportConfiguration;
 import org.apache.plc4x.java.modbus.tcp.discovery.ModbusPlcDiscoverer;
 import org.apache.plc4x.java.spi.config.Configuration;
 import org.apache.plc4x.java.spi.drivers.messages.DefaultPlcDiscoveryRequest;
@@ -34,6 +31,7 @@ import org.apache.plc4x.java.spi.transports.api.Transport;
 import org.apache.plc4x.java.spi.transports.api.TransportInstance;
 import org.apache.plc4x.java.spi.transports.api.config.TransportConfiguration;
 import org.apache.plc4x.java.utils.auditlog.api.AuditLog;
+import org.bouncycastle.tls.UDPTransport;
 
 import java.util.Collections;
 import java.util.List;
@@ -65,6 +63,8 @@ public class ModbusTcpDriver extends DriverBase {
             return ModbusTcpTlsTransportConfiguration.class;
         } else if ("tls-psk".equals(transport.getTransportCode())) {
             return ModbusTcpPskTlsTransportConfiguration.class;
+        } else if (transport instanceof UDPTransport) {
+            return ModbusTcpUdpTransportConfiguration.class;
         }
         return super.getTransportConfigurationClass(transport);
     }
@@ -76,7 +76,7 @@ public class ModbusTcpDriver extends DriverBase {
 
     @Override
     public List<String> getSupportedTransportCodes() {
-        return List.of("tcp", "tls", "tls-psk", "test");
+        return List.of("tcp", "tls", "tls-psk", "udp", "test");
     }
 
     @Override
@@ -85,6 +85,8 @@ public class ModbusTcpDriver extends DriverBase {
             return Set.of(Constants.MODBUSTCPDEFAULTPORT);
         } else if ("tls".equalsIgnoreCase(transportCode) || "tls-psk".equalsIgnoreCase(transportCode)) {
             return Set.of(Constants.MODBUSTCPTLSDEFAULTPORT);
+        } else if ("udp".equalsIgnoreCase(transportCode)) {
+            return Set.of(Constants.MODBUSUDPDEFAULTPORT);
         }
         return Collections.emptySet();
     }

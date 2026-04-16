@@ -18,19 +18,26 @@
  */
 package org.apache.plc4x.java.modbus.ascii;
 
+import org.apache.plc4x.java.modbus.ascii.config.*;
 import org.apache.plc4x.java.modbus.base.tag.ModbusTag;
-import org.apache.plc4x.java.modbus.ascii.config.ModbusAsciiConfiguration;
-import org.apache.plc4x.java.modbus.tcp.config.ModbusTcpTcpTransportConfiguration;
+import org.apache.plc4x.java.modbus.readwrite.Constants;
 import org.apache.plc4x.java.spi.config.Configuration;
 import org.apache.plc4x.java.spi.drivers.ConnectionBase;
 import org.apache.plc4x.java.spi.drivers.DriverBase;
 import org.apache.plc4x.java.spi.transports.api.Transport;
 import org.apache.plc4x.java.spi.transports.api.TransportInstance;
 import org.apache.plc4x.java.spi.transports.api.config.TransportConfiguration;
+import org.apache.plc4x.java.transport.serial.SerialTransport;
+import org.apache.plc4x.java.transport.tcp.TcpTransport;
+import org.apache.plc4x.java.transport.tls.PskTlsTransport;
+import org.apache.plc4x.java.transport.tls.TlsTransport;
 import org.apache.plc4x.java.utils.auditlog.api.AuditLog;
+import org.bouncycastle.tls.UDPTransport;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public class ModbusAsciiDriver extends DriverBase {
 
@@ -51,8 +58,18 @@ public class ModbusAsciiDriver extends DriverBase {
 
     @Override
     protected Class<? extends TransportConfiguration> getTransportConfigurationClass(Transport<?> transport) {
-        if ("tcp".equals(transport.getTransportCode())) {
-            return ModbusTcpTcpTransportConfiguration.class;
+        if (transport instanceof SerialTransport) {
+            return ModbusAsciiSerialTransportConfiguration.class;
+        }
+        // ASCII can use TCP for serial-to-IP gateways
+        else if (transport instanceof TcpTransport) {
+            return ModbusAsciiTcpTransportConfiguration.class;
+        } else if (transport instanceof TlsTransport) {
+            return ModbusAsciiTlsTransportConfiguration.class;
+        } else if (transport instanceof PskTlsTransport) {
+            return ModbusAsciiPskTlsTransportConfiguration.class;
+        } else if (transport instanceof UDPTransport) {
+            return ModbusAsciiUdpTransportConfiguration.class;
         }
         return super.getTransportConfigurationClass(transport);
     }
@@ -64,7 +81,19 @@ public class ModbusAsciiDriver extends DriverBase {
 
     @Override
     public List<String> getSupportedTransportCodes() {
-        return List.of("tcp", "serial", "test");
+        return List.of("serial", "tcp", "tls", "tls-psk", "udp", "test");
+    }
+
+    @Override
+    public Set<Integer> defaultPorts(String transportCode) {
+        if ("tcp".equalsIgnoreCase(transportCode)) {
+            return Set.of(Constants.MODBUSTCPDEFAULTPORT);
+        } else if ("tls".equalsIgnoreCase(transportCode) || "tls-psk".equalsIgnoreCase(transportCode)) {
+            return Set.of(Constants.MODBUSTCPTLSDEFAULTPORT);
+        } else if ("udp".equalsIgnoreCase(transportCode)) {
+            return Set.of(Constants.MODBUSUDPDEFAULTPORT);
+        }
+        return Collections.emptySet();
     }
 
     @Override
