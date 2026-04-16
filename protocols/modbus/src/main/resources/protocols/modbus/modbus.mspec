@@ -22,7 +22,8 @@
 // Remark: The different fields are encoded in Big-endian.
 
 [constants
-    [const          uint 16     modbusTcpDefaultPort 502]
+    [const          uint 16     modbusTcpDefaultPort    502]
+    [const          uint 16     modbusTcpTlsDefaultPort 802]
 ]
 
 [enum DriverType

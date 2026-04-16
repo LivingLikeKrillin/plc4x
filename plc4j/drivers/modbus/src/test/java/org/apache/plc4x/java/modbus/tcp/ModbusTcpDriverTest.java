@@ -54,6 +54,8 @@ class ModbusTcpDriverTest {
         assertTrue(metadata.getDefaultTransportCode().isPresent());
         assertEquals("tcp", metadata.getDefaultTransportCode().get());
         assertTrue(metadata.getSupportedTransportCodes().contains("tcp"));
+        assertTrue(metadata.getSupportedTransportCodes().contains("tls"));
+        assertTrue(metadata.getSupportedTransportCodes().contains("tls-psk"));
         assertTrue(metadata.getSupportedTransportCodes().contains("test"));
         assertTrue(metadata.isDiscoverySupported());
     }
@@ -62,6 +64,12 @@ class ModbusTcpDriverTest {
     void testDefaultPorts() {
         Set<Integer> tcpPorts = driver.defaultPorts("tcp");
         assertTrue(tcpPorts.contains(Constants.MODBUSTCPDEFAULTPORT));
+
+        Set<Integer> tlsPorts = driver.defaultPorts("tls");
+        assertTrue(tlsPorts.contains(Constants.MODBUSTCPTLSDEFAULTPORT));
+
+        Set<Integer> tlsPskPorts = driver.defaultPorts("tls-psk");
+        assertTrue(tlsPskPorts.contains(Constants.MODBUSTCPTLSDEFAULTPORT));
 
         Set<Integer> unknownPorts = driver.defaultPorts("serial");
         assertTrue(unknownPorts.isEmpty());

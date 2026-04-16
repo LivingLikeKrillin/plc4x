@@ -22,7 +22,13 @@ package org.apache.plc4x.java.modbus.readwrite;
 public class Constants {
   public static final Integer MODBUSTCPDEFAULTPORT = 502;
 
+  public static final Integer MODBUSTCPTLSDEFAULTPORT = 802;
+
   public int getModbusTcpDefaultPort() {
     return MODBUSTCPDEFAULTPORT;
+  }
+
+  public int getModbusTcpTlsDefaultPort() {
+    return MODBUSTCPTLSDEFAULTPORT;
   }
 }
