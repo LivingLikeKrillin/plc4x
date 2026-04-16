@@ -20,7 +20,7 @@ package org.apache.plc4x.java.modbus.rtu;
 
 import org.apache.plc4x.java.modbus.base.tag.ModbusTag;
 import org.apache.plc4x.java.modbus.rtu.config.ModbusRtuConfiguration;
-import org.apache.plc4x.java.modbus.tcp.config.ModbusTcpTransportConfiguration;
+import org.apache.plc4x.java.modbus.tcp.config.ModbusTcpTcpTransportConfiguration;
 import org.apache.plc4x.java.spi.config.Configuration;
 import org.apache.plc4x.java.spi.drivers.ConnectionBase;
 import org.apache.plc4x.java.spi.drivers.DriverBase;
@@ -52,7 +52,7 @@ public class ModbusRtuDriver extends DriverBase {
     @Override
     protected Class<? extends TransportConfiguration> getTransportConfigurationClass(Transport<?> transport) {
         if ("tcp".equals(transport.getTransportCode())) {
-            return ModbusTcpTransportConfiguration.class;
+            return ModbusTcpTcpTransportConfiguration.class;
         }
         return super.getTransportConfigurationClass(transport);
     }

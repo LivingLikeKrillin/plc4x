@@ -21,7 +21,7 @@ package org.apache.plc4x.java.modbus.tcp;
 import org.apache.plc4x.java.modbus.base.tag.ModbusTag;
 import org.apache.plc4x.java.modbus.readwrite.Constants;
 import org.apache.plc4x.java.modbus.tcp.config.ModbusTcpConfiguration;
-import org.apache.plc4x.java.modbus.tcp.config.ModbusTcpTransportConfiguration;
+import org.apache.plc4x.java.modbus.tcp.config.ModbusTcpTcpTransportConfiguration;
 import org.apache.plc4x.java.api.messages.PlcDiscoveryRequest;
 import org.apache.plc4x.java.modbus.tcp.discovery.ModbusPlcDiscoverer;
 import org.apache.plc4x.java.spi.config.Configuration;
@@ -31,6 +31,8 @@ import org.apache.plc4x.java.spi.drivers.DriverBase;
 import org.apache.plc4x.java.spi.transports.api.Transport;
 import org.apache.plc4x.java.spi.transports.api.TransportInstance;
 import org.apache.plc4x.java.spi.transports.api.config.TransportConfiguration;
+import org.apache.plc4x.java.transport.tls.config.PskTlsTransportConfiguration;
+import org.apache.plc4x.java.transport.tls.config.TlsTransportConfiguration;
 import org.apache.plc4x.java.utils.auditlog.api.AuditLog;
 
 import java.util.Collections;
@@ -58,7 +60,11 @@ public class ModbusTcpDriver extends DriverBase {
     @Override
     protected Class<? extends TransportConfiguration> getTransportConfigurationClass(Transport<?> transport) {
         if ("tcp".equals(transport.getTransportCode())) {
-            return ModbusTcpTransportConfiguration.class;
+            return ModbusTcpTcpTransportConfiguration.class;
+        } else if ("tls".equals(transport.getTransportCode())) {
+            return TlsTransportConfiguration.class;
+        } else if ("tls-psk".equals(transport.getTransportCode())) {
+            return PskTlsTransportConfiguration.class;
         }
         return super.getTransportConfigurationClass(transport);
     }
@@ -70,7 +76,7 @@ public class ModbusTcpDriver extends DriverBase {
 
     @Override
     public List<String> getSupportedTransportCodes() {
-        return List.of("tcp", "test");
+        return List.of("tcp", "tls", "tls-psk", "test");
     }
 
     @Override
@@ -78,6 +84,7 @@ public class ModbusTcpDriver extends DriverBase {
         if ("tcp".equalsIgnoreCase(transportCode)) {
             return Set.of(Constants.MODBUSTCPDEFAULTPORT);
         }
+        // Not sure what the default ports for TLS-transports are ...
         return Collections.emptySet();
     }
 

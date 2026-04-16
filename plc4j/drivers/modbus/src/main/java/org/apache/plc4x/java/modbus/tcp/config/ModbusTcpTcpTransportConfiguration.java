@@ -21,7 +21,7 @@ package org.apache.plc4x.java.modbus.tcp.config;
 import org.apache.plc4x.java.modbus.readwrite.Constants;
 import org.apache.plc4x.java.transport.tcp.config.TcpTransportConfiguration;
 
-public class ModbusTcpTransportConfiguration extends TcpTransportConfiguration {
+public class ModbusTcpTcpTransportConfiguration extends TcpTransportConfiguration {
 
     @Override
     public int getDefaultPort() {

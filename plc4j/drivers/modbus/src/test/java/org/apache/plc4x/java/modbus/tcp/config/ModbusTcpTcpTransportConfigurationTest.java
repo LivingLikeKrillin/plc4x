@@ -23,11 +23,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ModbusTcpTransportConfigurationTest {
+class ModbusTcpTcpTransportConfigurationTest {
 
     @Test
     void testGetDefaultPort() {
-        ModbusTcpTransportConfiguration config = new ModbusTcpTransportConfiguration();
+        ModbusTcpTcpTransportConfiguration config = new ModbusTcpTcpTransportConfiguration();
         assertEquals(Constants.MODBUSTCPDEFAULTPORT, config.getDefaultPort());
     }
 }
