@@ -1615,9 +1615,11 @@ public enum KnxManufacturer {
 
   M_SHENZHEN_HONGSHENGXU_INTELLIGENT_TECH_CO___LTD_((int) 794, (int) 855, "Shenzhen Hongshengxu Intelligent Tech Co., Ltd."),
 
-  M_ABB___RESERVED((int) 795, (int) 43954, "ABB - reserved"),
+  M_ITQAN_SMART((int) 795, (int) 856, "ITQAN SMART"),
 
-  M_BUSCH_JAEGER_ELEKTRO___RESERVED((int) 796, (int) 43959, "Busch-Jaeger Elektro - reserved");
+  M_ABB___RESERVED((int) 796, (int) 43954, "ABB - reserved"),
+
+  M_BUSCH_JAEGER_ELEKTRO___RESERVED((int) 797, (int) 43959, "Busch-Jaeger Elektro - reserved");
 
   private static final Map<Integer, KnxManufacturer> map;
 
