@@ -3233,6 +3233,12 @@ public enum BACnetVendorId {
 
   AUTOMATED_FACILITY_SYSTEMS_INC((int) 1613, (int) 1613, "Automated Facility Systems, Inc."),
 
+  SITE_SENSEAS((int) 1614, (int) 1614, "SiteSense AS"),
+
+  ECOIEURL((int) 1615, (int) 1615, "Eco-2i EURL"),
+
+  DONIX_EMBEDDED_SYSTEMSCC((int) 1616, (int) 1616, "Donix Embedded Systems CC"),
+
   UNKNOWN_VENDOR((int) 0xFFFF, (int) 0xFFFF, "Unknown");
 
   private static final Map<Integer, BACnetVendorId> map;

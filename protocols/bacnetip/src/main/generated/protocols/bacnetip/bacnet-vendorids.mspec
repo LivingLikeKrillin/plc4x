@@ -1625,6 +1625,9 @@
   ['1611' HUMI_PURE ['1611', '"HumiPure"']]
   ['1612' HUMBER_HORIZONS ['1612', '"Humber Horizons"']]
   ['1613' AUTOMATED_FACILITY_SYSTEMS_INC ['1613', '"Automated Facility Systems, Inc."']]
+  ['1614' SITE_SENSEAS ['1614', '"SiteSense AS"']]
+  ['1615' ECOIEURL ['1615', '"Eco-2i EURL"']]
+  ['1616' DONIX_EMBEDDED_SYSTEMSCC ['1616', '"Donix Embedded Systems CC"']]
  
   ['0xFFFF' UNKNOWN_VENDOR ['0xFFFF', '"Unknown"']]
 ]
