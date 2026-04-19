@@ -188,10 +188,9 @@ public class ApiResponseHandler {
     private Element serializeReadResponseToXml(PlcReadResponse response) {
         Element readResponseElement = DocumentHelper.createElement("PlcReadResponse");
         Element valuesElement = readResponseElement.addElement("values");
-        valuesElement.addAttribute("isList", "true");
 
         for (String tagName : response.getTagNames()) {
-            Element tagElement = valuesElement.addElement(tagName);
+            Element tagElement = valuesElement.addElement(sanitizeXmlElementName(tagName));
             Element responseItem = tagElement.addElement("PlcResponseItem");
 
             // Add response code with attributes matching the existing format
@@ -353,8 +352,9 @@ public class ApiResponseHandler {
         for (String tagName : response.getTagNames()) {
             PlcResponseCode actualResponseCode = response.getResponseCode(tagName);
 
-            // Find the expected response code for this tag
-            Element tagElement = responseCodesElement.element(tagName);
+            // Find the expected response code for this tag (sanitize name for XML lookup since
+            // brackets in tag names like MAIN.g_arrBool[1] become underscores in XML elements)
+            Element tagElement = responseCodesElement.element(sanitizeXmlElementName(tagName));
             if (tagElement == null) {
                 errors.add(String.format("Tag '%s': No expected response code found in responseXml", tagName));
                 continue;
@@ -592,6 +592,23 @@ public class ApiResponseHandler {
                 LOGGER.debug("Subscription for tag {} created successfully", tagName);
             }
         }
+    }
+
+    /**
+     * Sanitizes a tag name for use as an XML element name.
+     * Replaces characters that are invalid in XML element names with underscores.
+     * Examples:
+     * - "MAIN.g_arrBool[1]" → "MAIN.g_arrBool_1_"
+     * - "Program:TestProgram.g_b1" → "Program_TestProgram.g_b1"
+     * - "%DB4:0.0:BOOL" → "_DB4_0.0_BOOL"
+     * - "%DB4:140:STRING(200)" → "_DB4_140_STRING_200_"
+     */
+    private String sanitizeXmlElementName(String tagName) {
+        return tagName
+            .replace('%', '_')
+            .replace('[', '_').replace(']', '_')
+            .replace('(', '_').replace(')', '_')
+            .replace(':', '_');
     }
 
     /**

@@ -41,7 +41,7 @@ class DriverTestsuiteConfigurationTest {
 
         DriverTestsuiteConfiguration config = new DriverTestsuiteConfiguration(
             uri, "Test Suite", "s7", "read-write", "s7",
-            options, params, false, ByteOrderBigEndian.NAME
+            options, params, false, false, ByteOrderBigEndian.NAME
         );
 
         assertEquals(uri, config.getSuiteUri());

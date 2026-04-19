@@ -31,8 +31,8 @@ import org.apache.plc4x.java.spi.config.annotations.Description;
 public class AuditLogConfiguration implements Configuration {
 
     /**
-     * Path to the file where an audit-log file will be created.
-     * If not specified or empty, audit-log logging is disabled.
+     * Path to the file where an audit log file will be created.
+     * If not specified or empty, audit logging is disabled.
      */
     @ConfigurationParameter("audit-log-file")
     @Description("Path to the audit-log file where a all audit-log output will be written.")

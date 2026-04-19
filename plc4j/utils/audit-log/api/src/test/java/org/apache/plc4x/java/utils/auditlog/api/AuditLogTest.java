@@ -41,7 +41,7 @@ class AuditLogTest {
 
         // Should not throw when calling methods
         assertDoesNotThrow(() -> auditLog.write(AuditLogEventType.SYSTEM, "message"));
-        assertDoesNotThrow(auditLog::close);
+        assertDoesNotThrow(() -> auditLog.close());
     }
 
     @Test
@@ -86,7 +86,7 @@ class AuditLogTest {
 
         // Should not throw when calling methods
         assertDoesNotThrow(() -> auditLog.write(AuditLogEventType.SYSTEM, "message"));
-        assertDoesNotThrow(auditLog::close);
+        assertDoesNotThrow(() -> auditLog.close());
     }
 
     @Test
@@ -159,7 +159,7 @@ class AuditLogTest {
             assertDoesNotThrow(() -> auditLog.write(eventType, "test message"));
         }
 
-        assertDoesNotThrow(auditLog::close);
+        assertDoesNotThrow(() -> auditLog.close());
     }
 
     @Test
@@ -195,9 +195,9 @@ class AuditLogTest {
         AuditLog auditLog = AuditLog.builder().build();
 
         // Should handle multiple calls to close without issues
-        assertDoesNotThrow(auditLog::close);
-        assertDoesNotThrow(auditLog::close);
-        assertDoesNotThrow(auditLog::close);
+        assertDoesNotThrow(() -> auditLog.close());
+        assertDoesNotThrow(() -> auditLog.close());
+        assertDoesNotThrow(() -> auditLog.close());
     }
 
     @Test

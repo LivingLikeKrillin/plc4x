@@ -219,10 +219,16 @@ public class ModbusAsciiConnection extends ConnectionBase<ModbusAsciiConfigurati
             getConfiguration().getDefaultPayloadByteOrder());
         List<ModbusReadOptimizer.OptimizedRead> optimizedReads = optimizer.optimizeReads(tagsByName);
 
-        // Execute each optimized block read
+        // Execute each optimized block read, chaining them so the caller thread returns
+        // immediately — executeThrottled() blocks on semaphore acquisition, so iterating
+        // synchronously would stall the caller until all block reads complete.
         List<CompletableFuture<Map<String, PlcResponseItem<PlcValue>>>> blockFutures = new ArrayList<>();
+        CompletableFuture<Void> chain = CompletableFuture.completedFuture(null);
         for (ModbusReadOptimizer.OptimizedRead optimizedRead : optimizedReads) {
-            blockFutures.add(executeOptimizedRead(optimizer, optimizedRead));
+            CompletableFuture<Map<String, PlcResponseItem<PlcValue>>> blockFuture =
+                chain.thenComposeAsync(v -> executeOptimizedRead(optimizer, optimizedRead));
+            blockFutures.add(blockFuture);
+            chain = blockFuture.handle((r, e) -> null);
         }
 
         CompletableFuture<Void> allDone = CompletableFuture.allOf(

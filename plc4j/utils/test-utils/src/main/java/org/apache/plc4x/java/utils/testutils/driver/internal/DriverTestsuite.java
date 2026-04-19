@@ -182,9 +182,16 @@ public class DriverTestsuite {
                 driverParameters = XmlHelper.parseParameters(driverParametersElement);
             }
 
+            // Parse sequential mode (run all test cases on a single connection)
+            boolean sequential = false;
+            String sequentialStr = extractOptionalText(root, "sequential");
+            if ("true".equalsIgnoreCase(sequentialStr)) {
+                sequential = true;
+            }
+
             return new DriverTestsuiteConfiguration(
                 suiteUri, testsuiteName, protocolName, outputFlavor, driverName,
-                options, driverParameters, autoMigrate, byteOrder
+                options, driverParameters, autoMigrate, sequential, byteOrder
             );
         }
 

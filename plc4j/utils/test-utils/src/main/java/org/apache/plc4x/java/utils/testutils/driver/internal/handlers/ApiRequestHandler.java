@@ -378,16 +378,33 @@ public class ApiRequestHandler {
                 return new PlcLTIME(Duration.parse(valueStr));
 
             case "PlcDATE":
-                // Parse ISO 8601 date format (e.g., 2025-11-12)
                 return new PlcDATE(LocalDate.parse(valueStr));
 
+            case "PlcLDATE":
+                return new PlcLDATE(LocalDate.parse(valueStr));
+
             case "PlcTIME_OF_DAY":
-                // Parse time format (e.g., 14:33:21.250)
                 return new PlcTIME_OF_DAY(LocalTime.parse(valueStr));
 
+            case "PlcLTIME_OF_DAY":
+                return new PlcLTIME_OF_DAY(LocalTime.parse(valueStr));
+
             case "PlcDATE_AND_TIME":
-                // Parse ISO 8601 datetime format (e.g., 2025-11-12T14:33:21)
                 return new PlcDATE_AND_TIME(LocalDateTime.parse(valueStr));
+
+            case "PlcDATE_AND_LTIME":
+                return new PlcDATE_AND_LTIME(LocalDateTime.parse(valueStr));
+
+            case "PlcLDATE_AND_TIME":
+                return new PlcLDATE_AND_TIME(LocalDateTime.parse(valueStr));
+
+            // Raw byte array: <PlcRAW_BYTE_ARRAY>0001020304</PlcRAW_BYTE_ARRAY>
+            case "PlcRAW_BYTE_ARRAY":
+                try {
+                    return new PlcRawByteArray(org.apache.commons.codec.binary.Hex.decodeHex(valueStr));
+                } catch (org.apache.commons.codec.DecoderException e) {
+                    throw new DriverTestsuiteException("Invalid hex in PlcRAW_BYTE_ARRAY: " + valueStr, e);
+                }
 
             // List type
             case "PlcList":
@@ -438,6 +455,16 @@ public class ApiRequestHandler {
             return new PlcLINT(Long.parseLong(valueStr));
         } catch (NumberFormatException e) {
             // Not a long
+        }
+
+        try {
+            BigInteger bigInt = new BigInteger(valueStr);
+            // If it fits in unsigned 64-bit range, use ULINT; otherwise fall through
+            if (bigInt.signum() >= 0 && bigInt.bitLength() <= 64) {
+                return new PlcULINT(bigInt);
+            }
+        } catch (NumberFormatException e) {
+            // Not a BigInteger
         }
 
         try {

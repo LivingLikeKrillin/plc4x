@@ -70,6 +70,11 @@ public enum AuditLogEventType {
     API_RESPONSE,
 
     /**
+     * Incoming asynchronous events (e.g., subscription notifications from PLCs).
+     */
+    API_EVENT,
+
+    /**
      * Ends a test suite.
      */
     CLOSE,

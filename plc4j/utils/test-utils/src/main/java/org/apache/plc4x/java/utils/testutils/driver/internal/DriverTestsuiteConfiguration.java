@@ -36,12 +36,13 @@ public class DriverTestsuiteConfiguration {
     private final Map<String, String> options;
     private final Map<String, String> driverParameters;
     private final boolean autoMigrate;
+    private final boolean sequential;
     private final String byteOrder;
 
     public DriverTestsuiteConfiguration(URI suiteUri, String testsuiteName, String protocolName,
                                        String outputFlavor, String driverName,
                                        Map<String, String> options, Map<String, String> driverParameters,
-                                       boolean autoMigrate, String byteOrder) {
+                                       boolean autoMigrate, boolean sequential, String byteOrder) {
         this.suiteUri = suiteUri;
         this.testsuiteName = testsuiteName;
         this.protocolName = protocolName;
@@ -60,6 +61,7 @@ public class DriverTestsuiteConfiguration {
         // TODO: convert to immutable map
         this.driverParameters = driverParameters;
         this.autoMigrate = autoMigrate;
+        this.sequential = sequential;
         this.byteOrder = byteOrder;
     }
 
@@ -93,6 +95,16 @@ public class DriverTestsuiteConfiguration {
 
     public boolean isAutoMigrate() {
         return autoMigrate;
+    }
+
+    /**
+     * When true, all test cases run sequentially on a single connection
+     * instead of each test case creating its own connection. This is needed
+     * for test suites generated from audit logs where protocol counters
+     * (e.g., ADS invoke IDs, Modbus transaction IDs) increment across tests.
+     */
+    public boolean isSequential() {
+        return sequential;
     }
 
     public String getByteOrder() {

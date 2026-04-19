@@ -21,6 +21,7 @@ package org.apache.plc4x.java.utils.testutils.driver;
 import org.apache.plc4x.java.utils.testutils.XmlTestsuiteLoader;
 import org.apache.plc4x.java.utils.testutils.driver.exceptions.DriverTestsuiteException;
 import org.apache.plc4x.java.utils.testutils.driver.internal.DriverTestsuite;
+import org.apache.plc4x.java.utils.testutils.driver.internal.SequentialTestRunner;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
@@ -104,8 +105,16 @@ public abstract class DriverTestsuiteRunner extends XmlTestsuiteLoader {
             LOGGER.info("Protocol: {}", testsuite.getConfiguration().getProtocolName());
             LOGGER.info("Driver: {}", testsuite.getConfiguration().getDriverName());
             LOGGER.info("Test cases: {}", testsuite.getTestcases().size());
+            LOGGER.info("Sequential mode: {}", testsuite.getConfiguration().isSequential());
 
-            // Create dynamic tests
+            if (testsuite.getConfiguration().isSequential()) {
+                // Sequential mode: individual DynamicTests sharing a single connection.
+                // Needed for audit-log-generated test suites where protocol counters
+                // increment across the entire session.
+                return SequentialTestRunner.createTests(testsuite, ignoredTestCases, this::getSourceUri);
+            }
+
+            // Standard mode: create dynamic tests (one connection per test case)
             return testsuite.getTestcases().stream()
                 .map(testcase -> DynamicTest.dynamicTest(
                     testcase.getName(),

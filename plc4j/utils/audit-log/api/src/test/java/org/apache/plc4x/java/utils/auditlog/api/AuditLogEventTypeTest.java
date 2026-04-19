@@ -33,7 +33,7 @@ class AuditLogEventTypeTest {
         // Verify all expected event types are present
         AuditLogEventType[] types = AuditLogEventType.values();
 
-        assertEquals(11, types.length, "Expected exactly 11 event types");
+        assertEquals(12, types.length, "Expected exactly 12 event types");
 
         // Verify specific types exist
         assertNotNull(AuditLogEventType.valueOf("CONFIG"));
@@ -45,6 +45,7 @@ class AuditLogEventTypeTest {
         assertNotNull(AuditLogEventType.valueOf("INCOMING_MESSAGE"));
         assertNotNull(AuditLogEventType.valueOf("API_REQUEST"));
         assertNotNull(AuditLogEventType.valueOf("API_RESPONSE"));
+        assertNotNull(AuditLogEventType.valueOf("API_EVENT"));
         assertNotNull(AuditLogEventType.valueOf("CLOSE"));
         assertNotNull(AuditLogEventType.valueOf("ERROR"));
     }
@@ -60,6 +61,7 @@ class AuditLogEventTypeTest {
         assertEquals("INCOMING_MESSAGE", AuditLogEventType.INCOMING_MESSAGE.name());
         assertEquals("API_REQUEST", AuditLogEventType.API_REQUEST.name());
         assertEquals("API_RESPONSE", AuditLogEventType.API_RESPONSE.name());
+        assertEquals("API_EVENT", AuditLogEventType.API_EVENT.name());
         assertEquals("CLOSE", AuditLogEventType.CLOSE.name());
         assertEquals("ERROR", AuditLogEventType.ERROR.name());
     }
@@ -83,7 +85,8 @@ class AuditLogEventTypeTest {
         assertEquals(6, AuditLogEventType.INCOMING_MESSAGE.ordinal());
         assertEquals(7, AuditLogEventType.API_REQUEST.ordinal());
         assertEquals(8, AuditLogEventType.API_RESPONSE.ordinal());
-        assertEquals(9, AuditLogEventType.CLOSE.ordinal());
-        assertEquals(10, AuditLogEventType.ERROR.ordinal());
+        assertEquals(9, AuditLogEventType.API_EVENT.ordinal());
+        assertEquals(10, AuditLogEventType.CLOSE.ordinal());
+        assertEquals(11, AuditLogEventType.ERROR.ordinal());
     }
 }

@@ -43,6 +43,12 @@
                 <xs:element name="driver-name" type="xs:string"/>
                 <!-- Additional parameters passed to the driver in the connection-string -->
                 <xs:element name="driver-parameters" minOccurs="0" maxOccurs="1" type="parameterList" />
+                <!--
+                    When true, every test case reuses a single driver connection opened once
+                    at the start of the suite (reproducing an audit-log session in order).
+                    When false or absent, each test case opens and tears down its own connection.
+                -->
+                <xs:element name="sequential" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
 
                 <!-- Interaction which is performed to initiate the driver connection -->
                 <xs:element name="setup" minOccurs="0" maxOccurs="1">

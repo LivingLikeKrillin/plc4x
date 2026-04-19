@@ -107,7 +107,7 @@
               </PlcTagRequest>
             </PlcReadRequest>
           </request>
-          <values isList="true">
+          <values>
             <hurz>
               <PlcResponseItem>
                 <code dataType="string" bitLength="16" encoding="UTF-8">OK</code>
@@ -200,7 +200,7 @@
               </PlcTagRequest>
             </PlcReadRequest>
           </request>
-          <values isList="true">
+          <values>
             <hurz>
               <PlcResponseItem>
                 <code dataType="string" bitLength="16" encoding="UTF-8">OK</code>
@@ -355,7 +355,7 @@
               </PlcTagRequest>
             </PlcReadRequest>
           </request>
-          <values isList="true">
+          <values>
             <hurz1>
               <PlcResponseItem>
                 <code dataType="string" bitLength="16" encoding="UTF-8">OK</code>
@@ -457,7 +457,7 @@
                   </hurz>
                 </tags>
               </PlcTagRequest>
-              <values isList="true">
+              <values>
                 <hurz>
                   <PlcREAL dataType="float" bitLength="32">3.1415927</PlcREAL>
                 </hurz>
@@ -554,7 +554,7 @@
                   </hurz>
                 </tags>
               </PlcTagRequest>
-              <values isList="true">
+              <values>
                 <hurz>
                   <PlcList>
                     <PlcREAL dataType="float" bitLength="32">3.1415927</PlcREAL>

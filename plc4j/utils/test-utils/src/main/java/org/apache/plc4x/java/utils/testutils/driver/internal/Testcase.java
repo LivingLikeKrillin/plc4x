@@ -166,7 +166,17 @@ public class Testcase implements LocationAware {
                 }
             }
 
-            // Execute teardown steps
+            // Close the connection first — this triggers the driver to send its
+            // close/disconnect packets. Teardown steps then validate those outgoing bytes.
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (Exception e) {
+                    LOGGER.warn("Failed to close connection", e);
+                }
+            }
+
+            // Execute teardown steps (validate close/disconnect bytes)
             if ((testsuite.getTeardownSteps() != null) && !testsuite.getTeardownSteps().isEmpty()) {
                 LOGGER.info("Executing teardown steps");
                 for (TestStep step : testsuite.getTeardownSteps()) {
@@ -179,15 +189,6 @@ public class Testcase implements LocationAware {
         } catch (Exception e) {
             LOGGER.error("Test case '{}' failed: {}", name, e.getMessage(), e);
             throw new DriverTestsuiteException("Test case '" + name + "' failed", e);
-        } finally {
-            // Close connection
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (Exception e) {
-                    LOGGER.warn("Failed to close connection", e);
-                }
-            }
         }
     }
 

@@ -70,9 +70,9 @@ class AuditLogImplTest {
         List<String> lines = Files.readAllLines(auditLogFile);
 
         assertEquals(1, lines.size());
-        assertTrue(lines.getFirst().contains("[SYSTEM]"));
-        assertTrue(lines.getFirst().contains("[test-source]"));
-        assertTrue(lines.getFirst().contains("test message"));
+        assertTrue(lines.get(0).contains("[SYSTEM]"));
+        assertTrue(lines.get(0).contains("[test-source]"));
+        assertTrue(lines.get(0).contains("test message"));
     }
 
     @Test
@@ -131,7 +131,7 @@ class AuditLogImplTest {
         List<String> lines = Files.readAllLines(auditLogFile);
 
         // Check timestamp format (yyyy-MM-dd HH:mm:ss.SSS)
-        String line = lines.getFirst();
+        String line = lines.get(0);
         assertTrue(line.matches("^\\[\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}].*"),
             "Timestamp should match format [yyyy-MM-dd HH:mm:ss.SSS]");
     }
@@ -180,8 +180,8 @@ class AuditLogImplTest {
         assertEquals(1, lines1.size());
         assertEquals(1, lines2.size());
 
-        assertTrue(lines1.getFirst().contains("message from log1"));
-        assertTrue(lines2.getFirst().contains("message from log2"));
+        assertTrue(lines1.get(0).contains("message from log1"));
+        assertTrue(lines2.get(0).contains("message from log2"));
     }
 
     @Test
@@ -209,7 +209,7 @@ class AuditLogImplTest {
         List<String> lines = Files.readAllLines(auditLogFile);
 
         assertEquals(1, lines.size());
-        assertTrue(lines.getFirst().contains("[SYSTEM]"));
+        assertTrue(lines.get(0).contains("[SYSTEM]"));
     }
 
     @Test
@@ -246,7 +246,7 @@ class AuditLogImplTest {
         List<String> lines = Files.readAllLines(auditLogFile);
 
         assertEquals(1, lines.size());
-        String line = lines.getFirst();
+        String line = lines.get(0);
         assertTrue(line.contains("[SYSTEM]"));
         assertTrue(line.contains("[test-source]"));
         assertTrue(line.contains("Test object:"));
@@ -268,7 +268,7 @@ class AuditLogImplTest {
         List<String> lines = Files.readAllLines(auditLogFile);
 
         assertEquals(1, lines.size());
-        String line = lines.getFirst();
+        String line = lines.get(0);
         assertTrue(line.contains("Null object: null"));
     }
 

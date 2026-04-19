@@ -54,6 +54,7 @@ public class AuditLogImpl extends AuditLog {
 
     private final Logger logger;
     private final RollingFileAppender<ILoggingEvent> fileAppender;
+    private final LoggerContext loggerContext;
     private final ObjectMapper objectMapper;
 
     /**
@@ -73,7 +74,7 @@ public class AuditLogImpl extends AuditLog {
         // Create a unique logger for this audit log instance
         String loggerName = "AuditLog-" + System.identityHashCode(this);
 
-        LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
+        loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
         logger = loggerContext.getLogger(loggerName);
 
         // Don't inherit appenders from root logger

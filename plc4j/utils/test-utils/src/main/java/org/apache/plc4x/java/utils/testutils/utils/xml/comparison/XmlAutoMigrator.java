@@ -83,19 +83,24 @@ public class XmlAutoMigrator {
                 }
             }
 
-            // Write the updated document back to the file
-            File file = Paths.get(documentUri).toFile();
-
-            try (FileWriter fileWriter = new FileWriter(file)) {
-                OutputFormat format = OutputFormat.createPrettyPrint();
-                format.setIndentSize(2);
-                format.setEncoding("UTF-8");
-                XMLWriter writer = new XMLWriter(fileWriter, format);
-                writer.write(document);
-                writer.close();
+            // Write the updated document back to the file (only if on the filesystem, not in a JAR)
+            if (documentUri != null && "file".equals(documentUri.getScheme())) {
+                File file = Paths.get(documentUri).toFile();
+                try (FileWriter fileWriter = new FileWriter(file)) {
+                    OutputFormat format = OutputFormat.createPrettyPrint();
+                    format.setIndentSize(2);
+                    format.setEncoding("UTF-8");
+                    XMLWriter writer = new XMLWriter(fileWriter, format);
+                    writer.write(document);
+                    writer.close();
+                }
+                LOGGER.info("Successfully migrated test document using DOM: {}", file.getAbsolutePath());
+            } else {
+                // Resource is inside a JAR or unavailable — update the in-memory DOM
+                // (comparison will pass on this run) but skip writing to disk
+                LOGGER.warn("Cannot write auto-migrated XML back to non-file URI: {}. " +
+                    "In-memory DOM updated for this run. To persist, run from source.", documentUri);
             }
-
-            LOGGER.info("Successfully migrated test document using DOM: {}", file.getAbsolutePath());
         } catch (Exception e) {
             throw new XmlMigrationException("Failed to migrate using DOM method", e);
         }

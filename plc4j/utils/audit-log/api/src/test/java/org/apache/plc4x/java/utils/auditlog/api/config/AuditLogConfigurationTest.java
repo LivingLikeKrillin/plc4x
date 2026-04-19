@@ -19,7 +19,6 @@
 
 package org.apache.plc4x.java.utils.auditlog.api.config;
 
-import org.apache.plc4x.java.spi.config.Configuration;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -107,7 +106,7 @@ class AuditLogConfigurationTest {
         AuditLogConfiguration config = new AuditLogConfiguration();
 
         // Verify it implements the Configuration interface
-        assertInstanceOf(Configuration.class, config);
+        assertTrue(config instanceof org.apache.plc4x.java.spi.config.Configuration);
     }
 
     @Test

@@ -230,10 +230,16 @@ public class ModbusTcpConnection extends ConnectionBase<ModbusTcpConfiguration> 
             getConfiguration().getDefaultPayloadByteOrder());
         List<ModbusReadOptimizer.OptimizedRead> optimizedReads = optimizer.optimizeReads(tagsByName);
 
-        // Execute each optimized block read
+        // Execute each optimized block read, chaining them so the caller thread returns
+        // immediately — executeThrottled() blocks on semaphore acquisition, so iterating
+        // synchronously would stall the caller until all block reads complete.
         List<CompletableFuture<Map<String, PlcResponseItem<PlcValue>>>> blockFutures = new ArrayList<>();
+        CompletableFuture<Void> chain = CompletableFuture.completedFuture(null);
         for (ModbusReadOptimizer.OptimizedRead optimizedRead : optimizedReads) {
-            blockFutures.add(executeOptimizedRead(optimizer, optimizedRead));
+            CompletableFuture<Map<String, PlcResponseItem<PlcValue>>> blockFuture =
+                chain.thenComposeAsync(v -> executeOptimizedRead(optimizer, optimizedRead));
+            blockFutures.add(blockFuture);
+            chain = blockFuture.handle((r, e) -> null);
         }
 
         // Merge all results
@@ -301,11 +307,18 @@ public class ModbusTcpConnection extends ConnectionBase<ModbusTcpConfiguration> 
         DefaultPlcWriteRequest request = (DefaultPlcWriteRequest) writeRequest;
 
         // Modbus only supports one operation per PDU, so we send each tag as a separate request
-        // and merge the results into a single response.
+        // and merge the results into a single response. Chain the per-tag writes so the caller
+        // thread returns immediately — executeThrottled() blocks on semaphore acquisition, so
+        // iterating synchronously would stall the caller until all tags complete.
         LinkedHashMap<String, CompletableFuture<PlcResponseCode>> tagFutures = new LinkedHashMap<>();
+        CompletableFuture<Void> chain = CompletableFuture.completedFuture(null);
         for (String tagName : request.getTagNames()) {
             PlcTag tag = request.getTag(tagName);
-            tagFutures.put(tagName, writeSingleTag(tagName, tag, request.getPlcValue(tagName)));
+            PlcValue value = request.getPlcValue(tagName);
+            CompletableFuture<PlcResponseCode> tagFuture =
+                chain.thenComposeAsync(v -> writeSingleTag(tagName, tag, value));
+            tagFutures.put(tagName, tagFuture);
+            chain = tagFuture.handle((r, e) -> null);
         }
 
         CompletableFuture<Void> allDone = CompletableFuture.allOf(

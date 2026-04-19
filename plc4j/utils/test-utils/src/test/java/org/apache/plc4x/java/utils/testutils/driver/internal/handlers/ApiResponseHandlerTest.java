@@ -64,7 +64,6 @@ class ApiResponseHandlerTest {
         // Note: The actual XML generated includes type attributes, so we match that format
         Element responseXml = DocumentHelper.createElement("PlcReadResponse");
         Element valuesElement = responseXml.addElement("values");
-        valuesElement.addAttribute("isList", "true");
         Element tagElement = valuesElement.addElement("testTag");
         Element responseItem = tagElement.addElement("PlcResponseItem");
         Element codeElement = responseItem.addElement("code");
@@ -106,7 +105,6 @@ class ApiResponseHandlerTest {
         // Note: The actual XML generated includes type attributes, so we match that format
         Element responseXml = DocumentHelper.createElement("PlcReadResponse");
         Element valuesElement = responseXml.addElement("values");
-        valuesElement.addAttribute("isList", "true");
         Element tagElement = valuesElement.addElement("testTag");
         Element responseItem = tagElement.addElement("PlcResponseItem");
         Element codeElement = responseItem.addElement("code");

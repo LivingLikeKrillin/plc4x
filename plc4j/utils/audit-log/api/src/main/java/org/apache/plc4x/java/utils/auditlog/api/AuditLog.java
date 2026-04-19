@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
  * <pre>
  * AuditLog auditLog = AuditLog.builder()
  *     .withSource("connection-1")
- *     .withDriverTestsuiteFile("/path/to/testsuite.xml")
+ *     .withAuditFile("/path/to/audit.log")
  *     .build();
  *
  * auditLog.write(AuditLogEventType.CONNECT, "Connected to PLC");
@@ -125,7 +125,7 @@ public abstract class AuditLog {
      * <pre>
      * AuditLog auditLog = AuditLog.builder()
      *     .withSource("my-connection")
-     *     .withDriverTestsuiteFile("/path/to/testsuite.xml")
+     *     .withAuditFile("/path/to/audit.log")
      *     .build();
      * </pre>
      */
