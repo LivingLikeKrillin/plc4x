@@ -23,7 +23,7 @@
     <xs:element name="driver-testsuite">
         <xs:complexType>
             <xs:sequence>
-                <!-- Name of the tessuite -->
+                <!-- Name of the testsuite -->
                 <xs:element name="name" type="xs:string"/>
                 <!-- The protocolName(id) of the protocol -->
                 <xs:element name="protocol-name" type="xs:string"/>

@@ -22,8 +22,8 @@
 
   <name>Beckhoff ADS/AMS</name>
 
-  <protocolName>ads</protocolName>
-  <outputFlavor>read-write</outputFlavor>
+  <protocol-name>ads</protocol-name>
+  <output-flavor>read-write</output-flavor>
 
   <testcase>
     <name>Ams-Single-Item-Read-Request</name>

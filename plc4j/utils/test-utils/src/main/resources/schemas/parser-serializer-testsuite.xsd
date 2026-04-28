@@ -26,9 +26,9 @@
                 <!-- The name of the testsuite -->
                 <xs:element name="name" type="xs:string"/>
                 <!-- The protocolName(id) of the protocol -->
-                <xs:element name="protocolName" type="xs:string"/>
+                <xs:element name="protocol-name" type="xs:string"/>
                 <!-- The outputFlavor of the protocol-->
-                <xs:element name="outputFlavor" type="xs:string"/>
+                <xs:element name="output-flavor" type="xs:string"/>
 
                 <xs:element name="options" minOccurs="0" maxOccurs="1" type="parameterList">
                     <xs:annotation>

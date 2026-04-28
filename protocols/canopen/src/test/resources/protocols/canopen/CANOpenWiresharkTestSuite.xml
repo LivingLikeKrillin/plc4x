@@ -22,8 +22,8 @@
 
   <name>Tests of CANopen frames from Wireshark sample PCAP files.</name>
 
-  <protocolName>canopen</protocolName>
-  <outputFlavor>read-write</outputFlavor>
+  <protocol-name>canopen</protocol-name>
+  <output-flavor>read-write</output-flavor>
 
   <testcase>
     <name>SDO initiate request: 4008100000000000</name>

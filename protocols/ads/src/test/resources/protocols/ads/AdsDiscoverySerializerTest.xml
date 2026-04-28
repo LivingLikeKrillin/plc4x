@@ -22,8 +22,8 @@
 
   <name>Beckhoff ADS/AMS Discovery</name>
 
-  <protocolName>ads.discovery</protocolName>
-  <outputFlavor>read-write</outputFlavor>
+  <protocol-name>ads.discovery</protocol-name>
+  <output-flavor>read-write</output-flavor>
 
   <testcase>
     <name>ADS Discovery Request from 10.10.10.10.1.1</name>

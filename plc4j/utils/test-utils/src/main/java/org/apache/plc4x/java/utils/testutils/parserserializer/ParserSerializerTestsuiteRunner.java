@@ -59,7 +59,7 @@ public class ParserSerializerTestsuiteRunner extends XmlTestsuiteLoader {
     private static final Logger LOGGER = LoggerFactory.getLogger(ParserSerializerTestsuiteRunner.class);
 
     /**
-     * if set to true if will automigrate and on the next run test should be green
+     * if set to true if will auto-migrate and on the next run test should be green
      */
     private final boolean autoMigrate;
 
@@ -100,13 +100,13 @@ public class ParserSerializerTestsuiteRunner extends XmlTestsuiteLoader {
             Element testsuiteXml = document.getRootElement();
             String byteOrderName = testsuiteXml.attributeValue("byteOrder", "BIG_ENDIAN");
             String testsuiteName = testsuiteXml.element(new QName("name")).getStringValue();
-            String protocolName = testsuiteXml.element(new QName("protocolName")).getStringValue();
-            String outputFlavor = testsuiteXml.element(new QName("outputFlavor")).getStringValue();
+            String protocolName = testsuiteXml.element(new QName("protocol-name")).getStringValue();
+            String outputFlavor = testsuiteXml.element(new QName("output-flavor")).getStringValue();
 
             Element optionsElement = testsuiteXml.element(new QName("options"));
             Map<String, String> options = new HashMap<>(XmlHelper.parseParameters(optionsElement));
-            options.put("protocolName", protocolName);
-            options.put("outputFlavor", outputFlavor);
+            options.put("protocol-name", protocolName);
+            options.put("output-flavor", outputFlavor);
 
             List<Element> testcasesXml = testsuiteXml.elements(new QName("testcase"));
             List<Testcase> testcases = new ArrayList<>(testcasesXml.size());
@@ -186,7 +186,7 @@ public class ParserSerializerTestsuiteRunner extends XmlTestsuiteLoader {
             boolean migrated = MessageValidatorAndMigrator.validateOutboundMessageAndMigrate(
                 testcase.getName(),
                 parsedMessage,
-                testcase.getXml().elements().get(0),
+                testcase.getXml().elements().getFirst(),
                 testcaseRaw,
                 testSuite.byteOrderName(),
                 autoMigrate,
