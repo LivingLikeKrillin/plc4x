@@ -53,6 +53,7 @@ public class AdsPlcDiscoverer implements PlcDiscoverer {
         return discoverWithHandler(discoveryRequest, null);
     }
 
+    @Override
     public CompletableFuture<PlcDiscoveryResponse> discoverWithHandler(PlcDiscoveryRequest discoveryRequest, PlcDiscoveryItemHandler handler) {
         CompletableFuture<PlcDiscoveryResponse> future = new CompletableFuture<>();
         Queue<PlcDiscoveryItem> values = new ConcurrentLinkedQueue<>();
@@ -63,8 +64,7 @@ public class AdsPlcDiscoverer implements PlcDiscoverer {
             for (NetworkInterface networkInterface : Collections.list(NetworkInterface.getNetworkInterfaces())) {
                 if (!networkInterface.isLoopback()) {
                     for (InterfaceAddress interfaceAddress : networkInterface.getInterfaceAddresses()) {
-                        if ((interfaceAddress.getBroadcast() != null) && (interfaceAddress.getAddress() instanceof Inet4Address)) {
-                            Inet4Address inet4Address = (Inet4Address) interfaceAddress.getAddress();
+                        if ((interfaceAddress.getBroadcast() != null) && (interfaceAddress.getAddress() instanceof Inet4Address inet4Address)) {
                             // Open a listening socket on the AMS discovery default port for taking in responses.
                             DatagramSocket adsDiscoverySocket = new DatagramSocket(Constants.ADSDISCOVERYUDPDEFAULTPORT, inet4Address);
                             adsDiscoverySocket.setBroadcast(true);

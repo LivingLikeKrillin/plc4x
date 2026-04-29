@@ -44,7 +44,7 @@ public class DefaultPlcDiscoveryRequest implements PlcDiscoveryRequest {
 
     @Override
     public CompletableFuture<PlcDiscoveryResponse> executeWithHandler(PlcDiscoveryItemHandler handler) {
-        return discoverer.discover(this);
+        return discoverer.discoverWithHandler(this, handler);
     }
 
     public Map<String, String> getQueries() {
