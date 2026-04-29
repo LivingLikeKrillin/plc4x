@@ -230,36 +230,4 @@ public class DefaultPlcSubscriptionRequest implements PlcSubscriptionRequest {
         }
     }
 
-    private static class DefaultPlcSubscriptionTag implements PlcSubscriptionTag {
-        private final PlcSubscriptionType subscriptionType;
-        private final PlcTag tag;
-        private final Duration duration;
-
-        DefaultPlcSubscriptionTag(PlcSubscriptionType subscriptionType, PlcTag tag, Duration duration) {
-            this.subscriptionType = subscriptionType;
-            this.tag = tag;
-            this.duration = duration;
-        }
-
-        @Override
-        public PlcSubscriptionType getPlcSubscriptionType() {
-            return subscriptionType;
-        }
-
-        @Override
-        public PlcTag getTag() {
-            return tag;
-        }
-
-        @Override
-        public Optional<Duration> getDuration() {
-            return Optional.ofNullable(duration);
-        }
-
-        @Override
-        public String getAddressString() {
-            return tag.getAddressString();
-        }
-    }
-
 }

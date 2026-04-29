@@ -21,9 +21,9 @@ package org.apache.plc4x.java.ads.tag;
 import org.apache.plc4x.java.api.exceptions.PlcInvalidTagException;
 import org.apache.plc4x.java.api.model.ArrayInfo;
 import org.apache.plc4x.java.api.types.PlcValueType;
-import org.apache.plc4x.java.spi.codegen.WithOption;
-import org.apache.plc4x.java.spi.generation.SerializationException;
-import org.apache.plc4x.java.spi.generation.WriteBuffer;
+import org.apache.plc4x.java.spi.buffers.api.WithOption;
+import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
@@ -107,15 +107,17 @@ public class SymbolicAdsTag implements AdsTag {
     }
 
     @Override
-    public void serialize(WriteBuffer writeBuffer) throws SerializationException {
-        writeBuffer.pushContext(getClass().getSimpleName());
+    public void serialize(WriteBuffer writeBuffer) throws BufferException {
+        writeBuffer.pushContext(WithOption.WithName(getClass().getSimpleName()));
 
         String symbolicAddress = getSymbolicAddress();
-        writeBuffer.writeString("symbolicAddress",
+        writeBuffer.writeString(
             symbolicAddress.getBytes(StandardCharsets.UTF_8).length * 8,
-            symbolicAddress, WithOption.WithEncoding(StandardCharsets.UTF_8.name()));
+            symbolicAddress,
+            WithOption.WithName("symbolicAddress"),
+            WithOption.WithEncoding(StandardCharsets.UTF_8.name()));
 
-        writeBuffer.popContext(getClass().getSimpleName());
+        writeBuffer.popContext(WithOption.WithName(getClass().getSimpleName()));
     }
 
 }

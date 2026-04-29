@@ -16,15 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.protocol.ads;
+package org.apache.plc4x.java.spi.drivers.messages;
 
-import org.apache.plc4x.java.utils.testutils.driver.DriverTestsuiteRunner;
-import org.junit.jupiter.api.Disabled;
+import org.apache.plc4x.java.api.messages.PlcUnsubscriptionRequest;
+import org.apache.plc4x.java.api.messages.PlcUnsubscriptionResponse;
 
-public class AdsDriverIT extends DriverTestsuiteRunner {
+public class DefaultPlcUnsubscriptionResponse implements PlcUnsubscriptionResponse {
 
-    public AdsDriverIT() {
-        super("/protocols/ads/DriverTestsuite.xml", "org.apache.plc4x.java.ads.readwrite");
+    private final PlcUnsubscriptionRequest request;
+
+    public DefaultPlcUnsubscriptionResponse(PlcUnsubscriptionRequest request) {
+        this.request = request;
+    }
+
+    @Override
+    public PlcUnsubscriptionRequest getRequest() {
+        return request;
     }
 
 }

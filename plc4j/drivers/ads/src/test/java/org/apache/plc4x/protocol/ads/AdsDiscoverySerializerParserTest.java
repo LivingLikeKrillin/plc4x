@@ -18,7 +18,7 @@
  */
 package org.apache.plc4x.protocol.ads;
 
-import org.apache.plc4x.test.parserserializer.ParserSerializerTestsuiteRunner;
+import org.apache.plc4x.java.utils.testutils.parserserializer.ParserSerializerTestsuiteRunner;
 import org.junit.jupiter.api.Disabled;
 
 public class AdsDiscoverySerializerParserTest extends ParserSerializerTestsuiteRunner {

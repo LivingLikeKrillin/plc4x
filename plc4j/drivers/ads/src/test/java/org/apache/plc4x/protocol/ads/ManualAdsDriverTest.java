@@ -20,7 +20,7 @@ package org.apache.plc4x.protocol.ads;
 
 import org.apache.plc4x.java.api.value.PlcValue;
 import org.apache.plc4x.java.spi.values.*;
-import org.apache.plc4x.test.manual.ManualTest;
+import org.apache.plc4x.java.utils.testutils.manual.BasicPlcTest;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -30,7 +30,7 @@ import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ManualAdsDriverTest extends ManualTest {
+public class ManualAdsDriverTest extends BasicPlcTest {
 
     /*
      * Test program code on the PLC with the test-data.
@@ -72,7 +72,7 @@ public class ManualAdsDriverTest extends ManualTest {
      */
 
     public ManualAdsDriverTest(String connectionString) {
-        super(connectionString, true, true, true, true, 100);
+        super(connectionString, null, true, true, true, true, 100);
     }
 
     public static void main(String[] args) throws Exception {

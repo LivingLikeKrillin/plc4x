@@ -19,8 +19,7 @@
 package org.apache.plc4x.protocol.ads;
 
 import org.apache.plc4x.java.ads.discovery.readwrite.*;
-import org.apache.plc4x.java.spi.generation.ByteOrder;
-import org.apache.plc4x.java.spi.generation.WriteBufferByteBased;
+import org.apache.plc4x.java.spi.buffers.bytebased.WriteBufferByteBased;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -31,8 +30,8 @@ public class ProbeAdsDiscoveryCommands {
 
     public static void main(String[] args) {
         // Create the discovery request message for this device.
-        AmsNetId amsNetId = new AmsNetId((byte) 192, (byte) 168, (byte) 23, (byte) 200, (byte) 1, (byte) 1);
-        AdsDiscovery discoveryRequestMessage = new AdsDiscovery(1, Operation.UNKNOWN_REQUEST, amsNetId, AdsPortNumbers.SYSTEM_SERVICE,
+        AmsNetId amsNetId = new AmsNetId((short) 192, (short) 168, (short) 23, (short) 200, (short) 1, (short) 1);
+        AdsDiscovery discoveryRequestMessage = new AdsDiscovery(1L, Operation.UNKNOWN_REQUEST, amsNetId, AdsPortNumbers.SYSTEM_SERVICE,
             //Collections.emptyList()
             Arrays.asList(
                 /*new AdsDiscoveryBlockRouteName(new AmsString("route-name")),
@@ -40,12 +39,12 @@ public class ProbeAdsDiscoveryCommands {
                 new AdsDiscoveryBlockUserName(new AmsString("username")),
                 new AdsDiscoveryBlockPassword(new AmsString("password")),
                 new AdsDiscoveryBlockHostName(new AmsString("host-name-or-ip"))*/
-                new AdsDiscoveryBlockAmsNetId(new AmsNetId((byte) 192, (byte) 168, (byte) 23, (byte) 20, (byte) 1, (byte) 1))
+                new AdsDiscoveryBlockAmsNetId(new AmsNetId((short) 192, (short) 168, (short) 23, (short) 20, (short) 1, (short) 1))
             ));
 
         try (DatagramSocket adsDiscoverySocket = new DatagramSocket(Constants.ADSDISCOVERYUDPDEFAULTPORT)) {
             // Serialize the message.
-            WriteBufferByteBased writeBuffer = new WriteBufferByteBased(discoveryRequestMessage.getLengthInBytes(), ByteOrder.LITTLE_ENDIAN);
+            WriteBufferByteBased writeBuffer = new WriteBufferByteBased(new byte[discoveryRequestMessage.getLengthInBytes()], org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
             discoveryRequestMessage.serialize(writeBuffer);
 
             // Get the broadcast address for this interface.
