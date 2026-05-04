@@ -16,27 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.protocol.umas;
+package org.apache.plc4x.protocol.umas.v0;
 
-import org.apache.plc4x.plugins.codegenerator.language.mspec.parser.MessageFormatParser;
-import org.apache.plc4x.plugins.codegenerator.language.mspec.protocol.ProtocolHelpers;
-import org.apache.plc4x.plugins.codegenerator.language.mspec.protocol.ValidatableTypeContext;
-import org.apache.plc4x.plugins.codegenerator.protocol.Protocol;
 import org.apache.plc4x.plugins.codegenerator.protocol.TypeContext;
-import org.apache.plc4x.plugins.codegenerator.types.exceptions.GenerationException;
+import org.junit.jupiter.api.Test;
 
-public class UmasProtocol implements Protocol, ProtocolHelpers {
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
-    @Override
-    public String getName() {
-        return "umas";
-    }
+class UmasProtocolTest {
 
-    @Override
-    public TypeContext getTypeContext() throws GenerationException {
-        ValidatableTypeContext typeContext = new MessageFormatParser().parse(getMspecStream());
-        typeContext.validate();
-        return typeContext;
+    @Test
+    void getTypeContext() throws Exception {
+        TypeContext typeContext = new UmasProtocol().getTypeContext();
+        assertNotNull(typeContext);
+        assertNotNull(typeContext.getUnresolvedTypeReferences());
+        assertSame(0, typeContext.getUnresolvedTypeReferences().size());
     }
 
 }

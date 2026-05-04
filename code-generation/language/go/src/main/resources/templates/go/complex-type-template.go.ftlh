@@ -831,7 +831,11 @@ func (m *_${type.name}) GetLengthInBits(ctx context.Context) uint16 {
 
 <#if type.isDiscriminatedParentTypeDefinition()>
 func (m *_${type.name}) getLengthInBits(ctx context.Context) uint16 {
+	<#if type.parentType.isPresent()>
+	lengthInBits := uint16(m.${type.getParentType().orElseThrow().name}Contract.(*_${type.getParentType().orElseThrow().name}).getLengthInBits(ctx))
+	<#else>
 	lengthInBits := uint16(0)
+	</#if>
 	<#list type.fields as field>
 		<#switch field.typeName>
 			<#case "array">
@@ -1609,7 +1613,7 @@ func (m *_${type.name}) SerializeWithWriteBuffer(ctx context.Context, writeBuffe
 						ctx,
 						"${optionalField.name}",
 						"${helper.getLanguageTypeNameForField(field)}",
-						<#if typedField.type.isComplexTypeReference()>GetRef(</#if>m.Get${optionalField.name?cap_first}()<#if typedField.type.isComplexTypeReference()>)</#if>,
+						<#if typedField.type.isComplexTypeReference()>new(</#if>m.Get${optionalField.name?cap_first}()<#if typedField.type.isComplexTypeReference()>)</#if>,
 						${helper.getEnumDataWriterCall(optionalField.type, optionalField.name, "value")}
 						<#if optionalField.conditionExpression.present>
 							, ${helper.toSerializationExpression(optionalField, helper.boolTypeReference, optionalField.conditionExpression.get(), parserArguments)}
@@ -1620,7 +1624,7 @@ func (m *_${type.name}) SerializeWithWriteBuffer(ctx context.Context, writeBuffe
 	WriteOptionalField(
 						ctx,
 						"${optionalField.name}",
-						<#if typedField.type.isComplexTypeReference()>GetRef(</#if>m.Get${optionalField.name?cap_first}()<#if typedField.type.isComplexTypeReference()>)</#if>,
+						<#if typedField.type.isComplexTypeReference()>new(</#if>m.Get${optionalField.name?cap_first}()<#if typedField.type.isComplexTypeReference()>)</#if>,
 						WriteDataIO(writeBuffer,
 							func (wb utils.WriteBuffer, val any) error {
 						return ${optionalField.type.asComplexTypeReference().orElseThrow().name}.
@@ -1644,7 +1648,7 @@ func (m *_${type.name}) SerializeWithWriteBuffer(ctx context.Context, writeBuffe
 	WriteOptionalField[${helper.getLanguageTypeNameForField(field)}](
 						ctx,
 						"${optionalField.name}",
-						<#if typedField.type.isComplexTypeReference()>GetRef(</#if>m.Get${optionalField.name?cap_first}()<#if typedField.type.isComplexTypeReference()>)</#if>,
+						<#if typedField.type.isComplexTypeReference()>new(</#if>m.Get${optionalField.name?cap_first}()<#if typedField.type.isComplexTypeReference()>)</#if>,
 						${helper.getDataWriterCall(typedField.type, optionalField.name)},
 						<#if helper.isGeneratePropertiesForParserArguments() && optionalField.conditionExpression.present>
 							${helper.toSerializationExpression(optionalField, helper.boolTypeReference, optionalField.conditionExpression.get(), parserArguments)}

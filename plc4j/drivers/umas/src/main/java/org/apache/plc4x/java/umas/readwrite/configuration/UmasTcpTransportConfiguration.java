@@ -16,22 +16,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.protocol.umas;
+package org.apache.plc4x.java.umas.readwrite.configuration;
 
-import org.apache.plc4x.plugins.codegenerator.protocol.TypeContext;
-import org.junit.jupiter.api.Test;
+import org.apache.plc4x.java.umas.readwrite.Constants;
+import org.apache.plc4x.java.transport.tcp.DefaultTcpTransportConfiguration;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
+public class UmasTcpTransportConfiguration extends DefaultTcpTransportConfiguration {
 
-class UmasProtocolTest {
-
-    @Test
-    void getTypeContext() throws Exception {
-        TypeContext typeContext = new UmasProtocol().getTypeContext();
-        assertNotNull(typeContext);
-        assertNotNull(typeContext.getUnresolvedTypeReferences());
-        assertSame(0, typeContext.getUnresolvedTypeReferences().size());
+    @Override
+    public int getDefaultPort() {
+        return Constants.UMASTCPDEFAULTPORT;
     }
 
 }

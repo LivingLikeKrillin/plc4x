@@ -1629,7 +1629,6 @@
   ['1615' ECOIEURL ['1615', '"Eco-2i EURL"']]
   ['1616' DONIX_EMBEDDED_SYSTEMSCC ['1616', '"Donix Embedded Systems CC"']]
   ['1617' GPS_AIR ['1617', '"GPS Air"']]
-  ['1618'  ['1618', '"–"']]
   ['1619' QINGPING_TECHNOLOGY_BEIJING_CO_LTD ['1619', '"Qingping Technology Beijing Co., Ltd."']]
   ['1620' P_SSYSTEC_GMBH ['1620', '"PSsystec GmbH"']]
  

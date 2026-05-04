@@ -115,6 +115,8 @@ type ExtensionObjectDefinitionBuilder interface {
 	AsIdentityMappingRuleType() IdentityMappingRuleTypeBuilder
 	// AsCurrencyUnitType converts this build to a subType of ExtensionObjectDefinition. It is always possible to return to current builder using Done()
 	AsCurrencyUnitType() CurrencyUnitTypeBuilder
+	// AsNumberRange converts this build to a subType of ExtensionObjectDefinition. It is always possible to return to current builder using Done()
+	AsNumberRange() NumberRangeBuilder
 	// AsAnnotationDataType converts this build to a subType of ExtensionObjectDefinition. It is always possible to return to current builder using Done()
 	AsAnnotationDataType() AnnotationDataTypeBuilder
 	// AsLinearConversionDataType converts this build to a subType of ExtensionObjectDefinition. It is always possible to return to current builder using Done()
@@ -319,6 +321,12 @@ type ExtensionObjectDefinitionBuilder interface {
 	AsJsonActionResponseMessage() JsonActionResponseMessageBuilder
 	// AsAliasNameDataType converts this build to a subType of ExtensionObjectDefinition. It is always possible to return to current builder using Done()
 	AsAliasNameDataType() AliasNameDataTypeBuilder
+	// AsAliasNameVerboseDataType converts this build to a subType of ExtensionObjectDefinition. It is always possible to return to current builder using Done()
+	AsAliasNameVerboseDataType() AliasNameVerboseDataTypeBuilder
+	// AsAliasCategoryUpdateDataType converts this build to a subType of ExtensionObjectDefinition. It is always possible to return to current builder using Done()
+	AsAliasCategoryUpdateDataType() AliasCategoryUpdateDataTypeBuilder
+	// AsAliasUpdateDataType converts this build to a subType of ExtensionObjectDefinition. It is always possible to return to current builder using Done()
+	AsAliasUpdateDataType() AliasUpdateDataTypeBuilder
 	// AsUserManagementDataType converts this build to a subType of ExtensionObjectDefinition. It is always possible to return to current builder using Done()
 	AsUserManagementDataType() UserManagementDataTypeBuilder
 	// AsPriorityMappingEntryType converts this build to a subType of ExtensionObjectDefinition. It is always possible to return to current builder using Done()
@@ -972,6 +980,16 @@ func (b *_ExtensionObjectDefinitionBuilder) AsCurrencyUnitType() CurrencyUnitTyp
 		return cb
 	}
 	cb := NewCurrencyUnitTypeBuilder().(*_CurrencyUnitTypeBuilder)
+	cb.parentBuilder = b
+	b.childBuilder = cb
+	return cb
+}
+
+func (b *_ExtensionObjectDefinitionBuilder) AsNumberRange() NumberRangeBuilder {
+	if cb, ok := b.childBuilder.(NumberRangeBuilder); ok {
+		return cb
+	}
+	cb := NewNumberRangeBuilder().(*_NumberRangeBuilder)
 	cb.parentBuilder = b
 	b.childBuilder = cb
 	return cb
@@ -1992,6 +2010,36 @@ func (b *_ExtensionObjectDefinitionBuilder) AsAliasNameDataType() AliasNameDataT
 		return cb
 	}
 	cb := NewAliasNameDataTypeBuilder().(*_AliasNameDataTypeBuilder)
+	cb.parentBuilder = b
+	b.childBuilder = cb
+	return cb
+}
+
+func (b *_ExtensionObjectDefinitionBuilder) AsAliasNameVerboseDataType() AliasNameVerboseDataTypeBuilder {
+	if cb, ok := b.childBuilder.(AliasNameVerboseDataTypeBuilder); ok {
+		return cb
+	}
+	cb := NewAliasNameVerboseDataTypeBuilder().(*_AliasNameVerboseDataTypeBuilder)
+	cb.parentBuilder = b
+	b.childBuilder = cb
+	return cb
+}
+
+func (b *_ExtensionObjectDefinitionBuilder) AsAliasCategoryUpdateDataType() AliasCategoryUpdateDataTypeBuilder {
+	if cb, ok := b.childBuilder.(AliasCategoryUpdateDataTypeBuilder); ok {
+		return cb
+	}
+	cb := NewAliasCategoryUpdateDataTypeBuilder().(*_AliasCategoryUpdateDataTypeBuilder)
+	cb.parentBuilder = b
+	b.childBuilder = cb
+	return cb
+}
+
+func (b *_ExtensionObjectDefinitionBuilder) AsAliasUpdateDataType() AliasUpdateDataTypeBuilder {
+	if cb, ok := b.childBuilder.(AliasUpdateDataTypeBuilder); ok {
+		return cb
+	}
+	cb := NewAliasUpdateDataTypeBuilder().(*_AliasUpdateDataTypeBuilder)
 	cb.parentBuilder = b
 	b.childBuilder = cb
 	return cb
@@ -4506,6 +4554,10 @@ func (m *_ExtensionObjectDefinition) parse(ctx context.Context, readBuffer utils
 		if _child, err = new(_CurrencyUnitType).parse(ctx, readBuffer, m, extensionId); err != nil {
 			return nil, errors.Wrap(err, "Error parsing sub-type CurrencyUnitType for type-switch of ExtensionObjectDefinition")
 		}
+	case extensionId == int32(23905): // NumberRange
+		if _child, err = new(_NumberRange).parse(ctx, readBuffer, m, extensionId); err != nil {
+			return nil, errors.Wrap(err, "Error parsing sub-type NumberRange for type-switch of ExtensionObjectDefinition")
+		}
 	case extensionId == int32(32436): // AnnotationDataType
 		if _child, err = new(_AnnotationDataType).parse(ctx, readBuffer, m, extensionId); err != nil {
 			return nil, errors.Wrap(err, "Error parsing sub-type AnnotationDataType for type-switch of ExtensionObjectDefinition")
@@ -4913,6 +4965,18 @@ func (m *_ExtensionObjectDefinition) parse(ctx context.Context, readBuffer utils
 	case extensionId == int32(23470): // AliasNameDataType
 		if _child, err = new(_AliasNameDataType).parse(ctx, readBuffer, m, extensionId); err != nil {
 			return nil, errors.Wrap(err, "Error parsing sub-type AliasNameDataType for type-switch of ExtensionObjectDefinition")
+		}
+	case extensionId == int32(24053): // AliasNameVerboseDataType
+		if _child, err = new(_AliasNameVerboseDataType).parse(ctx, readBuffer, m, extensionId); err != nil {
+			return nil, errors.Wrap(err, "Error parsing sub-type AliasNameVerboseDataType for type-switch of ExtensionObjectDefinition")
+		}
+	case extensionId == int32(24054): // AliasCategoryUpdateDataType
+		if _child, err = new(_AliasCategoryUpdateDataType).parse(ctx, readBuffer, m, extensionId); err != nil {
+			return nil, errors.Wrap(err, "Error parsing sub-type AliasCategoryUpdateDataType for type-switch of ExtensionObjectDefinition")
+		}
+	case extensionId == int32(24055): // AliasUpdateDataType
+		if _child, err = new(_AliasUpdateDataType).parse(ctx, readBuffer, m, extensionId); err != nil {
+			return nil, errors.Wrap(err, "Error parsing sub-type AliasUpdateDataType for type-switch of ExtensionObjectDefinition")
 		}
 	case extensionId == int32(24283): // UserManagementDataType
 		if _child, err = new(_UserManagementDataType).parse(ctx, readBuffer, m, extensionId); err != nil {
