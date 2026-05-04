@@ -121,7 +121,7 @@ public class DirectAdsStringTag extends DirectAdsTag implements AdsStringTag {
             getPlcDataType().getBytes(StandardCharsets.UTF_8).length * 8,
             getPlcDataType(),
             WithOption.WithName("dataType"),
-            WithOption.WithEncoding(StandardCharsets.UTF_8.name()));
+            WithOption.WithEncoding("UTF8"));
         writeBuffer.writeUnsignedLong(32, getStringLength(), WithOption.WithName("stringLength"));
 
         writeBuffer.popContext(WithOption.WithName(getClass().getSimpleName()));

@@ -115,7 +115,7 @@ public class SymbolicAdsTag implements AdsTag {
             symbolicAddress.getBytes(StandardCharsets.UTF_8).length * 8,
             symbolicAddress,
             WithOption.WithName("symbolicAddress"),
-            WithOption.WithEncoding(StandardCharsets.UTF_8.name()));
+            WithOption.WithEncoding("UTF8"));
 
         writeBuffer.popContext(WithOption.WithName(getClass().getSimpleName()));
     }

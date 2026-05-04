@@ -16,33 +16,29 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
-package org.apache.plc4x.protocol.ads;
+package org.apache.plc4x.java.ads.manual;
 
 import org.apache.plc4x.java.api.PlcConnection;
 import org.apache.plc4x.java.api.PlcDriverManager;
-import org.apache.plc4x.java.api.messages.PlcBrowseItem;
-import org.apache.plc4x.java.api.messages.PlcBrowseResponse;
+import org.apache.plc4x.java.api.messages.PlcPingResponse;
+import org.apache.plc4x.java.api.types.PlcResponseCode;
 
-public class ManualAdsBrowse {
+import java.util.concurrent.TimeUnit;
+
+public class ManualFactoryAdsPing {
 
     public static void main(String[] args) throws Exception {
         try (PlcConnection connection = PlcDriverManager.getDefault().getConnectionManager().getConnection("ads:tcp://192.168.23.20:48898?target-ams-port=851&source-ams-port=65534&source-ams-net-id=192.168.23.220.1.1&target-ams-net-id=192.168.23.20.1.1")){
-            PlcBrowseResponse plcBrowseResponse = connection.browseRequestBuilder()
-                //.addQuery("all", "**")
-                .addQuery("allMain", "MAIN.*")
-                .build().executeWithInterceptor((gueryName, query, item) -> {
-                    outputItem(item, 0);
-                    return true;
-                }).get();
-            System.out.println(plcBrowseResponse);
+            for (int i = 0; i < 10; i++) {
+                PlcPingResponse pingResponse = connection.ping().get(1000, TimeUnit.MILLISECONDS);
+                if (pingResponse.getResponseCode() == PlcResponseCode.OK) {
+                    System.out.println("Ping Success");
+                } else {
+                    System.out.println("Ping Failure");
+                }
+                Thread.sleep(500);
+            }
         }
     }
 
-    protected static void outputItem(PlcBrowseItem item, int level) {
-        System.out.printf("%s- %s (%s %s)%n", "  ".repeat(level), item.getName(), item.getTag().getAddressString(), item.getTag().getPlcValueType());
-        if ((item.getChildren() != null) && !item.getChildren().isEmpty()) {
-            item.getChildren().forEach((s, plcBrowseItem) -> outputItem(plcBrowseItem, level + 1));
-        }
-    }
 }

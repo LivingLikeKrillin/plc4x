@@ -182,7 +182,7 @@ public class DirectAdsTag implements AdsTag {
             getPlcDataType().getBytes(StandardCharsets.UTF_8).length * 8,
             getPlcDataType(),
             WithOption.WithName("dataType"),
-            WithOption.WithEncoding(StandardCharsets.UTF_8.name()));
+            WithOption.WithEncoding("UTF8"));
 
         writeBuffer.popContext(WithOption.WithName(getClass().getSimpleName()));
     }

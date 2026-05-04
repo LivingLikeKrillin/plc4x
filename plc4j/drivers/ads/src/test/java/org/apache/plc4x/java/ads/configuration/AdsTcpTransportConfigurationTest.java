@@ -17,17 +17,17 @@
  * under the License.
  */
 
-package org.apache.plc4x.protocol.ads;
+package org.apache.plc4x.java.ads.configuration;
 
-import org.apache.plc4x.java.ads.AdsPlcDriver;
+import org.apache.plc4x.java.ads.readwrite.Constants;
+import org.junit.jupiter.api.Test;
 
-public class ManualAdsDiscovery {
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-    public static void main(String[] args) throws Exception {
-        new AdsPlcDriver().discoveryRequestBuilder().addQuery("all", "*")
-            .build()
-            .executeWithHandler(discoveryItem -> System.out.println("Found new device: " + discoveryItem.getConnectionUrl() + " (" + discoveryItem.getName() + ")"))
-            .get();
+class AdsTcpTransportConfigurationTest {
+
+    @Test
+    void getDefaultPortReturnsAdsTcpPort() {
+        assertEquals(Constants.ADSTCPDEFAULTPORT, new AdsTcpTransportConfiguration().getDefaultPort());
     }
-
 }

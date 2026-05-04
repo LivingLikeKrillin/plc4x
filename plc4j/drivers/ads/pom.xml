@@ -68,6 +68,42 @@
         </executions>
       </plugin>
       <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>report</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+            <configuration>
+              <excludes combine.children="append">
+                <!-- I/O-heavy driver-shell classes; require integration tests rather than unit tests. -->
+                <exclude>org/apache/plc4x/java/ads/AdsTcpConnection.class</exclude>
+                <exclude>org/apache/plc4x/java/ads/AdsTcpMessageCodec.class</exclude>
+                <exclude>org/apache/plc4x/java/ads/discovery/AdsPlcDiscoverer*.class</exclude>
+              </excludes>
+            </configuration>
+          </execution>
+          <execution>
+            <id>check-coverage</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <excludes combine.children="append">
+                <!-- I/O-heavy driver-shell classes; require integration tests rather than unit tests. -->
+                <exclude>org/apache/plc4x/java/ads/AdsTcpConnection.class</exclude>
+                <exclude>org/apache/plc4x/java/ads/AdsTcpMessageCodec.class</exclude>
+                <exclude>org/apache/plc4x/java/ads/discovery/AdsPlcDiscoverer*.class</exclude>
+              </excludes>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
         <extensions>true</extensions>

@@ -7,7 +7,7 @@
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *   https://www.apache.org/licenses/LICENSE-2.0
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
@@ -16,16 +16,17 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.protocol.ads;
+package org.apache.plc4x.java.ads.manual;
 
-import org.apache.commons.codec.binary.Hex;
+import org.apache.plc4x.java.ads.AdsPlcDriver;
 
-import java.util.Base64;
+public class ManualAdsDiscovery {
 
-public class HexBase64Helper {
     public static void main(String[] args) throws Exception {
-        final byte[] bytes = Hex.decodeHex("0100801b");
-        final String s = Base64.getEncoder().encodeToString(bytes);
-        System.out.println(s);
+        new AdsPlcDriver().discoveryRequestBuilder().addQuery("all", "*")
+            .build()
+            .executeWithHandler(discoveryItem -> System.out.println("Found new device: " + discoveryItem.getConnectionUrl() + " (" + discoveryItem.getName() + ")"))
+            .get();
     }
+
 }
