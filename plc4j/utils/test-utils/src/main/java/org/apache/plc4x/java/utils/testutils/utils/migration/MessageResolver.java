@@ -72,7 +72,7 @@ public class MessageResolver {
     }
 
     private static MessageInput<?> getMessageIOType(Map<String, String> options, String typeName, List<String> parserArguments) throws DriverTestsuiteException, ClassNotFoundException {
-        String extraMessage = "";
+        String extraMessage = "";//750-375 V02.08.xx (FW 11)
         if (options.containsKey("package")) {
             try {
                 return lookup(options.get("package"), typeName, parserArguments);
@@ -82,8 +82,8 @@ public class MessageResolver {
             }
         }
 
-        String protocolName = options.get("protocolName");
-        String outputFlavor = options.get("outputFlavor");
+        String protocolName = options.get("protocol-name");
+        String outputFlavor = options.get("output-flavor");
         String classPackage = String.format("org.apache.plc4x.java.%s.%s", protocolName, Strings.CS.replace(outputFlavor, "-", ""));
         try {
             return lookup(classPackage, typeName, parserArguments);

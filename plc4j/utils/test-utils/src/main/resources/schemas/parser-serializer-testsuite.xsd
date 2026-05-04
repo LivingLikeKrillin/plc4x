@@ -17,7 +17,7 @@
   specific language governing permissions and limitations
   under the License.
   -->
-<xs:schema targetNamespace="https://plc4x.apache.org/schemas/parser-serializer-testsuite.xsd"
+<xs:schema targetNamespace="https://toddysoft.com/schemas/parser-serializer-testsuite.xsd"
            xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
     <xs:element name="testsuite">
@@ -42,7 +42,7 @@
                     Each testcase is a set of hexadecimal input and expected output.
                     A test will parse the binary input and compare the parsed result
                     with the expected output. If that matches, it serializes the model
-                    back to it's binary representation and then compares the binary
+                    back to its binary representation and then compares the binary
                     output with the original.
                 -->
                 <xs:element name="testcase" maxOccurs="unbounded">

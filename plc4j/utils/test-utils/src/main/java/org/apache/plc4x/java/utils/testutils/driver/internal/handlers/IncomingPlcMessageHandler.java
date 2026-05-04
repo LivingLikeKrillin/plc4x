@@ -47,9 +47,11 @@ public class IncomingPlcMessageHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(IncomingPlcMessageHandler.class);
 
+    private final String basePackage;
     private final Element messageXml;
 
-    public IncomingPlcMessageHandler(Element messageXml) {
+    public IncomingPlcMessageHandler(String basePackage, Element messageXml) {
+        this.basePackage = basePackage;
         this.messageXml = messageXml;
     }
 
@@ -70,8 +72,7 @@ public class IncomingPlcMessageHandler {
         }
         Element messageElement = messageElementOptional.get();
         String rootMessageTypeName = messageElement.getName();
-        String packageName = "org.apache.plc4x.java.modbus.readwrite";
-        String className = packageName + "." + rootMessageTypeName;
+        String className = basePackage + "." + rootMessageTypeName;
 
         // Parse the message.
         // In general, we take the first element, that's not "parser-argument", add that to the
@@ -142,9 +143,9 @@ public class IncomingPlcMessageHandler {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("Failed to load class " + className, e);
         } catch (InvocationTargetException e) {
-            throw new RuntimeException("Failed to invoke staticParse method in class " + className);
+            throw new RuntimeException("Failed to invoke staticParse method in class " + className, e.getCause() != null ? e.getCause() : e);
         } catch (IllegalAccessException e) {
-            throw new RuntimeException("Failed to access staticParse method in class " + className);
+            throw new RuntimeException("Failed to access staticParse method in class " + className, e);
         }
     }
 

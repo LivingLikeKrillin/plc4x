@@ -144,7 +144,7 @@ class IncomingPlcMessageHandlerTest {
         // Create XML without a message element (only the root)
         Element messageXml = DocumentHelper.createElement("incoming-plc-message");
 
-        IncomingPlcMessageHandler handler = new IncomingPlcMessageHandler(messageXml);
+        IncomingPlcMessageHandler handler = new IncomingPlcMessageHandler("org.apache.plc4x.java.modbus.readwrite", messageXml);
         // Should throw because there's no message element
         RuntimeException exception = assertThrows(RuntimeException.class,
             () -> handler.executeIncomingPlcMessage(testTransport, "BIG_ENDIAN"));
@@ -158,7 +158,7 @@ class IncomingPlcMessageHandlerTest {
         Element parserArgs = messageXml.addElement("parser-arguments");
         parserArgs.addElement("driverType").setText("MODBUS_TCP");
 
-        IncomingPlcMessageHandler handler = new IncomingPlcMessageHandler(messageXml);
+        IncomingPlcMessageHandler handler = new IncomingPlcMessageHandler("org.apache.plc4x.java.modbus.readwrite", messageXml);
         // Should throw because parser-arguments is filtered out
         RuntimeException exception = assertThrows(RuntimeException.class,
             () -> handler.executeIncomingPlcMessage(testTransport, "BIG_ENDIAN"));
@@ -172,7 +172,7 @@ class IncomingPlcMessageHandlerTest {
         Element testMessage = messageXml.addElement("NonExistentMessage");
         testMessage.addText("test");
 
-        IncomingPlcMessageHandler handler = new IncomingPlcMessageHandler(messageXml);
+        IncomingPlcMessageHandler handler = new IncomingPlcMessageHandler("org.apache.plc4x.java.modbus.readwrite", messageXml);
         // Should throw because the class doesn't exist
         RuntimeException exception = assertThrows(RuntimeException.class,
             () -> handler.executeIncomingPlcMessage(testTransport, "BIG_ENDIAN"));

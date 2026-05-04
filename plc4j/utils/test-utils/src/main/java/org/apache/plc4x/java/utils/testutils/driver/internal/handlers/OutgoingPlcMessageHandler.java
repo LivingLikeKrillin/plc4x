@@ -68,10 +68,25 @@ public class OutgoingPlcMessageHandler {
      * @param byteOrder         the byte order name
      */
     public void executeOutgoingPlcMessage(TransportInstance<?> transportInstance, String byteOrder) {
-        Delay.shortDelay();
-
-        // Read and consume bytes from transport so the writeBuffer is cleared
+        // Wait until the driver has actually written something to the transport. A fixed
+        // short delay is unreliable — depending on scheduling the driver may not have
+        // reached the messageCodec.send() call yet.
+        long deadline = System.currentTimeMillis() + 5000L;
         byte[] actualBytes = ChannelUtil.getOutboundBytes(transportInstance);
+        while (actualBytes.length == 0 && System.currentTimeMillis() < deadline) {
+            Delay.shortDelay();
+            actualBytes = ChannelUtil.getOutboundBytes(transportInstance);
+        }
+        // Give a brief grace period so we collect the full message rather than just the
+        // first few bytes that happened to flush before we read.
+        Delay.shortDelay();
+        byte[] more = ChannelUtil.getOutboundBytes(transportInstance);
+        if (more.length > 0) {
+            byte[] combined = new byte[actualBytes.length + more.length];
+            System.arraycopy(actualBytes, 0, combined, 0, actualBytes.length);
+            System.arraycopy(more, 0, combined, actualBytes.length, more.length);
+            actualBytes = combined;
+        }
 
         // Get the name of the root message type
         Optional<Element> messageElementOptional = referenceXml.elements().stream().filter(
@@ -155,9 +170,9 @@ public class OutgoingPlcMessageHandler {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("Failed to load class " + className, e);
         } catch (InvocationTargetException e) {
-            throw new RuntimeException("Failed to invoke staticParse method in class " + className);
+            throw new RuntimeException("Failed to invoke staticParse method in class " + className, e.getCause() != null ? e.getCause() : e);
         } catch (IllegalAccessException e) {
-            throw new RuntimeException("Failed to access staticParse method in class " + className);
+            throw new RuntimeException("Failed to access staticParse method in class " + className, e);
         }
     }
 

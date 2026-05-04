@@ -17,7 +17,7 @@
   specific language governing permissions and limitations
   under the License.
   -->
-<xs:schema targetNamespace="https://plc4x.apache.org/schemas/driver-testsuite.xsd"
+<xs:schema targetNamespace="https://toddysoft.com/schemas/driver-testsuite.xsd"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
     <xs:element name="driver-testsuite">

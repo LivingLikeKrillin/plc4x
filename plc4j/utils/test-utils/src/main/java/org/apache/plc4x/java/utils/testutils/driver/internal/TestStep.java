@@ -148,7 +148,7 @@ public class TestStep implements LocationAware {
     }
 
     private void executeIncomingPlcMessage(TransportInstance<?> transportInstance, String byteOrder) {
-        IncomingPlcMessageHandler handler = new IncomingPlcMessageHandler(payload);
+        IncomingPlcMessageHandler handler = new IncomingPlcMessageHandler(basePackage, payload);
         handler.executeIncomingPlcMessage(transportInstance, byteOrder);
     }
 
