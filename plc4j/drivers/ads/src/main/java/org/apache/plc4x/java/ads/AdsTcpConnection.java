@@ -24,6 +24,10 @@ import org.apache.plc4x.java.ads.discovery.readwrite.AmsNetId;
 import org.apache.plc4x.java.ads.discovery.readwrite.Constants;
 import org.apache.plc4x.java.ads.model.AdsSubscriptionHandle;
 import org.apache.plc4x.java.ads.readwrite.*;
+import org.apache.plc4x.java.ads.resolution.ResolvedAdsTag;
+import org.apache.plc4x.java.ads.resolution.TagResolver;
+import org.apache.plc4x.java.ads.resolution.ValueDecoder;
+import org.apache.plc4x.java.ads.resolution.ValueEncoder;
 import org.apache.plc4x.java.ads.tag.AdsTag;
 import org.apache.plc4x.java.ads.tag.AdsTagHandler;
 import org.apache.plc4x.java.ads.tag.DirectAdsStringTag;
@@ -478,128 +482,220 @@ public class AdsTcpConnection extends ConnectionBase<AdsConfiguration> {
 
     @Override
     protected CompletableFuture<PlcReadResponse> onRead(PlcReadRequest readRequest) {
-        return getDirectAddresses(readRequest.getTags()).thenCompose(resolvedTags -> {
-            if (resolvedTags == null) {
-                return CompletableFuture.failedFuture(new PlcException("Tags are null"));
+        // Resolve every tag against the currently-loaded symbol/data-type tables. We don't go
+        // through the legacy ADSIGRP_SYM_HNDBYNAME round-trip — direct (group, offset, size)
+        // resolution from the locally-cached tables is enough and lets us support the full
+        // path syntax (".field", "[i]", multi-dim, mixed).
+        TagResolver resolver = new TagResolver(symbolTable, dataTypeTable);
+        Map<String, ResolvedAdsTag> resolved = new LinkedHashMap<>();
+        Map<String, PlcResponseCode> initialFailures = new HashMap<>();
+        for (String tagName : readRequest.getTagNames()) {
+            PlcTag tag = readRequest.getTag(tagName);
+            try {
+                resolved.put(tagName, resolveForReadOrWrite(resolver, tag));
+            } catch (PlcInvalidTagException e) {
+                LOGGER.debug("Cannot resolve tag {}: {}", tagName, e.getMessage());
+                initialFailures.put(tagName, PlcResponseCode.INVALID_ADDRESS);
+            } catch (Exception e) {
+                LOGGER.warn("Error resolving tag {}", tagName, e);
+                initialFailures.put(tagName, PlcResponseCode.INTERNAL_ERROR);
             }
-            return executeRead(readRequest, resolvedTags);
+        }
+        if (resolved.isEmpty()) {
+            return CompletableFuture.completedFuture(buildFailureReadResponse(readRequest, initialFailures));
+        }
+        return executeRead(readRequest, resolved, initialFailures);
+    }
+
+    private ResolvedAdsTag resolveForReadOrWrite(TagResolver resolver, PlcTag tag) {
+        if (tag == null) {
+            throw new PlcInvalidTagException("Tag could not be parsed");
+        }
+        if (tag instanceof SymbolicAdsTag s) {
+            return resolver.resolve(s);
+        }
+        if (tag instanceof DirectAdsStringTag s) {
+            return new ResolvedAdsTag(s.getIndexGroup(), s.getIndexOffset(),
+                computeDirectSize(s.getPlcDataType(), s.getStringLength(), s.getNumberOfElements()),
+                s.getPlcDataType(), TagResolver.plcValueTypeForName(s.getPlcDataType(), null),
+                s.getStringLength(), Collections.emptyList());
+        }
+        if (tag instanceof DirectAdsTag d) {
+            return new ResolvedAdsTag(d.getIndexGroup(), d.getIndexOffset(),
+                computeDirectSize(d.getPlcDataType(), 0, d.getNumberOfElements()),
+                d.getPlcDataType(), TagResolver.plcValueTypeForName(d.getPlcDataType(), null),
+                0, Collections.emptyList());
+        }
+        throw new PlcInvalidTagException("Unsupported tag type: " + tag.getClass().getName());
+    }
+
+    private long computeDirectSize(String typeName, int stringLength, int numberOfElements) {
+        Optional<AdsDataTypeTableEntry> dt = getDataTypeTableEntry(typeName);
+        long size = dt.map(AdsDataTypeTableEntry::getSize).orElseGet(() -> {
+            if ("STRING".equals(typeName)) return (long) (stringLength + 1);
+            if ("WSTRING".equals(typeName)) return (long) (stringLength + 1) * 2;
+            try {
+                return (long) AdsDataType.valueOf(typeName).getNumBytes();
+            } catch (IllegalArgumentException ignored) {
+                return 0L;
+            }
         });
+        return size * Math.max(1, numberOfElements);
     }
 
-    private CompletableFuture<PlcReadResponse> executeRead(PlcReadRequest readRequest, Map<AdsTag, DirectAdsTag> resolvedTags) {
-        if (resolvedTags.size() == 1) {
-            AdsTag adsTag = (AdsTag) readRequest.getTags().getFirst();
-            DirectAdsTag directAdsTag = resolvedTags.get(adsTag);
-            return singleRead(readRequest, directAdsTag);
-        } else {
-            // TODO: Check if the version of the remote station is at least TwinCAT v2.11 Build >= 1550 otherwise split up into single item requests.
-            return multiRead(readRequest, resolvedTags);
+    private PlcReadResponse buildFailureReadResponse(PlcReadRequest req, Map<String, PlcResponseCode> codes) {
+        Map<String, PlcResponseItem<PlcValue>> values = new LinkedHashMap<>();
+        for (String name : req.getTagNames()) {
+            PlcResponseCode code = codes.getOrDefault(name, PlcResponseCode.INTERNAL_ERROR);
+            values.put(name, new DefaultPlcResponseItem<>(code, null));
         }
+        return new DefaultPlcReadResponse(req, values);
     }
 
-    private CompletableFuture<PlcReadResponse> singleRead(PlcReadRequest readRequest, DirectAdsTag directAdsTag) {
-        if (directAdsTag == null) {
-            return CompletableFuture.completedFuture(new DefaultPlcReadResponse(readRequest, Collections.singletonMap(
-                readRequest.getTagNames().iterator().next(),
-                new DefaultPlcResponseItem<>(PlcResponseCode.NOT_FOUND, null))));
+    private CompletableFuture<PlcReadResponse> executeRead(PlcReadRequest readRequest,
+                                                           Map<String, ResolvedAdsTag> resolved,
+                                                           Map<String, PlcResponseCode> initialFailures) {
+        if (resolved.size() == 1) {
+            Map.Entry<String, ResolvedAdsTag> only = resolved.entrySet().iterator().next();
+            return singleRead(readRequest, only.getKey(), only.getValue(), initialFailures);
         }
-        Optional<AdsDataTypeTableEntry> dataTypeOpt = getDataTypeTableEntry(directAdsTag.getPlcDataType());
-        if (dataTypeOpt.isEmpty()) {
-            return CompletableFuture.failedFuture(new PlcRuntimeException("couldn't find datatype: " + directAdsTag.getPlcDataType()));
-        }
-        long size = dataTypeOpt.get().getSize();
+        return multiRead(readRequest, resolved, initialFailures);
+    }
 
+    private CompletableFuture<PlcReadResponse> singleRead(PlcReadRequest readRequest,
+                                                          String tagName, ResolvedAdsTag tag,
+                                                          Map<String, PlcResponseCode> initialFailures) {
         AmsPacket request = new AdsReadRequest(
             getConfiguration().getTargetAmsNetId(), getConfiguration().getTargetAmsPort(),
-            getConfiguration().getSourceAmsNetId(), getConfiguration().getSourceAmsPort(), ReturnCode.OK, getInvokeId(),
-            directAdsTag.getIndexGroup(), directAdsTag.getIndexOffset(), size * directAdsTag.getNumberOfElements());
+            getConfiguration().getSourceAmsNetId(), getConfiguration().getSourceAmsPort(),
+            ReturnCode.OK, getInvokeId(),
+            tag.indexGroup(), tag.indexOffset(), tag.sizeInBytes());
 
         return sendAmsRequest(request, AdsReadResponse.class).thenApply(response -> {
-            if (response.getResult() == ReturnCode.OK) {
-                return convertToPlc4xReadResponse(readRequest,
-                    Map.of((AdsTag) readRequest.getTags().get(0), directAdsTag), response);
+            Map<String, PlcResponseItem<PlcValue>> values = new LinkedHashMap<>();
+            for (String name : readRequest.getTagNames()) {
+                if (initialFailures.containsKey(name)) {
+                    values.put(name, new DefaultPlcResponseItem<>(initialFailures.get(name), null));
+                    continue;
+                }
+                if (!name.equals(tagName)) {
+                    // Shouldn't happen — single-read path means exactly one resolved tag.
+                    values.put(name, new DefaultPlcResponseItem<>(PlcResponseCode.INTERNAL_ERROR, null));
+                    continue;
+                }
+                if (response.getResult() != ReturnCode.OK) {
+                    values.put(name, new DefaultPlcResponseItem<>(parsePlcResponseCode(response.getResult()), null));
+                    continue;
+                }
+                values.put(name, decodePayload(tag, response.getData()));
             }
-            throw new PlcRuntimeException("Unexpected return code " + response.getResult());
+            return new DefaultPlcReadResponse(readRequest, values);
         });
     }
 
-    private CompletableFuture<PlcReadResponse> multiRead(PlcReadRequest readRequest, Map<AdsTag, DirectAdsTag> resolvedTags) {
-        List<AdsTag> successfullyResolvedTags = readRequest.getTagNames().stream()
-            .map(name -> (AdsTag) readRequest.getTag(name))
-            .filter(adsTag -> resolvedTags.get(adsTag) != null)
-            .collect(Collectors.toList());
+    private CompletableFuture<PlcReadResponse> multiRead(PlcReadRequest readRequest,
+                                                         Map<String, ResolvedAdsTag> resolved,
+                                                         Map<String, PlcResponseCode> initialFailures) {
+        // Tags participating in the sum-up read, in request order.
+        List<String> orderedNames = readRequest.getTagNames().stream()
+            .filter(resolved::containsKey).collect(Collectors.toList());
 
-        long expectedResponseDataSize = successfullyResolvedTags.stream().mapToLong(adsTag -> {
-            DirectAdsTag d = resolvedTags.get(adsTag);
-            Optional<AdsDataTypeTableEntry> dt = getDataTypeTableEntry(d.getPlcDataType());
-            if (dt.isEmpty()) {
-                LOGGER.warn("couldn't find datatype: {}", d.getPlcDataType());
-                return 0;
-            }
-            return 4 + (dt.get().getSize() * d.getNumberOfElements());
-        }).sum();
+        long expectedDataSize = orderedNames.stream()
+            .mapToLong(n -> 4L + resolved.get(n).sizeInBytes())  // 4-byte per-item return code + data
+            .sum();
 
         AmsPacket request = new AdsReadWriteRequest(
             getConfiguration().getTargetAmsNetId(), getConfiguration().getTargetAmsPort(),
-            getConfiguration().getSourceAmsNetId(), getConfiguration().getSourceAmsPort(), ReturnCode.OK, getInvokeId(),
-            ReservedIndexGroups.ADSIGRP_MULTIPLE_READ.getValue(), (long) successfullyResolvedTags.size(),
-            expectedResponseDataSize,
-            successfullyResolvedTags.stream().map(t -> {
-                DirectAdsTag d = resolvedTags.get(t);
-                Optional<AdsDataTypeTableEntry> dt = getDataTypeTableEntry(d.getPlcDataType());
-                long size = dt.map(AdsDataTypeTableEntry::getSize).orElse(0L);
-                return new AdsMultiRequestItemRead(d.getIndexGroup(), d.getIndexOffset(), size * d.getNumberOfElements());
+            getConfiguration().getSourceAmsNetId(), getConfiguration().getSourceAmsPort(),
+            ReturnCode.OK, getInvokeId(),
+            ReservedIndexGroups.ADSIGRP_MULTIPLE_READ.getValue(), (long) orderedNames.size(),
+            expectedDataSize,
+            orderedNames.stream().map(n -> {
+                ResolvedAdsTag t = resolved.get(n);
+                return new AdsMultiRequestItemRead(t.indexGroup(), t.indexOffset(), t.sizeInBytes());
             }).collect(Collectors.toList()),
             null);
 
         return sendAmsRequest(request, AdsReadWriteResponse.class).thenApply(response -> {
-            if (response.getResult() == ReturnCode.OK) {
-                return convertToPlc4xReadResponse(readRequest, resolvedTags, response);
-            } else if (response.getResult() == ReturnCode.ADSERR_DEVICE_INVALIDSIZE) {
-                throw new PlcRuntimeException("The parameter size was not correct (Internal error)");
-            } else {
-                throw new PlcRuntimeException("Unexpected result " + response.getResult());
+            Map<String, PlcResponseItem<PlcValue>> values = new LinkedHashMap<>();
+            if (response.getResult() != ReturnCode.OK) {
+                for (String name : readRequest.getTagNames()) {
+                    PlcResponseCode code = initialFailures.getOrDefault(name, parsePlcResponseCode(response.getResult()));
+                    values.put(name, new DefaultPlcResponseItem<>(code, null));
+                }
+                return new DefaultPlcReadResponse(readRequest, values);
             }
+
+            // Sum-up response layout: N x ReturnCode (4 bytes each), then concatenated data.
+            byte[] data = response.getData();
+            ReadBufferByteBased rb = newLittleEndianBuffer(data);
+            // Read per-item return codes.
+            Map<String, ReturnCode> resultPerTag = new LinkedHashMap<>();
+            try {
+                for (String n : orderedNames) {
+                    resultPerTag.put(n, ReturnCode.enumForValue(rb.readUnsignedLong(32)));
+                }
+            } catch (BufferException e) {
+                return buildFailureReadResponse(readRequest, Collections.emptyMap());
+            }
+            // Now decode each item's payload — for items whose result wasn't OK, we still need
+            // to advance the cursor by sizeInBytes to keep alignment for the rest.
+            for (String name : readRequest.getTagNames()) {
+                if (initialFailures.containsKey(name)) {
+                    values.put(name, new DefaultPlcResponseItem<>(initialFailures.get(name), null));
+                    continue;
+                }
+                ResolvedAdsTag tag = resolved.get(name);
+                ReturnCode code = resultPerTag.get(name);
+                if (code != ReturnCode.OK) {
+                    skipBytes(rb, tag.sizeInBytes());
+                    values.put(name, new DefaultPlcResponseItem<>(parsePlcResponseCode(code), null));
+                    continue;
+                }
+                try {
+                    int posBefore = rb.getPositionInBits() / 8;
+                    PlcValue v = new ValueDecoder(dataTypeTable).decode(rb, tag);
+                    int consumed = (rb.getPositionInBits() / 8) - posBefore;
+                    long expected = tag.sizeInBytes();
+                    if (consumed < expected) {
+                        // Top up to match the per-item size to stay aligned.
+                        skipBytes(rb, expected - consumed);
+                    }
+                    values.put(name, new DefaultPlcResponseItem<>(PlcResponseCode.OK, v));
+                } catch (Exception e) {
+                    LOGGER.warn("Error decoding tag {}", name, e);
+                    skipBytes(rb, tag.sizeInBytes());
+                    values.put(name, new DefaultPlcResponseItem<>(PlcResponseCode.INTERNAL_ERROR, null));
+                }
+            }
+            return new DefaultPlcReadResponse(readRequest, values);
         });
     }
 
-    private PlcReadResponse convertToPlc4xReadResponse(PlcReadRequest readRequest, Map<AdsTag, DirectAdsTag> resolvedTags, AmsPacket adsData) {
-        ReadBuffer readBuffer = null;
-        Map<String, PlcResponseCode> responseCodes = new HashMap<>();
+    private PlcResponseItem<PlcValue> decodePayload(ResolvedAdsTag tag, byte[] data) {
+        try {
+            ReadBufferByteBased rb = newLittleEndianBuffer(data);
+            PlcValue v = new ValueDecoder(dataTypeTable).decode(rb, tag);
+            return new DefaultPlcResponseItem<>(PlcResponseCode.OK, v);
+        } catch (Exception e) {
+            LOGGER.warn("Error decoding response", e);
+            return new DefaultPlcResponseItem<>(PlcResponseCode.INTERNAL_ERROR, null);
+        }
+    }
 
-        if (adsData instanceof AdsReadResponse adsReadResponse) {
-            readBuffer = new ReadBufferByteBased(adsReadResponse.getData(), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
-            responseCodes.put(readRequest.getTagNames().getFirst(), parsePlcResponseCode(adsReadResponse.getResult()));
-        } else if (adsData instanceof AdsReadWriteResponse adsReadWriteResponse) {
-            readBuffer = new ReadBufferByteBased(adsReadWriteResponse.getData(), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
-            for (String tagName : readRequest.getTagNames()) {
-                try {
-                    PlcTag tag = readRequest.getTag(tagName);
-                    if (resolvedTags.get((AdsTag) tag) != null) {
-                        ReturnCode result = ReturnCode.enumForValue(readBuffer.readUnsignedLong(32));
-                        responseCodes.put(tagName, parsePlcResponseCode(result));
-                    } else {
-                        responseCodes.put(tagName, PlcResponseCode.INVALID_ADDRESS);
-                    }
-                } catch (BufferException e) {
-                    responseCodes.put(tagName, PlcResponseCode.INTERNAL_ERROR);
-                }
-            }
-        }
+    private static ReadBufferByteBased newLittleEndianBuffer(byte[] data) {
+        return new ReadBufferByteBased(data,
+            WithOption.WithUnsignedIntegerEncoding("unsigned-binary"),
+            WithOption.WithSignedIntegerEncoding("twos-complement"),
+            WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    }
 
-        if (readBuffer == null) {
-            return null;
+    private static void skipBytes(ReadBuffer rb, long bytes) {
+        try {
+            if (bytes > 0) rb.readBits((int) bytes * 8);
+        } catch (BufferException ignored) {
+            // best-effort; cursor remains where it was
         }
-        Map<String, PlcResponseItem<PlcValue>> values = new LinkedHashMap<>();
-        for (String tagName : readRequest.getTagNames()) {
-            if (responseCodes.get(tagName) != PlcResponseCode.OK) {
-                values.put(tagName, new DefaultPlcResponseItem<>(responseCodes.get(tagName), null));
-            } else {
-                DirectAdsTag d = resolvedTags.get((AdsTag) readRequest.getTag(tagName));
-                values.put(tagName, parseResponseItem(d, readBuffer));
-            }
-        }
-        return new DefaultPlcReadResponse(readRequest, values);
     }
 
     private PlcResponseCode parsePlcResponseCode(ReturnCode adsResult) {
@@ -608,298 +704,166 @@ public class AdsTcpConnection extends ConnectionBase<AdsConfiguration> {
         return PlcResponseCode.INTERNAL_ERROR;
     }
 
-    private PlcResponseItem<PlcValue> parseResponseItem(DirectAdsTag tag, ReadBuffer readBuffer) {
-        try {
-            Optional<AdsDataTypeTableEntry> dataTypeOpt = getDataTypeTableEntry(tag.getPlcDataType());
-            if (dataTypeOpt.isEmpty()) {
-                return new DefaultPlcResponseItem<>(PlcResponseCode.INTERNAL_ERROR, null);
-            }
-            AdsDataTypeTableEntry dataType = dataTypeOpt.get();
-            PlcValueType plcValueType = getPlcValueTypeForAdsDataType(dataType);
-
-            int strLen = 0;
-            if (tag instanceof DirectAdsStringTag s) {
-                strLen = s.getStringLength();
-            }
-            final int stringLength = strLen;
-            if (tag.getNumberOfElements() == 1) {
-                ReadBufferByteBased rb = (ReadBufferByteBased) readBuffer;
-                int remainingBytes = (rb.getBytes().length) - (rb.getPositionInBits() / 8);
-                int singleStringLength = Math.min(remainingBytes - 1, stringLength);
-                return new DefaultPlcResponseItem<>(PlcResponseCode.OK,
-                    parsePlcValue(plcValueType, dataType, singleStringLength, readBuffer));
-            } else {
-                PlcValue[] resultItems = IntStream.range(0, tag.getNumberOfElements()).mapToObj(i -> {
-                    try {
-                        return parsePlcValue(plcValueType, dataType, stringLength, readBuffer);
-                    } catch (BufferException e) {
-                        LOGGER.warn("Error parsing tag item of type: '{}' (at position {}})", tag.getPlcDataType(), i, e);
-                        return null;
-                    }
-                }).toArray(PlcValue[]::new);
-                return new DefaultPlcResponseItem<>(PlcResponseCode.OK, DefaultPlcValueHandler.of(tag, resultItems));
-            }
-        } catch (Exception e) {
-            LOGGER.warn(String.format("Error parsing tag item of type: '%s'", tag.getPlcDataType()), e);
-            return new DefaultPlcResponseItem<>(PlcResponseCode.INTERNAL_ERROR, null);
-        }
-    }
-
-    private PlcValue parsePlcValue(PlcValueType plcValueType, AdsDataTypeTableEntry adsDataTypeTableEntry, int stringLength, ReadBuffer readBuffer) throws BufferException {
-        switch (plcValueType) {
-            case Struct:
-                Map<String, PlcValue> properties = new HashMap<>();
-                int startPos = (readBuffer.getPositionInBits() / 8);
-                int curPos = 0;
-                for (AdsDataTypeTableEntry child : adsDataTypeTableEntry.getChildren()) {
-                    if (child.getOffset() > curPos) {
-                        long skipBytes = child.getOffset() - curPos;
-                        // Just advance the cursor — readBits is the raw bit-level read that
-                        // doesn't depend on a signed/unsigned encoding being configured.
-                        readBuffer.readBits((int) skipBytes * 8);
-                    }
-                    String propertyName = child.getMainName();
-                    Optional<AdsDataTypeTableEntry> opt = getDataTypeTableEntry(child.getSecondaryName());
-                    if (opt.isEmpty()) {
-                        throw new BufferException(String.format("couldn't find datatype: %s", child.getSecondaryName()));
-                    }
-                    AdsDataTypeTableEntry propertyType = opt.get();
-                    PlcValueType propertyPlcType = getPlcValueTypeForAdsDataType(propertyType);
-                    int strLen = 0;
-                    if ((propertyPlcType == PlcValueType.STRING) || (propertyPlcType == PlcValueType.WSTRING)) {
-                        String n = propertyType.getMainName();
-                        strLen = Integer.parseInt(n.substring(n.indexOf("(") + 1, n.indexOf(")")));
-                    }
-                    properties.put(propertyName, parsePlcValue(propertyPlcType, propertyType, strLen, readBuffer));
-                    curPos = (readBuffer.getPositionInBits() / 8) - startPos;
-                }
-                return new PlcStruct(properties);
-            case List:
-                return parseArrayLevel(adsDataTypeTableEntry, adsDataTypeTableEntry.getArrayInfo(), readBuffer);
-            default:
-                return DataItem.staticParse(readBuffer, plcValueType, stringLength);
-        }
-    }
-
-    private PlcValue parseArrayLevel(AdsDataTypeTableEntry adsDataTypeTableEntry, List<AdsDataTypeArrayInfo> arrayLayers, ReadBuffer readBuffer) throws BufferException {
-        if (arrayLayers.isEmpty()) {
-            String dataTypeName = adsDataTypeTableEntry.getMainName();
-            dataTypeName = dataTypeName.substring(dataTypeName.lastIndexOf(" OF ") + 4);
-            int stringLength = 0;
-            if (dataTypeName.startsWith("STRING(")) {
-                stringLength = Integer.parseInt(dataTypeName.substring(7, dataTypeName.length() - 1));
-            } else if (dataTypeName.startsWith("WSTRING(")) {
-                stringLength = Integer.parseInt(dataTypeName.substring(8, dataTypeName.length() - 1));
-            }
-            Optional<AdsDataTypeTableEntry> opt = getDataTypeTableEntry(dataTypeName);
-            if (opt.isEmpty()) {
-                throw new BufferException(String.format("couldn't find datatype: %s", dataTypeName));
-            }
-            AdsDataTypeTableEntry elementType = opt.get();
-            return parsePlcValue(getPlcValueTypeForAdsDataType(elementType), elementType, stringLength, readBuffer);
-        }
-        List<PlcValue> elements = new ArrayList<>();
-        List<AdsDataTypeArrayInfo> arrayInfo = adsDataTypeTableEntry.getArrayInfo();
-        AdsDataTypeArrayInfo firstLayer = arrayInfo.get(0);
-        for (int i = 0; i < firstLayer.getNumElements(); i++) {
-            elements.add(parseArrayLevel(adsDataTypeTableEntry, arrayInfo.subList(1, arrayInfo.size()), readBuffer));
-        }
-        return new PlcList(elements);
-    }
-
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Write
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
     protected CompletableFuture<PlcWriteResponse> onWrite(PlcWriteRequest writeRequest) {
-        return getDirectAddresses(writeRequest.getTags()).thenCompose(resolvedTags -> {
-            if (resolvedTags == null) {
-                return CompletableFuture.failedFuture(new PlcException("Tags are null"));
+        TagResolver resolver = new TagResolver(symbolTable, dataTypeTable);
+        Map<String, ResolvedAdsTag> resolved = new LinkedHashMap<>();
+        Map<String, PlcResponseCode> initialFailures = new HashMap<>();
+        for (String tagName : writeRequest.getTagNames()) {
+            PlcTag tag = writeRequest.getTag(tagName);
+            try {
+                resolved.put(tagName, resolveForReadOrWrite(resolver, tag));
+            } catch (PlcInvalidTagException e) {
+                LOGGER.debug("Cannot resolve tag {}: {}", tagName, e.getMessage());
+                initialFailures.put(tagName, PlcResponseCode.INVALID_ADDRESS);
+            } catch (Exception e) {
+                LOGGER.warn("Error resolving tag {}", tagName, e);
+                initialFailures.put(tagName, PlcResponseCode.INTERNAL_ERROR);
             }
-            return executeWrite(writeRequest, resolvedTags);
+        }
+        if (resolved.isEmpty()) {
+            Map<String, PlcResponseCode> codes = new LinkedHashMap<>();
+            for (String name : writeRequest.getTagNames()) {
+                codes.put(name, initialFailures.getOrDefault(name, PlcResponseCode.INTERNAL_ERROR));
+            }
+            return CompletableFuture.completedFuture(new DefaultPlcWriteResponse(writeRequest, codes));
+        }
+        return executeWrite(writeRequest, resolved, initialFailures);
+    }
+
+    private CompletableFuture<PlcWriteResponse> executeWrite(PlcWriteRequest writeRequest,
+                                                             Map<String, ResolvedAdsTag> resolved,
+                                                             Map<String, PlcResponseCode> initialFailures) {
+        // Serialize each tag's payload up-front so we can size the request accurately and
+        // surface serialization failures cleanly before going on the wire.
+        Map<String, byte[]> serialized = new LinkedHashMap<>();
+        for (Map.Entry<String, ResolvedAdsTag> e : resolved.entrySet()) {
+            String name = e.getKey();
+            ResolvedAdsTag tag = e.getValue();
+            try {
+                serialized.put(name, serializeValue(tag, writeRequest.getPlcValue(name)));
+            } catch (Exception ex) {
+                LOGGER.warn("Error serializing tag {}", name, ex);
+                initialFailures.put(name, PlcResponseCode.INVALID_DATA);
+            }
+        }
+        // Drop any that failed to serialize.
+        serialized.keySet().forEach(name -> {
+            if (initialFailures.containsKey(name)) {
+                serialized.remove(name);
+            }
         });
+        if (serialized.isEmpty()) {
+            Map<String, PlcResponseCode> codes = new LinkedHashMap<>();
+            for (String name : writeRequest.getTagNames()) {
+                codes.put(name, initialFailures.getOrDefault(name, PlcResponseCode.INTERNAL_ERROR));
+            }
+            return CompletableFuture.completedFuture(new DefaultPlcWriteResponse(writeRequest, codes));
+        }
+        if (serialized.size() == 1) {
+            Map.Entry<String, byte[]> only = serialized.entrySet().iterator().next();
+            return singleWrite(writeRequest, only.getKey(), resolved.get(only.getKey()), only.getValue(), initialFailures);
+        }
+        return multiWrite(writeRequest, resolved, serialized, initialFailures);
     }
 
-    private CompletableFuture<PlcWriteResponse> executeWrite(PlcWriteRequest writeRequest, Map<AdsTag, DirectAdsTag> resolvedTags) {
-        if (resolvedTags.size() == 1) {
-            AdsTag adsTag = (AdsTag) writeRequest.getTags().getFirst();
-            DirectAdsTag directAdsTag = resolvedTags.get(adsTag);
-            return singleWrite(writeRequest, directAdsTag);
-        } else {
-            // TODO: Check if the version of the remote station is at least TwinCAT v2.11 Build >= 1550 otherwise split up into single item requests.
-            return multiWrite(writeRequest, resolvedTags);
+    private byte[] serializeValue(ResolvedAdsTag tag, PlcValue value) throws BufferException {
+        if (value == null) {
+            throw new BufferException("Null PlcValue for tag");
         }
+        WriteBufferByteBased wb = new WriteBufferByteBased(new byte[(int) tag.sizeInBytes()],
+            WithOption.WithUnsignedIntegerEncoding("unsigned-binary"),
+            WithOption.WithSignedIntegerEncoding("twos-complement"),
+            WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+        new ValueEncoder(dataTypeTable).encode(wb, tag, value);
+        return wb.getBytes();
     }
 
-    private CompletableFuture<PlcWriteResponse> singleWrite(PlcWriteRequest writeRequest, DirectAdsTag directAdsTag) {
-        if (directAdsTag == null) {
-            return CompletableFuture.completedFuture(new DefaultPlcWriteResponse(writeRequest, Collections.singletonMap(
-                writeRequest.getTagNames().iterator().next(), PlcResponseCode.INVALID_ADDRESS)));
-        }
-        String tagName = writeRequest.getTagNames().iterator().next();
-        PlcValue plcValue = writeRequest.getPlcValue(tagName);
-        byte[] serializedValue;
-        try {
-            serializedValue = serializePlcValue(plcValue, directAdsTag.getPlcDataType());
-        } catch (Exception e) {
-            return CompletableFuture.failedFuture(new PlcException("Error serializing data tag value for tag '" + tagName + "'", e));
-        }
-
+    private CompletableFuture<PlcWriteResponse> singleWrite(PlcWriteRequest writeRequest,
+                                                            String tagName, ResolvedAdsTag tag, byte[] data,
+                                                            Map<String, PlcResponseCode> initialFailures) {
         AmsPacket request = new AdsWriteRequest(
             getConfiguration().getTargetAmsNetId(), getConfiguration().getTargetAmsPort(),
-            getConfiguration().getSourceAmsNetId(), getConfiguration().getSourceAmsPort(), ReturnCode.OK, getInvokeId(),
-            directAdsTag.getIndexGroup(), directAdsTag.getIndexOffset(), serializedValue);
+            getConfiguration().getSourceAmsNetId(), getConfiguration().getSourceAmsPort(),
+            ReturnCode.OK, getInvokeId(),
+            tag.indexGroup(), tag.indexOffset(), data);
         return sendAmsRequest(request, AdsWriteResponse.class).thenApply(response -> {
-            if (response.getResult() == ReturnCode.OK) {
-                return convertToPlc4xWriteResponse(writeRequest,
-                    Collections.singletonMap((AdsTag) writeRequest.getTag(tagName), directAdsTag), response);
+            Map<String, PlcResponseCode> codes = new LinkedHashMap<>();
+            for (String name : writeRequest.getTagNames()) {
+                if (initialFailures.containsKey(name)) {
+                    codes.put(name, initialFailures.get(name));
+                } else if (name.equals(tagName)) {
+                    codes.put(name, parsePlcResponseCode(response.getResult()));
+                } else {
+                    codes.put(name, PlcResponseCode.INTERNAL_ERROR);
+                }
             }
-            throw new PlcRuntimeException("Unexpected return code " + response.getResult());
+            return new DefaultPlcWriteResponse(writeRequest, codes);
         });
     }
 
-    private CompletableFuture<PlcWriteResponse> multiWrite(PlcWriteRequest writeRequest, Map<AdsTag, DirectAdsTag> resolvedTags) {
-        int numTags = writeRequest.getTags().size();
-        List<byte[]> serializedTags = new ArrayList<>(numTags);
-        Map<DirectAdsTag, AdsDataTypeTableEntry> tagDatatypes = new LinkedHashMap<>(numTags);
-        for (String tagName : writeRequest.getTagNames()) {
-            AdsTag adsTag = (AdsTag) writeRequest.getTag(tagName);
-            if (resolvedTags.get(adsTag) == null) continue;
-            DirectAdsTag directAdsTag = resolvedTags.get(adsTag);
-            PlcValue plcValue = writeRequest.getPlcValue(tagName);
-            Optional<AdsDataTypeTableEntry> opt = getDataTypeTableEntry(directAdsTag.getPlcDataType());
-            if (opt.isEmpty()) {
-                return CompletableFuture.failedFuture(new PlcException("couldn't find datatype: " + directAdsTag.getPlcDataType()));
-            }
-            try {
-                serializedTags.add(serializePlcValue(plcValue, directAdsTag.getPlcDataType()));
-                tagDatatypes.put(directAdsTag, opt.get());
-            } catch (Exception e) {
-                return CompletableFuture.failedFuture(new PlcException("Error serializing data", e));
-            }
-        }
-
-        int serializedSize = serializedTags.stream().mapToInt(b -> b.length).sum();
-        WriteBufferByteBased writeBuffer = new WriteBufferByteBased(new byte[serializedSize]);
-        for (byte[] s : serializedTags) {
-            try {
-                writeBuffer.writeBits(s.length * 8, s);
-            } catch (BufferException e) {
-                return CompletableFuture.failedFuture(new PlcException("Error serializing data", e));
-            }
+    private CompletableFuture<PlcWriteResponse> multiWrite(PlcWriteRequest writeRequest,
+                                                           Map<String, ResolvedAdsTag> resolved,
+                                                           Map<String, byte[]> serialized,
+                                                           Map<String, PlcResponseCode> initialFailures) {
+        // Concatenate per-tag payloads in request order.
+        int totalDataBytes = serialized.values().stream().mapToInt(b -> b.length).sum();
+        byte[] payload = new byte[totalDataBytes];
+        int p = 0;
+        List<String> names = new ArrayList<>(serialized.keySet());
+        for (String name : names) {
+            byte[] b = serialized.get(name);
+            System.arraycopy(b, 0, payload, p, b.length);
+            p += b.length;
         }
 
         AmsPacket request = new AdsReadWriteRequest(
             getConfiguration().getTargetAmsNetId(), getConfiguration().getTargetAmsPort(),
-            getConfiguration().getSourceAmsNetId(), getConfiguration().getSourceAmsPort(), ReturnCode.OK, getInvokeId(),
-            ReservedIndexGroups.ADSIGRP_MULTIPLE_WRITE.getValue(), (long) serializedTags.size(),
-            (long) numTags * 4,
-            tagDatatypes.entrySet().stream().map(e -> new AdsMultiRequestItemWrite(
-                e.getKey().getIndexGroup(), e.getKey().getIndexOffset(), e.getValue().getSize()))
-                .collect(Collectors.toList()), writeBuffer.getBytes());
+            getConfiguration().getSourceAmsNetId(), getConfiguration().getSourceAmsPort(),
+            ReturnCode.OK, getInvokeId(),
+            ReservedIndexGroups.ADSIGRP_MULTIPLE_WRITE.getValue(), (long) names.size(),
+            (long) names.size() * 4L,
+            names.stream().map(n -> {
+                ResolvedAdsTag t = resolved.get(n);
+                return new AdsMultiRequestItemWrite(t.indexGroup(), t.indexOffset(), t.sizeInBytes());
+            }).collect(Collectors.toList()),
+            payload);
 
         return sendAmsRequest(request, AdsReadWriteResponse.class).thenApply(response -> {
-            if (response.getResult() == ReturnCode.OK) {
-                return convertToPlc4xWriteResponse(writeRequest, resolvedTags, response);
+            Map<String, PlcResponseCode> codes = new LinkedHashMap<>();
+            if (response.getResult() != ReturnCode.OK) {
+                for (String n : writeRequest.getTagNames()) {
+                    codes.put(n, initialFailures.getOrDefault(n, parsePlcResponseCode(response.getResult())));
+                }
+                return new DefaultPlcWriteResponse(writeRequest, codes);
             }
-            throw new PlcRuntimeException("Unexpected result " + response.getResult());
+            ReadBufferByteBased rb = newLittleEndianBuffer(response.getData());
+            Map<String, ReturnCode> perTag = new LinkedHashMap<>();
+            try {
+                for (String n : names) {
+                    perTag.put(n, ReturnCode.enumForValue(rb.readUnsignedLong(32)));
+                }
+            } catch (BufferException e) {
+                for (String n : writeRequest.getTagNames()) {
+                    codes.put(n, initialFailures.getOrDefault(n, PlcResponseCode.INTERNAL_ERROR));
+                }
+                return new DefaultPlcWriteResponse(writeRequest, codes);
+            }
+            for (String n : writeRequest.getTagNames()) {
+                if (initialFailures.containsKey(n)) {
+                    codes.put(n, initialFailures.get(n));
+                } else if (perTag.containsKey(n)) {
+                    codes.put(n, parsePlcResponseCode(perTag.get(n)));
+                } else {
+                    codes.put(n, PlcResponseCode.INTERNAL_ERROR);
+                }
+            }
+            return new DefaultPlcWriteResponse(writeRequest, codes);
         });
-    }
-
-    private byte[] serializePlcValue(PlcValue plcValue, String datatypeName) throws BufferException {
-        Optional<AdsDataTypeTableEntry> opt = getDataTypeTableEntry(datatypeName);
-        if (opt.isEmpty()) {
-            throw new BufferException("Could not find data type: " + datatypeName);
-        }
-        AdsDataTypeTableEntry dataType = opt.get();
-        WriteBufferByteBased wb = new WriteBufferByteBased(new byte[(int) dataType.getSize()],
-            WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
-        serializeInternal(plcValue, dataType, dataType.getArrayInfo(), wb);
-        return wb.getBytes();
-    }
-
-    private void serializeInternal(PlcValue contextValue, AdsDataTypeTableEntry dataType,
-                                   List<AdsDataTypeArrayInfo> arrayInfo, WriteBufferByteBased writeBuffer) throws BufferException {
-        if (!arrayInfo.isEmpty()) {
-            if (!contextValue.isList()) {
-                throw new BufferException("Expected a PlcList, but got a " + contextValue.getPlcValueType().name());
-            }
-            AdsDataTypeArrayInfo cur = arrayInfo.get(0);
-            List<? extends PlcValue> list = contextValue.getList();
-            if (cur.getNumElements() != list.size()) {
-                throw new BufferException(String.format(
-                    "Expected a PlcList of size %d, but got one of size %d", cur.getNumElements(), list.size()));
-            }
-            Optional<AdsDataTypeTableEntry> opt = getDataTypeTableEntry(dataType.getSecondaryName());
-            if (opt.isEmpty()) {
-                throw new BufferException("Could not find data type: " + dataType.getSecondaryName());
-            }
-            AdsDataTypeTableEntry childDataType = opt.get();
-            for (PlcValue v : list) {
-                serializeInternal(v, childDataType, arrayInfo.subList(1, arrayInfo.size()), writeBuffer);
-            }
-        } else if (!dataType.getChildren().isEmpty()) {
-            if (!contextValue.isStruct()) {
-                throw new BufferException("Expected a PlcStruct, but got a " + contextValue.getPlcValueType().name());
-            }
-            PlcStruct plcStruct = (PlcStruct) contextValue;
-            int startPos = (writeBuffer.getPositionInBits() / 8);
-            int curPos = 0;
-            for (AdsDataTypeTableEntry child : dataType.getChildren()) {
-                Optional<AdsDataTypeTableEntry> opt = getDataTypeTableEntry(child.getSecondaryName());
-                if (opt.isEmpty()) {
-                    throw new BufferException("Could not find data type: " + child.getSecondaryName());
-                }
-                AdsDataTypeTableEntry childDataType = opt.get();
-                if (!plcStruct.hasKey(child.getMainName())) {
-                    throw new BufferException("PlcStruct is missing a child with the name " + child.getMainName());
-                }
-                if (child.getOffset() > curPos) {
-                    long fillBytes = child.getOffset() - curPos;
-                    for (long i = 0; i < fillBytes; i++) {
-                        writeBuffer.writeSignedByte(8, (byte) 0x00, WithOption.WithName("fillByte"));
-                    }
-                }
-                PlcValue childValue = plcStruct.getValue(child.getMainName());
-                serializeInternal(childValue, childDataType, childDataType.getArrayInfo(), writeBuffer);
-                curPos = (writeBuffer.getPositionInBits() / 8) - startPos;
-            }
-        } else {
-            PlcValueType plcValueType = getPlcValueTypeForAdsDataType(dataType);
-            if (plcValueType == null) {
-                throw new BufferException("Unsupported simple type: " + dataType.getMainName());
-            }
-            int stringLength = 0;
-            if ((plcValueType == PlcValueType.STRING) || (plcValueType == PlcValueType.WSTRING)) {
-                String n = dataType.getMainName();
-                stringLength = Integer.parseInt(n.substring(n.indexOf("(") + 1, n.indexOf(")")));
-            }
-            DataItem.staticSerialize(writeBuffer, contextValue, plcValueType, stringLength);
-        }
-    }
-
-    private PlcWriteResponse convertToPlc4xWriteResponse(PlcWriteRequest writeRequest, Map<AdsTag, DirectAdsTag> resolvedTags, AmsPacket adsData) {
-        Map<String, PlcResponseCode> responseCodes = new HashMap<>();
-        if (adsData instanceof AdsWriteResponse adsWriteResponse) {
-            responseCodes.put(writeRequest.getTagNames().iterator().next(), parsePlcResponseCode(adsWriteResponse.getResult()));
-        } else if (adsData instanceof AdsReadWriteResponse adsReadWriteResponse) {
-            ReadBuffer readBuffer = new ReadBufferByteBased(adsReadWriteResponse.getData(), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
-            for (String tagName : writeRequest.getTagNames()) {
-                AdsTag adsTag = (AdsTag) writeRequest.getTag(tagName);
-                if (resolvedTags.get(adsTag) == null) {
-                    responseCodes.put(tagName, PlcResponseCode.INVALID_ADDRESS);
-                    continue;
-                }
-                try {
-                    ReturnCode result = ReturnCode.enumForValue(readBuffer.readUnsignedLong(32));
-                    responseCodes.put(tagName, parsePlcResponseCode(result));
-                } catch (BufferException e) {
-                    responseCodes.put(tagName, PlcResponseCode.INTERNAL_ERROR);
-                }
-            }
-        }
-        return new DefaultPlcWriteResponse(writeRequest, responseCodes);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

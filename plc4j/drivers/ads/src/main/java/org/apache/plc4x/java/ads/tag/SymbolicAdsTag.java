@@ -37,7 +37,8 @@ import java.util.regex.Pattern;
  */
 public class SymbolicAdsTag implements AdsTag {
 
-    private static final Pattern SYMBOLIC_ADDRESS_PATTERN = Pattern.compile("^([\\w_]+)(\"[\"\\d*]\")*(\\.(\\w+)(\"[\"\\d*]\")*)*");
+    private static final Pattern SYMBOLIC_ADDRESS_PATTERN = Pattern.compile(
+        "^[a-zA-Z_]\\w*(\\[\\d+\\])*(\\.[a-zA-Z_]\\w*(\\[\\d+\\])*)*$");
 
     private final String symbolicAddress;
 
@@ -87,10 +88,9 @@ public class SymbolicAdsTag implements AdsTag {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof SymbolicAdsTag)) {
+        if (!(o instanceof SymbolicAdsTag that)) {
             return false;
         }
-        SymbolicAdsTag that = (SymbolicAdsTag) o;
         return Objects.equals(symbolicAddress, that.symbolicAddress);
     }
 
