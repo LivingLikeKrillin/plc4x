@@ -31,6 +31,34 @@ public enum OpcuaNodeIdServicesVariableAlias {
 
   AliasNameCategoryType_FindAlias_OutputArguments((int) 23464),
 
+  AliasNameCategoryType_SubAliasNameCategories_Placeholder_FindAliasVerbose_InputArguments((int) 23931),
+
+  AliasNameCategoryType_SubAliasNameCategories_Placeholder_FindAliasVerbose_OutputArguments((int) 23935),
+
+  AliasNameCategoryType_SubAliasNameCategories_Placeholder_AddAliasesToCategory_InputArguments((int) 23937),
+
+  AliasNameCategoryType_SubAliasNameCategories_Placeholder_AddAliasesToCategory_OutputArguments((int) 23959),
+
+  AliasNameCategoryType_SubAliasNameCategories_Placeholder_DeleteAliasesFromCategory_InputArguments((int) 23961),
+
+  AliasNameCategoryType_SubAliasNameCategories_Placeholder_DeleteAliasesFromCategory_OutputArguments((int) 23962),
+
+  AliasNameCategoryType_FindAliasVerbose_InputArguments((int) 23964),
+
+  AliasNameCategoryType_FindAliasVerbose_OutputArguments((int) 23971),
+
+  AliasNameCategoryType_AddAliasesToCategory_InputArguments((int) 23973),
+
+  AliasNameCategoryType_AddAliasesToCategory_OutputArguments((int) 23974),
+
+  AliasNameCategoryType_DeleteAliasesFromCategory_InputArguments((int) 23976),
+
+  AliasNameCategoryType_DeleteAliasesFromCategory_OutputArguments((int) 23986),
+
+  AliasUpdateDataType_DataSetClassId((int) 24499),
+
+  AliasUpdateDataType_DataSetMetaData((int) 24500),
+
   AliasNameCategoryType_SubAliasNameCategories_Placeholder_LastChange((int) 32849),
 
   AliasNameCategoryType_LastChange((int) 32850);

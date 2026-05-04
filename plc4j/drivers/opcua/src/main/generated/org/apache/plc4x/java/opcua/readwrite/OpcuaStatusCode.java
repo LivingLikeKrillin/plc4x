@@ -171,6 +171,10 @@ public enum OpcuaStatusCode {
 
   BadOutOfRange((long) 0x803C0000L),
 
+  UncertainOverRange((long) 0x40F20000L),
+
+  UncertainUnderRange((long) 0x40F30000L),
+
   BadNotSupported((long) 0x803D0000L),
 
   BadNotFound((long) 0x803E0000L),

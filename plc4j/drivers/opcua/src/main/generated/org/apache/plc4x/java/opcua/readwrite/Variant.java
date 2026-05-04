@@ -39,10 +39,10 @@ public abstract class Variant implements Message {
 
   protected final Integer noOfArrayDimensions;
 
-  protected final List<Boolean> arrayDimensions;
+  protected final List<Integer> arrayDimensions;
 
   public Variant(Boolean arrayLengthSpecified, Boolean arrayDimensionsSpecified,
-      Integer noOfArrayDimensions, List<Boolean> arrayDimensions) {
+      Integer noOfArrayDimensions, List<Integer> arrayDimensions) {
     this.arrayLengthSpecified = arrayLengthSpecified;
     this.arrayDimensionsSpecified = arrayDimensionsSpecified;
     this.noOfArrayDimensions = noOfArrayDimensions;
@@ -80,7 +80,7 @@ public abstract class Variant implements Message {
   /**
    * Property field arrayDimensions
    */
-  public List<Boolean> getArrayDimensions() {
+  public List<Integer> getArrayDimensions() {
     return arrayDimensions;
   }
 
@@ -160,7 +160,7 @@ public abstract class Variant implements Message {
     Integer noOfArrayDimensions = FieldReaderFactory.readOptionalField(DataReaderFactory.readSignedInt(readBuffer, 32), arrayDimensionsSpecified, WithOption.WithName("noOfArrayDimensions"));
 
     // Array Field: arrayDimensions
-    List<Boolean> arrayDimensions = FieldReaderFactory.readCountArrayField(DataReaderFactory.readBoolean(readBuffer), (((noOfArrayDimensions) == (null)) ? 0 : noOfArrayDimensions), WithOption.WithName("arrayDimensions"));
+    List<Integer> arrayDimensions = FieldReaderFactory.readCountArrayField(DataReaderFactory.readSignedInt(readBuffer, 32), (((noOfArrayDimensions) == (null)) ? 0 : noOfArrayDimensions), WithOption.WithName("arrayDimensions"));
 
     readBuffer.popContext();
     return builder.build(arrayLengthSpecified, arrayDimensionsSpecified, noOfArrayDimensions, arrayDimensions);
@@ -190,7 +190,7 @@ public abstract class Variant implements Message {
     }
 
     // Array Field: arrayDimensions
-    FieldWriterFactory.writeSimpleTypeArrayField(arrayDimensions, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("arrayDimensions"));
+    FieldWriterFactory.writeSimpleTypeArrayField(arrayDimensions, DataWriterFactory.writeSignedInt(writeBuffer, 32), WithOption.WithName("arrayDimensions"));
 
     writeBuffer.popContext();
   }
@@ -223,13 +223,13 @@ public abstract class Variant implements Message {
     }
 
     // Array Field: arrayDimensions
-    lengthInBits += 1 * arrayDimensions.size();
+    lengthInBits += 32 * arrayDimensions.size();
 
     return lengthInBits;
   }
 
   public interface VariantBuilder {
     Variant build(boolean arrayLengthSpecified, boolean arrayDimensionsSpecified,
-        Integer noOfArrayDimensions, List<Boolean> arrayDimensions);
+        Integer noOfArrayDimensions, List<Integer> arrayDimensions);
   }
 }

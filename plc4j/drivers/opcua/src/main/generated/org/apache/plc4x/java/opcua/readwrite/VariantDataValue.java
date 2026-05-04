@@ -37,7 +37,7 @@ public class VariantDataValue extends Variant implements Message {
   protected final List<DataValue> value;
 
   public VariantDataValue(Boolean arrayLengthSpecified, Boolean arrayDimensionsSpecified,
-      Integer noOfArrayDimensions, List<Boolean> arrayDimensions, Integer arrayLength,
+      Integer noOfArrayDimensions, List<Integer> arrayDimensions, Integer arrayLength,
       List<DataValue> value) {
     super(arrayLengthSpecified, arrayDimensionsSpecified, noOfArrayDimensions, arrayDimensions);
     this.arrayLength = arrayLength;
@@ -134,7 +134,7 @@ public class VariantDataValue extends Variant implements Message {
     }
 
     public Variant build(boolean arrayLengthSpecified, boolean arrayDimensionsSpecified,
-        Integer noOfArrayDimensions, List<Boolean> arrayDimensions) {
+        Integer noOfArrayDimensions, List<Integer> arrayDimensions) {
       return new VariantDataValue(arrayLengthSpecified, arrayDimensionsSpecified, noOfArrayDimensions, arrayDimensions, arrayLength, value);
     }
   }

@@ -27,6 +27,10 @@ public enum OpcuaNodeIdServicesVariableDelete {
 
   DeleteCertificateMethodType_InputArguments((int) 19331),
 
+  DeleteAliasesFromCategoryMethodType_InputArguments((int) 24029),
+
+  DeleteAliasesFromCategoryMethodType_OutputArguments((int) 24030),
+
   DeletePriorityMappingEntryMethodType_InputArguments((int) 25236);
 
   private static final Map<Integer, OpcuaNodeIdServicesVariableDelete> map;

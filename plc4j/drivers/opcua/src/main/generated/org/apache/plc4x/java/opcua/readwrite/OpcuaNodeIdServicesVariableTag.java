@@ -27,6 +27,18 @@ public enum OpcuaNodeIdServicesVariableTag {
 
   TagVariables_FindAlias_OutputArguments((int) 23487),
 
+  TagVariables_FindAliasVerbose_InputArguments((int) 24064),
+
+  TagVariables_FindAliasVerbose_OutputArguments((int) 24065),
+
+  TagVariables_AddAliasesToCategory_InputArguments((int) 24067),
+
+  TagVariables_AddAliasesToCategory_OutputArguments((int) 24068),
+
+  TagVariables_DeleteAliasesFromCategory_InputArguments((int) 24070),
+
+  TagVariables_DeleteAliasesFromCategory_OutputArguments((int) 24071),
+
   TagVariables_LastChange((int) 32854);
 
   private static final Map<Integer, OpcuaNodeIdServicesVariableTag> map;

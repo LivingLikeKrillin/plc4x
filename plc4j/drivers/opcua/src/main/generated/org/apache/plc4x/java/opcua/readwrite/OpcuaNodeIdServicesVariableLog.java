@@ -33,7 +33,9 @@ public enum OpcuaNodeIdServicesVariableLog {
 
   LogObjectType_MinimumSeverity((int) 19744),
 
-  LogRecordMask_OptionSetValues((int) 19750);
+  LogRecordMask_OptionSetValues((int) 19750),
+
+  LogObjectType_ReleaseContinuationPoint_InputArguments((int) 24373);
 
   private static final Map<Integer, OpcuaNodeIdServicesVariableLog> map;
 

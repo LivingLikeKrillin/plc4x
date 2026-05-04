@@ -2115,6 +2115,66 @@ public enum OpcuaNodeIdServicesVariableOpc {
 
   OpcUa_XmlSchema_UserManagementDataType_DictionaryFragment((int) 24299),
 
+  OpcUa_BinarySchema_NumberRange((int) 24340),
+
+  OpcUa_BinarySchema_NumberRange_DataTypeVersion((int) 24341),
+
+  OpcUa_BinarySchema_NumberRange_DictionaryFragment((int) 24342),
+
+  OpcUa_BinarySchema_AliasNameVerboseDataType((int) 24343),
+
+  OpcUa_BinarySchema_AliasNameVerboseDataType_DataTypeVersion((int) 24344),
+
+  OpcUa_BinarySchema_AliasNameVerboseDataType_DictionaryFragment((int) 24345),
+
+  OpcUa_BinarySchema_AliasCategoryUpdateDataType((int) 24346),
+
+  OpcUa_BinarySchema_AliasCategoryUpdateDataType_DataTypeVersion((int) 24347),
+
+  OpcUa_BinarySchema_AliasCategoryUpdateDataType_DictionaryFragment((int) 24348),
+
+  OpcUa_BinarySchema_AliasUpdateDataType((int) 24349),
+
+  OpcUa_BinarySchema_AliasUpdateDataType_DataTypeVersion((int) 24350),
+
+  OpcUa_BinarySchema_AliasUpdateDataType_DictionaryFragment((int) 24351),
+
+  OpcUa_XmlSchema_NumberRange((int) 24356),
+
+  OpcUa_XmlSchema_NumberRange_DataTypeVersion((int) 24357),
+
+  OpcUa_XmlSchema_NumberRange_DictionaryFragment((int) 24358),
+
+  OpcUa_XmlSchema_AliasNameVerboseDataType((int) 24359),
+
+  OpcUa_XmlSchema_AliasNameVerboseDataType_DataTypeVersion((int) 24360),
+
+  OpcUa_XmlSchema_AliasNameVerboseDataType_DictionaryFragment((int) 24361),
+
+  OpcUa_XmlSchema_AliasCategoryUpdateDataType((int) 24362),
+
+  OpcUa_XmlSchema_AliasCategoryUpdateDataType_DataTypeVersion((int) 24363),
+
+  OpcUa_XmlSchema_AliasCategoryUpdateDataType_DictionaryFragment((int) 24364),
+
+  OpcUa_XmlSchema_AliasUpdateDataType((int) 24365),
+
+  OpcUa_XmlSchema_AliasUpdateDataType_DataTypeVersion((int) 24366),
+
+  OpcUa_XmlSchema_AliasUpdateDataType_DictionaryFragment((int) 24367),
+
+  OpcUa_BinarySchema_SignatureData((int) 24481),
+
+  OpcUa_BinarySchema_SignatureData_DataTypeVersion((int) 24482),
+
+  OpcUa_BinarySchema_SignatureData_DictionaryFragment((int) 24495),
+
+  OpcUa_XmlSchema_SignatureData((int) 24496),
+
+  OpcUa_XmlSchema_SignatureData_DataTypeVersion((int) 24497),
+
+  OpcUa_XmlSchema_SignatureData_DictionaryFragment((int) 24498),
+
   OpcUa_BinarySchema_PriorityMappingEntryType((int) 25240),
 
   OpcUa_BinarySchema_PriorityMappingEntryType_DataTypeVersion((int) 25241),

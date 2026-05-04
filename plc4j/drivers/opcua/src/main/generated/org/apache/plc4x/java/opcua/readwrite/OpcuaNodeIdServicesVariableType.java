@@ -141,6 +141,10 @@ public enum OpcuaNodeIdServicesVariableType {
 
   PubSubDiagnosticsCounterType((int) 19725),
 
+  AnalogNumberItemType((int) 23906),
+
+  AnalogNumberUnitRangeType((int) 23918),
+
   AlarmStateVariableType((int) 32244),
 
   BitFieldType((int) 32431),

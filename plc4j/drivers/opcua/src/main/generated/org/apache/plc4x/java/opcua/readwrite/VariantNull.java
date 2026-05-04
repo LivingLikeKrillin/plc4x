@@ -29,7 +29,7 @@ import org.apache.plc4x.java.spi.fields.utils.ThreadLocalHelper;
  */
 public class VariantNull extends Variant implements Message {
   public VariantNull(Boolean arrayLengthSpecified, Boolean arrayDimensionsSpecified,
-      Integer noOfArrayDimensions, List<Boolean> arrayDimensions) {
+      Integer noOfArrayDimensions, List<Integer> arrayDimensions) {
     super(arrayLengthSpecified, arrayDimensionsSpecified, noOfArrayDimensions, arrayDimensions);
   }
 
@@ -75,7 +75,7 @@ public class VariantNull extends Variant implements Message {
     }
 
     public Variant build(boolean arrayLengthSpecified, boolean arrayDimensionsSpecified,
-        Integer noOfArrayDimensions, List<Boolean> arrayDimensions) {
+        Integer noOfArrayDimensions, List<Integer> arrayDimensions) {
       return new VariantNull(arrayLengthSpecified, arrayDimensionsSpecified, noOfArrayDimensions, arrayDimensions);
     }
   }

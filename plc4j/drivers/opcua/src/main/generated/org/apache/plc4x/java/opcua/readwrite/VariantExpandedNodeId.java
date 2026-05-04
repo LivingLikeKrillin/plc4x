@@ -37,7 +37,7 @@ public class VariantExpandedNodeId extends Variant implements Message {
   protected final List<ExpandedNodeId> value;
 
   public VariantExpandedNodeId(Boolean arrayLengthSpecified, Boolean arrayDimensionsSpecified,
-      Integer noOfArrayDimensions, List<Boolean> arrayDimensions, Integer arrayLength,
+      Integer noOfArrayDimensions, List<Integer> arrayDimensions, Integer arrayLength,
       List<ExpandedNodeId> value) {
     super(arrayLengthSpecified, arrayDimensionsSpecified, noOfArrayDimensions, arrayDimensions);
     this.arrayLength = arrayLength;
@@ -134,7 +134,7 @@ public class VariantExpandedNodeId extends Variant implements Message {
     }
 
     public Variant build(boolean arrayLengthSpecified, boolean arrayDimensionsSpecified,
-        Integer noOfArrayDimensions, List<Boolean> arrayDimensions) {
+        Integer noOfArrayDimensions, List<Integer> arrayDimensions) {
       return new VariantExpandedNodeId(arrayLengthSpecified, arrayDimensionsSpecified, noOfArrayDimensions, arrayDimensions, arrayLength, value);
     }
   }

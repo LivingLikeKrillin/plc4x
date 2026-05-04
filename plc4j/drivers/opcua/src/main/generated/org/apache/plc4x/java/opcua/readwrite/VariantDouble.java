@@ -37,7 +37,7 @@ public class VariantDouble extends Variant implements Message {
   protected final List<Double> value;
 
   public VariantDouble(Boolean arrayLengthSpecified, Boolean arrayDimensionsSpecified,
-      Integer noOfArrayDimensions, List<Boolean> arrayDimensions, Integer arrayLength,
+      Integer noOfArrayDimensions, List<Integer> arrayDimensions, Integer arrayLength,
       List<Double> value) {
     super(arrayLengthSpecified, arrayDimensionsSpecified, noOfArrayDimensions, arrayDimensions);
     this.arrayLength = arrayLength;
@@ -128,7 +128,7 @@ public class VariantDouble extends Variant implements Message {
     }
 
     public Variant build(boolean arrayLengthSpecified, boolean arrayDimensionsSpecified,
-        Integer noOfArrayDimensions, List<Boolean> arrayDimensions) {
+        Integer noOfArrayDimensions, List<Integer> arrayDimensions) {
       return new VariantDouble(arrayLengthSpecified, arrayDimensionsSpecified, noOfArrayDimensions, arrayDimensions, arrayLength, value);
     }
   }

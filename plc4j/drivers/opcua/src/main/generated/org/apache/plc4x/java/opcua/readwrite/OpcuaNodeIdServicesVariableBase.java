@@ -55,6 +55,12 @@ public enum OpcuaNodeIdServicesVariableBase {
 
   BaseLogEventType_ErrorCodeNode((int) 19366),
 
+  BaseAnalogType_InstrumentNumberRange((int) 23904),
+
+  BaseAnalogType_EUNumberRange((int) 23905),
+
+  BaseLogEventType_TraceContext((int) 24376),
+
   BaseEventType_ConditionClassId((int) 31771),
 
   BaseEventType_ConditionClassName((int) 31772),

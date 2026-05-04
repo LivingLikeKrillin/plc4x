@@ -73,6 +73,10 @@ public enum OpcuaNodeIdServicesVariableAdd {
 
   AddSubscribedDataSetMethodType_OutputArguments((int) 23823),
 
+  AddAliasesToCategoryMethodType_InputArguments((int) 24026),
+
+  AddAliasesToCategoryMethodType_OutputArguments((int) 24027),
+
   AddUserMethodType_InputArguments((int) 24283),
 
   AddPriorityMappingEntryMethodType_InputArguments((int) 25234),

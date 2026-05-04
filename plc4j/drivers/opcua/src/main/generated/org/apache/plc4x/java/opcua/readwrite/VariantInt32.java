@@ -37,7 +37,7 @@ public class VariantInt32 extends Variant implements Message {
   protected final List<Integer> value;
 
   public VariantInt32(Boolean arrayLengthSpecified, Boolean arrayDimensionsSpecified,
-      Integer noOfArrayDimensions, List<Boolean> arrayDimensions, Integer arrayLength,
+      Integer noOfArrayDimensions, List<Integer> arrayDimensions, Integer arrayLength,
       List<Integer> value) {
     super(arrayLengthSpecified, arrayDimensionsSpecified, noOfArrayDimensions, arrayDimensions);
     this.arrayLength = arrayLength;
@@ -128,7 +128,7 @@ public class VariantInt32 extends Variant implements Message {
     }
 
     public Variant build(boolean arrayLengthSpecified, boolean arrayDimensionsSpecified,
-        Integer noOfArrayDimensions, List<Boolean> arrayDimensions) {
+        Integer noOfArrayDimensions, List<Integer> arrayDimensions) {
       return new VariantInt32(arrayLengthSpecified, arrayDimensionsSpecified, noOfArrayDimensions, arrayDimensions, arrayLength, value);
     }
   }

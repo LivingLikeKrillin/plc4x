@@ -27,7 +27,11 @@ public enum OpcuaNodeIdServicesVariableAnalog {
 
   AnalogUnitType_EngineeringUnits((int) 17502),
 
-  AnalogUnitRangeType_EngineeringUnits((int) 17575);
+  AnalogUnitRangeType_EngineeringUnits((int) 17575),
+
+  AnalogNumberItemType_EUNumberRange((int) 23907),
+
+  AnalogNumberUnitRangeType_EUNumberRange((int) 23927);
 
   private static final Map<Integer, OpcuaNodeIdServicesVariableAnalog> map;
 

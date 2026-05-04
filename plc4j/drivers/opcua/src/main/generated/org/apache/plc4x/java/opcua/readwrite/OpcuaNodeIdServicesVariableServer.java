@@ -4159,6 +4159,8 @@ public enum OpcuaNodeIdServicesVariableServer {
 
   ServerConfiguration_CertificateGroups_DefaultUserTokenGroup_TrustList_MaxByteStringLength((int) 24261),
 
+  ServerLog_ReleaseContinuationPoint_InputArguments((int) 24378),
+
   ServerConfigurationType_CertificateGroups_DefaultApplicationGroup_CertificateExpired_Suppress2_InputArguments((int) 24619),
 
   ServerConfigurationType_CertificateGroups_DefaultApplicationGroup_CertificateExpired_Unsuppress2_InputArguments((int) 24621),

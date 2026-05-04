@@ -1617,9 +1617,13 @@ public enum KnxManufacturer {
 
   M_ITQAN_SMART((int) 795, (int) 856, "ITQAN SMART"),
 
-  M_ABB___RESERVED((int) 796, (int) 43954, "ABB - reserved"),
+  M_YUNCH((int) 796, (int) 857, "YUNCH"),
 
-  M_BUSCH_JAEGER_ELEKTRO___RESERVED((int) 797, (int) 43959, "Busch-Jaeger Elektro - reserved");
+  M_LUMI_VIETNAM((int) 797, (int) 858, "Lumi Vietnam"),
+
+  M_ABB___RESERVED((int) 798, (int) 43954, "ABB - reserved"),
+
+  M_BUSCH_JAEGER_ELEKTRO___RESERVED((int) 799, (int) 43959, "Busch-Jaeger Elektro - reserved");
 
   private static final Map<Integer, KnxManufacturer> map;
 

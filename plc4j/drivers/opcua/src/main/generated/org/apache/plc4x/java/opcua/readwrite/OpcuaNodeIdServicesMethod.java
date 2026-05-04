@@ -2207,6 +2207,20 @@ public enum OpcuaNodeIdServicesMethod {
 
   RemoveSubscribedDataSetMethodType((int) 23824),
 
+  AliasNameCategoryType_SubAliasNameCategories_Placeholder_FindAliasVerbose((int) 23930),
+
+  AliasNameCategoryType_SubAliasNameCategories_Placeholder_AddAliasesToCategory((int) 23936),
+
+  AliasNameCategoryType_SubAliasNameCategories_Placeholder_DeleteAliasesFromCategory((int) 23960),
+
+  AliasNameCategoryType_FindAliasVerbose((int) 23963),
+
+  AliasNameCategoryType_AddAliasesToCategory((int) 23972),
+
+  AliasNameCategoryType_DeleteAliasesFromCategory((int) 23975),
+
+  FindAliasVerboseMethodType((int) 24003),
+
   PublishSubscribeType_SubscribedDataSets_AddSubscribedDataSet((int) 24004),
 
   PublishSubscribeType_SubscribedDataSets_RemoveSubscribedDataSet((int) 24007),
@@ -2214,6 +2228,28 @@ public enum OpcuaNodeIdServicesMethod {
   PublishSubscribe_SubscribedDataSets_AddSubscribedDataSet((int) 24010),
 
   PublishSubscribe_SubscribedDataSets_RemoveSubscribedDataSet((int) 24013),
+
+  AddAliasesToCategoryMethodType((int) 24025),
+
+  DeleteAliasesFromCategoryMethodType((int) 24028),
+
+  Aliases_FindAliasVerbose((int) 24054),
+
+  Aliases_AddAliasesToCategory((int) 24057),
+
+  Aliases_DeleteAliasesFromCategory((int) 24060),
+
+  TagVariables_FindAliasVerbose((int) 24063),
+
+  TagVariables_AddAliasesToCategory((int) 24066),
+
+  TagVariables_DeleteAliasesFromCategory((int) 24069),
+
+  Topics_FindAliasVerbose((int) 24072),
+
+  Topics_AddAliasesToCategory((int) 24075),
+
+  Topics_DeleteAliasesFromCategory((int) 24078),
 
   UserManagementType_AddUser((int) 24269),
 
@@ -2264,6 +2300,12 @@ public enum OpcuaNodeIdServicesMethod {
   AlarmGroupType_AlarmConditionInstance_Placeholder_PlaceInService2((int) 24334),
 
   AlarmGroupType_AlarmConditionInstance_Placeholder_Reset2((int) 24336),
+
+  LogObjectType_ReleaseContinuationPoint((int) 24372),
+
+  ReleaseContinuationPointMethodType((int) 24374),
+
+  ServerLog_ReleaseContinuationPoint((int) 24377),
 
   CertificateGroupType_CertificateExpired_Suppress2((int) 24518),
 

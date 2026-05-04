@@ -935,7 +935,15 @@ public enum OpcuaNodeIdServicesDataType {
 
   UriString((int) 23751),
 
+  NumberRange((int) 23903),
+
   ProgramDiagnostic2DataType((int) 24033),
+
+  AliasNameVerboseDataType((int) 24051),
+
+  AliasCategoryUpdateDataType((int) 24052),
+
+  AliasUpdateDataType((int) 24053),
 
   PortableQualifiedName((int) 24105),
 

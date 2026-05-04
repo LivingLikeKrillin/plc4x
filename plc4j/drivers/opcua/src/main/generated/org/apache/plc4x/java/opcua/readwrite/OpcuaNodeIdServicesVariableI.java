@@ -115,6 +115,14 @@ public enum OpcuaNodeIdServicesVariableI {
 
   IPriorityMappingEntryType_PriorityValue_DSCP((int) 24209),
 
+  IIetfBaseNetworkInterfaceType_Speed_InstrumentNumberRange((int) 24219),
+
+  IIetfBaseNetworkInterfaceType_Speed_EUNumberRange((int) 24221),
+
+  IIeeeBaseEthernetPortType_Speed_InstrumentNumberRange((int) 24223),
+
+  IIeeeBaseEthernetPortType_Speed_EUNumberRange((int) 24225),
+
   IIeeeAutoNegotiationStatusType_NegotiationStatus((int) 24234),
 
   IVlanIdType_VlanId((int) 25219);
