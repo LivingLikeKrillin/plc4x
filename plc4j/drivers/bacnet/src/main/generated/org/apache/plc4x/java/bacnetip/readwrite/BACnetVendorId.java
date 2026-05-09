@@ -3245,6 +3245,8 @@ public enum BACnetVendorId {
 
   P_SSYSTEC_GMBH((int) 1620, (int) 1620, "PSsystec GmbH"),
 
+  ES_OTOMASYON_SAN_TIC_LTD_STI((int) 1621, (int) 1621, "3ES Otomasyon San. Tic. Ltd. Sti."),
+
   UNKNOWN_VENDOR((int) 0xFFFF, (int) 0xFFFF, "Unknown");
 
   private static final Map<Integer, BACnetVendorId> map;

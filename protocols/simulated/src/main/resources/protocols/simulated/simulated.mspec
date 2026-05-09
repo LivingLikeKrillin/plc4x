@@ -116,22 +116,22 @@
             [array float 64 value count 'numberOfValues']
         ]
         ['"CHAR"','1' CHAR
-            [simple string 8 value encoding='"UTF-8"']
+            [simple string 8 value encoding='"UTF8"']
         ]
         ['"CHAR"' List
-            [array string 8 value count 'numberOfValues' encoding='"UTF-8"']
+            [array string 8 value count 'numberOfValues' encoding='"UTF8"']
         ]
         ['"WCHAR"','1' WCHAR
-            [simple string 16 value encoding='"UTF-16"']
+            [simple string 16 value encoding='"UTF16"']
         ]
         ['"WCHAR"' List
-            [array string 16 value count 'numberOfValues' encoding='"UTF-16"']
+            [array string 16 value count 'numberOfValues' encoding='"UTF16"']
         ]
         ['"STRING"' STRING
-            [simple string 255 value encoding='"UTF-8"']
+            [simple string 255 value encoding='"UTF8"']
         ]
         ['"WSTRING"' STRING
-            [simple string 255 value encoding='"UTF-16"']
+            [simple string 255 value encoding='"UTF16"']
         ]
     ]
 ]

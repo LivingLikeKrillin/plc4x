@@ -54,7 +54,7 @@ var _ AdsReadStateRequest = (*_AdsReadStateRequest)(nil)
 var _ AmsPacketRequirements = (*_AdsReadStateRequest)(nil)
 
 // NewAdsReadStateRequest factory function for _AdsReadStateRequest
-func NewAdsReadStateRequest(targetAmsNetId AmsNetId, targetAmsPort uint16, sourceAmsNetId AmsNetId, sourceAmsPort uint16, errorCode uint32, invokeId uint32) *_AdsReadStateRequest {
+func NewAdsReadStateRequest(targetAmsNetId AmsNetId, targetAmsPort uint16, sourceAmsNetId AmsNetId, sourceAmsPort uint16, errorCode ReturnCode, invokeId uint32) *_AdsReadStateRequest {
 	_result := &_AdsReadStateRequest{
 		AmsPacketContract: NewAmsPacket(targetAmsNetId, targetAmsPort, sourceAmsNetId, sourceAmsPort, errorCode, invokeId),
 	}

@@ -53,12 +53,14 @@ public class EncodingManager {
         this.encodingMap = new HashMap<>();
         ServiceLoader<Encoding> encodings = ServiceLoader.load(Encoding.class, classLoader);
         for (Encoding encoding : encodings) {
-            if (encodingMap.containsKey(encoding.getName())) {
-                throw new IllegalStateException(
-                    "Multiple encoding implementations available for encoding name '" +
-                        encoding.getName() + "'");
+            String name = encoding.getName();
+            Encoding existing = encodingMap.get(name);
+            if (existing != null && existing != encoding) {
+                throw new IllegalStateException("Conflicting encoding registrations for name '"
+                    + name + "': "
+                    + existing.getClass().getName() + " vs " + encoding.getClass().getName());
             }
-            encodingMap.put(encoding.getName(), encoding);
+            encodingMap.put(name, encoding);
         }
     }
 

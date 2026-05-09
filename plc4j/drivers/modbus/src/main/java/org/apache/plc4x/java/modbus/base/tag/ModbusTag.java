@@ -203,7 +203,7 @@ public abstract class ModbusTag implements PlcTag, Serializable {
         String dataType = getDataType().name();
         writeBuffer.writeString(
             dataType.getBytes(StandardCharsets.UTF_8).length * 8,
-            dataType, WithOption.WithName("dataType"), WithOption.WithEncoding(StandardCharsets.UTF_8.name()));
+            dataType, WithOption.WithName("dataType"), WithOption.WithEncoding("UTF8"));
 
         if (unitId != null) {
             writeBuffer.writeUnsignedInt(8, unitId, WithOption.WithName("unitId"));

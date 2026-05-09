@@ -108,12 +108,12 @@ public class CANOpenPDOTag extends CANOpenTag implements CANOpenSubscriptionTag 
         String serviceName = getService().name();
         writeBuffer.writeString("service",
             serviceName.getBytes(StandardCharsets.UTF_8).length * 8,
-            serviceName, WithOption.WithEncoding(StandardCharsets.UTF_8.name()));
+            serviceName, WithOption.WithEncoding("UTF8"));
         writeBuffer.writeInt("node",64, getNodeId());
         String dataTypeName = getCanOpenDataType().name();
         writeBuffer.writeString("dataType",
             dataTypeName.getBytes(StandardCharsets.UTF_8).length * 8,
-            dataTypeName, WithOption.WithEncoding(StandardCharsets.UTF_8.name()));
+            dataTypeName, WithOption.WithEncoding("UTF8"));
 
         writeBuffer.popContext(getClass().getSimpleName());
     }

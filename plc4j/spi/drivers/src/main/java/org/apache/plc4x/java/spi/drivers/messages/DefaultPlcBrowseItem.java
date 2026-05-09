@@ -21,10 +21,14 @@ package org.apache.plc4x.java.spi.drivers.messages;
 import org.apache.plc4x.java.api.messages.PlcBrowseItem;
 import org.apache.plc4x.java.api.model.ArrayInfo;
 import org.apache.plc4x.java.api.model.PlcTag;
+import org.apache.plc4x.java.api.types.PlcSubscriptionType;
 import org.apache.plc4x.java.api.value.PlcValue;
 
+import java.util.Collections;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class DefaultPlcBrowseItem implements PlcBrowseItem {
 
@@ -32,14 +36,14 @@ public class DefaultPlcBrowseItem implements PlcBrowseItem {
     private final String name;
     private final boolean readable;
     private final boolean writable;
-    private final boolean subscribable;
+    private final Set<PlcSubscriptionType> supportedSubscriptionTypes;
     private final boolean publishable;
     private final List<ArrayInfo> arrayInformation;
     private final Map<String, PlcBrowseItem> children;
     private final Map<String, PlcValue> options;
 
     public DefaultPlcBrowseItem(PlcTag tag, String name, boolean readable, boolean writable,
-                                boolean subscribable, boolean publishable,
+                                Set<PlcSubscriptionType> supportedSubscriptionTypes, boolean publishable,
                                 List<ArrayInfo> arrayInformation,
                                 Map<String, PlcBrowseItem> children,
                                 Map<String, PlcValue> options) {
@@ -47,7 +51,9 @@ public class DefaultPlcBrowseItem implements PlcBrowseItem {
         this.name = name;
         this.readable = readable;
         this.writable = writable;
-        this.subscribable = subscribable;
+        this.supportedSubscriptionTypes = (supportedSubscriptionTypes == null || supportedSubscriptionTypes.isEmpty())
+            ? Collections.emptySet()
+            : Collections.unmodifiableSet(EnumSet.copyOf(supportedSubscriptionTypes));
         this.publishable = publishable;
         this.arrayInformation = arrayInformation;
         this.children = children;
@@ -75,8 +81,8 @@ public class DefaultPlcBrowseItem implements PlcBrowseItem {
     }
 
     @Override
-    public boolean isSubscribable() {
-        return subscribable;
+    public Set<PlcSubscriptionType> getSupportedSubscriptionTypes() {
+        return supportedSubscriptionTypes;
     }
 
     @Override

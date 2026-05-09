@@ -1273,7 +1273,273 @@ public enum OpcuaNodeIdServicesObject {
 
   FieldTargetDataType_Encoding_DefaultBinary((int) 14848),
 
+  KeyValuePair_Encoding_DefaultJson((int) 15041),
+
+  IdentityMappingRuleType_Encoding_DefaultJson((int) 15042),
+
+  TrustListDataType_Encoding_DefaultJson((int) 15044),
+
+  DecimalDataType_Encoding_DefaultJson((int) 15045),
+
+  ConfigurationVersionDataType_Encoding_DefaultJson((int) 15049),
+
+  DataSetMetaDataType_Encoding_DefaultJson((int) 15050),
+
+  FieldMetaData_Encoding_DefaultJson((int) 15051),
+
+  DataTypeDescription_Encoding_DefaultJson((int) 15057),
+
+  StructureDescription_Encoding_DefaultJson((int) 15058),
+
+  EnumDescription_Encoding_DefaultJson((int) 15059),
+
+  PublishedVariableDataType_Encoding_DefaultJson((int) 15060),
+
+  FieldTargetDataType_Encoding_DefaultJson((int) 15061),
+
+  RolePermissionType_Encoding_DefaultJson((int) 15062),
+
+  DataTypeDefinition_Encoding_DefaultJson((int) 15063),
+
+  StructureField_Encoding_DefaultJson((int) 15065),
+
+  StructureDefinition_Encoding_DefaultJson((int) 15066),
+
+  EnumDefinition_Encoding_DefaultJson((int) 15067),
+
+  Node_Encoding_DefaultJson((int) 15068),
+
+  InstanceNode_Encoding_DefaultJson((int) 15069),
+
+  TypeNode_Encoding_DefaultJson((int) 15070),
+
+  ObjectNode_Encoding_DefaultJson((int) 15071),
+
   DatagramConnectionTransportType_DiscoveryAddress((int) 15072),
+
+  ObjectTypeNode_Encoding_DefaultJson((int) 15073),
+
+  VariableNode_Encoding_DefaultJson((int) 15074),
+
+  VariableTypeNode_Encoding_DefaultJson((int) 15075),
+
+  ReferenceTypeNode_Encoding_DefaultJson((int) 15076),
+
+  MethodNode_Encoding_DefaultJson((int) 15077),
+
+  ViewNode_Encoding_DefaultJson((int) 15078),
+
+  DataTypeNode_Encoding_DefaultJson((int) 15079),
+
+  ReferenceNode_Encoding_DefaultJson((int) 15080),
+
+  Argument_Encoding_DefaultJson((int) 15081),
+
+  EnumValueType_Encoding_DefaultJson((int) 15082),
+
+  EnumField_Encoding_DefaultJson((int) 15083),
+
+  OptionSet_Encoding_DefaultJson((int) 15084),
+
+  Union_Encoding_DefaultJson((int) 15085),
+
+  TimeZoneDataType_Encoding_DefaultJson((int) 15086),
+
+  ApplicationDescription_Encoding_DefaultJson((int) 15087),
+
+  RequestHeader_Encoding_DefaultJson((int) 15088),
+
+  ResponseHeader_Encoding_DefaultJson((int) 15089),
+
+  ServiceFault_Encoding_DefaultJson((int) 15090),
+
+  SessionlessInvokeRequestType_Encoding_DefaultJson((int) 15091),
+
+  SessionlessInvokeResponseType_Encoding_DefaultJson((int) 15092),
+
+  FindServersRequest_Encoding_DefaultJson((int) 15093),
+
+  FindServersResponse_Encoding_DefaultJson((int) 15094),
+
+  ServerOnNetwork_Encoding_DefaultJson((int) 15095),
+
+  FindServersOnNetworkRequest_Encoding_DefaultJson((int) 15096),
+
+  FindServersOnNetworkResponse_Encoding_DefaultJson((int) 15097),
+
+  UserTokenPolicy_Encoding_DefaultJson((int) 15098),
+
+  EndpointDescription_Encoding_DefaultJson((int) 15099),
+
+  GetEndpointsRequest_Encoding_DefaultJson((int) 15100),
+
+  GetEndpointsResponse_Encoding_DefaultJson((int) 15101),
+
+  RegisteredServer_Encoding_DefaultJson((int) 15102),
+
+  RegisterServerRequest_Encoding_DefaultJson((int) 15103),
+
+  RegisterServerResponse_Encoding_DefaultJson((int) 15104),
+
+  DiscoveryConfiguration_Encoding_DefaultJson((int) 15105),
+
+  MdnsDiscoveryConfiguration_Encoding_DefaultJson((int) 15106),
+
+  RegisterServer2Request_Encoding_DefaultJson((int) 15107),
+
+  RegisterServer2Response_Encoding_DefaultJson((int) 15130),
+
+  ChannelSecurityToken_Encoding_DefaultJson((int) 15131),
+
+  OpenSecureChannelRequest_Encoding_DefaultJson((int) 15132),
+
+  OpenSecureChannelResponse_Encoding_DefaultJson((int) 15133),
+
+  CloseSecureChannelRequest_Encoding_DefaultJson((int) 15134),
+
+  CloseSecureChannelResponse_Encoding_DefaultJson((int) 15135),
+
+  SignedSoftwareCertificate_Encoding_DefaultJson((int) 15136),
+
+  SignatureData_Encoding_DefaultJson((int) 15137),
+
+  CreateSessionRequest_Encoding_DefaultJson((int) 15138),
+
+  CreateSessionResponse_Encoding_DefaultJson((int) 15139),
+
+  UserIdentityToken_Encoding_DefaultJson((int) 15140),
+
+  AnonymousIdentityToken_Encoding_DefaultJson((int) 15141),
+
+  UserNameIdentityToken_Encoding_DefaultJson((int) 15142),
+
+  X509IdentityToken_Encoding_DefaultJson((int) 15143),
+
+  IssuedIdentityToken_Encoding_DefaultJson((int) 15144),
+
+  ActivateSessionRequest_Encoding_DefaultJson((int) 15145),
+
+  ActivateSessionResponse_Encoding_DefaultJson((int) 15146),
+
+  CloseSessionRequest_Encoding_DefaultJson((int) 15147),
+
+  CloseSessionResponse_Encoding_DefaultJson((int) 15148),
+
+  CancelRequest_Encoding_DefaultJson((int) 15149),
+
+  CancelResponse_Encoding_DefaultJson((int) 15150),
+
+  NodeAttributes_Encoding_DefaultJson((int) 15151),
+
+  ObjectAttributes_Encoding_DefaultJson((int) 15152),
+
+  VariableAttributes_Encoding_DefaultJson((int) 15153),
+
+  MethodAttributes_Encoding_DefaultJson((int) 15157),
+
+  ObjectTypeAttributes_Encoding_DefaultJson((int) 15158),
+
+  VariableTypeAttributes_Encoding_DefaultJson((int) 15159),
+
+  ReferenceTypeAttributes_Encoding_DefaultJson((int) 15160),
+
+  DataTypeAttributes_Encoding_DefaultJson((int) 15161),
+
+  ViewAttributes_Encoding_DefaultJson((int) 15162),
+
+  GenericAttributeValue_Encoding_DefaultJson((int) 15163),
+
+  GenericAttributes_Encoding_DefaultJson((int) 15164),
+
+  AddNodesItem_Encoding_DefaultJson((int) 15165),
+
+  AddNodesResult_Encoding_DefaultJson((int) 15166),
+
+  AddNodesRequest_Encoding_DefaultJson((int) 15167),
+
+  AddNodesResponse_Encoding_DefaultJson((int) 15168),
+
+  AddReferencesItem_Encoding_DefaultJson((int) 15169),
+
+  AddReferencesRequest_Encoding_DefaultJson((int) 15170),
+
+  AddReferencesResponse_Encoding_DefaultJson((int) 15171),
+
+  DeleteNodesItem_Encoding_DefaultJson((int) 15172),
+
+  DeleteNodesRequest_Encoding_DefaultJson((int) 15173),
+
+  DeleteNodesResponse_Encoding_DefaultJson((int) 15174),
+
+  DeleteReferencesItem_Encoding_DefaultJson((int) 15175),
+
+  DeleteReferencesRequest_Encoding_DefaultJson((int) 15176),
+
+  DeleteReferencesResponse_Encoding_DefaultJson((int) 15177),
+
+  ViewDescription_Encoding_DefaultJson((int) 15179),
+
+  BrowseDescription_Encoding_DefaultJson((int) 15180),
+
+  ReferenceDescription_Encoding_DefaultJson((int) 15182),
+
+  BrowseResult_Encoding_DefaultJson((int) 15183),
+
+  BrowseRequest_Encoding_DefaultJson((int) 15184),
+
+  BrowseResponse_Encoding_DefaultJson((int) 15185),
+
+  BrowseNextRequest_Encoding_DefaultJson((int) 15186),
+
+  BrowseNextResponse_Encoding_DefaultJson((int) 15187),
+
+  RelativePathElement_Encoding_DefaultJson((int) 15188),
+
+  RelativePath_Encoding_DefaultJson((int) 15189),
+
+  BrowsePath_Encoding_DefaultJson((int) 15190),
+
+  BrowsePathTarget_Encoding_DefaultJson((int) 15191),
+
+  BrowsePathResult_Encoding_DefaultJson((int) 15192),
+
+  TranslateBrowsePathsToNodeIdsRequest_Encoding_DefaultJson((int) 15193),
+
+  TranslateBrowsePathsToNodeIdsResponse_Encoding_DefaultJson((int) 15194),
+
+  RegisterNodesRequest_Encoding_DefaultJson((int) 15195),
+
+  RegisterNodesResponse_Encoding_DefaultJson((int) 15196),
+
+  UnregisterNodesRequest_Encoding_DefaultJson((int) 15197),
+
+  UnregisterNodesResponse_Encoding_DefaultJson((int) 15198),
+
+  EndpointConfiguration_Encoding_DefaultJson((int) 15199),
+
+  QueryDataDescription_Encoding_DefaultJson((int) 15200),
+
+  NodeTypeDescription_Encoding_DefaultJson((int) 15201),
+
+  QueryDataSet_Encoding_DefaultJson((int) 15202),
+
+  NodeReference_Encoding_DefaultJson((int) 15203),
+
+  ContentFilterElement_Encoding_DefaultJson((int) 15204),
+
+  ContentFilter_Encoding_DefaultJson((int) 15205),
+
+  FilterOperand_Encoding_DefaultJson((int) 15206),
+
+  ElementOperand_Encoding_DefaultJson((int) 15207),
+
+  LiteralOperand_Encoding_DefaultJson((int) 15208),
+
+  AttributeOperand_Encoding_DefaultJson((int) 15209),
+
+  SimpleAttributeOperand_Encoding_DefaultJson((int) 15210),
+
+  ContentFilterElementResult_Encoding_DefaultJson((int) 15211),
 
   PublishedDataSetType_DataSetWriterName_Placeholder((int) 15222),
 
@@ -1281,17 +1547,233 @@ public enum OpcuaNodeIdServicesObject {
 
   PublishedDataSetType_DataSetWriterName_Placeholder_TransportSettings((int) 15227),
 
+  ContentFilterResult_Encoding_DefaultJson((int) 15228),
+
+  ParsingResult_Encoding_DefaultJson((int) 15236),
+
+  QueryFirstRequest_Encoding_DefaultJson((int) 15244),
+
+  QueryFirstResponse_Encoding_DefaultJson((int) 15252),
+
+  QueryNextRequest_Encoding_DefaultJson((int) 15254),
+
+  QueryNextResponse_Encoding_DefaultJson((int) 15255),
+
+  ReadValueId_Encoding_DefaultJson((int) 15256),
+
+  ReadRequest_Encoding_DefaultJson((int) 15257),
+
+  ReadResponse_Encoding_DefaultJson((int) 15258),
+
+  HistoryReadValueId_Encoding_DefaultJson((int) 15259),
+
+  HistoryReadResult_Encoding_DefaultJson((int) 15260),
+
+  HistoryReadDetails_Encoding_DefaultJson((int) 15261),
+
+  ReadEventDetails_Encoding_DefaultJson((int) 15262),
+
+  ReadRawModifiedDetails_Encoding_DefaultJson((int) 15263),
+
+  ReadProcessedDetails_Encoding_DefaultJson((int) 15264),
+
   PubSubGroupType_Status((int) 15265),
+
+  ReadAtTimeDetails_Encoding_DefaultJson((int) 15269),
+
+  HistoryData_Encoding_DefaultJson((int) 15270),
+
+  ModificationInfo_Encoding_DefaultJson((int) 15271),
+
+  HistoryModifiedData_Encoding_DefaultJson((int) 15272),
+
+  HistoryEvent_Encoding_DefaultJson((int) 15273),
+
+  HistoryReadRequest_Encoding_DefaultJson((int) 15274),
+
+  HistoryReadResponse_Encoding_DefaultJson((int) 15275),
+
+  WriteValue_Encoding_DefaultJson((int) 15276),
+
+  WriteRequest_Encoding_DefaultJson((int) 15277),
+
+  WriteResponse_Encoding_DefaultJson((int) 15278),
+
+  HistoryUpdateDetails_Encoding_DefaultJson((int) 15279),
+
+  UpdateDataDetails_Encoding_DefaultJson((int) 15280),
+
+  UpdateStructureDataDetails_Encoding_DefaultJson((int) 15281),
+
+  UpdateEventDetails_Encoding_DefaultJson((int) 15282),
+
+  DeleteRawModifiedDetails_Encoding_DefaultJson((int) 15283),
+
+  DeleteAtTimeDetails_Encoding_DefaultJson((int) 15284),
+
+  DeleteEventDetails_Encoding_DefaultJson((int) 15285),
+
+  HistoryUpdateResult_Encoding_DefaultJson((int) 15286),
+
+  HistoryUpdateRequest_Encoding_DefaultJson((int) 15287),
+
+  HistoryUpdateResponse_Encoding_DefaultJson((int) 15288),
+
+  CallMethodRequest_Encoding_DefaultJson((int) 15289),
+
+  CallMethodResult_Encoding_DefaultJson((int) 15290),
+
+  CallRequest_Encoding_DefaultJson((int) 15291),
+
+  CallResponse_Encoding_DefaultJson((int) 15292),
+
+  MonitoringFilter_Encoding_DefaultJson((int) 15293),
+
+  DataChangeFilter_Encoding_DefaultJson((int) 15294),
+
+  EventFilter_Encoding_DefaultJson((int) 15295),
 
   DataSetWriterType_Status((int) 15299),
 
   DataSetWriterType_TransportSettings((int) 15303),
 
+  AggregateConfiguration_Encoding_DefaultJson((int) 15304),
+
   DataSetReaderType_Status((int) 15307),
 
   DataSetReaderType_TransportSettings((int) 15311),
 
+  AggregateFilter_Encoding_DefaultJson((int) 15312),
+
+  MonitoringFilterResult_Encoding_DefaultJson((int) 15313),
+
+  EventFilterResult_Encoding_DefaultJson((int) 15314),
+
+  AggregateFilterResult_Encoding_DefaultJson((int) 15315),
+
   DataSetReaderType_SubscribedDataSet((int) 15316),
+
+  MonitoringParameters_Encoding_DefaultJson((int) 15320),
+
+  MonitoredItemCreateRequest_Encoding_DefaultJson((int) 15321),
+
+  MonitoredItemCreateResult_Encoding_DefaultJson((int) 15322),
+
+  CreateMonitoredItemsRequest_Encoding_DefaultJson((int) 15323),
+
+  CreateMonitoredItemsResponse_Encoding_DefaultJson((int) 15324),
+
+  MonitoredItemModifyRequest_Encoding_DefaultJson((int) 15325),
+
+  MonitoredItemModifyResult_Encoding_DefaultJson((int) 15326),
+
+  ModifyMonitoredItemsRequest_Encoding_DefaultJson((int) 15327),
+
+  ModifyMonitoredItemsResponse_Encoding_DefaultJson((int) 15328),
+
+  SetMonitoringModeRequest_Encoding_DefaultJson((int) 15329),
+
+  SetMonitoringModeResponse_Encoding_DefaultJson((int) 15331),
+
+  SetTriggeringRequest_Encoding_DefaultJson((int) 15332),
+
+  SetTriggeringResponse_Encoding_DefaultJson((int) 15333),
+
+  DeleteMonitoredItemsRequest_Encoding_DefaultJson((int) 15335),
+
+  DeleteMonitoredItemsResponse_Encoding_DefaultJson((int) 15336),
+
+  CreateSubscriptionRequest_Encoding_DefaultJson((int) 15337),
+
+  CreateSubscriptionResponse_Encoding_DefaultJson((int) 15338),
+
+  ModifySubscriptionRequest_Encoding_DefaultJson((int) 15339),
+
+  ModifySubscriptionResponse_Encoding_DefaultJson((int) 15340),
+
+  SetPublishingModeRequest_Encoding_DefaultJson((int) 15341),
+
+  SetPublishingModeResponse_Encoding_DefaultJson((int) 15342),
+
+  NotificationMessage_Encoding_DefaultJson((int) 15343),
+
+  NotificationData_Encoding_DefaultJson((int) 15344),
+
+  DataChangeNotification_Encoding_DefaultJson((int) 15345),
+
+  MonitoredItemNotification_Encoding_DefaultJson((int) 15346),
+
+  EventNotificationList_Encoding_DefaultJson((int) 15347),
+
+  EventFieldList_Encoding_DefaultJson((int) 15348),
+
+  HistoryEventFieldList_Encoding_DefaultJson((int) 15349),
+
+  StatusChangeNotification_Encoding_DefaultJson((int) 15350),
+
+  SubscriptionAcknowledgement_Encoding_DefaultJson((int) 15351),
+
+  PublishRequest_Encoding_DefaultJson((int) 15352),
+
+  PublishResponse_Encoding_DefaultJson((int) 15353),
+
+  RepublishRequest_Encoding_DefaultJson((int) 15354),
+
+  RepublishResponse_Encoding_DefaultJson((int) 15355),
+
+  TransferResult_Encoding_DefaultJson((int) 15356),
+
+  TransferSubscriptionsRequest_Encoding_DefaultJson((int) 15357),
+
+  TransferSubscriptionsResponse_Encoding_DefaultJson((int) 15358),
+
+  DeleteSubscriptionsRequest_Encoding_DefaultJson((int) 15359),
+
+  DeleteSubscriptionsResponse_Encoding_DefaultJson((int) 15360),
+
+  BuildInfo_Encoding_DefaultJson((int) 15361),
+
+  RedundantServerDataType_Encoding_DefaultJson((int) 15362),
+
+  EndpointUrlListDataType_Encoding_DefaultJson((int) 15363),
+
+  NetworkGroupDataType_Encoding_DefaultJson((int) 15364),
+
+  SamplingIntervalDiagnosticsDataType_Encoding_DefaultJson((int) 15365),
+
+  ServerDiagnosticsSummaryDataType_Encoding_DefaultJson((int) 15366),
+
+  ServerStatusDataType_Encoding_DefaultJson((int) 15367),
+
+  SessionDiagnosticsDataType_Encoding_DefaultJson((int) 15368),
+
+  SessionSecurityDiagnosticsDataType_Encoding_DefaultJson((int) 15369),
+
+  ServiceCounterDataType_Encoding_DefaultJson((int) 15370),
+
+  StatusResult_Encoding_DefaultJson((int) 15371),
+
+  SubscriptionDiagnosticsDataType_Encoding_DefaultJson((int) 15372),
+
+  ModelChangeStructureDataType_Encoding_DefaultJson((int) 15373),
+
+  SemanticChangeStructureDataType_Encoding_DefaultJson((int) 15374),
+
+  Range_Encoding_DefaultJson((int) 15375),
+
+  EUInformation_Encoding_DefaultJson((int) 15376),
+
+  ComplexNumberType_Encoding_DefaultJson((int) 15377),
+
+  DoubleComplexNumberType_Encoding_DefaultJson((int) 15378),
+
+  AxisInformation_Encoding_DefaultJson((int) 15379),
+
+  XVType_Encoding_DefaultJson((int) 15380),
+
+  ProgramDiagnosticDataType_Encoding_DefaultJson((int) 15381),
+
+  Annotation_Encoding_DefaultJson((int) 15382),
 
   SimpleTypeDescription_Encoding_DefaultBinary((int) 15421),
 
@@ -1363,6 +1845,8 @@ public enum OpcuaNodeIdServicesObject {
 
   ConnectionTransportDataType_Encoding_DefaultBinary((int) 15695),
 
+  SimpleTypeDescription_Encoding_DefaultJson((int) 15700),
+
   ReaderGroupTransportDataType_Encoding_DefaultBinary((int) 15701),
 
   ReaderGroupMessageDataType_Encoding_DefaultBinary((int) 15702),
@@ -1381,6 +1865,8 @@ public enum OpcuaNodeIdServicesObject {
 
   SubscribedDataSetMirrorDataType_Encoding_DefaultBinary((int) 15713),
 
+  UABinaryFileDataType_Encoding_DefaultJson((int) 15714),
+
   UadpWriterGroupMessageDataType_Encoding_DefaultBinary((int) 15715),
 
   WellKnownRole_ConfigureAdmin((int) 15716),
@@ -1394,6 +1880,8 @@ public enum OpcuaNodeIdServicesObject {
   JsonDataSetWriterMessageDataType_Encoding_DefaultBinary((int) 15724),
 
   JsonDataSetReaderMessageDataType_Encoding_DefaultBinary((int) 15725),
+
+  BrokerConnectionTransportDataType_Encoding_DefaultJson((int) 15726),
 
   BrokerWriterGroupTransportDataType_Encoding_DefaultBinary((int) 15727),
 
@@ -1517,21 +2005,83 @@ public enum OpcuaNodeIdServicesObject {
 
   RolePermissionType_Encoding_DefaultXml((int) 16126),
 
+  EndpointType_Encoding_DefaultJson((int) 16150),
+
+  DataTypeSchemaHeader_Encoding_DefaultJson((int) 16151),
+
+  PublishedDataSetDataType_Encoding_DefaultJson((int) 16152),
+
+  PublishedDataSetSourceDataType_Encoding_DefaultJson((int) 16153),
+
+  PublishedDataItemsDataType_Encoding_DefaultJson((int) 16154),
+
+  PublishedEventsDataType_Encoding_DefaultJson((int) 16155),
+
+  DataSetWriterDataType_Encoding_DefaultJson((int) 16156),
+
+  DataSetWriterTransportDataType_Encoding_DefaultJson((int) 16157),
+
+  DataSetWriterMessageDataType_Encoding_DefaultJson((int) 16158),
+
+  PubSubGroupDataType_Encoding_DefaultJson((int) 16159),
+
+  WriterGroupTransportDataType_Encoding_DefaultJson((int) 16161),
+
+  WriterGroupMessageDataType_Encoding_DefaultJson((int) 16280),
+
+  PubSubConnectionDataType_Encoding_DefaultJson((int) 16281),
+
+  ConnectionTransportDataType_Encoding_DefaultJson((int) 16282),
+
+  ReaderGroupTransportDataType_Encoding_DefaultJson((int) 16284),
+
+  ReaderGroupMessageDataType_Encoding_DefaultJson((int) 16285),
+
+  DataSetReaderDataType_Encoding_DefaultJson((int) 16286),
+
+  DataSetReaderTransportDataType_Encoding_DefaultJson((int) 16287),
+
+  DataSetReaderMessageDataType_Encoding_DefaultJson((int) 16288),
+
   ServerType_ServerCapabilities_RoleSet((int) 16289),
 
   ServerCapabilitiesType_RoleSet((int) 16295),
 
+  SubscribedDataSetDataType_Encoding_DefaultJson((int) 16308),
+
+  TargetVariablesDataType_Encoding_DefaultJson((int) 16310),
+
+  SubscribedDataSetMirrorDataType_Encoding_DefaultJson((int) 16311),
+
   FileSystem((int) 16314),
 
+  UadpWriterGroupMessageDataType_Encoding_DefaultJson((int) 16323),
+
   ProvisionableDeviceType_ApplicationName_Placeholder_ConfigurationFile((int) 16324),
+
+  UadpDataSetWriterMessageDataType_Encoding_DefaultJson((int) 16391),
+
+  UadpDataSetReaderMessageDataType_Encoding_DefaultJson((int) 16392),
+
+  JsonWriterGroupMessageDataType_Encoding_DefaultJson((int) 16393),
+
+  JsonDataSetWriterMessageDataType_Encoding_DefaultJson((int) 16394),
 
   AlarmConditionType_FirstInGroup((int) 16398),
 
   AlarmConditionType_AlarmGroup_Placeholder((int) 16399),
 
+  JsonDataSetReaderMessageDataType_Encoding_DefaultJson((int) 16404),
+
   AlarmGroupType_AlarmConditionInstance_Placeholder((int) 16406),
 
   AlarmGroupType_AlarmConditionInstance_Placeholder_ShelvingState((int) 16502),
+
+  BrokerWriterGroupTransportDataType_Encoding_DefaultJson((int) 16524),
+
+  BrokerDataSetWriterTransportDataType_Encoding_DefaultJson((int) 16525),
+
+  BrokerDataSetReaderTransportDataType_Encoding_DefaultJson((int) 16526),
 
   AlarmGroupType_AlarmConditionInstance_Placeholder_FirstInGroup((int) 16530),
 
@@ -1570,6 +2120,24 @@ public enum OpcuaNodeIdServicesObject {
   SecuritySettingsDataType_Encoding_DefaultXml((int) 16595),
 
   UserTokenSettingsDataType_Encoding_DefaultXml((int) 16596),
+
+  BaseConfigurationDataType_Encoding_DefaultJson((int) 16632),
+
+  BaseConfigurationRecordDataType_Encoding_DefaultJson((int) 16633),
+
+  CertificateGroupDataType_Encoding_DefaultJson((int) 16634),
+
+  ConfigurationUpdateTargetType_Encoding_DefaultJson((int) 16635),
+
+  ApplicationIdentityDataType_Encoding_DefaultJson((int) 16637),
+
+  EndpointDataType_Encoding_DefaultJson((int) 16642),
+
+  ServerEndpointDataType_Encoding_DefaultJson((int) 16643),
+
+  SecuritySettingsDataType_Encoding_DefaultJson((int) 16644),
+
+  UserTokenSettingsDataType_Encoding_DefaultJson((int) 16645),
 
   ApplicationConfigurationFolderType_ApplicationName_Placeholder((int) 16663),
 
@@ -1635,6 +2203,8 @@ public enum OpcuaNodeIdServicesObject {
 
   DatagramConnectionTransportDataType_Encoding_DefaultXml((int) 17472),
 
+  DatagramConnectionTransportDataType_Encoding_DefaultJson((int) 17476),
+
   ApplicationConfigurationFolderType_ApplicationName_Placeholder_CertificateGroups_DefaultHttpsGroup_CertificateExpired_FirstInGroup((int) 17499),
 
   KeyCredentialConfigurationFolderType_ServiceName_Placeholder((int) 17511),
@@ -1643,9 +2213,13 @@ public enum OpcuaNodeIdServicesObject {
 
   AdditionalParametersType_Encoding_DefaultXml((int) 17541),
 
+  AdditionalParametersType_Encoding_DefaultJson((int) 17547),
+
   EphemeralKeyType_Encoding_DefaultBinary((int) 17549),
 
   EphemeralKeyType_Encoding_DefaultXml((int) 17553),
+
+  EphemeralKeyType_Encoding_DefaultJson((int) 17557),
 
   DictionaryEntryType_DictionaryEntryName_Placeholder((int) 17590),
 
@@ -1749,6 +2323,12 @@ public enum OpcuaNodeIdServicesObject {
 
   ActionMethodDataType_Encoding_DefaultXml((int) 18612),
 
+  ActionTargetDataType_Encoding_DefaultJson((int) 18622),
+
+  PublishedActionDataType_Encoding_DefaultJson((int) 18623),
+
+  ActionMethodDataType_Encoding_DefaultJson((int) 18624),
+
   WellKnownRole_TrustedApplication((int) 18625),
 
   SortRuleElement_Encoding_DefaultBinary((int) 18650),
@@ -1758,6 +2338,10 @@ public enum OpcuaNodeIdServicesObject {
   SortRuleElement_Encoding_DefaultXml((int) 18652),
 
   ReadEventDetailsSorted_Encoding_DefaultXml((int) 18653),
+
+  SortRuleElement_Encoding_DefaultJson((int) 18654),
+
+  ReadEventDetailsSorted_Encoding_DefaultJson((int) 18655),
 
   PublishSubscribeType_ConnectionName_Placeholder_Diagnostics((int) 18667),
 
@@ -1821,6 +2405,10 @@ public enum OpcuaNodeIdServicesObject {
 
   DtlsPubSubConnectionDataType_Encoding_DefaultXml((int) 18938),
 
+  PublishedActionMethodDataType_Encoding_DefaultJson((int) 18945),
+
+  DtlsPubSubConnectionDataType_Encoding_DefaultJson((int) 18946),
+
   LLDP((int) 18958),
 
   LLDP_RemoteStatistics((int) 18959),
@@ -1842,6 +2430,24 @@ public enum OpcuaNodeIdServicesObject {
   LldpPortInformationType_RemoteSystemsData((int) 19016),
 
   LldpPortInformationType_RemoteSystemsData_LldpRemoteSystem_Placeholder((int) 19017),
+
+  RationalNumber_Encoding_DefaultJson((int) 19064),
+
+  Vector_Encoding_DefaultJson((int) 19065),
+
+  ThreeDVector_Encoding_DefaultJson((int) 19066),
+
+  CartesianCoordinates_Encoding_DefaultJson((int) 19067),
+
+  ThreeDCartesianCoordinates_Encoding_DefaultJson((int) 19068),
+
+  Orientation_Encoding_DefaultJson((int) 19069),
+
+  ThreeDOrientation_Encoding_DefaultJson((int) 19070),
+
+  Frame_Encoding_DefaultJson((int) 19071),
+
+  ThreeDFrame_Encoding_DefaultJson((int) 19072),
 
   LldpManagementAddressTxPortType_Encoding_DefaultBinary((int) 19079),
 
@@ -1873,6 +2479,12 @@ public enum OpcuaNodeIdServicesObject {
 
   PubSubConnectionType_Diagnostics_LiveValues((int) 19286),
 
+  LldpManagementAddressTxPortType_Encoding_DefaultJson((int) 19299),
+
+  LldpManagementAddressType_Encoding_DefaultJson((int) 19300),
+
+  LldpTlvType_Encoding_DefaultJson((int) 19301),
+
   ServerLog((int) 19372),
 
   Logs((int) 19378),
@@ -1880,6 +2492,8 @@ public enum OpcuaNodeIdServicesObject {
   LogRecord_Encoding_DefaultBinary((int) 19379),
 
   LogRecord_Encoding_DefaultXml((int) 19383),
+
+  LogRecord_Encoding_DefaultJson((int) 19387),
 
   ApplicationConfigurationFolderType_ApplicationName_Placeholder_KeyCredentials((int) 19409),
 
@@ -1930,6 +2544,14 @@ public enum OpcuaNodeIdServicesObject {
   NameValuePair_Encoding_DefaultXml((int) 19776),
 
   PubSubDiagnosticsRootType_LiveValues((int) 19777),
+
+  LogRecordsDataType_Encoding_DefaultJson((int) 19803),
+
+  SpanContextDataType_Encoding_DefaultJson((int) 19804),
+
+  TraceContextDataType_Encoding_DefaultJson((int) 19805),
+
+  NameValuePair_Encoding_DefaultJson((int) 19806),
 
   PubSubDiagnosticsConnectionType_LiveValues((int) 19831),
 
@@ -2030,6 +2652,18 @@ public enum OpcuaNodeIdServicesObject {
   PubSubConfigurationDataType_Encoding_DefaultXml((int) 21178),
 
   DatagramWriterGroupTransportDataType_Encoding_DefaultXml((int) 21179),
+
+  WriterGroupDataType_Encoding_DefaultJson((int) 21198),
+
+  NetworkAddressDataType_Encoding_DefaultJson((int) 21199),
+
+  NetworkAddressUrlDataType_Encoding_DefaultJson((int) 21200),
+
+  ReaderGroupDataType_Encoding_DefaultJson((int) 21201),
+
+  PubSubConfigurationDataType_Encoding_DefaultJson((int) 21202),
+
+  DatagramWriterGroupTransportDataType_Encoding_DefaultJson((int) 21203),
 
   CertificateGroupFolderType_DefaultUserTokenGroup_CertificateExpired_FirstInGroup((int) 21213),
 
@@ -2143,9 +2777,15 @@ public enum OpcuaNodeIdServicesObject {
 
   CurrencyUnitType_Encoding_DefaultBinary((int) 23507),
 
+  AliasNameDataType_Encoding_DefaultJson((int) 23511),
+
+  ReadAnnotationDataDetails_Encoding_DefaultJson((int) 23512),
+
   OrderedListType_OrderedObject_Placeholder((int) 23519),
 
   CurrencyUnitType_Encoding_DefaultXml((int) 23520),
+
+  CurrencyUnitType_Encoding_DefaultJson((int) 23528),
 
   AuthorizationServicesConfigurationFolderType_ServiceName_Placeholder((int) 23557),
 
@@ -2169,6 +2809,8 @@ public enum OpcuaNodeIdServicesObject {
 
   ServiceCertificateDataType_Encoding_DefaultXml((int) 23735),
 
+  ServiceCertificateDataType_Encoding_DefaultJson((int) 23739),
+
   ApplicationConfigurationDataType_Encoding_DefaultBinary((int) 23754),
 
   AuthorizationServiceConfigurationDataType_Encoding_DefaultBinary((int) 23755),
@@ -2176,6 +2818,10 @@ public enum OpcuaNodeIdServicesObject {
   ApplicationConfigurationDataType_Encoding_DefaultXml((int) 23762),
 
   AuthorizationServiceConfigurationDataType_Encoding_DefaultXml((int) 23763),
+
+  ApplicationConfigurationDataType_Encoding_DefaultJson((int) 23776),
+
+  AuthorizationServiceConfigurationDataType_Encoding_DefaultJson((int) 23777),
 
   SubscribedDataSetFolderType_SubscribedDataSetFolderName_Placeholder((int) 23796),
 
@@ -2235,11 +2881,37 @@ public enum OpcuaNodeIdServicesObject {
 
   DatagramDataSetReaderTransportDataType_Encoding_DefaultXml((int) 23934),
 
+  StandaloneSubscribedDataSetRefDataType_Encoding_DefaultJson((int) 23987),
+
+  StandaloneSubscribedDataSetDataType_Encoding_DefaultJson((int) 23988),
+
+  SecurityGroupDataType_Encoding_DefaultJson((int) 23989),
+
+  PubSubConfiguration2DataType_Encoding_DefaultJson((int) 23990),
+
+  QosDataType_Encoding_DefaultJson((int) 23991),
+
+  TransmitQosDataType_Encoding_DefaultJson((int) 23992),
+
+  TransmitQosPriorityDataType_Encoding_DefaultJson((int) 23993),
+
+  ReceiveQosDataType_Encoding_DefaultJson((int) 23996),
+
+  ReceiveQosPriorityDataType_Encoding_DefaultJson((int) 23997),
+
+  DatagramConnectionTransport2DataType_Encoding_DefaultJson((int) 24000),
+
+  DatagramWriterGroupTransport2DataType_Encoding_DefaultJson((int) 24001),
+
+  DatagramDataSetReaderTransportDataType_Encoding_DefaultJson((int) 24002),
+
   DatagramDataSetReaderTransportType_Address((int) 24017),
 
   ProgramDiagnostic2DataType_Encoding_DefaultBinary((int) 24034),
 
   ProgramDiagnostic2DataType_Encoding_DefaultXml((int) 24038),
+
+  ProgramDiagnostic2DataType_Encoding_DefaultJson((int) 24042),
 
   PortableQualifiedName_Encoding_DefaultBinary((int) 24108),
 
@@ -2252,6 +2924,12 @@ public enum OpcuaNodeIdServicesObject {
   PortableNodeId_Encoding_DefaultXml((int) 24121),
 
   UnsignedRationalNumber_Encoding_DefaultXml((int) 24122),
+
+  PortableQualifiedName_Encoding_DefaultJson((int) 24132),
+
+  PortableNodeId_Encoding_DefaultJson((int) 24133),
+
+  UnsignedRationalNumber_Encoding_DefaultJson((int) 24134),
 
   Resources((int) 24226),
 
@@ -2277,6 +2955,8 @@ public enum OpcuaNodeIdServicesObject {
 
   UserManagementDataType_Encoding_DefaultXml((int) 24296),
 
+  UserManagementDataType_Encoding_DefaultJson((int) 24300),
+
   AliasCategoryUpdateDataType_Encoding_DefaultBinary((int) 24338),
 
   AliasUpdateDataType_Encoding_DefaultBinary((int) 24339),
@@ -2289,6 +2969,14 @@ public enum OpcuaNodeIdServicesObject {
 
   AliasUpdateDataType_Encoding_DefaultXml((int) 24355),
 
+  NumberRange_Encoding_DefaultJson((int) 24368),
+
+  AliasNameVerboseDataType_Encoding_DefaultJson((int) 24369),
+
+  AliasCategoryUpdateDataType_Encoding_DefaultJson((int) 24370),
+
+  AliasUpdateDataType_Encoding_DefaultJson((int) 24371),
+
   DefaultJson((int) 24502),
 
   IetfBaseNetworkInterfaceType_InterfaceName_Placeholder((int) 25226),
@@ -2296,6 +2984,8 @@ public enum OpcuaNodeIdServicesObject {
   PriorityMappingEntryType_Encoding_DefaultBinary((int) 25239),
 
   PriorityMappingEntryType_Encoding_DefaultXml((int) 25243),
+
+  PriorityMappingEntryType_Encoding_DefaultJson((int) 25247),
 
   PubSubKeyServiceType_KeyPushTargets((int) 25277),
 
@@ -2324,6 +3014,14 @@ public enum OpcuaNodeIdServicesObject {
   PubSubConfigurationRefDataType_Encoding_DefaultXml((int) 25547),
 
   PubSubConfigurationValueDataType_Encoding_DefaultXml((int) 25548),
+
+  PublishedDataSetCustomSourceDataType_Encoding_DefaultJson((int) 25561),
+
+  PubSubKeyPushTargetDataType_Encoding_DefaultJson((int) 25562),
+
+  PubSubConfigurationRefDataType_Encoding_DefaultJson((int) 25563),
+
+  PubSubConfigurationValueDataType_Encoding_DefaultJson((int) 25564),
 
   WellKnownRole_SecurityKeyServerAdmin((int) 25565),
 
@@ -2399,9 +3097,13 @@ public enum OpcuaNodeIdServicesObject {
 
   TransactionErrorType_Encoding_DefaultXml((int) 32386),
 
+  TransactionErrorType_Encoding_DefaultJson((int) 32390),
+
   BitFieldDefinition_Encoding_DefaultBinary((int) 32422),
 
   BitFieldDefinition_Encoding_DefaultXml((int) 32426),
+
+  BitFieldDefinition_Encoding_DefaultJson((int) 32430),
 
   ServerUnitType_AlternativeUnits((int) 32452),
 
@@ -2429,6 +3131,12 @@ public enum OpcuaNodeIdServicesObject {
 
   QuantityDimension_Encoding_DefaultXml((int) 32574),
 
+  AnnotationDataType_Encoding_DefaultJson((int) 32584),
+
+  LinearConversionDataType_Encoding_DefaultJson((int) 32585),
+
+  QuantityDimension_Encoding_DefaultJson((int) 32586),
+
   ServerUnitType_AlternativeUnits_AlternativeUnit_Placeholder((int) 32587),
 
   HistoricalEventConfigurationType_EventTypes((int) 32622),
@@ -2447,6 +3155,10 @@ public enum OpcuaNodeIdServicesObject {
 
   ReferenceListEntryDataType_Encoding_DefaultXml((int) 32670),
 
+  ReferenceDescriptionDataType_Encoding_DefaultJson((int) 32677),
+
+  ReferenceListEntryDataType_Encoding_DefaultJson((int) 32678),
+
   DefaultHEConfiguration((int) 32754),
 
   DefaultHEConfiguration_EventTypes((int) 32755),
@@ -2455,9 +3167,13 @@ public enum OpcuaNodeIdServicesObject {
 
   ReadEventDetails2_Encoding_DefaultXml((int) 32801),
 
+  ReadEventDetails2_Encoding_DefaultJson((int) 32802),
+
   HistoryModifiedEvent_Encoding_DefaultBinary((int) 32825),
 
-  HistoryModifiedEvent_Encoding_DefaultXml((int) 32829);
+  HistoryModifiedEvent_Encoding_DefaultXml((int) 32829),
+
+  HistoryModifiedEvent_Encoding_DefaultJson((int) 32833);
 
   private static final Map<Integer, OpcuaNodeIdServicesObject> map;
 

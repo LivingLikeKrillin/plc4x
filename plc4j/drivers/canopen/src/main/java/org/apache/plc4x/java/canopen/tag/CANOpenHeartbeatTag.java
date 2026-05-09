@@ -91,7 +91,7 @@ public class CANOpenHeartbeatTag extends CANOpenTag implements CANOpenSubscripti
         String serviceName = getService().name();
         writeBuffer.writeString("service",
             serviceName.getBytes(StandardCharsets.UTF_8).length * 8,
-            serviceName, WithOption.WithEncoding(StandardCharsets.UTF_8.name()));
+            serviceName, WithOption.WithEncoding("UTF8"));
         writeBuffer.writeInt("node", 64, getNodeId());
         
         writeBuffer.popContext(getClass().getSimpleName());

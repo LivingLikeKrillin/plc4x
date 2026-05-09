@@ -328,7 +328,7 @@ public class PlcCHAR extends PlcIECValue<Short> {
     public void serialize(WriteBuffer writeBuffer) throws BufferException {
         String valueString = value.toString();
         writeBuffer.writeString(16,
-            valueString, WithOption.WithName(getClass().getSimpleName()), WithOption.WithEncoding(StandardCharsets.UTF_8.name()));
+            valueString, WithOption.WithName(getClass().getSimpleName()), WithOption.WithEncoding("UTF8"));
     }
 
 }

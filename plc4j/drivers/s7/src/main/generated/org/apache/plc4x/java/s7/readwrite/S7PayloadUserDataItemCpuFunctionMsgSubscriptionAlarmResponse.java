@@ -35,7 +35,7 @@ public class S7PayloadUserDataItemCpuFunctionMsgSubscriptionAlarmResponse extend
 
   protected final short reserved01;
 
-  protected final AlarmType alarmType;
+  protected final AlarmStateType alarmType;
 
   protected final short reserved02;
 
@@ -43,7 +43,8 @@ public class S7PayloadUserDataItemCpuFunctionMsgSubscriptionAlarmResponse extend
 
   public S7PayloadUserDataItemCpuFunctionMsgSubscriptionAlarmResponse(
       DataTransportErrorCode returnCode, DataTransportSize transportSize, Integer dataLength,
-      Short result, Short reserved01, AlarmType alarmType, Short reserved02, Short reserved03) {
+      Short result, Short reserved01, AlarmStateType alarmType, Short reserved02,
+      Short reserved03) {
     super(returnCode, transportSize, dataLength);
     this.result = result;
     this.reserved01 = reserved01;
@@ -93,7 +94,7 @@ public class S7PayloadUserDataItemCpuFunctionMsgSubscriptionAlarmResponse extend
   /**
    * Property field alarmType
    */
-  public AlarmType getAlarmType() {
+  public AlarmStateType getAlarmType() {
     return alarmType;
   }
 
@@ -124,7 +125,7 @@ public class S7PayloadUserDataItemCpuFunctionMsgSubscriptionAlarmResponse extend
     short reserved01 = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("reserved01"));
 
     // Simple Field (enum): alarmType
-    AlarmType alarmType = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(AlarmType::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("alarmType"));
+    AlarmStateType alarmType = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(AlarmStateType::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("alarmType"));
 
     // Simple Field: reserved02
     short reserved02 = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("reserved02"));
@@ -148,7 +149,7 @@ public class S7PayloadUserDataItemCpuFunctionMsgSubscriptionAlarmResponse extend
     FieldWriterFactory.writeSimpleField((short) reserved01, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("reserved01"));
 
     // Simple Field (enum): alarmType
-    FieldWriterFactory.writeSimpleEnumField((AlarmType) alarmType, DataWriterFactory.writeEnum(AlarmType::getValue, AlarmType::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("alarmType"));
+    FieldWriterFactory.writeSimpleEnumField((AlarmStateType) alarmType, DataWriterFactory.writeEnum(AlarmStateType::getValue, AlarmStateType::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("alarmType"));
 
     // Simple Field: reserved02
     FieldWriterFactory.writeSimpleField((short) reserved02, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("reserved02"));
@@ -192,14 +193,14 @@ public class S7PayloadUserDataItemCpuFunctionMsgSubscriptionAlarmResponse extend
 
     private final short reserved01;
 
-    private final AlarmType alarmType;
+    private final AlarmStateType alarmType;
 
     private final short reserved02;
 
     private final short reserved03;
 
-    public S7PayloadUserDataItemBuilderImpl(short result, short reserved01, AlarmType alarmType,
-        short reserved02, short reserved03) {
+    public S7PayloadUserDataItemBuilderImpl(short result, short reserved01,
+        AlarmStateType alarmType, short reserved02, short reserved03) {
       this.result = result;
       this.reserved01 = reserved01;
       this.alarmType = alarmType;

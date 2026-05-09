@@ -102,8 +102,8 @@ public class S7PayloadUserDataItemCpuFunctionMsgSubscriptionRequest extends S7Pa
   }
 
   public static S7PayloadUserDataItemBuilder staticParseS7PayloadUserDataItemBuilder(
-      ReadBuffer readBuffer, byte cpuFunctionGroup, byte cpuFunctionType, short cpuSubfunction)
-      throws BufferException {
+      ReadBuffer readBuffer, int dataLength, byte cpuFunctionGroup, byte cpuFunctionType,
+      short cpuSubfunction) throws BufferException {
     readBuffer.pushContext(WithOption.WithName("S7PayloadUserDataItemCpuFunctionMsgSubscriptionRequest"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
@@ -114,13 +114,13 @@ public class S7PayloadUserDataItemCpuFunctionMsgSubscriptionRequest extends S7Pa
     FieldReaderFactory.readReservedField(DataReaderFactory.readUnsignedShort(readBuffer, 8), (short) 0x00, WithOption.WithName("S7PayloadUserDataItemCpuFunctionMsgSubscriptionRequest.reserved1"));
 
     // Simple Field: magicKey
-    String magicKey = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, 64), WithOption.WithName("magicKey"));
+    String magicKey = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, 64), WithOption.WithName("magicKey"), WithOption.WithFloatEncoding("UTF8"), WithOption.WithSignedIntegerEncoding("UTF8"), WithOption.WithUnsignedIntegerEncoding("UTF8"), WithOption.WithEncoding("UTF8"), WithOption.WithStringEncoding("UTF8"));
 
     // Optional Field (conditional): alarmtype
-    AlarmStateType alarmtype = FieldReaderFactory.readOptionalField(DataReaderFactory.readEnum(AlarmStateType::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), (subscription) >= (128), WithOption.WithName("alarmtype"));
+    AlarmStateType alarmtype = FieldReaderFactory.readOptionalField(DataReaderFactory.readEnum(AlarmStateType::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), (dataLength) >= (12), WithOption.WithName("alarmtype"));
 
     // Optional Field (conditional): reserve
-    Short reserve = FieldReaderFactory.readOptionalField(DataReaderFactory.readUnsignedShort(readBuffer, 8), (subscription) >= (128), WithOption.WithName("reserve"));
+    Short reserve = FieldReaderFactory.readOptionalField(DataReaderFactory.readUnsignedShort(readBuffer, 8), (dataLength) >= (12), WithOption.WithName("reserve"));
 
     readBuffer.popContext();
     return new S7PayloadUserDataItemBuilderImpl(subscription, magicKey, alarmtype, reserve);
@@ -138,7 +138,7 @@ public class S7PayloadUserDataItemCpuFunctionMsgSubscriptionRequest extends S7Pa
     FieldWriterFactory.writeReservedField((short) 0x00, DataWriterFactory.writeUnsignedShort(writeBuffer, 8));
 
     // Simple Field: magicKey
-    FieldWriterFactory.writeSimpleField((String) magicKey, DataWriterFactory.writeString(writeBuffer, 64), WithOption.WithName("magicKey"));
+    FieldWriterFactory.writeSimpleField((String) magicKey, DataWriterFactory.writeString(writeBuffer, 64), WithOption.WithName("magicKey"), WithOption.WithFloatEncoding("UTF8"), WithOption.WithSignedIntegerEncoding("UTF8"), WithOption.WithUnsignedIntegerEncoding("UTF8"), WithOption.WithEncoding("UTF8"), WithOption.WithStringEncoding("UTF8"));
 
     if(alarmtype != null) {
       // Optional Field (enum): alarmtype

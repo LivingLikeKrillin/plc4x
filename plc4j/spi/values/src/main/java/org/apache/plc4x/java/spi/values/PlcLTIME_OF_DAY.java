@@ -162,7 +162,7 @@ public class PlcLTIME_OF_DAY extends PlcIECValue<LocalTime> {
     public void serialize(WriteBuffer writeBuffer) throws BufferException {
         String valueString = value.toString();
         writeBuffer.writeString(valueString.getBytes(StandardCharsets.UTF_8).length * 8,
-            valueString, WithOption.WithName(getClass().getSimpleName()), WithOption.WithEncoding(StandardCharsets.UTF_8.name()));
+            valueString, WithOption.WithName(getClass().getSimpleName()), WithOption.WithEncoding("UTF8"));
     }
 
 }

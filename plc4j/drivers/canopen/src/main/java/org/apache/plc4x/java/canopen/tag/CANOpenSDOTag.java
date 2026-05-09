@@ -143,7 +143,7 @@ public class CANOpenSDOTag extends CANOpenTag {
         String dataTypeName = getCanOpenDataType().name();
         writeBuffer.writeString("dataType",
             dataTypeName.getBytes(StandardCharsets.UTF_8).length * 8,
-            dataTypeName, WithOption.WithEncoding(StandardCharsets.UTF_8.name()));
+            dataTypeName, WithOption.WithEncoding("UTF8"));
 
         writeBuffer.popContext(getClass().getSimpleName());
     }

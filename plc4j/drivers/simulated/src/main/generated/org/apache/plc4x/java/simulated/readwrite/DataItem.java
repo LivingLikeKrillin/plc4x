@@ -354,7 +354,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        String value = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, 8), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF-8"), WithOption.WithSignedIntegerEncoding("UTF-8"), WithOption.WithUnsignedIntegerEncoding("UTF-8"), WithOption.WithEncoding("UTF-8"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF-8"));
+        String value = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, 8), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF8"), WithOption.WithSignedIntegerEncoding("UTF8"), WithOption.WithUnsignedIntegerEncoding("UTF8"), WithOption.WithEncoding("UTF8"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcCHAR(value);
       } else if (EvaluationHelper.equals(dataType, "CHAR")) {
@@ -363,7 +363,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Array Field: value
-        List<String> value = FieldReaderFactory.readCountArrayField(DataReaderFactory.readString(readBuffer, 8), numberOfValues, WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF-8"), WithOption.WithSignedIntegerEncoding("UTF-8"), WithOption.WithUnsignedIntegerEncoding("UTF-8"), WithOption.WithEncoding("UTF-8"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF-8"));
+        List<String> value = FieldReaderFactory.readCountArrayField(DataReaderFactory.readString(readBuffer, 8), numberOfValues, WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF8"), WithOption.WithSignedIntegerEncoding("UTF8"), WithOption.WithUnsignedIntegerEncoding("UTF8"), WithOption.WithEncoding("UTF8"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcList(value.stream().map(PlcSTRING::new).toList());
       } else if (EvaluationHelper.equals(dataType, "WCHAR") &&
@@ -373,7 +373,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        String value = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, 16), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF-16"), WithOption.WithSignedIntegerEncoding("UTF-16"), WithOption.WithUnsignedIntegerEncoding("UTF-16"), WithOption.WithEncoding("UTF-16"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF-16"));
+        String value = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, 16), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF16"), WithOption.WithSignedIntegerEncoding("UTF16"), WithOption.WithUnsignedIntegerEncoding("UTF16"), WithOption.WithEncoding("UTF16"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF16"));
 
         return new PlcWCHAR(value);
       } else if (EvaluationHelper.equals(dataType, "WCHAR")) {
@@ -382,7 +382,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Array Field: value
-        List<String> value = FieldReaderFactory.readCountArrayField(DataReaderFactory.readString(readBuffer, 16), numberOfValues, WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF-16"), WithOption.WithSignedIntegerEncoding("UTF-16"), WithOption.WithUnsignedIntegerEncoding("UTF-16"), WithOption.WithEncoding("UTF-16"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF-16"));
+        List<String> value = FieldReaderFactory.readCountArrayField(DataReaderFactory.readString(readBuffer, 16), numberOfValues, WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF16"), WithOption.WithSignedIntegerEncoding("UTF16"), WithOption.WithUnsignedIntegerEncoding("UTF16"), WithOption.WithEncoding("UTF16"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF16"));
 
         return new PlcList(value.stream().map(PlcSTRING::new).toList());
       } else if (EvaluationHelper.equals(dataType, "STRING")) {
@@ -391,7 +391,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        String value = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, 255), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF-8"), WithOption.WithSignedIntegerEncoding("UTF-8"), WithOption.WithUnsignedIntegerEncoding("UTF-8"), WithOption.WithEncoding("UTF-8"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF-8"));
+        String value = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, 255), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF8"), WithOption.WithSignedIntegerEncoding("UTF8"), WithOption.WithUnsignedIntegerEncoding("UTF8"), WithOption.WithEncoding("UTF8"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcSTRING(value);
       } else if (EvaluationHelper.equals(dataType, "WSTRING")) {
@@ -400,7 +400,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        String value = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, 255), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF-16"), WithOption.WithSignedIntegerEncoding("UTF-16"), WithOption.WithUnsignedIntegerEncoding("UTF-16"), WithOption.WithEncoding("UTF-16"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF-16"));
+        String value = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, 255), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF16"), WithOption.WithSignedIntegerEncoding("UTF16"), WithOption.WithUnsignedIntegerEncoding("UTF16"), WithOption.WithEncoding("UTF16"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF16"));
 
         return new PlcSTRING(value);
       }
@@ -614,38 +614,38 @@ public class DataItem {
       // CHAR
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((String) _value.getString(), DataWriterFactory.writeString(writeBuffer, 8), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF-8"), WithOption.WithSignedIntegerEncoding("UTF-8"), WithOption.WithUnsignedIntegerEncoding("UTF-8"), WithOption.WithEncoding("UTF-8"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF-8"));
+      FieldWriterFactory.writeSimpleField((String) _value.getString(), DataWriterFactory.writeString(writeBuffer, 8), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF8"), WithOption.WithSignedIntegerEncoding("UTF8"), WithOption.WithUnsignedIntegerEncoding("UTF8"), WithOption.WithEncoding("UTF8"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, "CHAR")) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // List
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Array Field: value
-      FieldWriterFactory.writeSimpleTypeArrayField(_value.getList().stream().map(PlcValue::getString).collect(Collectors.toList()), DataWriterFactory.writeString(writeBuffer, 8), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF-8"), WithOption.WithSignedIntegerEncoding("UTF-8"), WithOption.WithUnsignedIntegerEncoding("UTF-8"), WithOption.WithEncoding("UTF-8"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF-8"));
+      FieldWriterFactory.writeSimpleTypeArrayField(_value.getList().stream().map(PlcValue::getString).collect(Collectors.toList()), DataWriterFactory.writeString(writeBuffer, 8), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF8"), WithOption.WithSignedIntegerEncoding("UTF8"), WithOption.WithUnsignedIntegerEncoding("UTF8"), WithOption.WithEncoding("UTF8"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, "WCHAR") &&
             EvaluationHelper.equals(numberOfValues, 1)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // WCHAR
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((String) _value.getString(), DataWriterFactory.writeString(writeBuffer, 16), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF-16"), WithOption.WithSignedIntegerEncoding("UTF-16"), WithOption.WithUnsignedIntegerEncoding("UTF-16"), WithOption.WithEncoding("UTF-16"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF-16"));
+      FieldWriterFactory.writeSimpleField((String) _value.getString(), DataWriterFactory.writeString(writeBuffer, 16), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF16"), WithOption.WithSignedIntegerEncoding("UTF16"), WithOption.WithUnsignedIntegerEncoding("UTF16"), WithOption.WithEncoding("UTF16"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF16"));
     } else if (EvaluationHelper.equals(dataType, "WCHAR")) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // List
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Array Field: value
-      FieldWriterFactory.writeSimpleTypeArrayField(_value.getList().stream().map(PlcValue::getString).collect(Collectors.toList()), DataWriterFactory.writeString(writeBuffer, 16), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF-16"), WithOption.WithSignedIntegerEncoding("UTF-16"), WithOption.WithUnsignedIntegerEncoding("UTF-16"), WithOption.WithEncoding("UTF-16"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF-16"));
+      FieldWriterFactory.writeSimpleTypeArrayField(_value.getList().stream().map(PlcValue::getString).collect(Collectors.toList()), DataWriterFactory.writeString(writeBuffer, 16), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF16"), WithOption.WithSignedIntegerEncoding("UTF16"), WithOption.WithUnsignedIntegerEncoding("UTF16"), WithOption.WithEncoding("UTF16"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF16"));
     } else if (EvaluationHelper.equals(dataType, "STRING")) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // STRING
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((String) _value.getString(), DataWriterFactory.writeString(writeBuffer, 255), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF-8"), WithOption.WithSignedIntegerEncoding("UTF-8"), WithOption.WithUnsignedIntegerEncoding("UTF-8"), WithOption.WithEncoding("UTF-8"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF-8"));
+      FieldWriterFactory.writeSimpleField((String) _value.getString(), DataWriterFactory.writeString(writeBuffer, 255), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF8"), WithOption.WithSignedIntegerEncoding("UTF8"), WithOption.WithUnsignedIntegerEncoding("UTF8"), WithOption.WithEncoding("UTF8"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, "WSTRING")) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // STRING
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((String) _value.getString(), DataWriterFactory.writeString(writeBuffer, 255), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF-16"), WithOption.WithSignedIntegerEncoding("UTF-16"), WithOption.WithUnsignedIntegerEncoding("UTF-16"), WithOption.WithEncoding("UTF-16"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF-16"));
+      FieldWriterFactory.writeSimpleField((String) _value.getString(), DataWriterFactory.writeString(writeBuffer, 255), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF16"), WithOption.WithSignedIntegerEncoding("UTF16"), WithOption.WithUnsignedIntegerEncoding("UTF16"), WithOption.WithEncoding("UTF16"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF16"));
     }
   }
 

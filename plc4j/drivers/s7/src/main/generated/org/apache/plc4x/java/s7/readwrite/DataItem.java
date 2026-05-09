@@ -211,7 +211,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        String value = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, 8), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF-8"), WithOption.WithSignedIntegerEncoding("UTF-8"), WithOption.WithUnsignedIntegerEncoding("UTF-8"), WithOption.WithEncoding("UTF-8"), WithOption.WithStringEncoding("UTF-8"));
+        String value = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, 8), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF8"), WithOption.WithSignedIntegerEncoding("UTF8"), WithOption.WithUnsignedIntegerEncoding("UTF8"), WithOption.WithEncoding("UTF8"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcCHAR(value);
       } else if (EvaluationHelper.equals(dataProtocolId, "IEC61131_WCHAR")) {
@@ -220,7 +220,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        String value = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, 16), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF-16"), WithOption.WithSignedIntegerEncoding("UTF-16"), WithOption.WithUnsignedIntegerEncoding("UTF-16"), WithOption.WithEncoding("UTF-16"), WithOption.WithStringEncoding("UTF-16"));
+        String value = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, 16), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF16BE"), WithOption.WithSignedIntegerEncoding("UTF16BE"), WithOption.WithUnsignedIntegerEncoding("UTF16BE"), WithOption.WithEncoding("UTF16BE"), WithOption.WithStringEncoding("UTF16BE"));
 
         return new PlcCHAR(value);
       } else if (EvaluationHelper.equals(dataProtocolId, "IEC61131_STRING")) {
@@ -229,7 +229,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Manual Field: value
-        String value = FieldReaderFactory.readManualField(readBuffer, () -> (String) (StaticHelper.parseS7String(readBuffer, stringLength, "UTF-8")), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF-8"), WithOption.WithSignedIntegerEncoding("UTF-8"), WithOption.WithUnsignedIntegerEncoding("UTF-8"), WithOption.WithEncoding("UTF-8"), WithOption.WithStringEncoding("UTF-8"));
+        String value = FieldReaderFactory.readManualField(readBuffer, () -> (String) (StaticHelper.parseS7String(readBuffer, stringLength, "UTF8")), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF8"), WithOption.WithSignedIntegerEncoding("UTF8"), WithOption.WithUnsignedIntegerEncoding("UTF8"), WithOption.WithEncoding("UTF8"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcSTRING(value);
       } else if (EvaluationHelper.equals(dataProtocolId, "IEC61131_WSTRING")) {
@@ -238,7 +238,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Manual Field: value
-        String value = FieldReaderFactory.readManualField(readBuffer, () -> (String) (StaticHelper.parseS7String(readBuffer, stringLength, "UTF-16")), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF-16"), WithOption.WithSignedIntegerEncoding("UTF-16"), WithOption.WithUnsignedIntegerEncoding("UTF-16"), WithOption.WithEncoding("UTF-16"), WithOption.WithStringEncoding("UTF-16"));
+        String value = FieldReaderFactory.readManualField(readBuffer, () -> (String) (StaticHelper.parseS7String(readBuffer, stringLength, "UTF16BE")), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF16BE"), WithOption.WithSignedIntegerEncoding("UTF16BE"), WithOption.WithUnsignedIntegerEncoding("UTF16BE"), WithOption.WithEncoding("UTF16BE"), WithOption.WithStringEncoding("UTF16BE"));
 
         return new PlcSTRING(value);
       } else if (EvaluationHelper.equals(dataProtocolId, "IEC61131_TIME")) {
@@ -473,25 +473,25 @@ public class DataItem {
       // CHAR
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((String) _value.getString(), DataWriterFactory.writeString(writeBuffer, 8), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF-8"), WithOption.WithSignedIntegerEncoding("UTF-8"), WithOption.WithUnsignedIntegerEncoding("UTF-8"), WithOption.WithEncoding("UTF-8"), WithOption.WithStringEncoding("UTF-8"));
+      FieldWriterFactory.writeSimpleField((String) _value.getString(), DataWriterFactory.writeString(writeBuffer, 8), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF8"), WithOption.WithSignedIntegerEncoding("UTF8"), WithOption.WithUnsignedIntegerEncoding("UTF8"), WithOption.WithEncoding("UTF8"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataProtocolId, "IEC61131_WCHAR")) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // CHAR
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((String) _value.getString(), DataWriterFactory.writeString(writeBuffer, 16), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF-16"), WithOption.WithSignedIntegerEncoding("UTF-16"), WithOption.WithUnsignedIntegerEncoding("UTF-16"), WithOption.WithEncoding("UTF-16"), WithOption.WithStringEncoding("UTF-16"));
+      FieldWriterFactory.writeSimpleField((String) _value.getString(), DataWriterFactory.writeString(writeBuffer, 16), WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF16BE"), WithOption.WithSignedIntegerEncoding("UTF16BE"), WithOption.WithUnsignedIntegerEncoding("UTF16BE"), WithOption.WithEncoding("UTF16BE"), WithOption.WithStringEncoding("UTF16BE"));
     } else if (EvaluationHelper.equals(dataProtocolId, "IEC61131_STRING")) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // STRING
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Manual Field: value
-      FieldWriterFactory.writeManualField(() -> StaticHelper.serializeS7String(writeBuffer, _value, stringLength, "UTF-8"), writeBuffer, WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF-8"), WithOption.WithSignedIntegerEncoding("UTF-8"), WithOption.WithUnsignedIntegerEncoding("UTF-8"), WithOption.WithEncoding("UTF-8"), WithOption.WithStringEncoding("UTF-8"));
+      FieldWriterFactory.writeManualField(() -> StaticHelper.serializeS7String(writeBuffer, _value, stringLength, "UTF8"), writeBuffer, WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF8"), WithOption.WithSignedIntegerEncoding("UTF8"), WithOption.WithUnsignedIntegerEncoding("UTF8"), WithOption.WithEncoding("UTF8"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataProtocolId, "IEC61131_WSTRING")) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // STRING
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Manual Field: value
-      FieldWriterFactory.writeManualField(() -> StaticHelper.serializeS7String(writeBuffer, _value, stringLength, "UTF-16"), writeBuffer, WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF-16"), WithOption.WithSignedIntegerEncoding("UTF-16"), WithOption.WithUnsignedIntegerEncoding("UTF-16"), WithOption.WithEncoding("UTF-16"), WithOption.WithStringEncoding("UTF-16"));
+      FieldWriterFactory.writeManualField(() -> StaticHelper.serializeS7String(writeBuffer, _value, stringLength, "UTF16BE"), writeBuffer, WithOption.WithName("value"), WithOption.WithFloatEncoding("UTF16BE"), WithOption.WithSignedIntegerEncoding("UTF16BE"), WithOption.WithUnsignedIntegerEncoding("UTF16BE"), WithOption.WithEncoding("UTF16BE"), WithOption.WithStringEncoding("UTF16BE"));
     } else if (EvaluationHelper.equals(dataProtocolId, "IEC61131_TIME")) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // TIME

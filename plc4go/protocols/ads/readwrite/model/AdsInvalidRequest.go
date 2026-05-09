@@ -54,7 +54,7 @@ var _ AdsInvalidRequest = (*_AdsInvalidRequest)(nil)
 var _ AmsPacketRequirements = (*_AdsInvalidRequest)(nil)
 
 // NewAdsInvalidRequest factory function for _AdsInvalidRequest
-func NewAdsInvalidRequest(targetAmsNetId AmsNetId, targetAmsPort uint16, sourceAmsNetId AmsNetId, sourceAmsPort uint16, errorCode uint32, invokeId uint32) *_AdsInvalidRequest {
+func NewAdsInvalidRequest(targetAmsNetId AmsNetId, targetAmsPort uint16, sourceAmsNetId AmsNetId, sourceAmsPort uint16, errorCode ReturnCode, invokeId uint32) *_AdsInvalidRequest {
 	_result := &_AdsInvalidRequest{
 		AmsPacketContract: NewAmsPacket(targetAmsNetId, targetAmsPort, sourceAmsNetId, sourceAmsPort, errorCode, invokeId),
 	}

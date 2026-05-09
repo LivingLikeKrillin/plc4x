@@ -134,9 +134,9 @@ public class EipTag implements PlcTag, Serializable {
     public void serialize(WriteBuffer writeBuffer) throws SerializationException {
         writeBuffer.pushContext(getClass().getSimpleName());
 
-        writeBuffer.writeString("node", tag.getBytes(StandardCharsets.UTF_8).length * 8, tag, WithOption.WithEncoding(StandardCharsets.UTF_8.name()));
+        writeBuffer.writeString("node", tag.getBytes(StandardCharsets.UTF_8).length * 8, tag, WithOption.WithEncoding("UTF8"));
         if (type != null) {
-            writeBuffer.writeString("type", type.name().getBytes(StandardCharsets.UTF_8).length * 8, type.name(), WithOption.WithEncoding(StandardCharsets.UTF_8.name()));
+            writeBuffer.writeString("type", type.name().getBytes(StandardCharsets.UTF_8).length * 8, type.name(), WithOption.WithEncoding("UTF8"));
         }
         writeBuffer.writeUnsignedInt("elementNb", 16, elementNb);
 

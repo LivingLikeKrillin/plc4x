@@ -61,7 +61,7 @@ public class Plc4xTag implements PlcTag, Serializable {
         writeBuffer.writeUnsignedInt("addressLength", 16, address.length());
         writeBuffer.writeString("address",
             address.length() * 8,
-            address, WithOption.WithEncoding(StandardCharsets.UTF_8.name()));
+            address, WithOption.WithEncoding("UTF8"));
 
         writeBuffer.popContext(getClass().getSimpleName());
     }

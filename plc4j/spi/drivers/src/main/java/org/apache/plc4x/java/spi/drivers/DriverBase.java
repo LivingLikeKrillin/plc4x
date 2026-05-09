@@ -23,12 +23,27 @@ import org.apache.plc4x.java.api.PlcDriver;
 import org.apache.plc4x.java.api.authentication.PlcAuthentication;
 import org.apache.plc4x.java.api.exceptions.PlcConnectionException;
 import org.apache.plc4x.java.api.messages.PlcDiscoveryRequest;
+import org.apache.plc4x.java.api.metadata.Option;
 import org.apache.plc4x.java.api.metadata.OptionMetadata;
 import org.apache.plc4x.java.api.metadata.PlcDriverMetadata;
+import org.apache.plc4x.java.api.types.OptionType;
 import org.apache.plc4x.java.spi.config.Configuration;
 import org.apache.plc4x.java.spi.config.ConfigurationFactory;
+import org.apache.plc4x.java.spi.config.annotations.ConfigurationParameter;
+import org.apache.plc4x.java.spi.config.annotations.Description;
+import org.apache.plc4x.java.spi.config.annotations.Required;
+import org.apache.plc4x.java.spi.config.annotations.Since;
+import org.apache.plc4x.java.spi.config.annotations.defaults.BooleanDefaultValue;
+import org.apache.plc4x.java.spi.config.annotations.defaults.DoubleDefaultValue;
+import org.apache.plc4x.java.spi.config.annotations.defaults.FloatDefaultValue;
+import org.apache.plc4x.java.spi.config.annotations.defaults.IntDefaultValue;
+import org.apache.plc4x.java.spi.config.annotations.defaults.LongDefaultValue;
+import org.apache.plc4x.java.spi.config.annotations.defaults.ShortDefaultValue;
+import org.apache.plc4x.java.spi.config.annotations.defaults.StringDefaultValue;
 import org.apache.plc4x.java.spi.drivers.functions.PlcDiscoverer;
 import org.apache.plc4x.java.spi.drivers.messages.DefaultPlcDiscoveryRequest;
+import org.apache.plc4x.java.spi.drivers.messages.metadata.DefaultOption;
+import org.apache.plc4x.java.spi.drivers.messages.metadata.DefaultOptionMetadata;
 import org.apache.plc4x.java.spi.transports.api.DefaultTransportManager;
 import org.apache.plc4x.java.spi.transports.api.Transport;
 import org.apache.plc4x.java.spi.transports.api.TransportInstance;
@@ -41,7 +56,11 @@ import org.apache.plc4x.java.utils.auditlog.api.config.AuditLogConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -217,12 +236,25 @@ public abstract class DriverBase implements PlcDriver {
 
             @Override
             public Optional<OptionMetadata> getProtocolConfigurationOptionMetadata() {
-                return Optional.empty();
+                Class<? extends Configuration> configurationClass = getConfigurationClass();
+                if (configurationClass == null) {
+                    return Optional.empty();
+                }
+                return Optional.of(new DefaultOptionMetadata(extractOptions(configurationClass)));
             }
 
             @Override
-            public Optional<OptionMetadata> getTransportConfigurationOptionMetadata(String s) {
-                return Optional.empty();
+            public Optional<OptionMetadata> getTransportConfigurationOptionMetadata(String transportCode) {
+                Transport<?> transport = transportManager.getTransport(transportCode).orElse(null);
+                if (transport == null) {
+                    return Optional.empty();
+                }
+                Class<? extends TransportConfiguration> transportConfigurationClass =
+                    getTransportConfigurationClass(transport);
+                if (transportConfigurationClass == null) {
+                    return Optional.empty();
+                }
+                return Optional.of(new DefaultOptionMetadata(extractOptions(transportConfigurationClass)));
             }
 
             @Override
@@ -230,6 +262,109 @@ public abstract class DriverBase implements PlcDriver {
                 return DriverBase.this.canDiscover();
             }
         };
+    }
+
+    /**
+     * Walks the full class hierarchy of the given configuration class and returns one
+     * {@link Option} for every field annotated with {@link ConfigurationParameter}.
+     * Subclass declarations win over superclass declarations for the same parameter key.
+     */
+    private static List<Option> extractOptions(Class<?> configurationClass) {
+        List<Option> options = new ArrayList<>();
+        Set<String> seenKeys = new HashSet<>();
+        Class<?> current = configurationClass;
+        while (current != null && current != Object.class) {
+            for (Field field : current.getDeclaredFields()) {
+                if (Modifier.isStatic(field.getModifiers())) {
+                    continue;
+                }
+                ConfigurationParameter parameterAnnotation = field.getAnnotation(ConfigurationParameter.class);
+                if (parameterAnnotation == null) {
+                    continue;
+                }
+                String key = parameterAnnotation.value();
+                if (key == null || key.isEmpty() || !seenKeys.add(key)) {
+                    continue;
+                }
+                options.add(buildOption(field, key));
+            }
+            current = current.getSuperclass();
+        }
+        return options;
+    }
+
+    private static Option buildOption(Field field, String key) {
+        OptionType type = mapOptionType(field.getType());
+
+        Description descriptionAnnotation = field.getAnnotation(Description.class);
+        String description = (descriptionAnnotation != null) ? descriptionAnnotation.value() : "";
+
+        boolean required = field.getAnnotation(Required.class) != null;
+
+        Object defaultValue = readDefaultValue(field);
+
+        Since sinceAnnotation = field.getAnnotation(Since.class);
+        String since = (sinceAnnotation != null) ? sinceAnnotation.value() : null;
+
+        return new DefaultOption(key, type, description, required, defaultValue, since);
+    }
+
+    private static OptionType mapOptionType(Class<?> fieldType) {
+        if (fieldType == boolean.class || fieldType == Boolean.class) {
+            return OptionType.BOOLEAN;
+        }
+        if (fieldType == int.class || fieldType == Integer.class
+            || fieldType == short.class || fieldType == Short.class) {
+            return OptionType.INT;
+        }
+        if (fieldType == long.class || fieldType == Long.class) {
+            return OptionType.LONG;
+        }
+        if (fieldType == float.class || fieldType == Float.class) {
+            return OptionType.FLOAT;
+        }
+        if (fieldType == double.class || fieldType == Double.class) {
+            return OptionType.DOUBLE;
+        }
+        if (fieldType == String.class || fieldType.isEnum()) {
+            return OptionType.STRING;
+        }
+        if (java.io.File.class.isAssignableFrom(fieldType)) {
+            return OptionType.FILE;
+        }
+        return OptionType.STRUCT;
+    }
+
+    private static Object readDefaultValue(Field field) {
+        BooleanDefaultValue booleanDefault = field.getAnnotation(BooleanDefaultValue.class);
+        if (booleanDefault != null) {
+            return booleanDefault.value();
+        }
+        IntDefaultValue intDefault = field.getAnnotation(IntDefaultValue.class);
+        if (intDefault != null) {
+            return intDefault.value();
+        }
+        LongDefaultValue longDefault = field.getAnnotation(LongDefaultValue.class);
+        if (longDefault != null) {
+            return longDefault.value();
+        }
+        ShortDefaultValue shortDefault = field.getAnnotation(ShortDefaultValue.class);
+        if (shortDefault != null) {
+            return shortDefault.value();
+        }
+        FloatDefaultValue floatDefault = field.getAnnotation(FloatDefaultValue.class);
+        if (floatDefault != null) {
+            return floatDefault.value();
+        }
+        DoubleDefaultValue doubleDefault = field.getAnnotation(DoubleDefaultValue.class);
+        if (doubleDefault != null) {
+            return doubleDefault.value();
+        }
+        StringDefaultValue stringDefault = field.getAnnotation(StringDefaultValue.class);
+        if (stringDefault != null) {
+            return stringDefault.value();
+        }
+        return null;
     }
 
 }

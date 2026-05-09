@@ -1621,9 +1621,11 @@ public enum KnxManufacturer {
 
   M_LUMI_VIETNAM((int) 797, (int) 858, "Lumi Vietnam"),
 
-  M_ABB___RESERVED((int) 798, (int) 43954, "ABB - reserved"),
+  M_ARCOLA_AI_LIMITED((int) 798, (int) 859, "Arcola AI Limited"),
 
-  M_BUSCH_JAEGER_ELEKTRO___RESERVED((int) 799, (int) 43959, "Busch-Jaeger Elektro - reserved");
+  M_ABB___RESERVED((int) 799, (int) 43954, "ABB - reserved"),
+
+  M_BUSCH_JAEGER_ELEKTRO___RESERVED((int) 800, (int) 43959, "Busch-Jaeger Elektro - reserved");
 
   private static final Map<Integer, KnxManufacturer> map;
 

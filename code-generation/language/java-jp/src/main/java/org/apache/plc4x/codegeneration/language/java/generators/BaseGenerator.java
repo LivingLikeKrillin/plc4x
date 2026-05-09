@@ -839,7 +839,7 @@ public abstract class BaseGenerator<T> {
                 case "name" -> CodeBlock.of("\"" + field.getTypeName() + "\"");
                 case "length" -> CodeBlock.of("\"" + ((SimpleTypeReference) field).getSizeInBits() + "\"");
                 case "encoding" -> {
-                    String encoding = ((StringLiteral) field.getEncoding().orElse(new DefaultStringLiteral("UTF-8"))).getValue();
+                    String encoding = ((StringLiteral) field.getEncoding().orElse(new DefaultStringLiteral("UTF8"))).getValue();
                     yield CodeBlock.of("\"" + encoding + "\"");
                 }
                 default -> CodeBlock.of("");
@@ -912,7 +912,7 @@ public abstract class BaseGenerator<T> {
                             sb.append("\"").append(((SimpleTypeReference) field).getSizeInBits()).append("\"");
                             break;
                         case "encoding":
-                            String encoding = ((StringLiteral) field.getEncoding().orElse(new DefaultStringLiteral("UTF-8"))).getValue();
+                            String encoding = ((StringLiteral) field.getEncoding().orElse(new DefaultStringLiteral("UTF8"))).getValue();
                             sb.append("\"").append(encoding).append("\"");
                             break;
                     }
@@ -1009,7 +1009,7 @@ public abstract class BaseGenerator<T> {
                 case "name" -> "\"" + field.getTypeName() + "\"";
                 case "length" -> "\"" + ((SimpleTypeReference) field).getSizeInBits() + "\"";
                 case "encoding" -> {
-                    String encoding = ((StringLiteral) field.getEncoding().orElse(new DefaultStringLiteral("UTF-8"))).getValue();
+                    String encoding = ((StringLiteral) field.getEncoding().orElse(new DefaultStringLiteral("UTF8"))).getValue();
                     yield "\"" + encoding + "\"";
                 }
                 default -> "";
@@ -1090,7 +1090,7 @@ public abstract class BaseGenerator<T> {
                             sb.append("\"").append(((SimpleTypeReference) field).getSizeInBits()).append("\"");
                             break;
                         case "encoding":
-                            String encoding = ((StringLiteral) field.getEncoding().orElse(new DefaultStringLiteral("UTF-8"))).getValue();
+                            String encoding = ((StringLiteral) field.getEncoding().orElse(new DefaultStringLiteral("UTF8"))).getValue();
                             sb.append("\"").append(encoding).append("\"");
                             break;
                     }

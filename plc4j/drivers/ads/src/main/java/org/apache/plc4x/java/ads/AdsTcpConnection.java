@@ -1116,7 +1116,9 @@ public class AdsTcpConnection extends ConnectionBase<AdsConfiguration> {
                 }
                 DefaultPlcBrowseItem item = new DefaultPlcBrowseItem(
                     new SymbolicAdsTag(symbol.getName(), plcValueType, arrayInfo), symbol.getName(),
-                    true, !symbol.getFlagReadOnly(), true, false, itemArrayInfo, childMap, options);
+                    true, !symbol.getFlagReadOnly(),
+                    EnumSet.of(PlcSubscriptionType.CYCLIC, PlcSubscriptionType.CHANGE_OF_STATE),
+                    false, itemArrayInfo, childMap, options);
 
                 if (interceptor.intercept(queryName, query, item)) {
                     resultsForQuery.add(item);
@@ -1172,7 +1174,9 @@ public class AdsTcpConnection extends ConnectionBase<AdsConfiguration> {
             values.add(new DefaultPlcBrowseItem(
                 new SymbolicAdsTag(basePath + "." + child.getMainName(), plc4xPlcValueType, arrayInfo),
                 child.getMainName(),
-                true, parentWritable, true, false, itemArrayInfo, childMap, options));
+                true, parentWritable,
+                EnumSet.of(PlcSubscriptionType.CYCLIC, PlcSubscriptionType.CHANGE_OF_STATE),
+                false, itemArrayInfo, childMap, options));
         }
         return values;
     }
