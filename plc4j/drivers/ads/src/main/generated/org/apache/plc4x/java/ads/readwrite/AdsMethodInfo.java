@@ -300,19 +300,19 @@ public class AdsMethodInfo implements Message {
     FieldWriterFactory.writeSimpleField((long) methodFlags, DataWriterFactory.writeUnsignedLong(writeBuffer, 32), WithOption.WithName("methodFlags"));
 
     // Implicit Field: nameLength
-    int nameLength = (int) ((((name) != (null)) ? StaticHelper.STR_LEN(name) : 0));
+    int nameLength = (int) (StaticHelper.STR_LEN(name));
     FieldWriterFactory.writeImplicitField((int) nameLength, DataWriterFactory.writeUnsignedInt(writeBuffer, 16), WithOption.WithName("nameLength"));
 
     // Implicit Field: typeNameLength
-    int typeNameLength = (int) ((((typeName) != (null)) ? StaticHelper.STR_LEN(typeName) : 0));
+    int typeNameLength = (int) (StaticHelper.STR_LEN(typeName));
     FieldWriterFactory.writeImplicitField((int) typeNameLength, DataWriterFactory.writeUnsignedInt(writeBuffer, 16), WithOption.WithName("typeNameLength"));
 
     // Implicit Field: commentLength
-    int commentLength = (int) ((((comment) != (null)) ? StaticHelper.STR_LEN(comment) : 0));
+    int commentLength = (int) (StaticHelper.STR_LEN(comment));
     FieldWriterFactory.writeImplicitField((int) commentLength, DataWriterFactory.writeUnsignedInt(writeBuffer, 16), WithOption.WithName("commentLength"));
 
     // Implicit Field: parameterCount
-    int parameterCount = (int) ((((parameters) != (null)) ? StaticHelper.COUNT(parameters) : 0));
+    int parameterCount = (int) (StaticHelper.COUNT(parameters));
     FieldWriterFactory.writeImplicitField((int) parameterCount, DataWriterFactory.writeUnsignedInt(writeBuffer, 16), WithOption.WithName("parameterCount"));
 
     // Simple Field: name
@@ -392,19 +392,19 @@ public class AdsMethodInfo implements Message {
     lengthInBits += 16;
 
     // Simple Field: name
-    lengthInBits += ((((name) != (null)) ? StaticHelper.STR_LEN(name) : 0)) * (8);
+    lengthInBits += (StaticHelper.STR_LEN(name)) * (8);
 
     // Const Field: nameTerminator
     lengthInBits += 8;
 
     // Simple Field: typeName
-    lengthInBits += ((((typeName) != (null)) ? StaticHelper.STR_LEN(typeName) : 0)) * (8);
+    lengthInBits += (StaticHelper.STR_LEN(typeName)) * (8);
 
     // Const Field: typeNameTerminator
     lengthInBits += 8;
 
     // Simple Field: comment
-    lengthInBits += ((((comment) != (null)) ? StaticHelper.STR_LEN(comment) : 0)) * (8);
+    lengthInBits += (StaticHelper.STR_LEN(comment)) * (8);
 
     // Const Field: commentTerminator
     lengthInBits += 8;

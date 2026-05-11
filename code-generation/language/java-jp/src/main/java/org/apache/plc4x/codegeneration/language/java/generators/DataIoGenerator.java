@@ -423,8 +423,8 @@ public class DataIoGenerator extends BaseGenerator<DataIoTypeDefinition> {
                     case "DATE_AND_TIME": {
                         if (hasFieldsWithNames(caseDefinition.getFields(), "year", "month", "day", "hour", "minutes", "seconds", "millisecondsOfSecond")) {
                             parseIfElseBuilder.addStatement("return $T.ofSegments(year, (month == 0) ? 1 : month, (day == 0) ? 1 : day, hour, minutes, seconds, millisecondsOfSecond * 1000000)", casePlcValueType);
-                        } else if (hasFieldsWithNames(caseDefinition.getFields(), "year", "month", "day", "hour", "minutes", "seconds", "nannosecondsOfSecond")) {
-                            parseIfElseBuilder.addStatement("return $T.ofSegments(year, (month == 0) ? 1 : month, (day == 0) ? 1 : day, hour, minutes, seconds, nannosecondsOfSecond)", casePlcValueType);
+                        } else if (hasFieldsWithNames(caseDefinition.getFields(), "year", "month", "day", "hour", "minutes", "seconds", "nanosecondsOfSecond")) {
+                            parseIfElseBuilder.addStatement("return $T.ofSegments(year, (month == 0) ? 1 : month, (day == 0) ? 1 : day, hour, minutes, seconds, nanosecondsOfSecond)", casePlcValueType);
                         } else if (hasFieldsWithNames(caseDefinition.getFields(), "year", "month", "day", "hour", "minutes", "seconds")) {
                             // No sub-second precision (e.g., Schneider UMAS DATE_AND_TIME)
                             parseIfElseBuilder.addStatement("return $T.ofSegments(year, (month == 0) ? 1 : month, (day == 0) ? 1 : day, hour, minutes, seconds, 0)", casePlcValueType);
@@ -436,8 +436,8 @@ public class DataIoGenerator extends BaseGenerator<DataIoTypeDefinition> {
                     case "DATE_AND_LTIME": {
                         if (hasFieldsWithNames(caseDefinition.getFields(), "nanosecondsSinceEpoch")) {
                             parseIfElseBuilder.addStatement("return $T.ofNanosecondsSinceEpoch(nanosecondsSinceEpoch)", casePlcValueType);
-                        } else if (hasFieldsWithNames(caseDefinition.getFields(), "year", "month", "day", "hour", "minutes", "seconds", "nannosecondsOfSecond")) {
-                            parseIfElseBuilder.addStatement("return $T.ofSegments(year, (month == 0) ? 1 : month, (day == 0) ? 1 : day, hour, minutes, seconds, nannosecondsOfSecond)", casePlcValueType);
+                        } else if (hasFieldsWithNames(caseDefinition.getFields(), "year", "month", "day", "hour", "minutes", "seconds", "nanosecondsOfSecond")) {
+                            parseIfElseBuilder.addStatement("return $T.ofSegments(year, (month == 0) ? 1 : month, (day == 0) ? 1 : day, hour, minutes, seconds, nanosecondsOfSecond)", casePlcValueType);
                         }
                         break;
                     }
@@ -605,11 +605,11 @@ public class DataIoGenerator extends BaseGenerator<DataIoTypeDefinition> {
                     case "millisecondsOfSecond": {
                         return CodeBlock.of("(_value.getDateTime().getNano() / 1000000)");
                     }
-                    case "nannosecondsOfSecond": {
+                    case "nanosecondsOfSecond": {
                         return CodeBlock.of("_value.getDateTime().getLong($T.NANO_OF_SECOND)", ChronoField.class);
                     }
                     default: {
-                        throw new BufferException("Expected one of: secondsSinceEpoch, year, month, day, dayOfWeek, hour, minutes, seconds, millisecondsOfSecond, nannosecondsOfSecond, but got " + fieldName);
+                        throw new BufferException("Expected one of: secondsSinceEpoch, year, month, day, dayOfWeek, hour, minutes, seconds, millisecondsOfSecond, nanosecondsOfSecond, but got " + fieldName);
                     }
                 }
             }
@@ -643,11 +643,11 @@ public class DataIoGenerator extends BaseGenerator<DataIoTypeDefinition> {
                     case "seconds": {
                         return CodeBlock.of("_value.getDateTime().getSecond()");
                     }
-                    case "nannosecondsOfSecond": {
+                    case "nanosecondsOfSecond": {
                         return CodeBlock.of("_value.getDateTime().getLong($T.NANO_OF_SECOND)", ChronoField.class);
                     }
                     default: {
-                        throw new BufferException("Expected one of: nanosecondsSinceEpoch, year, month, day, dayOfWeek, hour, minutes, seconds, nannosecondsOfSecond, but got " + fieldName);
+                        throw new BufferException("Expected one of: nanosecondsSinceEpoch, year, month, day, dayOfWeek, hour, minutes, seconds, nanosecondsOfSecond, but got " + fieldName);
                     }
                 }
             }

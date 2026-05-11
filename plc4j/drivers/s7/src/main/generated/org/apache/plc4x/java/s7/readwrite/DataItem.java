@@ -360,10 +360,10 @@ public class DataItem {
         // Simple Field: seconds
         short seconds = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("seconds"));
 
-        // Simple Field: nannosecondsOfSecond
-        long nannosecondsOfSecond = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 32), WithOption.WithName("nannosecondsOfSecond"));
+        // Simple Field: nanosecondsOfSecond
+        long nanosecondsOfSecond = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 32), WithOption.WithName("nanosecondsOfSecond"));
 
-        return PlcDATE_AND_LTIME.ofSegments(year, (month == 0) ? 1 : month, (day == 0) ? 1 : day, hour, minutes, seconds, nannosecondsOfSecond);
+        return PlcDATE_AND_LTIME.ofSegments(year, (month == 0) ? 1 : month, (day == 0) ? 1 : day, hour, minutes, seconds, nanosecondsOfSecond);
       }
       return null;
     } finally {
@@ -588,8 +588,8 @@ public class DataItem {
       // Simple Field: seconds
       FieldWriterFactory.writeSimpleField((short) _value.getDateTime().getSecond(), DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("seconds"));
 
-      // Simple Field: nannosecondsOfSecond
-      FieldWriterFactory.writeSimpleField((long) _value.getDateTime().getLong(ChronoField.NANO_OF_SECOND), DataWriterFactory.writeUnsignedLong(writeBuffer, 32), WithOption.WithName("nannosecondsOfSecond"));
+      // Simple Field: nanosecondsOfSecond
+      FieldWriterFactory.writeSimpleField((long) _value.getDateTime().getLong(ChronoField.NANO_OF_SECOND), DataWriterFactory.writeUnsignedLong(writeBuffer, 32), WithOption.WithName("nanosecondsOfSecond"));
     }
   }
 
@@ -812,7 +812,7 @@ public class DataItem {
       // Simple Field: seconds
       lengthInBits += 8;
 
-      // Simple Field: nannosecondsOfSecond
+      // Simple Field: nanosecondsOfSecond
       lengthInBits += 32;
     }
     return lengthInBits;

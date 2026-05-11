@@ -66,64 +66,64 @@ public class PlcDATE_AND_LTIME extends PlcIECValue<LocalDateTime> {
 
     public PlcDATE_AND_LTIME(Byte nanosecondsSinceEpoch) {
         long secondsSinceEpoch = 0;
-        long nannoSecondsOfSecond = nanosecondsSinceEpoch % 1000000000;
-        this.value = LocalDateTime.ofEpochSecond(secondsSinceEpoch, (int) nannoSecondsOfSecond,
+        long nanoSecondsOfSecond = nanosecondsSinceEpoch % 1000000000;
+        this.value = LocalDateTime.ofEpochSecond(secondsSinceEpoch, (int) nanoSecondsOfSecond,
             ZoneOffset.UTC);
         this.isNullable = false;
     }
 
     public PlcDATE_AND_LTIME(Short nanosecondsSinceEpoch) {
         long secondsSinceEpoch = 0;
-        long nannoSecondsOfSecond = nanosecondsSinceEpoch % 1000000000;
-        this.value = LocalDateTime.ofEpochSecond(secondsSinceEpoch, (int) nannoSecondsOfSecond,
+        long nanoSecondsOfSecond = nanosecondsSinceEpoch % 1000000000;
+        this.value = LocalDateTime.ofEpochSecond(secondsSinceEpoch, (int) nanoSecondsOfSecond,
             ZoneOffset.UTC);
         this.isNullable = false;
     }
 
     public PlcDATE_AND_LTIME(Integer nanosecondsSinceEpoch) {
         long secondsSinceEpoch = nanosecondsSinceEpoch.longValue() / 1000000000;
-        long nannoSecondsOfSecond = nanosecondsSinceEpoch % 1000000000;
-        this.value = LocalDateTime.ofEpochSecond(secondsSinceEpoch, (int) nannoSecondsOfSecond,
+        long nanoSecondsOfSecond = nanosecondsSinceEpoch % 1000000000;
+        this.value = LocalDateTime.ofEpochSecond(secondsSinceEpoch, (int) nanoSecondsOfSecond,
             ZoneOffset.UTC);
         this.isNullable = false;
     }
 
     public PlcDATE_AND_LTIME(Long nanosecondsSinceEpoch) {
         long secondsSinceEpoch = nanosecondsSinceEpoch / 1000000000;
-        long nannoSecondsOfSecond = nanosecondsSinceEpoch % 1000000000;
-        this.value = LocalDateTime.ofEpochSecond(secondsSinceEpoch, (int) nannoSecondsOfSecond,
+        long nanoSecondsOfSecond = nanosecondsSinceEpoch % 1000000000;
+        this.value = LocalDateTime.ofEpochSecond(secondsSinceEpoch, (int) nanoSecondsOfSecond,
             ZoneOffset.UTC);
         this.isNullable = false;
     }
 
     public PlcDATE_AND_LTIME(Float nanosecondsSinceEpoch) {
         long secondsSinceEpoch = nanosecondsSinceEpoch.longValue() / 1000000000;
-        long nannoSecondsOfSecond = nanosecondsSinceEpoch.longValue() % 1000000000;
-        this.value = LocalDateTime.ofEpochSecond(secondsSinceEpoch, (int) nannoSecondsOfSecond,
+        long nanoSecondsOfSecond = nanosecondsSinceEpoch.longValue() % 1000000000;
+        this.value = LocalDateTime.ofEpochSecond(secondsSinceEpoch, (int) nanoSecondsOfSecond,
             ZoneOffset.UTC);
         this.isNullable = false;
     }
 
     public PlcDATE_AND_LTIME(Double nanosecondsSinceEpoch) {
         long secondsSinceEpoch = nanosecondsSinceEpoch.longValue() / 1000000000;
-        long nannoSecondsOfSecond = nanosecondsSinceEpoch.longValue() % 1000000000;
-        this.value = LocalDateTime.ofEpochSecond(secondsSinceEpoch, (int) nannoSecondsOfSecond,
+        long nanoSecondsOfSecond = nanosecondsSinceEpoch.longValue() % 1000000000;
+        this.value = LocalDateTime.ofEpochSecond(secondsSinceEpoch, (int) nanoSecondsOfSecond,
             ZoneOffset.UTC);
         this.isNullable = false;
     }
 
     public PlcDATE_AND_LTIME(BigInteger nanosecondsSinceEpoch) {
         long secondsSinceEpoch = nanosecondsSinceEpoch.longValue() / 1000000000;
-        long nannoSecondsOfSecond = nanosecondsSinceEpoch.longValue() % 1000000000;
-        this.value = LocalDateTime.ofEpochSecond(secondsSinceEpoch, (int) nannoSecondsOfSecond,
+        long nanoSecondsOfSecond = nanosecondsSinceEpoch.longValue() % 1000000000;
+        this.value = LocalDateTime.ofEpochSecond(secondsSinceEpoch, (int) nanoSecondsOfSecond,
             ZoneOffset.UTC);
         this.isNullable = false;
     }
 
     public PlcDATE_AND_LTIME(BigDecimal nanosecondsSinceEpoch) {
         long secondsSinceEpoch = nanosecondsSinceEpoch.longValue() / 1000000000;
-        long nannoSecondsOfSecond = nanosecondsSinceEpoch.longValue() % 1000000000;
-        this.value = LocalDateTime.ofEpochSecond(secondsSinceEpoch, (int) nannoSecondsOfSecond,
+        long nanoSecondsOfSecond = nanosecondsSinceEpoch.longValue() % 1000000000;
+        this.value = LocalDateTime.ofEpochSecond(secondsSinceEpoch, (int) nanoSecondsOfSecond,
             ZoneOffset.UTC);
         this.isNullable = false;
     }
@@ -138,8 +138,8 @@ public class PlcDATE_AND_LTIME extends PlcIECValue<LocalDateTime> {
         return new PlcDATE_AND_LTIME(nanosecondsSinceEpoch.longValue());
     }
 
-    public static PlcDATE_AND_LTIME ofSegments(int year, int month, int day, int hour, int minutes, int seconds, long nannosecondsOfSecond) {
-        return new PlcDATE_AND_LTIME(LocalDateTime.of(year, month, day, hour, minutes, seconds, (int) nannosecondsOfSecond));
+    public static PlcDATE_AND_LTIME ofSegments(int year, int month, int day, int hour, int minutes, int seconds, long nanosecondsOfSecond) {
+        return new PlcDATE_AND_LTIME(LocalDateTime.of(year, month, day, hour, minutes, seconds, (int) nanosecondsOfSecond));
     }
 
     @Override

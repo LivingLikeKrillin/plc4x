@@ -651,7 +651,7 @@ public class JavaLanguageTemplateHelper extends BaseFreemarkerLanguageTemplateHe
                     } else {
                         return "BigInteger.valueOf(_value.getTime().getLong(ChronoField.NANO_OF_DAY))";
                     }
-                case "nannosecondsOfSecond":
+                case "nanosecondsOfSecond":
                     if (simpleTypeReference.getSizeInBits() <= 63) {
                         return "_value.getTime().getLong(ChronoField.NANO_OF_SECOND)";
                     } else {

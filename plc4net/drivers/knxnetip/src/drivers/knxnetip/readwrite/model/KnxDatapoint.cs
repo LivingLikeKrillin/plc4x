@@ -371,8 +371,8 @@ if( datapointType == KnxDatapointType.BOOL ) { // BOOL
                 // Simple Field (seconds)
                 var seconds = readBuffer.ReadByte("", 8);
 
-                // Simple Field (nannosecondsOfSecond)
-                var nannosecondsOfSecond = readBuffer.ReadUint("", 32);
+                // Simple Field (nanosecondsOfSecond)
+                var nanosecondsOfSecond = readBuffer.ReadUint("", 32);
 
                 var value = new DateTime(year, (month == 0) ? 1 : month, (day == 0) ? 1 : day, hour, minutes, seconds, 0);
                 return new PlcDATE_AND_TIME(value);
@@ -407,8 +407,8 @@ if( datapointType == KnxDatapointType.BOOL ) { // BOOL
                 // Simple Field (seconds)
                 var seconds = readBuffer.ReadByte("", 8);
 
-                // Simple Field (nannosecondsOfSecond)
-                var nannosecondsOfSecond = readBuffer.ReadUint("", 32);
+                // Simple Field (nanosecondsOfSecond)
+                var nanosecondsOfSecond = readBuffer.ReadUint("", 32);
 
                 var value = new DateTime(year, (month == 0) ? 1 : month, (day == 0) ? 1 : day, hour, minutes, seconds, 0);
                 return new PlcDATE_AND_TIME(value);
@@ -6836,9 +6836,9 @@ if( datapointType == KnxDatapointType.BOOL ) { // BOOL
                 // Simple Field (seconds)
                 var seconds = (byte) _value.GetByte();
                 writeBuffer.WriteByte("", 8, (byte) (seconds));
-                // Simple Field (nannosecondsOfSecond)
-                var nannosecondsOfSecond = (uint) _value.GetUint();
-                writeBuffer.WriteUint("", 32, (uint) (nannosecondsOfSecond));
+                // Simple Field (nanosecondsOfSecond)
+                var nanosecondsOfSecond = (uint) _value.GetUint();
+                writeBuffer.WriteUint("", 32, (uint) (nanosecondsOfSecond));
             return writeBuffer;
         } if( datapointType == KnxDatapointType.DT ) { // DATE_AND_TIME
                 var writeBuffer = new WriteBuffer();
@@ -6866,9 +6866,9 @@ if( datapointType == KnxDatapointType.BOOL ) { // BOOL
                 // Simple Field (seconds)
                 var seconds = (byte) _value.GetByte();
                 writeBuffer.WriteByte("", 8, (byte) (seconds));
-                // Simple Field (nannosecondsOfSecond)
-                var nannosecondsOfSecond = (uint) _value.GetUint();
-                writeBuffer.WriteUint("", 32, (uint) (nannosecondsOfSecond));
+                // Simple Field (nanosecondsOfSecond)
+                var nanosecondsOfSecond = (uint) _value.GetUint();
+                writeBuffer.WriteUint("", 32, (uint) (nanosecondsOfSecond));
             return writeBuffer;
         } if( datapointType == KnxDatapointType.DPT_Switch ) { // BOOL
                 var writeBuffer = new WriteBuffer();
