@@ -467,14 +467,14 @@ plc4c_return_code plc4c_s7_read_write_data_item_parse(plc4x_spi_context ctx, plc
                 *data_item = plc4c_data_create_date_and_ltime_data(seconds);
 
 
-                // Simple Field (nannosecondsOfSecond)
-                uint32_t nannosecondsOfSecond = 0;
-                _res = plc4c_spi_read_unsigned_int(readBuffer, 32, (uint32_t*) &nannosecondsOfSecond);
+                // Simple Field (nanosecondsOfSecond)
+                uint32_t nanosecondsOfSecond = 0;
+                _res = plc4c_spi_read_unsigned_int(readBuffer, 32, (uint32_t*) &nanosecondsOfSecond);
                 if(_res != OK) {
                     return _res;
                 }
 
-                *data_item = plc4c_data_create_date_and_ltime_data(nannosecondsOfSecond);
+                *data_item = plc4c_data_create_date_and_ltime_data(nanosecondsOfSecond);
 
     }
 
@@ -740,7 +740,7 @@ plc4c_return_code plc4c_s7_read_write_data_item_serialize(plc4x_spi_context ctx,
                         return _res;
                     }
 
-                    // Simple field (nannosecondsOfSecond)
+                    // Simple field (nanosecondsOfSecond)
                     _res = plc4c_spi_write_unsigned_int(writeBuffer, 32, (*data_item)->data.date_and_ltime_value);
                     if(_res != OK) {
                         return _res;
@@ -910,7 +910,7 @@ uint16_t plc4c_s7_read_write_data_item_length_in_bits(plc4x_spi_context ctx, plc
         // Simple field (seconds)
         lengthInBits += 8;
 
-        // Simple field (nannosecondsOfSecond)
+        // Simple field (nanosecondsOfSecond)
         lengthInBits += 32;
     }
   return lengthInBits;

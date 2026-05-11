@@ -407,19 +407,19 @@ func (m *_AdsMethodInfo) GetLengthInBits(ctx context.Context) uint16 {
 	lengthInBits += 16
 
 	// Simple field (name)
-	lengthInBits += uint16(int32(utils.InlineIf(bool((m.GetName()) != (nil)), func() any { return uint16(uint16(len(m.GetName()))) }, func() any { return uint16(uint16(0)) }).(uint16)) * int32(int32(8)))
+	lengthInBits += uint16(int32(uint16(len(m.GetName()))) * int32(int32(8)))
 
 	// Const Field (nameTerminator)
 	lengthInBits += 8
 
 	// Simple field (typeName)
-	lengthInBits += uint16(int32(utils.InlineIf(bool((m.GetTypeName()) != (nil)), func() any { return uint16(uint16(len(m.GetTypeName()))) }, func() any { return uint16(uint16(0)) }).(uint16)) * int32(int32(8)))
+	lengthInBits += uint16(int32(uint16(len(m.GetTypeName()))) * int32(int32(8)))
 
 	// Const Field (typeNameTerminator)
 	lengthInBits += 8
 
 	// Simple field (comment)
-	lengthInBits += uint16(int32(utils.InlineIf(bool((m.GetComment()) != (nil)), func() any { return uint16(uint16(len(m.GetComment()))) }, func() any { return uint16(uint16(0)) }).(uint16)) * int32(int32(8)))
+	lengthInBits += uint16(int32(uint16(len(m.GetComment()))) * int32(int32(8)))
 
 	// Const Field (commentTerminator)
 	lengthInBits += 8
@@ -658,24 +658,24 @@ func (m *_AdsMethodInfo) SerializeWithWriteBuffer(ctx context.Context, writeBuff
 	if err := WriteSimpleField[uint32](ctx, "methodFlags", m.GetMethodFlags(), WriteUnsignedInt(writeBuffer, 32)); err != nil {
 		return errors.Wrap(err, "Error serializing 'methodFlags' field")
 	}
-	nameLength := uint16(utils.InlineIf(bool((m.GetName()) != (nil)), func() any { return uint16(uint16(len(m.GetName()))) }, func() any { return uint16(uint16(0)) }).(uint16))
+	nameLength := uint16(uint16(len(m.GetName())))
 	if err := WriteImplicitField(ctx, "nameLength", nameLength, WriteUnsignedShort(writeBuffer, 16)); err != nil {
 		return errors.Wrap(err, "Error serializing 'nameLength' field")
 	}
-	typeNameLength := uint16(utils.InlineIf(bool((m.GetTypeName()) != (nil)), func() any { return uint16(uint16(len(m.GetTypeName()))) }, func() any { return uint16(uint16(0)) }).(uint16))
+	typeNameLength := uint16(uint16(len(m.GetTypeName())))
 	if err := WriteImplicitField(ctx, "typeNameLength", typeNameLength, WriteUnsignedShort(writeBuffer, 16)); err != nil {
 		return errors.Wrap(err, "Error serializing 'typeNameLength' field")
 	}
-	commentLength := uint16(utils.InlineIf(bool((m.GetComment()) != (nil)), func() any { return uint16(uint16(len(m.GetComment()))) }, func() any { return uint16(uint16(0)) }).(uint16))
+	commentLength := uint16(uint16(len(m.GetComment())))
 	if err := WriteImplicitField(ctx, "commentLength", commentLength, WriteUnsignedShort(writeBuffer, 16)); err != nil {
 		return errors.Wrap(err, "Error serializing 'commentLength' field")
 	}
-	parameterCount := uint16(utils.InlineIf(bool((m.GetParameters()) != (nil)), func() any { return uint16(uint16(len(m.GetParameters()))) }, func() any { return uint16(uint16(0)) }).(uint16))
+	parameterCount := uint16(uint16(len(m.GetParameters())))
 	if err := WriteImplicitField(ctx, "parameterCount", parameterCount, WriteUnsignedShort(writeBuffer, 16)); err != nil {
 		return errors.Wrap(err, "Error serializing 'parameterCount' field")
 	}
 
-	if err := WriteSimpleField[string](ctx, "name", m.GetName(), WriteString(writeBuffer, int32(int32(utils.InlineIf(bool((m.GetName()) != (nil)), func() any { return uint16(uint16(len(m.GetName()))) }, func() any { return uint16(uint16(0)) }).(uint16))*int32(int32(8))))); err != nil {
+	if err := WriteSimpleField[string](ctx, "name", m.GetName(), WriteString(writeBuffer, int32(int32(uint16(len(m.GetName())))*int32(int32(8))))); err != nil {
 		return errors.Wrap(err, "Error serializing 'name' field")
 	}
 
@@ -683,7 +683,7 @@ func (m *_AdsMethodInfo) SerializeWithWriteBuffer(ctx context.Context, writeBuff
 		return errors.Wrap(err, "Error serializing 'nameTerminator' field")
 	}
 
-	if err := WriteSimpleField[string](ctx, "typeName", m.GetTypeName(), WriteString(writeBuffer, int32(int32(utils.InlineIf(bool((m.GetTypeName()) != (nil)), func() any { return uint16(uint16(len(m.GetTypeName()))) }, func() any { return uint16(uint16(0)) }).(uint16))*int32(int32(8))))); err != nil {
+	if err := WriteSimpleField[string](ctx, "typeName", m.GetTypeName(), WriteString(writeBuffer, int32(int32(uint16(len(m.GetTypeName())))*int32(int32(8))))); err != nil {
 		return errors.Wrap(err, "Error serializing 'typeName' field")
 	}
 
@@ -691,7 +691,7 @@ func (m *_AdsMethodInfo) SerializeWithWriteBuffer(ctx context.Context, writeBuff
 		return errors.Wrap(err, "Error serializing 'typeNameTerminator' field")
 	}
 
-	if err := WriteSimpleField[string](ctx, "comment", m.GetComment(), WriteString(writeBuffer, int32(int32(utils.InlineIf(bool((m.GetComment()) != (nil)), func() any { return uint16(uint16(len(m.GetComment()))) }, func() any { return uint16(uint16(0)) }).(uint16))*int32(int32(8))))); err != nil {
+	if err := WriteSimpleField[string](ctx, "comment", m.GetComment(), WriteString(writeBuffer, int32(int32(uint16(len(m.GetComment())))*int32(int32(8))))); err != nil {
 		return errors.Wrap(err, "Error serializing 'comment' field")
 	}
 

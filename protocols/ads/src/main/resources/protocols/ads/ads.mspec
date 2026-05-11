@@ -1027,10 +1027,10 @@
     // Potentially optional
     [simple   uint 32                      methodFlags                                                                 ]
     // If the two above are optional, we need a reserved 0x0000 instead.
-    [implicit uint 16                      nameLength         'name != null ? STR_LEN(name) : 0'                       ]
-    [implicit uint 16                      typeNameLength     'typeName != null ? STR_LEN(typeName) : 0'               ]
-    [implicit uint 16                      commentLength      'comment != null ? STR_LEN(comment) : 0'                 ]
-    [implicit uint 16                      parameterCount     'parameters != null ? COUNT(parameters) : 0'                                                                    ]
+    [implicit uint 16                      nameLength         'STR_LEN(name)'                                          ]
+    [implicit uint 16                      typeNameLength     'STR_LEN(typeName)'                                      ]
+    [implicit uint 16                      commentLength      'STR_LEN(comment)'                                       ]
+    [implicit uint 16                      parameterCount     'COUNT(parameters)'                                      ]
 	[simple   vstring 'nameLength * 8'     name                                                                        ]
 	[const    uint 8                       nameTerminator     0x00                                                     ]
 	[simple   vstring 'typeNameLength * 8' typeName                                                                    ]
