@@ -240,7 +240,7 @@ func CastRolePermissionType(structType any) RolePermissionType {
 	return nil
 }
 
-func (m *_RolePermissionType) GetTypeName() string {
+func (m *_RolePermissionType) GetPlx4xTypeName() string {
 	return "RolePermissionType"
 }
 

@@ -1449,7 +1449,7 @@ func CastSessionDiagnosticsDataType(structType any) SessionDiagnosticsDataType {
 	return nil
 }
 
-func (m *_SessionDiagnosticsDataType) GetTypeName() string {
+func (m *_SessionDiagnosticsDataType) GetPlx4xTypeName() string {
 	return "SessionDiagnosticsDataType"
 }
 

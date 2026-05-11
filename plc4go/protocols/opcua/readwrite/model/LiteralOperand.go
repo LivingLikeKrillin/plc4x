@@ -225,7 +225,7 @@ func CastLiteralOperand(structType any) LiteralOperand {
 	return nil
 }
 
-func (m *_LiteralOperand) GetTypeName() string {
+func (m *_LiteralOperand) GetPlx4xTypeName() string {
 	return "LiteralOperand"
 }
 

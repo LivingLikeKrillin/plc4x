@@ -320,7 +320,7 @@ func CastDataTypeAttributes(structType any) DataTypeAttributes {
 	return nil
 }
 
-func (m *_DataTypeAttributes) GetTypeName() string {
+func (m *_DataTypeAttributes) GetPlx4xTypeName() string {
 	return "DataTypeAttributes"
 }
 

@@ -270,7 +270,7 @@ func CastCallMethodResult(structType any) CallMethodResult {
 	return nil
 }
 
-func (m *_CallMethodResult) GetTypeName() string {
+func (m *_CallMethodResult) GetPlx4xTypeName() string {
 	return "CallMethodResult"
 }
 

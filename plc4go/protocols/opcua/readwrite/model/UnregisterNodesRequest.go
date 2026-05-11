@@ -240,7 +240,7 @@ func CastUnregisterNodesRequest(structType any) UnregisterNodesRequest {
 	return nil
 }
 
-func (m *_UnregisterNodesRequest) GetTypeName() string {
+func (m *_UnregisterNodesRequest) GetPlx4xTypeName() string {
 	return "UnregisterNodesRequest"
 }
 

@@ -224,7 +224,7 @@ func CastBVLCDeleteForeignDeviceTableEntry(structType any) BVLCDeleteForeignDevi
 	return nil
 }
 
-func (m *_BVLCDeleteForeignDeviceTableEntry) GetTypeName() string {
+func (m *_BVLCDeleteForeignDeviceTableEntry) GetPlx4xTypeName() string {
 	return "BVLCDeleteForeignDeviceTableEntry"
 }
 

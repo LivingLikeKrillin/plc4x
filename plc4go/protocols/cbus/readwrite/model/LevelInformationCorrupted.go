@@ -248,7 +248,7 @@ func CastLevelInformationCorrupted(structType any) LevelInformationCorrupted {
 	return nil
 }
 
-func (m *_LevelInformationCorrupted) GetTypeName() string {
+func (m *_LevelInformationCorrupted) GetPlx4xTypeName() string {
 	return "LevelInformationCorrupted"
 }
 

@@ -339,7 +339,7 @@ func CastBrokerDataSetReaderTransportDataType(structType any) BrokerDataSetReade
 	return nil
 }
 
-func (m *_BrokerDataSetReaderTransportDataType) GetTypeName() string {
+func (m *_BrokerDataSetReaderTransportDataType) GetPlx4xTypeName() string {
 	return "BrokerDataSetReaderTransportDataType"
 }
 

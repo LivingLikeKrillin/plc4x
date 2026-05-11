@@ -303,7 +303,7 @@ func CastDatagramConnectionTransport2DataType(structType any) DatagramConnection
 	return nil
 }
 
-func (m *_DatagramConnectionTransport2DataType) GetTypeName() string {
+func (m *_DatagramConnectionTransport2DataType) GetPlx4xTypeName() string {
 	return "DatagramConnectionTransport2DataType"
 }
 

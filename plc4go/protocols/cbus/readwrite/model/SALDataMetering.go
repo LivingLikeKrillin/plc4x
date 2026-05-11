@@ -225,7 +225,7 @@ func CastSALDataMetering(structType any) SALDataMetering {
 	return nil
 }
 
-func (m *_SALDataMetering) GetTypeName() string {
+func (m *_SALDataMetering) GetPlx4xTypeName() string {
 	return "SALDataMetering"
 }
 

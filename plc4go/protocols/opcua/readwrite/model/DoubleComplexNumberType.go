@@ -222,7 +222,7 @@ func CastDoubleComplexNumberType(structType any) DoubleComplexNumberType {
 	return nil
 }
 
-func (m *_DoubleComplexNumberType) GetTypeName() string {
+func (m *_DoubleComplexNumberType) GetPlx4xTypeName() string {
 	return "DoubleComplexNumberType"
 }
 

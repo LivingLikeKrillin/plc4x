@@ -240,7 +240,7 @@ func CastNetworkGroupDataType(structType any) NetworkGroupDataType {
 	return nil
 }
 
-func (m *_NetworkGroupDataType) GetTypeName() string {
+func (m *_NetworkGroupDataType) GetPlx4xTypeName() string {
 	return "NetworkGroupDataType"
 }
 

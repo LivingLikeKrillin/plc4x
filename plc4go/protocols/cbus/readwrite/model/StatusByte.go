@@ -203,7 +203,7 @@ func CastStatusByte(structType any) StatusByte {
 	return nil
 }
 
-func (m *_StatusByte) GetTypeName() string {
+func (m *_StatusByte) GetPlx4xTypeName() string {
 	return "StatusByte"
 }
 

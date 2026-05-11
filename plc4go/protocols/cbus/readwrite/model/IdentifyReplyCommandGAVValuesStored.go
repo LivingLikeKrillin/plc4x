@@ -207,7 +207,7 @@ func CastIdentifyReplyCommandGAVValuesStored(structType any) IdentifyReplyComman
 	return nil
 }
 
-func (m *_IdentifyReplyCommandGAVValuesStored) GetTypeName() string {
+func (m *_IdentifyReplyCommandGAVValuesStored) GetPlx4xTypeName() string {
 	return "IdentifyReplyCommandGAVValuesStored"
 }
 

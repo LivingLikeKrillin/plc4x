@@ -483,7 +483,7 @@ func CastJsonDataSetMessage(structType any) JsonDataSetMessage {
 	return nil
 }
 
-func (m *_JsonDataSetMessage) GetTypeName() string {
+func (m *_JsonDataSetMessage) GetPlx4xTypeName() string {
 	return "JsonDataSetMessage"
 }
 

@@ -255,7 +255,7 @@ func CastHistoryUpdateResponse(structType any) HistoryUpdateResponse {
 	return nil
 }
 
-func (m *_HistoryUpdateResponse) GetTypeName() string {
+func (m *_HistoryUpdateResponse) GetPlx4xTypeName() string {
 	return "HistoryUpdateResponse"
 }
 

@@ -242,7 +242,7 @@ func CastDeleteNodesItem(structType any) DeleteNodesItem {
 	return nil
 }
 
-func (m *_DeleteNodesItem) GetTypeName() string {
+func (m *_DeleteNodesItem) GetPlx4xTypeName() string {
 	return "DeleteNodesItem"
 }
 

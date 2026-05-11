@@ -227,7 +227,7 @@ func CastDeviceConfigurationAck(structType any) DeviceConfigurationAck {
 	return nil
 }
 
-func (m *_DeviceConfigurationAck) GetTypeName() string {
+func (m *_DeviceConfigurationAck) GetPlx4xTypeName() string {
 	return "DeviceConfigurationAck"
 }
 

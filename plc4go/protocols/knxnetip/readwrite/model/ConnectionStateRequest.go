@@ -244,7 +244,7 @@ func CastConnectionStateRequest(structType any) ConnectionStateRequest {
 	return nil
 }
 
-func (m *_ConnectionStateRequest) GetTypeName() string {
+func (m *_ConnectionStateRequest) GetPlx4xTypeName() string {
 	return "ConnectionStateRequest"
 }
 

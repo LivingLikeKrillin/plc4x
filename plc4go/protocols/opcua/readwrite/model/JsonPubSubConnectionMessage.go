@@ -339,7 +339,7 @@ func CastJsonPubSubConnectionMessage(structType any) JsonPubSubConnectionMessage
 	return nil
 }
 
-func (m *_JsonPubSubConnectionMessage) GetTypeName() string {
+func (m *_JsonPubSubConnectionMessage) GetPlx4xTypeName() string {
 	return "JsonPubSubConnectionMessage"
 }
 

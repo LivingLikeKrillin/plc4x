@@ -257,7 +257,7 @@ func CastBVLCForwardedNPDU(structType any) BVLCForwardedNPDU {
 	return nil
 }
 
-func (m *_BVLCForwardedNPDU) GetTypeName() string {
+func (m *_BVLCForwardedNPDU) GetPlx4xTypeName() string {
 	return "BVLCForwardedNPDU"
 }
 

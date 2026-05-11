@@ -372,7 +372,7 @@ func CastBuildInfo(structType any) BuildInfo {
 	return nil
 }
 
-func (m *_BuildInfo) GetTypeName() string {
+func (m *_BuildInfo) GetPlx4xTypeName() string {
 	return "BuildInfo"
 }
 

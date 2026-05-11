@@ -273,7 +273,7 @@ func CastUserManagementDataType(structType any) UserManagementDataType {
 	return nil
 }
 
-func (m *_UserManagementDataType) GetTypeName() string {
+func (m *_UserManagementDataType) GetPlx4xTypeName() string {
 	return "UserManagementDataType"
 }
 

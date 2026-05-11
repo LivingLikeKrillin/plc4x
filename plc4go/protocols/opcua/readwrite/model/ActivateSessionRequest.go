@@ -354,7 +354,7 @@ func CastActivateSessionRequest(structType any) ActivateSessionRequest {
 	return nil
 }
 
-func (m *_ActivateSessionRequest) GetTypeName() string {
+func (m *_ActivateSessionRequest) GetPlx4xTypeName() string {
 	return "ActivateSessionRequest"
 }
 

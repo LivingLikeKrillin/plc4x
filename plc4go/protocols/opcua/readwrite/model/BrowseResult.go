@@ -273,7 +273,7 @@ func CastBrowseResult(structType any) BrowseResult {
 	return nil
 }
 
-func (m *_BrowseResult) GetTypeName() string {
+func (m *_BrowseResult) GetPlx4xTypeName() string {
 	return "BrowseResult"
 }
 

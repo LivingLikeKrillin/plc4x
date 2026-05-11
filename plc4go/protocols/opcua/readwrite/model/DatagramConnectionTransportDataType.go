@@ -225,7 +225,7 @@ func CastDatagramConnectionTransportDataType(structType any) DatagramConnectionT
 	return nil
 }
 
-func (m *_DatagramConnectionTransportDataType) GetTypeName() string {
+func (m *_DatagramConnectionTransportDataType) GetPlx4xTypeName() string {
 	return "DatagramConnectionTransportDataType"
 }
 

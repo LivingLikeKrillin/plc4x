@@ -227,7 +227,7 @@ func CastBVLCDistributeBroadcastToNetwork(structType any) BVLCDistributeBroadcas
 	return nil
 }
 
-func (m *_BVLCDistributeBroadcastToNetwork) GetTypeName() string {
+func (m *_BVLCDistributeBroadcastToNetwork) GetPlx4xTypeName() string {
 	return "BVLCDistributeBroadcastToNetwork"
 }
 

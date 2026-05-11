@@ -207,7 +207,7 @@ func CastIdentifyReplyCommandMaximumLevels(structType any) IdentifyReplyCommandM
 	return nil
 }
 
-func (m *_IdentifyReplyCommandMaximumLevels) GetTypeName() string {
+func (m *_IdentifyReplyCommandMaximumLevels) GetPlx4xTypeName() string {
 	return "IdentifyReplyCommandMaximumLevels"
 }
 

@@ -275,7 +275,7 @@ func CastReferenceListEntryDataType(structType any) ReferenceListEntryDataType {
 	return nil
 }
 
-func (m *_ReferenceListEntryDataType) GetTypeName() string {
+func (m *_ReferenceListEntryDataType) GetPlx4xTypeName() string {
 	return "ReferenceListEntryDataType"
 }
 

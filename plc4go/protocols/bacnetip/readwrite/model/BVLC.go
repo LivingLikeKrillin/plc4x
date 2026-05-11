@@ -386,7 +386,7 @@ func CastBVLC(structType any) BVLC {
 	return nil
 }
 
-func (m *_BVLC) GetTypeName() string {
+func (m *_BVLC) GetPlx4xTypeName() string {
 	return "BVLC"
 }
 

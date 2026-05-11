@@ -207,7 +207,7 @@ func CastIdentifyReplyCommandFirmwareVersion(structType any) IdentifyReplyComman
 	return nil
 }
 
-func (m *_IdentifyReplyCommandFirmwareVersion) GetTypeName() string {
+func (m *_IdentifyReplyCommandFirmwareVersion) GetPlx4xTypeName() string {
 	return "IdentifyReplyCommandFirmwareVersion"
 }
 

@@ -207,7 +207,7 @@ func CastIdentifyReplyCommandNetworkTerminalLevels(structType any) IdentifyReply
 	return nil
 }
 
-func (m *_IdentifyReplyCommandNetworkTerminalLevels) GetTypeName() string {
+func (m *_IdentifyReplyCommandNetworkTerminalLevels) GetPlx4xTypeName() string {
 	return "IdentifyReplyCommandNetworkTerminalLevels"
 }
 

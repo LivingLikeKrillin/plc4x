@@ -246,7 +246,7 @@ func CastS7PayloadUserDataItemCpuFunctionGetBlockInfoRequest(structType any) S7P
 	return nil
 }
 
-func (m *_S7PayloadUserDataItemCpuFunctionGetBlockInfoRequest) GetTypeName() string {
+func (m *_S7PayloadUserDataItemCpuFunctionGetBlockInfoRequest) GetPlx4xTypeName() string {
 	return "S7PayloadUserDataItemCpuFunctionGetBlockInfoRequest"
 }
 

@@ -184,7 +184,7 @@ func CastAdsErrorResponse(structType any) AdsErrorResponse {
 	return nil
 }
 
-func (m *_AdsErrorResponse) GetTypeName() string {
+func (m *_AdsErrorResponse) GetPlx4xTypeName() string {
 	return "AdsErrorResponse"
 }
 

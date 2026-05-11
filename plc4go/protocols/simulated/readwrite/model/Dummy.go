@@ -163,7 +163,7 @@ func CastDummy(structType any) Dummy {
 	return nil
 }
 
-func (m *_Dummy) GetTypeName() string {
+func (m *_Dummy) GetPlx4xTypeName() string {
 	return "Dummy"
 }
 

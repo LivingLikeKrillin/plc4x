@@ -240,7 +240,7 @@ func CastSpanContextDataType(structType any) SpanContextDataType {
 	return nil
 }
 
-func (m *_SpanContextDataType) GetTypeName() string {
+func (m *_SpanContextDataType) GetPlx4xTypeName() string {
 	return "SpanContextDataType"
 }
 

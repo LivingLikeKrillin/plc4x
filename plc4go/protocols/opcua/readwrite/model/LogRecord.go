@@ -402,7 +402,7 @@ func CastLogRecord(structType any) LogRecord {
 	return nil
 }
 
-func (m *_LogRecord) GetTypeName() string {
+func (m *_LogRecord) GetPlx4xTypeName() string {
 	return "LogRecord"
 }
 

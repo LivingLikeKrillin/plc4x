@@ -339,7 +339,7 @@ func CastUserTokenPolicy(structType any) UserTokenPolicy {
 	return nil
 }
 
-func (m *_UserTokenPolicy) GetTypeName() string {
+func (m *_UserTokenPolicy) GetPlx4xTypeName() string {
 	return "UserTokenPolicy"
 }
 

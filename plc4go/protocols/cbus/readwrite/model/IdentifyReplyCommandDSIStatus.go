@@ -342,7 +342,7 @@ func CastIdentifyReplyCommandDSIStatus(structType any) IdentifyReplyCommandDSISt
 	return nil
 }
 
-func (m *_IdentifyReplyCommandDSIStatus) GetTypeName() string {
+func (m *_IdentifyReplyCommandDSIStatus) GetPlx4xTypeName() string {
 	return "IdentifyReplyCommandDSIStatus"
 }
 

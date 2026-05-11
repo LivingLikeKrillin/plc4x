@@ -273,7 +273,7 @@ func CastModelChangeStructureDataType(structType any) ModelChangeStructureDataTy
 	return nil
 }
 
-func (m *_ModelChangeStructureDataType) GetTypeName() string {
+func (m *_ModelChangeStructureDataType) GetPlx4xTypeName() string {
 	return "ModelChangeStructureDataType"
 }
 

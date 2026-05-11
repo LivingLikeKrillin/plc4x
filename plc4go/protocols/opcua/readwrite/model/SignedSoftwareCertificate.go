@@ -258,7 +258,7 @@ func CastSignedSoftwareCertificate(structType any) SignedSoftwareCertificate {
 	return nil
 }
 
-func (m *_SignedSoftwareCertificate) GetTypeName() string {
+func (m *_SignedSoftwareCertificate) GetPlx4xTypeName() string {
 	return "SignedSoftwareCertificate"
 }
 

@@ -270,7 +270,7 @@ func CastReadEventDetails(structType any) ReadEventDetails {
 	return nil
 }
 
-func (m *_ReadEventDetails) GetTypeName() string {
+func (m *_ReadEventDetails) GetPlx4xTypeName() string {
 	return "ReadEventDetails"
 }
 

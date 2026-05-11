@@ -207,7 +207,7 @@ func CastIdentifyReplyCommandManufacturer(structType any) IdentifyReplyCommandMa
 	return nil
 }
 
-func (m *_IdentifyReplyCommandManufacturer) GetTypeName() string {
+func (m *_IdentifyReplyCommandManufacturer) GetPlx4xTypeName() string {
 	return "IdentifyReplyCommandManufacturer"
 }
 

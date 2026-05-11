@@ -288,7 +288,7 @@ func CastAliasNameVerboseDataType(structType any) AliasNameVerboseDataType {
 	return nil
 }
 
-func (m *_AliasNameVerboseDataType) GetTypeName() string {
+func (m *_AliasNameVerboseDataType) GetPlx4xTypeName() string {
 	return "AliasNameVerboseDataType"
 }
 

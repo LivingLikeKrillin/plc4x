@@ -288,7 +288,7 @@ func CastPriorityMappingEntryType(structType any) PriorityMappingEntryType {
 	return nil
 }
 
-func (m *_PriorityMappingEntryType) GetTypeName() string {
+func (m *_PriorityMappingEntryType) GetPlx4xTypeName() string {
 	return "PriorityMappingEntryType"
 }
 

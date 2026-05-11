@@ -180,7 +180,7 @@ func CastAdsExtendedInfoEntryMaxTypes(structType any) AdsExtendedInfoEntryMaxTyp
 	return nil
 }
 
-func (m *_AdsExtendedInfoEntryMaxTypes) GetTypeName() string {
+func (m *_AdsExtendedInfoEntryMaxTypes) GetPlx4xTypeName() string {
 	return "AdsExtendedInfoEntryMaxTypes"
 }
 

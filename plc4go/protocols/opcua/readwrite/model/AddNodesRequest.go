@@ -240,7 +240,7 @@ func CastAddNodesRequest(structType any) AddNodesRequest {
 	return nil
 }
 
-func (m *_AddNodesRequest) GetTypeName() string {
+func (m *_AddNodesRequest) GetPlx4xTypeName() string {
 	return "AddNodesRequest"
 }
 

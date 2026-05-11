@@ -180,7 +180,7 @@ func CastAdsExtendedInfoEntryBit(structType any) AdsExtendedInfoEntryBit {
 	return nil
 }
 
-func (m *_AdsExtendedInfoEntryBit) GetTypeName() string {
+func (m *_AdsExtendedInfoEntryBit) GetPlx4xTypeName() string {
 	return "AdsExtendedInfoEntryBit"
 }
 

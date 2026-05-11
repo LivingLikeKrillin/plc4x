@@ -180,7 +180,7 @@ func CastInterfaceOptions1PowerUpSettings(structType any) InterfaceOptions1Power
 	return nil
 }
 
-func (m *_InterfaceOptions1PowerUpSettings) GetTypeName() string {
+func (m *_InterfaceOptions1PowerUpSettings) GetPlx4xTypeName() string {
 	return "InterfaceOptions1PowerUpSettings"
 }
 

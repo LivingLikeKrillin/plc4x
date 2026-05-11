@@ -255,7 +255,7 @@ func CastTransferSubscriptionsResponse(structType any) TransferSubscriptionsResp
 	return nil
 }
 
-func (m *_TransferSubscriptionsResponse) GetTypeName() string {
+func (m *_TransferSubscriptionsResponse) GetPlx4xTypeName() string {
 	return "TransferSubscriptionsResponse"
 }
 

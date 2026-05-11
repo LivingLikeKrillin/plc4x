@@ -206,7 +206,7 @@ func CastStatusRequestBinaryState(structType any) StatusRequestBinaryState {
 	return nil
 }
 
-func (m *_StatusRequestBinaryState) GetTypeName() string {
+func (m *_StatusRequestBinaryState) GetPlx4xTypeName() string {
 	return "StatusRequestBinaryState"
 }
 

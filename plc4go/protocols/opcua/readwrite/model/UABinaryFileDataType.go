@@ -333,7 +333,7 @@ func CastUABinaryFileDataType(structType any) UABinaryFileDataType {
 	return nil
 }
 
-func (m *_UABinaryFileDataType) GetTypeName() string {
+func (m *_UABinaryFileDataType) GetPlx4xTypeName() string {
 	return "UABinaryFileDataType"
 }
 

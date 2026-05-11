@@ -321,7 +321,7 @@ func CastArgument(structType any) Argument {
 	return nil
 }
 
-func (m *_Argument) GetTypeName() string {
+func (m *_Argument) GetPlx4xTypeName() string {
 	return "Argument"
 }
 

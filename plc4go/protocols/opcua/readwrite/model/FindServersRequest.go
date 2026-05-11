@@ -288,7 +288,7 @@ func CastFindServersRequest(structType any) FindServersRequest {
 	return nil
 }
 
-func (m *_FindServersRequest) GetTypeName() string {
+func (m *_FindServersRequest) GetPlx4xTypeName() string {
 	return "FindServersRequest"
 }
 

@@ -253,7 +253,7 @@ func CastReply(structType any) Reply {
 	return nil
 }
 
-func (m *_Reply) GetTypeName() string {
+func (m *_Reply) GetPlx4xTypeName() string {
 	return "Reply"
 }
 

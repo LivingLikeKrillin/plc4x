@@ -255,7 +255,7 @@ func CastRedundantServerDataType(structType any) RedundantServerDataType {
 	return nil
 }
 
-func (m *_RedundantServerDataType) GetTypeName() string {
+func (m *_RedundantServerDataType) GetPlx4xTypeName() string {
 	return "RedundantServerDataType"
 }
 

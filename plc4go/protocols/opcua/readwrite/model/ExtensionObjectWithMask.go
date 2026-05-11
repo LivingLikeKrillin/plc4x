@@ -300,7 +300,7 @@ func CastExtensionObjectWithMask(structType any) ExtensionObjectWithMask {
 	return nil
 }
 
-func (m *_ExtensionObjectWithMask) GetTypeName() string {
+func (m *_ExtensionObjectWithMask) GetPlx4xTypeName() string {
 	return "ExtensionObjectWithMask"
 }
 

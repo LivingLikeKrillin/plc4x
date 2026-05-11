@@ -255,7 +255,7 @@ func CastModifyMonitoredItemsResponse(structType any) ModifyMonitoredItemsRespon
 	return nil
 }
 
-func (m *_ModifyMonitoredItemsResponse) GetTypeName() string {
+func (m *_ModifyMonitoredItemsResponse) GetPlx4xTypeName() string {
 	return "ModifyMonitoredItemsResponse"
 }
 

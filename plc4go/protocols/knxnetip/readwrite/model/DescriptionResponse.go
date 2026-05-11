@@ -260,7 +260,7 @@ func CastDescriptionResponse(structType any) DescriptionResponse {
 	return nil
 }
 
-func (m *_DescriptionResponse) GetTypeName() string {
+func (m *_DescriptionResponse) GetPlx4xTypeName() string {
 	return "DescriptionResponse"
 }
 

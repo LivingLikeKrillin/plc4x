@@ -240,7 +240,7 @@ func CastDeleteEventDetails(structType any) DeleteEventDetails {
 	return nil
 }
 
-func (m *_DeleteEventDetails) GetTypeName() string {
+func (m *_DeleteEventDetails) GetPlx4xTypeName() string {
 	return "DeleteEventDetails"
 }
 

@@ -221,7 +221,7 @@ func CastCBusCommandPointToPointToMultiPoint(structType any) CBusCommandPointToP
 	return nil
 }
 
-func (m *_CBusCommandPointToPointToMultiPoint) GetTypeName() string {
+func (m *_CBusCommandPointToPointToMultiPoint) GetPlx4xTypeName() string {
 	return "CBusCommandPointToPointToMultiPoint"
 }
 

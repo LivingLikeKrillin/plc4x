@@ -354,7 +354,7 @@ func CastJsonApplicationDescriptionMessage(structType any) JsonApplicationDescri
 	return nil
 }
 
-func (m *_JsonApplicationDescriptionMessage) GetTypeName() string {
+func (m *_JsonApplicationDescriptionMessage) GetPlx4xTypeName() string {
 	return "JsonApplicationDescriptionMessage"
 }
 

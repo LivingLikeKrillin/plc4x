@@ -233,7 +233,7 @@ func CastAdsTableSizes(structType any) AdsTableSizes {
 	return nil
 }
 
-func (m *_AdsTableSizes) GetTypeName() string {
+func (m *_AdsTableSizes) GetPlx4xTypeName() string {
 	return "AdsTableSizes"
 }
 

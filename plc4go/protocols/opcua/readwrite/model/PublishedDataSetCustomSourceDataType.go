@@ -209,7 +209,7 @@ func CastPublishedDataSetCustomSourceDataType(structType any) PublishedDataSetCu
 	return nil
 }
 
-func (m *_PublishedDataSetCustomSourceDataType) GetTypeName() string {
+func (m *_PublishedDataSetCustomSourceDataType) GetPlx4xTypeName() string {
 	return "PublishedDataSetCustomSourceDataType"
 }
 

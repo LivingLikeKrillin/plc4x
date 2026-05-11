@@ -240,7 +240,7 @@ func CastSubscribedDataSetMirrorDataType(structType any) SubscribedDataSetMirror
 	return nil
 }
 
-func (m *_SubscribedDataSetMirrorDataType) GetTypeName() string {
+func (m *_SubscribedDataSetMirrorDataType) GetPlx4xTypeName() string {
 	return "SubscribedDataSetMirrorDataType"
 }
 

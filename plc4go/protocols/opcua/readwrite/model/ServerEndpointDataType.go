@@ -396,7 +396,7 @@ func CastServerEndpointDataType(structType any) ServerEndpointDataType {
 	return nil
 }
 
-func (m *_ServerEndpointDataType) GetTypeName() string {
+func (m *_ServerEndpointDataType) GetPlx4xTypeName() string {
 	return "ServerEndpointDataType"
 }
 

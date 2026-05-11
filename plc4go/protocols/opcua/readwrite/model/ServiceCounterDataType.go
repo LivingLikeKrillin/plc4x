@@ -222,7 +222,7 @@ func CastServiceCounterDataType(structType any) ServiceCounterDataType {
 	return nil
 }
 
-func (m *_ServiceCounterDataType) GetTypeName() string {
+func (m *_ServiceCounterDataType) GetPlx4xTypeName() string {
 	return "ServiceCounterDataType"
 }
 

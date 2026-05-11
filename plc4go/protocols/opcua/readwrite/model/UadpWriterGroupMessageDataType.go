@@ -267,7 +267,7 @@ func CastUadpWriterGroupMessageDataType(structType any) UadpWriterGroupMessageDa
 	return nil
 }
 
-func (m *_UadpWriterGroupMessageDataType) GetTypeName() string {
+func (m *_UadpWriterGroupMessageDataType) GetPlx4xTypeName() string {
 	return "UadpWriterGroupMessageDataType"
 }
 

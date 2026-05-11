@@ -416,7 +416,7 @@ func CastReaderGroupDataType(structType any) ReaderGroupDataType {
 	return nil
 }
 
-func (m *_ReaderGroupDataType) GetTypeName() string {
+func (m *_ReaderGroupDataType) GetPlx4xTypeName() string {
 	return "ReaderGroupDataType"
 }
 

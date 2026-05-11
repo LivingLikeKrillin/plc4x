@@ -255,7 +255,7 @@ func CastCallResponse(structType any) CallResponse {
 	return nil
 }
 
-func (m *_CallResponse) GetTypeName() string {
+func (m *_CallResponse) GetPlx4xTypeName() string {
 	return "CallResponse"
 }
 

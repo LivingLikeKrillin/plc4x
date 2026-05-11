@@ -360,7 +360,7 @@ func CastCALReplyLong(structType any) CALReplyLong {
 	return nil
 }
 
-func (m *_CALReplyLong) GetTypeName() string {
+func (m *_CALReplyLong) GetPlx4xTypeName() string {
 	return "CALReplyLong"
 }
 

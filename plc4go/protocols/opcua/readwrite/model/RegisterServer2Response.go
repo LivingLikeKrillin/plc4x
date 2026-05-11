@@ -255,7 +255,7 @@ func CastRegisterServer2Response(structType any) RegisterServer2Response {
 	return nil
 }
 
-func (m *_RegisterServer2Response) GetTypeName() string {
+func (m *_RegisterServer2Response) GetPlx4xTypeName() string {
 	return "RegisterServer2Response"
 }
 

@@ -240,7 +240,7 @@ func CastDeleteNodesRequest(structType any) DeleteNodesRequest {
 	return nil
 }
 
-func (m *_DeleteNodesRequest) GetTypeName() string {
+func (m *_DeleteNodesRequest) GetPlx4xTypeName() string {
 	return "DeleteNodesRequest"
 }
 

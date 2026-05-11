@@ -447,7 +447,7 @@ func CastJsonActionRequestMessage(structType any) JsonActionRequestMessage {
 	return nil
 }
 
-func (m *_JsonActionRequestMessage) GetTypeName() string {
+func (m *_JsonActionRequestMessage) GetPlx4xTypeName() string {
 	return "JsonActionRequestMessage"
 }
 

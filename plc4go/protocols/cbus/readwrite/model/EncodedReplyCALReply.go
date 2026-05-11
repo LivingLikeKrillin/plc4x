@@ -221,7 +221,7 @@ func CastEncodedReplyCALReply(structType any) EncodedReplyCALReply {
 	return nil
 }
 
-func (m *_EncodedReplyCALReply) GetTypeName() string {
+func (m *_EncodedReplyCALReply) GetPlx4xTypeName() string {
 	return "EncodedReplyCALReply"
 }
 

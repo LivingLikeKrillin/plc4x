@@ -303,7 +303,7 @@ func CastMonitoredItemCreateResult(structType any) MonitoredItemCreateResult {
 	return nil
 }
 
-func (m *_MonitoredItemCreateResult) GetTypeName() string {
+func (m *_MonitoredItemCreateResult) GetPlx4xTypeName() string {
 	return "MonitoredItemCreateResult"
 }
 

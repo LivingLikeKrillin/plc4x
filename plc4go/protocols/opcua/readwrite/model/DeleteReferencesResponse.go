@@ -255,7 +255,7 @@ func CastDeleteReferencesResponse(structType any) DeleteReferencesResponse {
 	return nil
 }
 
-func (m *_DeleteReferencesResponse) GetTypeName() string {
+func (m *_DeleteReferencesResponse) GetPlx4xTypeName() string {
 	return "DeleteReferencesResponse"
 }
 

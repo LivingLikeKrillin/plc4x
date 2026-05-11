@@ -240,7 +240,7 @@ func CastSortRuleElement(structType any) SortRuleElement {
 	return nil
 }
 
-func (m *_SortRuleElement) GetTypeName() string {
+func (m *_SortRuleElement) GetPlx4xTypeName() string {
 	return "SortRuleElement"
 }
 

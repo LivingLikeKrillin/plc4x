@@ -397,7 +397,7 @@ func CastRequest(structType any) Request {
 	return nil
 }
 
-func (m *_Request) GetTypeName() string {
+func (m *_Request) GetPlx4xTypeName() string {
 	return "Request"
 }
 

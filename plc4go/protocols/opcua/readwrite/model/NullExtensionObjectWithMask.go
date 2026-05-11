@@ -203,7 +203,7 @@ func CastNullExtensionObjectWithMask(structType any) NullExtensionObjectWithMask
 	return nil
 }
 
-func (m *_NullExtensionObjectWithMask) GetTypeName() string {
+func (m *_NullExtensionObjectWithMask) GetPlx4xTypeName() string {
 	return "NullExtensionObjectWithMask"
 }
 

@@ -273,7 +273,7 @@ func CastEnumValueType(structType any) EnumValueType {
 	return nil
 }
 
-func (m *_EnumValueType) GetTypeName() string {
+func (m *_EnumValueType) GetPlx4xTypeName() string {
 	return "EnumValueType"
 }
 

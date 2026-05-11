@@ -222,7 +222,7 @@ func CastXVType(structType any) XVType {
 	return nil
 }
 
-func (m *_XVType) GetTypeName() string {
+func (m *_XVType) GetPlx4xTypeName() string {
 	return "XVType"
 }
 

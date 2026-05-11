@@ -226,7 +226,7 @@ func CastFirmataMessageSubscribeDigitalPinValue(structType any) FirmataMessageSu
 	return nil
 }
 
-func (m *_FirmataMessageSubscribeDigitalPinValue) GetTypeName() string {
+func (m *_FirmataMessageSubscribeDigitalPinValue) GetPlx4xTypeName() string {
 	return "FirmataMessageSubscribeDigitalPinValue"
 }
 

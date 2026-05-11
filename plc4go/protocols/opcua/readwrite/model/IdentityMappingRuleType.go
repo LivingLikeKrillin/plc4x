@@ -240,7 +240,7 @@ func CastIdentityMappingRuleType(structType any) IdentityMappingRuleType {
 	return nil
 }
 
-func (m *_IdentityMappingRuleType) GetTypeName() string {
+func (m *_IdentityMappingRuleType) GetPlx4xTypeName() string {
 	return "IdentityMappingRuleType"
 }
 

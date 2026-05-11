@@ -240,7 +240,7 @@ func CastDeleteAtTimeDetails(structType any) DeleteAtTimeDetails {
 	return nil
 }
 
-func (m *_DeleteAtTimeDetails) GetTypeName() string {
+func (m *_DeleteAtTimeDetails) GetPlx4xTypeName() string {
 	return "DeleteAtTimeDetails"
 }
 

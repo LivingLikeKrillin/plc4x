@@ -225,7 +225,7 @@ func CastCloseSessionResponse(structType any) CloseSessionResponse {
 	return nil
 }
 
-func (m *_CloseSessionResponse) GetTypeName() string {
+func (m *_CloseSessionResponse) GetPlx4xTypeName() string {
 	return "CloseSessionResponse"
 }
 

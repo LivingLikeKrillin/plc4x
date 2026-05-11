@@ -240,7 +240,7 @@ func CastAliasNameDataType(structType any) AliasNameDataType {
 	return nil
 }
 
-func (m *_AliasNameDataType) GetTypeName() string {
+func (m *_AliasNameDataType) GetPlx4xTypeName() string {
 	return "AliasNameDataType"
 }
 

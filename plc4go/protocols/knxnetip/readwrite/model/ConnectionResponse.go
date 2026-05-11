@@ -278,7 +278,7 @@ func CastConnectionResponse(structType any) ConnectionResponse {
 	return nil
 }
 
-func (m *_ConnectionResponse) GetTypeName() string {
+func (m *_ConnectionResponse) GetPlx4xTypeName() string {
 	return "ConnectionResponse"
 }
 

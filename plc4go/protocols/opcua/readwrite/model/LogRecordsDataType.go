@@ -207,7 +207,7 @@ func CastLogRecordsDataType(structType any) LogRecordsDataType {
 	return nil
 }
 
-func (m *_LogRecordsDataType) GetTypeName() string {
+func (m *_LogRecordsDataType) GetPlx4xTypeName() string {
 	return "LogRecordsDataType"
 }
 

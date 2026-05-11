@@ -229,7 +229,7 @@ func CastBinaryExtensionObjectWithMask(structType any) BinaryExtensionObjectWith
 	return nil
 }
 
-func (m *_BinaryExtensionObjectWithMask) GetTypeName() string {
+func (m *_BinaryExtensionObjectWithMask) GetPlx4xTypeName() string {
 	return "BinaryExtensionObjectWithMask"
 }
 

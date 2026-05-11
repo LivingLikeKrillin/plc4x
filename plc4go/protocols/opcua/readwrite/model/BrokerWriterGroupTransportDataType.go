@@ -306,7 +306,7 @@ func CastBrokerWriterGroupTransportDataType(structType any) BrokerWriterGroupTra
 	return nil
 }
 
-func (m *_BrokerWriterGroupTransportDataType) GetTypeName() string {
+func (m *_BrokerWriterGroupTransportDataType) GetPlx4xTypeName() string {
 	return "BrokerWriterGroupTransportDataType"
 }
 

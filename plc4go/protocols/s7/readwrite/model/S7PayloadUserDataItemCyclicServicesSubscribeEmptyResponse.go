@@ -188,7 +188,7 @@ func CastS7PayloadUserDataItemCyclicServicesSubscribeEmptyResponse(structType an
 	return nil
 }
 
-func (m *_S7PayloadUserDataItemCyclicServicesSubscribeEmptyResponse) GetTypeName() string {
+func (m *_S7PayloadUserDataItemCyclicServicesSubscribeEmptyResponse) GetPlx4xTypeName() string {
 	return "S7PayloadUserDataItemCyclicServicesSubscribeEmptyResponse"
 }
 

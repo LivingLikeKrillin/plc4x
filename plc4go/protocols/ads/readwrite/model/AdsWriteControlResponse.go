@@ -212,7 +212,7 @@ func CastAdsWriteControlResponse(structType any) AdsWriteControlResponse {
 	return nil
 }
 
-func (m *_AdsWriteControlResponse) GetTypeName() string {
+func (m *_AdsWriteControlResponse) GetPlx4xTypeName() string {
 	return "AdsWriteControlResponse"
 }
 

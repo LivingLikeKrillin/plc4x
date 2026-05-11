@@ -240,7 +240,7 @@ func CastFindServersResponse(structType any) FindServersResponse {
 	return nil
 }
 
-func (m *_FindServersResponse) GetTypeName() string {
+func (m *_FindServersResponse) GetPlx4xTypeName() string {
 	return "FindServersResponse"
 }
 

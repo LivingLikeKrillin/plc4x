@@ -154,7 +154,7 @@ func CastRequestTermination(structType any) RequestTermination {
 	return nil
 }
 
-func (m *_RequestTermination) GetTypeName() string {
+func (m *_RequestTermination) GetPlx4xTypeName() string {
 	return "RequestTermination"
 }
 

@@ -306,7 +306,7 @@ func CastSimpleTypeDescription(structType any) SimpleTypeDescription {
 	return nil
 }
 
-func (m *_SimpleTypeDescription) GetTypeName() string {
+func (m *_SimpleTypeDescription) GetPlx4xTypeName() string {
 	return "SimpleTypeDescription"
 }
 

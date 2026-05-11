@@ -207,7 +207,7 @@ func CastReadAnnotationDataDetails(structType any) ReadAnnotationDataDetails {
 	return nil
 }
 
-func (m *_ReadAnnotationDataDetails) GetTypeName() string {
+func (m *_ReadAnnotationDataDetails) GetPlx4xTypeName() string {
 	return "ReadAnnotationDataDetails"
 }
 

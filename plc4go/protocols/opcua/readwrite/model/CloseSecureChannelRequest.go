@@ -225,7 +225,7 @@ func CastCloseSecureChannelRequest(structType any) CloseSecureChannelRequest {
 	return nil
 }
 
-func (m *_CloseSecureChannelRequest) GetTypeName() string {
+func (m *_CloseSecureChannelRequest) GetPlx4xTypeName() string {
 	return "CloseSecureChannelRequest"
 }
 

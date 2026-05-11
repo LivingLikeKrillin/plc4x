@@ -258,7 +258,7 @@ func CastBrowsePath(structType any) BrowsePath {
 	return nil
 }
 
-func (m *_BrowsePath) GetTypeName() string {
+func (m *_BrowsePath) GetPlx4xTypeName() string {
 	return "BrowsePath"
 }
 

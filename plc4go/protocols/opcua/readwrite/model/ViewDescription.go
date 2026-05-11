@@ -255,7 +255,7 @@ func CastViewDescription(structType any) ViewDescription {
 	return nil
 }
 
-func (m *_ViewDescription) GetTypeName() string {
+func (m *_ViewDescription) GetPlx4xTypeName() string {
 	return "ViewDescription"
 }
 

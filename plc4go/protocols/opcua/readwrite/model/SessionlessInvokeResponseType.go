@@ -237,7 +237,7 @@ func CastSessionlessInvokeResponseType(structType any) SessionlessInvokeResponse
 	return nil
 }
 
-func (m *_SessionlessInvokeResponseType) GetTypeName() string {
+func (m *_SessionlessInvokeResponseType) GetPlx4xTypeName() string {
 	return "SessionlessInvokeResponseType"
 }
 

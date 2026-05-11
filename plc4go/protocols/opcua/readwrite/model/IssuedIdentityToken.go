@@ -291,7 +291,7 @@ func CastIssuedIdentityToken(structType any) IssuedIdentityToken {
 	return nil
 }
 
-func (m *_IssuedIdentityToken) GetTypeName() string {
+func (m *_IssuedIdentityToken) GetPlx4xTypeName() string {
 	return "IssuedIdentityToken"
 }
 

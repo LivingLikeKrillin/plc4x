@@ -414,7 +414,7 @@ func CastFieldMetaData(structType any) FieldMetaData {
 	return nil
 }
 
-func (m *_FieldMetaData) GetTypeName() string {
+func (m *_FieldMetaData) GetPlx4xTypeName() string {
 	return "FieldMetaData"
 }
 

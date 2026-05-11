@@ -258,7 +258,7 @@ func CastStatusResult(structType any) StatusResult {
 	return nil
 }
 
-func (m *_StatusResult) GetTypeName() string {
+func (m *_StatusResult) GetPlx4xTypeName() string {
 	return "StatusResult"
 }
 

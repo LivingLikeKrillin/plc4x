@@ -240,7 +240,7 @@ func CastPublishRequest(structType any) PublishRequest {
 	return nil
 }
 
-func (m *_PublishRequest) GetTypeName() string {
+func (m *_PublishRequest) GetPlx4xTypeName() string {
 	return "PublishRequest"
 }
 

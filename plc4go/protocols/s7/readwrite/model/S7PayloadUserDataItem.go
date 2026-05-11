@@ -743,7 +743,7 @@ func CastS7PayloadUserDataItem(structType any) S7PayloadUserDataItem {
 	return nil
 }
 
-func (m *_S7PayloadUserDataItem) GetTypeName() string {
+func (m *_S7PayloadUserDataItem) GetPlx4xTypeName() string {
 	return "S7PayloadUserDataItem"
 }
 

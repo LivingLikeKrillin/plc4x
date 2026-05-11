@@ -345,7 +345,7 @@ func CastApplicationConfigurationDataType(structType any) ApplicationConfigurati
 	return nil
 }
 
-func (m *_ApplicationConfigurationDataType) GetTypeName() string {
+func (m *_ApplicationConfigurationDataType) GetPlx4xTypeName() string {
 	return "ApplicationConfigurationDataType"
 }
 

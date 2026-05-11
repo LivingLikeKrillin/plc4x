@@ -225,7 +225,7 @@ func CastServiceFault(structType any) ServiceFault {
 	return nil
 }
 
-func (m *_ServiceFault) GetTypeName() string {
+func (m *_ServiceFault) GetPlx4xTypeName() string {
 	return "ServiceFault"
 }
 

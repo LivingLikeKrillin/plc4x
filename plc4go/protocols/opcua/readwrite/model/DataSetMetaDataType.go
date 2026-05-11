@@ -399,7 +399,7 @@ func CastDataSetMetaDataType(structType any) DataSetMetaDataType {
 	return nil
 }
 
-func (m *_DataSetMetaDataType) GetTypeName() string {
+func (m *_DataSetMetaDataType) GetPlx4xTypeName() string {
 	return "DataSetMetaDataType"
 }
 

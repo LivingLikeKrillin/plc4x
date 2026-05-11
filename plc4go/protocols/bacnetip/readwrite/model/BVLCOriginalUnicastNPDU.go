@@ -227,7 +227,7 @@ func CastBVLCOriginalUnicastNPDU(structType any) BVLCOriginalUnicastNPDU {
 	return nil
 }
 
-func (m *_BVLCOriginalUnicastNPDU) GetTypeName() string {
+func (m *_BVLCOriginalUnicastNPDU) GetPlx4xTypeName() string {
 	return "BVLCOriginalUnicastNPDU"
 }
 

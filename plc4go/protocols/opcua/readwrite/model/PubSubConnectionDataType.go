@@ -419,7 +419,7 @@ func CastPubSubConnectionDataType(structType any) PubSubConnectionDataType {
 	return nil
 }
 
-func (m *_PubSubConnectionDataType) GetTypeName() string {
+func (m *_PubSubConnectionDataType) GetPlx4xTypeName() string {
 	return "PubSubConnectionDataType"
 }
 

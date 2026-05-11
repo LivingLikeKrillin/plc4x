@@ -324,7 +324,7 @@ func CastDeleteReferencesItem(structType any) DeleteReferencesItem {
 	return nil
 }
 
-func (m *_DeleteReferencesItem) GetTypeName() string {
+func (m *_DeleteReferencesItem) GetPlx4xTypeName() string {
 	return "DeleteReferencesItem"
 }
 

@@ -204,7 +204,7 @@ func CastSerialNumber(structType any) SerialNumber {
 	return nil
 }
 
-func (m *_SerialNumber) GetTypeName() string {
+func (m *_SerialNumber) GetPlx4xTypeName() string {
 	return "SerialNumber"
 }
 

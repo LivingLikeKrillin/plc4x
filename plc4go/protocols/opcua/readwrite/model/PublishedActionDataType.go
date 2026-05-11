@@ -240,7 +240,7 @@ func CastPublishedActionDataType(structType any) PublishedActionDataType {
 	return nil
 }
 
-func (m *_PublishedActionDataType) GetTypeName() string {
+func (m *_PublishedActionDataType) GetPlx4xTypeName() string {
 	return "PublishedActionDataType"
 }
 

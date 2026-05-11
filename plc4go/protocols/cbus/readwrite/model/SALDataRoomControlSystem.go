@@ -180,7 +180,7 @@ func CastSALDataRoomControlSystem(structType any) SALDataRoomControlSystem {
 	return nil
 }
 
-func (m *_SALDataRoomControlSystem) GetTypeName() string {
+func (m *_SALDataRoomControlSystem) GetPlx4xTypeName() string {
 	return "SALDataRoomControlSystem"
 }
 

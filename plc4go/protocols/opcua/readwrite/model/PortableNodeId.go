@@ -258,7 +258,7 @@ func CastPortableNodeId(structType any) PortableNodeId {
 	return nil
 }
 
-func (m *_PortableNodeId) GetTypeName() string {
+func (m *_PortableNodeId) GetPlx4xTypeName() string {
 	return "PortableNodeId"
 }
 

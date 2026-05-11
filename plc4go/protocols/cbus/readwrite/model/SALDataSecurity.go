@@ -225,7 +225,7 @@ func CastSALDataSecurity(structType any) SALDataSecurity {
 	return nil
 }
 
-func (m *_SALDataSecurity) GetTypeName() string {
+func (m *_SALDataSecurity) GetPlx4xTypeName() string {
 	return "SALDataSecurity"
 }
 

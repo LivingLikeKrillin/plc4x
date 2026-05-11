@@ -640,7 +640,7 @@ func CastAmsPacket(structType any) AmsPacket {
 	return nil
 }
 
-func (m *_AmsPacket) GetTypeName() string {
+func (m *_AmsPacket) GetPlx4xTypeName() string {
 	return "AmsPacket"
 }
 

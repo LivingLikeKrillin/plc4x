@@ -180,7 +180,7 @@ func CastSALDataTesting(structType any) SALDataTesting {
 	return nil
 }
 
-func (m *_SALDataTesting) GetTypeName() string {
+func (m *_SALDataTesting) GetPlx4xTypeName() string {
 	return "SALDataTesting"
 }
 

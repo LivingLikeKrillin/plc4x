@@ -257,7 +257,7 @@ func CastSetPublishingModeRequest(structType any) SetPublishingModeRequest {
 	return nil
 }
 
-func (m *_SetPublishingModeRequest) GetTypeName() string {
+func (m *_SetPublishingModeRequest) GetPlx4xTypeName() string {
 	return "SetPublishingModeRequest"
 }
 

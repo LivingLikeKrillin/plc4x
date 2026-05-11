@@ -207,7 +207,7 @@ func CastElementOperand(structType any) ElementOperand {
 	return nil
 }
 
-func (m *_ElementOperand) GetTypeName() string {
+func (m *_ElementOperand) GetPlx4xTypeName() string {
 	return "ElementOperand"
 }
 

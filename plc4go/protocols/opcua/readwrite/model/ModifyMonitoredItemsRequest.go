@@ -270,7 +270,7 @@ func CastModifyMonitoredItemsRequest(structType any) ModifyMonitoredItemsRequest
 	return nil
 }
 
-func (m *_ModifyMonitoredItemsRequest) GetTypeName() string {
+func (m *_ModifyMonitoredItemsRequest) GetPlx4xTypeName() string {
 	return "ModifyMonitoredItemsRequest"
 }
 

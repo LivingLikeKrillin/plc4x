@@ -291,7 +291,7 @@ func CastAnnotationDataType(structType any) AnnotationDataType {
 	return nil
 }
 
-func (m *_AnnotationDataType) GetTypeName() string {
+func (m *_AnnotationDataType) GetPlx4xTypeName() string {
 	return "AnnotationDataType"
 }
 

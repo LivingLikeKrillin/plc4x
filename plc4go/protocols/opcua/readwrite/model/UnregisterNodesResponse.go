@@ -225,7 +225,7 @@ func CastUnregisterNodesResponse(structType any) UnregisterNodesResponse {
 	return nil
 }
 
-func (m *_UnregisterNodesResponse) GetTypeName() string {
+func (m *_UnregisterNodesResponse) GetPlx4xTypeName() string {
 	return "UnregisterNodesResponse"
 }
 

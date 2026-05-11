@@ -288,7 +288,7 @@ func CastCurrencyUnitType(structType any) CurrencyUnitType {
 	return nil
 }
 
-func (m *_CurrencyUnitType) GetTypeName() string {
+func (m *_CurrencyUnitType) GetPlx4xTypeName() string {
 	return "CurrencyUnitType"
 }
 

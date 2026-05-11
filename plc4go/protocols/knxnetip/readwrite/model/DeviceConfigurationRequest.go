@@ -260,7 +260,7 @@ func CastDeviceConfigurationRequest(structType any) DeviceConfigurationRequest {
 	return nil
 }
 
-func (m *_DeviceConfigurationRequest) GetTypeName() string {
+func (m *_DeviceConfigurationRequest) GetPlx4xTypeName() string {
 	return "DeviceConfigurationRequest"
 }
 

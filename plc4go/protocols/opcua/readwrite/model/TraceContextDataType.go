@@ -288,7 +288,7 @@ func CastTraceContextDataType(structType any) TraceContextDataType {
 	return nil
 }
 
-func (m *_TraceContextDataType) GetTypeName() string {
+func (m *_TraceContextDataType) GetPlx4xTypeName() string {
 	return "TraceContextDataType"
 }
 

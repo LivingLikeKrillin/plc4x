@@ -179,7 +179,7 @@ func CastApplicationAddress2(structType any) ApplicationAddress2 {
 	return nil
 }
 
-func (m *_ApplicationAddress2) GetTypeName() string {
+func (m *_ApplicationAddress2) GetPlx4xTypeName() string {
 	return "ApplicationAddress2"
 }
 

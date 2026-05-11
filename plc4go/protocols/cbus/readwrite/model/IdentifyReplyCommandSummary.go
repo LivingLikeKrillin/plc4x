@@ -237,7 +237,7 @@ func CastIdentifyReplyCommandSummary(structType any) IdentifyReplyCommandSummary
 	return nil
 }
 
-func (m *_IdentifyReplyCommandSummary) GetTypeName() string {
+func (m *_IdentifyReplyCommandSummary) GetPlx4xTypeName() string {
 	return "IdentifyReplyCommandSummary"
 }
 

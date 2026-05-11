@@ -226,7 +226,7 @@ func CastFirmataMessageSubscribeAnalogPinValue(structType any) FirmataMessageSub
 	return nil
 }
 
-func (m *_FirmataMessageSubscribeAnalogPinValue) GetTypeName() string {
+func (m *_FirmataMessageSubscribeAnalogPinValue) GetPlx4xTypeName() string {
 	return "FirmataMessageSubscribeAnalogPinValue"
 }
 

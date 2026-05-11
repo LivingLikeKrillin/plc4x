@@ -252,7 +252,7 @@ func CastDataTypeSchemaHeader(structType any) DataTypeSchemaHeader {
 	return nil
 }
 
-func (m *_DataTypeSchemaHeader) GetTypeName() string {
+func (m *_DataTypeSchemaHeader) GetPlx4xTypeName() string {
 	return "DataTypeSchemaHeader"
 }
 

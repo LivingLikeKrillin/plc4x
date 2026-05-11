@@ -387,7 +387,7 @@ func CastFieldTargetDataType(structType any) FieldTargetDataType {
 	return nil
 }
 
-func (m *_FieldTargetDataType) GetTypeName() string {
+func (m *_FieldTargetDataType) GetPlx4xTypeName() string {
 	return "FieldTargetDataType"
 }
 

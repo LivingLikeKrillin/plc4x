@@ -302,7 +302,7 @@ func CastLldpManagementAddressTxPortType(structType any) LldpManagementAddressTx
 	return nil
 }
 
-func (m *_LldpManagementAddressTxPortType) GetTypeName() string {
+func (m *_LldpManagementAddressTxPortType) GetPlx4xTypeName() string {
 	return "LldpManagementAddressTxPortType"
 }
 

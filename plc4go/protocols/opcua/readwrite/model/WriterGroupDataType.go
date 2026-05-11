@@ -524,7 +524,7 @@ func CastWriterGroupDataType(structType any) WriterGroupDataType {
 	return nil
 }
 
-func (m *_WriterGroupDataType) GetTypeName() string {
+func (m *_WriterGroupDataType) GetPlx4xTypeName() string {
 	return "WriterGroupDataType"
 }
 

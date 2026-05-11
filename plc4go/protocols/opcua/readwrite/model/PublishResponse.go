@@ -335,7 +335,7 @@ func CastPublishResponse(structType any) PublishResponse {
 	return nil
 }
 
-func (m *_PublishResponse) GetTypeName() string {
+func (m *_PublishResponse) GetPlx4xTypeName() string {
 	return "PublishResponse"
 }
 

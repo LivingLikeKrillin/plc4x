@@ -336,7 +336,7 @@ func CastResponseHeader(structType any) ResponseHeader {
 	return nil
 }
 
-func (m *_ResponseHeader) GetTypeName() string {
+func (m *_ResponseHeader) GetPlx4xTypeName() string {
 	return "ResponseHeader"
 }
 

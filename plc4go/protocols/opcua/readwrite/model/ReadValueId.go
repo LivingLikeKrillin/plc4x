@@ -306,7 +306,7 @@ func CastReadValueId(structType any) ReadValueId {
 	return nil
 }
 
-func (m *_ReadValueId) GetTypeName() string {
+func (m *_ReadValueId) GetPlx4xTypeName() string {
 	return "ReadValueId"
 }
 

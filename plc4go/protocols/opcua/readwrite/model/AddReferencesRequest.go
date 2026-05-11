@@ -240,7 +240,7 @@ func CastAddReferencesRequest(structType any) AddReferencesRequest {
 	return nil
 }
 
-func (m *_AddReferencesRequest) GetTypeName() string {
+func (m *_AddReferencesRequest) GetPlx4xTypeName() string {
 	return "AddReferencesRequest"
 }
 

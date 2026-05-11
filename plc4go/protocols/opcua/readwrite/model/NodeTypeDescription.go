@@ -257,7 +257,7 @@ func CastNodeTypeDescription(structType any) NodeTypeDescription {
 	return nil
 }
 
-func (m *_NodeTypeDescription) GetTypeName() string {
+func (m *_NodeTypeDescription) GetPlx4xTypeName() string {
 	return "NodeTypeDescription"
 }
 

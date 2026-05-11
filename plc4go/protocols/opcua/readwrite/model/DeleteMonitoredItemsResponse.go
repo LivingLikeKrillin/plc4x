@@ -255,7 +255,7 @@ func CastDeleteMonitoredItemsResponse(structType any) DeleteMonitoredItemsRespon
 	return nil
 }
 
-func (m *_DeleteMonitoredItemsResponse) GetTypeName() string {
+func (m *_DeleteMonitoredItemsResponse) GetPlx4xTypeName() string {
 	return "DeleteMonitoredItemsResponse"
 }
 

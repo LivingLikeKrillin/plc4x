@@ -267,7 +267,7 @@ func CastTrustListDataType(structType any) TrustListDataType {
 	return nil
 }
 
-func (m *_TrustListDataType) GetTypeName() string {
+func (m *_TrustListDataType) GetPlx4xTypeName() string {
 	return "TrustListDataType"
 }
 

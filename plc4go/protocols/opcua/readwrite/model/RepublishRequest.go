@@ -255,7 +255,7 @@ func CastRepublishRequest(structType any) RepublishRequest {
 	return nil
 }
 
-func (m *_RepublishRequest) GetTypeName() string {
+func (m *_RepublishRequest) GetPlx4xTypeName() string {
 	return "RepublishRequest"
 }
 

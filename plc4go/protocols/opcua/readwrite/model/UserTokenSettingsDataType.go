@@ -420,7 +420,7 @@ func CastUserTokenSettingsDataType(structType any) UserTokenSettingsDataType {
 	return nil
 }
 
-func (m *_UserTokenSettingsDataType) GetTypeName() string {
+func (m *_UserTokenSettingsDataType) GetPlx4xTypeName() string {
 	return "UserTokenSettingsDataType"
 }
 

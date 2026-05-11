@@ -593,7 +593,7 @@ func CastDataSetReaderDataType(structType any) DataSetReaderDataType {
 	return nil
 }
 
-func (m *_DataSetReaderDataType) GetTypeName() string {
+func (m *_DataSetReaderDataType) GetPlx4xTypeName() string {
 	return "DataSetReaderDataType"
 }
 

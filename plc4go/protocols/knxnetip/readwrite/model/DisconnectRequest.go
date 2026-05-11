@@ -244,7 +244,7 @@ func CastDisconnectRequest(structType any) DisconnectRequest {
 	return nil
 }
 
-func (m *_DisconnectRequest) GetTypeName() string {
+func (m *_DisconnectRequest) GetPlx4xTypeName() string {
 	return "DisconnectRequest"
 }
 

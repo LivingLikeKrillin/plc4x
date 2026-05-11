@@ -372,7 +372,7 @@ func CastJsonNetworkMessage(structType any) JsonNetworkMessage {
 	return nil
 }
 
-func (m *_JsonNetworkMessage) GetTypeName() string {
+func (m *_JsonNetworkMessage) GetPlx4xTypeName() string {
 	return "JsonNetworkMessage"
 }
 

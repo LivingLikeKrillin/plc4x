@@ -258,7 +258,7 @@ func CastX509IdentityToken(structType any) X509IdentityToken {
 	return nil
 }
 
-func (m *_X509IdentityToken) GetTypeName() string {
+func (m *_X509IdentityToken) GetPlx4xTypeName() string {
 	return "X509IdentityToken"
 }
 

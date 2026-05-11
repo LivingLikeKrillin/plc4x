@@ -317,7 +317,7 @@ func CastCreateSubscriptionRequest(structType any) CreateSubscriptionRequest {
 	return nil
 }
 
-func (m *_CreateSubscriptionRequest) GetTypeName() string {
+func (m *_CreateSubscriptionRequest) GetPlx4xTypeName() string {
 	return "CreateSubscriptionRequest"
 }
 

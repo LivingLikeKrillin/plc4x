@@ -195,7 +195,7 @@ func CastServerErrorReply(structType any) ServerErrorReply {
 	return nil
 }
 
-func (m *_ServerErrorReply) GetTypeName() string {
+func (m *_ServerErrorReply) GetPlx4xTypeName() string {
 	return "ServerErrorReply"
 }
 

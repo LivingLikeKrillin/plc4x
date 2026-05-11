@@ -240,7 +240,7 @@ func CastMonitoredItemNotification(structType any) MonitoredItemNotification {
 	return nil
 }
 
-func (m *_MonitoredItemNotification) GetTypeName() string {
+func (m *_MonitoredItemNotification) GetPlx4xTypeName() string {
 	return "MonitoredItemNotification"
 }
 

@@ -191,7 +191,7 @@ func CastExtensionObjectEncodingMask(structType any) ExtensionObjectEncodingMask
 	return nil
 }
 
-func (m *_ExtensionObjectEncodingMask) GetTypeName() string {
+func (m *_ExtensionObjectEncodingMask) GetPlx4xTypeName() string {
 	return "ExtensionObjectEncodingMask"
 }
 

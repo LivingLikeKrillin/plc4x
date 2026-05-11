@@ -222,7 +222,7 @@ func CastIdentifyReplyCommandDelays(structType any) IdentifyReplyCommandDelays {
 	return nil
 }
 
-func (m *_IdentifyReplyCommandDelays) GetTypeName() string {
+func (m *_IdentifyReplyCommandDelays) GetPlx4xTypeName() string {
 	return "IdentifyReplyCommandDelays"
 }
 

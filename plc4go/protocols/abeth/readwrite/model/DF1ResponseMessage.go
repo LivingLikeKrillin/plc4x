@@ -274,7 +274,7 @@ func CastDF1ResponseMessage(structType any) DF1ResponseMessage {
 	return nil
 }
 
-func (m *_DF1ResponseMessage) GetTypeName() string {
+func (m *_DF1ResponseMessage) GetPlx4xTypeName() string {
 	return "DF1ResponseMessage"
 }
 

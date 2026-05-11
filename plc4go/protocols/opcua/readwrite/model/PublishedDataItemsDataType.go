@@ -207,7 +207,7 @@ func CastPublishedDataItemsDataType(structType any) PublishedDataItemsDataType {
 	return nil
 }
 
-func (m *_PublishedDataItemsDataType) GetTypeName() string {
+func (m *_PublishedDataItemsDataType) GetPlx4xTypeName() string {
 	return "PublishedDataItemsDataType"
 }
 

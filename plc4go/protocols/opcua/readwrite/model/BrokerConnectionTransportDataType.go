@@ -258,7 +258,7 @@ func CastBrokerConnectionTransportDataType(structType any) BrokerConnectionTrans
 	return nil
 }
 
-func (m *_BrokerConnectionTransportDataType) GetTypeName() string {
+func (m *_BrokerConnectionTransportDataType) GetPlx4xTypeName() string {
 	return "BrokerConnectionTransportDataType"
 }
 

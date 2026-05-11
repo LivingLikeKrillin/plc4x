@@ -291,7 +291,7 @@ func CastStructureDescription(structType any) StructureDescription {
 	return nil
 }
 
-func (m *_StructureDescription) GetTypeName() string {
+func (m *_StructureDescription) GetPlx4xTypeName() string {
 	return "StructureDescription"
 }
 

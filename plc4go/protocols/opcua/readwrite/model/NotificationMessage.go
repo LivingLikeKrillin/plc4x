@@ -237,7 +237,7 @@ func CastNotificationMessage(structType any) NotificationMessage {
 	return nil
 }
 
-func (m *_NotificationMessage) GetTypeName() string {
+func (m *_NotificationMessage) GetPlx4xTypeName() string {
 	return "NotificationMessage"
 }
 

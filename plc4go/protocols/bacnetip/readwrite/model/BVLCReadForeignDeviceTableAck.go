@@ -209,7 +209,7 @@ func CastBVLCReadForeignDeviceTableAck(structType any) BVLCReadForeignDeviceTabl
 	return nil
 }
 
-func (m *_BVLCReadForeignDeviceTableAck) GetTypeName() string {
+func (m *_BVLCReadForeignDeviceTableAck) GetPlx4xTypeName() string {
 	return "BVLCReadForeignDeviceTableAck"
 }
 

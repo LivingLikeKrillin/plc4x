@@ -324,7 +324,7 @@ func CastUserNameIdentityToken(structType any) UserNameIdentityToken {
 	return nil
 }
 
-func (m *_UserNameIdentityToken) GetTypeName() string {
+func (m *_UserNameIdentityToken) GetPlx4xTypeName() string {
 	return "UserNameIdentityToken"
 }
 

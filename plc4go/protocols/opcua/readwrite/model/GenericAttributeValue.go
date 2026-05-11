@@ -240,7 +240,7 @@ func CastGenericAttributeValue(structType any) GenericAttributeValue {
 	return nil
 }
 
-func (m *_GenericAttributeValue) GetTypeName() string {
+func (m *_GenericAttributeValue) GetPlx4xTypeName() string {
 	return "GenericAttributeValue"
 }
 

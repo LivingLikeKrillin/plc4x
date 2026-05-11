@@ -405,7 +405,7 @@ func CastAddNodesItem(structType any) AddNodesItem {
 	return nil
 }
 
-func (m *_AddNodesItem) GetTypeName() string {
+func (m *_AddNodesItem) GetPlx4xTypeName() string {
 	return "AddNodesItem"
 }
 

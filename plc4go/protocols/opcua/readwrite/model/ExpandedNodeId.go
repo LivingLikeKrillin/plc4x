@@ -247,7 +247,7 @@ func CastExpandedNodeId(structType any) ExpandedNodeId {
 	return nil
 }
 
-func (m *_ExpandedNodeId) GetTypeName() string {
+func (m *_ExpandedNodeId) GetPlx4xTypeName() string {
 	return "ExpandedNodeId"
 }
 

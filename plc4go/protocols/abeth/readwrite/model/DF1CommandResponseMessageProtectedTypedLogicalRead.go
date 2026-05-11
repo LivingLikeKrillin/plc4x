@@ -207,7 +207,7 @@ func CastDF1CommandResponseMessageProtectedTypedLogicalRead(structType any) DF1C
 	return nil
 }
 
-func (m *_DF1CommandResponseMessageProtectedTypedLogicalRead) GetTypeName() string {
+func (m *_DF1CommandResponseMessageProtectedTypedLogicalRead) GetPlx4xTypeName() string {
 	return "DF1CommandResponseMessageProtectedTypedLogicalRead"
 }
 

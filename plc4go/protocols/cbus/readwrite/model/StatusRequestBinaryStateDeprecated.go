@@ -206,7 +206,7 @@ func CastStatusRequestBinaryStateDeprecated(structType any) StatusRequestBinaryS
 	return nil
 }
 
-func (m *_StatusRequestBinaryStateDeprecated) GetTypeName() string {
+func (m *_StatusRequestBinaryStateDeprecated) GetPlx4xTypeName() string {
 	return "StatusRequestBinaryStateDeprecated"
 }
 

@@ -225,7 +225,7 @@ func CastStandaloneSubscribedDataSetRefDataType(structType any) StandaloneSubscr
 	return nil
 }
 
-func (m *_StandaloneSubscribedDataSetRefDataType) GetTypeName() string {
+func (m *_StandaloneSubscribedDataSetRefDataType) GetPlx4xTypeName() string {
 	return "StandaloneSubscribedDataSetRefDataType"
 }
 

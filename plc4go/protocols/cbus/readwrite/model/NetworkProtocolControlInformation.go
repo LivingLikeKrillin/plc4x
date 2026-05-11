@@ -178,7 +178,7 @@ func CastNetworkProtocolControlInformation(structType any) NetworkProtocolContro
 	return nil
 }
 
-func (m *_NetworkProtocolControlInformation) GetTypeName() string {
+func (m *_NetworkProtocolControlInformation) GetPlx4xTypeName() string {
 	return "NetworkProtocolControlInformation"
 }
 

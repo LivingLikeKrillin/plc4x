@@ -258,7 +258,7 @@ func CastAddNodesResult(structType any) AddNodesResult {
 	return nil
 }
 
-func (m *_AddNodesResult) GetTypeName() string {
+func (m *_AddNodesResult) GetPlx4xTypeName() string {
 	return "AddNodesResult"
 }
 

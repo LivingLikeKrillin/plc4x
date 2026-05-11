@@ -227,7 +227,7 @@ func CastTunnelingResponse(structType any) TunnelingResponse {
 	return nil
 }
 
-func (m *_TunnelingResponse) GetTypeName() string {
+func (m *_TunnelingResponse) GetPlx4xTypeName() string {
 	return "TunnelingResponse"
 }
 

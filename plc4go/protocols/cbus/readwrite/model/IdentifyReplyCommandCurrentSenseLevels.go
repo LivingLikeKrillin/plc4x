@@ -207,7 +207,7 @@ func CastIdentifyReplyCommandCurrentSenseLevels(structType any) IdentifyReplyCom
 	return nil
 }
 
-func (m *_IdentifyReplyCommandCurrentSenseLevels) GetTypeName() string {
+func (m *_IdentifyReplyCommandCurrentSenseLevels) GetPlx4xTypeName() string {
 	return "IdentifyReplyCommandCurrentSenseLevels"
 }
 

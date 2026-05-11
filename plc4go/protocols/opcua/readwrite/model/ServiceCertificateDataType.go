@@ -270,7 +270,7 @@ func CastServiceCertificateDataType(structType any) ServiceCertificateDataType {
 	return nil
 }
 
-func (m *_ServiceCertificateDataType) GetTypeName() string {
+func (m *_ServiceCertificateDataType) GetPlx4xTypeName() string {
 	return "ServiceCertificateDataType"
 }
 

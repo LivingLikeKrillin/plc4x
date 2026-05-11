@@ -223,7 +223,7 @@ func CastCBusPointToPointCommandDirect(structType any) CBusPointToPointCommandDi
 	return nil
 }
 
-func (m *_CBusPointToPointCommandDirect) GetTypeName() string {
+func (m *_CBusPointToPointCommandDirect) GetPlx4xTypeName() string {
 	return "CBusPointToPointCommandDirect"
 }
 

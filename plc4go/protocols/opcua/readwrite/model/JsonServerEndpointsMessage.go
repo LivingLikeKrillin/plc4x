@@ -354,7 +354,7 @@ func CastJsonServerEndpointsMessage(structType any) JsonServerEndpointsMessage {
 	return nil
 }
 
-func (m *_JsonServerEndpointsMessage) GetTypeName() string {
+func (m *_JsonServerEndpointsMessage) GetPlx4xTypeName() string {
 	return "JsonServerEndpointsMessage"
 }
 

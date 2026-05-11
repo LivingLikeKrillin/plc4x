@@ -226,7 +226,7 @@ func CastSALDataPoolsSpasPondsFountainsControl(structType any) SALDataPoolsSpasP
 	return nil
 }
 
-func (m *_SALDataPoolsSpasPondsFountainsControl) GetTypeName() string {
+func (m *_SALDataPoolsSpasPondsFountainsControl) GetPlx4xTypeName() string {
 	return "SALDataPoolsSpasPondsFountainsControl"
 }
 

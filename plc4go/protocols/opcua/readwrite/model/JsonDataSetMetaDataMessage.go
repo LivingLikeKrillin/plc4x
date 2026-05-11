@@ -420,7 +420,7 @@ func CastJsonDataSetMetaDataMessage(structType any) JsonDataSetMetaDataMessage {
 	return nil
 }
 
-func (m *_JsonDataSetMetaDataMessage) GetTypeName() string {
+func (m *_JsonDataSetMetaDataMessage) GetPlx4xTypeName() string {
 	return "JsonDataSetMetaDataMessage"
 }
 

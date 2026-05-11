@@ -329,7 +329,7 @@ func CastEndpointConfiguration(structType any) EndpointConfiguration {
 	return nil
 }
 
-func (m *_EndpointConfiguration) GetTypeName() string {
+func (m *_EndpointConfiguration) GetPlx4xTypeName() string {
 	return "EndpointConfiguration"
 }
 

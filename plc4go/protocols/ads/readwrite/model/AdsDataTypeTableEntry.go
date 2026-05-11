@@ -806,7 +806,7 @@ func CastAdsDataTypeTableEntry(structType any) AdsDataTypeTableEntry {
 	return nil
 }
 
-func (m *_AdsDataTypeTableEntry) GetTypeName() string {
+func (m *_AdsDataTypeTableEntry) GetPlx4xTypeName() string {
 	return "AdsDataTypeTableEntry"
 }
 

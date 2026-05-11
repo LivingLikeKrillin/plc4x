@@ -207,7 +207,7 @@ func CastAdditionalParametersType(structType any) AdditionalParametersType {
 	return nil
 }
 
-func (m *_AdditionalParametersType) GetTypeName() string {
+func (m *_AdditionalParametersType) GetPlx4xTypeName() string {
 	return "AdditionalParametersType"
 }
 

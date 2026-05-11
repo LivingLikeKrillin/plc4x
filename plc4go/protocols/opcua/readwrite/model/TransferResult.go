@@ -240,7 +240,7 @@ func CastTransferResult(structType any) TransferResult {
 	return nil
 }
 
-func (m *_TransferResult) GetTypeName() string {
+func (m *_TransferResult) GetPlx4xTypeName() string {
 	return "TransferResult"
 }
 

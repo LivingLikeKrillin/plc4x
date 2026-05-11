@@ -258,7 +258,7 @@ func CastNumberRange(structType any) NumberRange {
 	return nil
 }
 
-func (m *_NumberRange) GetTypeName() string {
+func (m *_NumberRange) GetPlx4xTypeName() string {
 	return "NumberRange"
 }
 

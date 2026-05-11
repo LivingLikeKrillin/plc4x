@@ -207,7 +207,7 @@ func CastParameterValueRaw(structType any) ParameterValueRaw {
 	return nil
 }
 
-func (m *_ParameterValueRaw) GetTypeName() string {
+func (m *_ParameterValueRaw) GetPlx4xTypeName() string {
 	return "ParameterValueRaw"
 }
 

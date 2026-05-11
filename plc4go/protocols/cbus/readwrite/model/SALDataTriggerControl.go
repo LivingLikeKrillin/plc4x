@@ -225,7 +225,7 @@ func CastSALDataTriggerControl(structType any) SALDataTriggerControl {
 	return nil
 }
 
-func (m *_SALDataTriggerControl) GetTypeName() string {
+func (m *_SALDataTriggerControl) GetPlx4xTypeName() string {
 	return "SALDataTriggerControl"
 }
 

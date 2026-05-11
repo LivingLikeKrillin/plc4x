@@ -176,7 +176,7 @@ func CastRequestEmpty(structType any) RequestEmpty {
 	return nil
 }
 
-func (m *_RequestEmpty) GetTypeName() string {
+func (m *_RequestEmpty) GetPlx4xTypeName() string {
 	return "RequestEmpty"
 }
 

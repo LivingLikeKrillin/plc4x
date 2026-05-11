@@ -321,7 +321,7 @@ func CastAxisInformation(structType any) AxisInformation {
 	return nil
 }
 
-func (m *_AxisInformation) GetTypeName() string {
+func (m *_AxisInformation) GetPlx4xTypeName() string {
 	return "AxisInformation"
 }
 

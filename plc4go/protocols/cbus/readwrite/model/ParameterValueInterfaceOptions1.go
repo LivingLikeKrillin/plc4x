@@ -241,7 +241,7 @@ func CastParameterValueInterfaceOptions1(structType any) ParameterValueInterface
 	return nil
 }
 
-func (m *_ParameterValueInterfaceOptions1) GetTypeName() string {
+func (m *_ParameterValueInterfaceOptions1) GetPlx4xTypeName() string {
 	return "ParameterValueInterfaceOptions1"
 }
 

@@ -280,7 +280,7 @@ func CastModbusTcpADU(structType any) ModbusTcpADU {
 	return nil
 }
 
-func (m *_ModbusTcpADU) GetTypeName() string {
+func (m *_ModbusTcpADU) GetPlx4xTypeName() string {
 	return "ModbusTcpADU"
 }
 

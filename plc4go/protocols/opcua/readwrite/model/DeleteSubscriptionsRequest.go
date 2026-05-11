@@ -240,7 +240,7 @@ func CastDeleteSubscriptionsRequest(structType any) DeleteSubscriptionsRequest {
 	return nil
 }
 
-func (m *_DeleteSubscriptionsRequest) GetTypeName() string {
+func (m *_DeleteSubscriptionsRequest) GetPlx4xTypeName() string {
 	return "DeleteSubscriptionsRequest"
 }
 

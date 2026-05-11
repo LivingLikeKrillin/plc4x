@@ -285,7 +285,7 @@ func CastSetTriggeringRequest(structType any) SetTriggeringRequest {
 	return nil
 }
 
-func (m *_SetTriggeringRequest) GetTypeName() string {
+func (m *_SetTriggeringRequest) GetPlx4xTypeName() string {
 	return "SetTriggeringRequest"
 }
 

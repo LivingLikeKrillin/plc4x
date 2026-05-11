@@ -306,7 +306,7 @@ func CastEUInformation(structType any) EUInformation {
 	return nil
 }
 
-func (m *_EUInformation) GetTypeName() string {
+func (m *_EUInformation) GetPlx4xTypeName() string {
 	return "EUInformation"
 }
 

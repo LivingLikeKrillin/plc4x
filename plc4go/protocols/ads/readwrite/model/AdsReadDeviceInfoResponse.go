@@ -276,7 +276,7 @@ func CastAdsReadDeviceInfoResponse(structType any) AdsReadDeviceInfoResponse {
 	return nil
 }
 
-func (m *_AdsReadDeviceInfoResponse) GetTypeName() string {
+func (m *_AdsReadDeviceInfoResponse) GetPlx4xTypeName() string {
 	return "AdsReadDeviceInfoResponse"
 }
 

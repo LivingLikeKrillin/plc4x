@@ -677,7 +677,7 @@ func CastSubscriptionDiagnosticsDataType(structType any) SubscriptionDiagnostics
 	return nil
 }
 
-func (m *_SubscriptionDiagnosticsDataType) GetTypeName() string {
+func (m *_SubscriptionDiagnosticsDataType) GetPlx4xTypeName() string {
 	return "SubscriptionDiagnosticsDataType"
 }
 

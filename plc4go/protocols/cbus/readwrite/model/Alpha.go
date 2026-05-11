@@ -161,7 +161,7 @@ func CastAlpha(structType any) Alpha {
 	return nil
 }
 
-func (m *_Alpha) GetTypeName() string {
+func (m *_Alpha) GetPlx4xTypeName() string {
 	return "Alpha"
 }
 

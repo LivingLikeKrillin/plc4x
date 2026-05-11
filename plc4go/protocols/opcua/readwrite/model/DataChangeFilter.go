@@ -237,7 +237,7 @@ func CastDataChangeFilter(structType any) DataChangeFilter {
 	return nil
 }
 
-func (m *_DataChangeFilter) GetTypeName() string {
+func (m *_DataChangeFilter) GetPlx4xTypeName() string {
 	return "DataChangeFilter"
 }
 

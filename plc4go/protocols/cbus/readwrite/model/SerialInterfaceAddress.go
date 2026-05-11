@@ -161,7 +161,7 @@ func CastSerialInterfaceAddress(structType any) SerialInterfaceAddress {
 	return nil
 }
 
-func (m *_SerialInterfaceAddress) GetTypeName() string {
+func (m *_SerialInterfaceAddress) GetPlx4xTypeName() string {
 	return "SerialInterfaceAddress"
 }
 

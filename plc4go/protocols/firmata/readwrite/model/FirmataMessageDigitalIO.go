@@ -228,7 +228,7 @@ func CastFirmataMessageDigitalIO(structType any) FirmataMessageDigitalIO {
 	return nil
 }
 
-func (m *_FirmataMessageDigitalIO) GetTypeName() string {
+func (m *_FirmataMessageDigitalIO) GetPlx4xTypeName() string {
 	return "FirmataMessageDigitalIO"
 }
 

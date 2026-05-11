@@ -293,7 +293,7 @@ func CastSearchResponse(structType any) SearchResponse {
 	return nil
 }
 
-func (m *_SearchResponse) GetTypeName() string {
+func (m *_SearchResponse) GetPlx4xTypeName() string {
 	return "SearchResponse"
 }
 

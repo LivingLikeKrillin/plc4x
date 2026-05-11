@@ -212,7 +212,7 @@ func CastEipConnectionResponse(structType any) EipConnectionResponse {
 	return nil
 }
 
-func (m *_EipConnectionResponse) GetTypeName() string {
+func (m *_EipConnectionResponse) GetPlx4xTypeName() string {
 	return "EipConnectionResponse"
 }
 

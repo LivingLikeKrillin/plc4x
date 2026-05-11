@@ -419,7 +419,7 @@ func CastEipPacket(structType any) EipPacket {
 	return nil
 }
 
-func (m *_EipPacket) GetTypeName() string {
+func (m *_EipPacket) GetPlx4xTypeName() string {
 	return "EipPacket"
 }
 

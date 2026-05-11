@@ -313,7 +313,7 @@ func CastCBusCommand(structType any) CBusCommand {
 	return nil
 }
 
-func (m *_CBusCommand) GetTypeName() string {
+func (m *_CBusCommand) GetPlx4xTypeName() string {
 	return "CBusCommand"
 }
 

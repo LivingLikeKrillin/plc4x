@@ -162,7 +162,7 @@ func CastRequestContext(structType any) RequestContext {
 	return nil
 }
 
-func (m *_RequestContext) GetTypeName() string {
+func (m *_RequestContext) GetPlx4xTypeName() string {
 	return "RequestContext"
 }
 

@@ -244,7 +244,7 @@ func CastAdsDeviceNotificationRequest(structType any) AdsDeviceNotificationReque
 	return nil
 }
 
-func (m *_AdsDeviceNotificationRequest) GetTypeName() string {
+func (m *_AdsDeviceNotificationRequest) GetPlx4xTypeName() string {
 	return "AdsDeviceNotificationRequest"
 }
 

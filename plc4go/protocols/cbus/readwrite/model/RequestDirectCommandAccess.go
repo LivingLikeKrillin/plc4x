@@ -280,7 +280,7 @@ func CastRequestDirectCommandAccess(structType any) RequestDirectCommandAccess {
 	return nil
 }
 
-func (m *_RequestDirectCommandAccess) GetTypeName() string {
+func (m *_RequestDirectCommandAccess) GetPlx4xTypeName() string {
 	return "RequestDirectCommandAccess"
 }
 

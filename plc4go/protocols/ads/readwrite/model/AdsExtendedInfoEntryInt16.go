@@ -207,7 +207,7 @@ func CastAdsExtendedInfoEntryInt16(structType any) AdsExtendedInfoEntryInt16 {
 	return nil
 }
 
-func (m *_AdsExtendedInfoEntryInt16) GetTypeName() string {
+func (m *_AdsExtendedInfoEntryInt16) GetPlx4xTypeName() string {
 	return "AdsExtendedInfoEntryInt16"
 }
 

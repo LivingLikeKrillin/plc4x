@@ -199,7 +199,7 @@ func CastTPKTPacket(structType any) TPKTPacket {
 	return nil
 }
 
-func (m *_TPKTPacket) GetTypeName() string {
+func (m *_TPKTPacket) GetPlx4xTypeName() string {
 	return "TPKTPacket"
 }
 

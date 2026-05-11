@@ -387,7 +387,7 @@ func CastApplicationDescription(structType any) ApplicationDescription {
 	return nil
 }
 
-func (m *_ApplicationDescription) GetTypeName() string {
+func (m *_ApplicationDescription) GetPlx4xTypeName() string {
 	return "ApplicationDescription"
 }
 

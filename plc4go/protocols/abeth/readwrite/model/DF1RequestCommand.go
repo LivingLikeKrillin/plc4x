@@ -205,7 +205,7 @@ func CastDF1RequestCommand(structType any) DF1RequestCommand {
 	return nil
 }
 
-func (m *_DF1RequestCommand) GetTypeName() string {
+func (m *_DF1RequestCommand) GetPlx4xTypeName() string {
 	return "DF1RequestCommand"
 }
 

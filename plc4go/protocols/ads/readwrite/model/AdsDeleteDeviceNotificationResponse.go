@@ -212,7 +212,7 @@ func CastAdsDeleteDeviceNotificationResponse(structType any) AdsDeleteDeviceNoti
 	return nil
 }
 
-func (m *_AdsDeleteDeviceNotificationResponse) GetTypeName() string {
+func (m *_AdsDeleteDeviceNotificationResponse) GetPlx4xTypeName() string {
 	return "AdsDeleteDeviceNotificationResponse"
 }
 

@@ -273,7 +273,7 @@ func CastQueryDataSet(structType any) QueryDataSet {
 	return nil
 }
 
-func (m *_QueryDataSet) GetTypeName() string {
+func (m *_QueryDataSet) GetPlx4xTypeName() string {
 	return "QueryDataSet"
 }
 

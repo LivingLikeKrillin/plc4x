@@ -176,7 +176,7 @@ func CastCustomManufacturer(structType any) CustomManufacturer {
 	return nil
 }
 
-func (m *_CustomManufacturer) GetTypeName() string {
+func (m *_CustomManufacturer) GetPlx4xTypeName() string {
 	return "CustomManufacturer"
 }
 

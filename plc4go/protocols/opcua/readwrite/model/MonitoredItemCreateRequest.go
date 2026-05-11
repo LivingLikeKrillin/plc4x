@@ -273,7 +273,7 @@ func CastMonitoredItemCreateRequest(structType any) MonitoredItemCreateRequest {
 	return nil
 }
 
-func (m *_MonitoredItemCreateRequest) GetTypeName() string {
+func (m *_MonitoredItemCreateRequest) GetPlx4xTypeName() string {
 	return "MonitoredItemCreateRequest"
 }
 

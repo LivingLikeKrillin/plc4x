@@ -273,7 +273,7 @@ func CastPublishedEventsDataType(structType any) PublishedEventsDataType {
 	return nil
 }
 
-func (m *_PublishedEventsDataType) GetTypeName() string {
+func (m *_PublishedEventsDataType) GetPlx4xTypeName() string {
 	return "PublishedEventsDataType"
 }
 

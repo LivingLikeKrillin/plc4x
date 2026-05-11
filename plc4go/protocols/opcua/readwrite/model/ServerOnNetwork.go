@@ -288,7 +288,7 @@ func CastServerOnNetwork(structType any) ServerOnNetwork {
 	return nil
 }
 
-func (m *_ServerOnNetwork) GetTypeName() string {
+func (m *_ServerOnNetwork) GetPlx4xTypeName() string {
 	return "ServerOnNetwork"
 }
 

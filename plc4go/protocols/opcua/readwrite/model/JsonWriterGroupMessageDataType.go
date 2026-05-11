@@ -207,7 +207,7 @@ func CastJsonWriterGroupMessageDataType(structType any) JsonWriterGroupMessageDa
 	return nil
 }
 
-func (m *_JsonWriterGroupMessageDataType) GetTypeName() string {
+func (m *_JsonWriterGroupMessageDataType) GetPlx4xTypeName() string {
 	return "JsonWriterGroupMessageDataType"
 }
 

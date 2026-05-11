@@ -335,7 +335,7 @@ func CastMethodAttributes(structType any) MethodAttributes {
 	return nil
 }
 
-func (m *_MethodAttributes) GetTypeName() string {
+func (m *_MethodAttributes) GetPlx4xTypeName() string {
 	return "MethodAttributes"
 }
 

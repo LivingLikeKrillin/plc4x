@@ -225,7 +225,7 @@ func CastSALDataMediaTransport(structType any) SALDataMediaTransport {
 	return nil
 }
 
-func (m *_SALDataMediaTransport) GetTypeName() string {
+func (m *_SALDataMediaTransport) GetPlx4xTypeName() string {
 	return "SALDataMediaTransport"
 }
 

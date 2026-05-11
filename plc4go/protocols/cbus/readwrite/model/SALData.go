@@ -506,7 +506,7 @@ func CastSALData(structType any) SALData {
 	return nil
 }
 
-func (m *_SALData) GetTypeName() string {
+func (m *_SALData) GetPlx4xTypeName() string {
 	return "SALData"
 }
 

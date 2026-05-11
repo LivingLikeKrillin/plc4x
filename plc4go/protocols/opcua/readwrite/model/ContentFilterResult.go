@@ -222,7 +222,7 @@ func CastContentFilterResult(structType any) ContentFilterResult {
 	return nil
 }
 
-func (m *_ContentFilterResult) GetTypeName() string {
+func (m *_ContentFilterResult) GetPlx4xTypeName() string {
 	return "ContentFilterResult"
 }
 

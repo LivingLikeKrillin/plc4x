@@ -270,7 +270,7 @@ func CastModifySubscriptionResponse(structType any) ModifySubscriptionResponse {
 	return nil
 }
 
-func (m *_ModifySubscriptionResponse) GetTypeName() string {
+func (m *_ModifySubscriptionResponse) GetPlx4xTypeName() string {
 	return "ModifySubscriptionResponse"
 }
 

@@ -285,7 +285,7 @@ func CastReadEventDetailsSorted(structType any) ReadEventDetailsSorted {
 	return nil
 }
 
-func (m *_ReadEventDetailsSorted) GetTypeName() string {
+func (m *_ReadEventDetailsSorted) GetPlx4xTypeName() string {
 	return "ReadEventDetailsSorted"
 }
 

@@ -303,7 +303,7 @@ func CastApplicationIdentityDataType(structType any) ApplicationIdentityDataType
 	return nil
 }
 
-func (m *_ApplicationIdentityDataType) GetTypeName() string {
+func (m *_ApplicationIdentityDataType) GetPlx4xTypeName() string {
 	return "ApplicationIdentityDataType"
 }
 

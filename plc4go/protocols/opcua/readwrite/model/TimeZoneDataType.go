@@ -224,7 +224,7 @@ func CastTimeZoneDataType(structType any) TimeZoneDataType {
 	return nil
 }
 
-func (m *_TimeZoneDataType) GetTypeName() string {
+func (m *_TimeZoneDataType) GetPlx4xTypeName() string {
 	return "TimeZoneDataType"
 }
 

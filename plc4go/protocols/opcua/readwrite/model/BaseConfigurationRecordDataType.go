@@ -240,7 +240,7 @@ func CastBaseConfigurationRecordDataType(structType any) BaseConfigurationRecord
 	return nil
 }
 
-func (m *_BaseConfigurationRecordDataType) GetTypeName() string {
+func (m *_BaseConfigurationRecordDataType) GetPlx4xTypeName() string {
 	return "BaseConfigurationRecordDataType"
 }
 

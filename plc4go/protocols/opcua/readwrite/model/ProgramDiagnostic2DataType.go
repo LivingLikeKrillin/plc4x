@@ -462,7 +462,7 @@ func CastProgramDiagnostic2DataType(structType any) ProgramDiagnostic2DataType {
 	return nil
 }
 
-func (m *_ProgramDiagnostic2DataType) GetTypeName() string {
+func (m *_ProgramDiagnostic2DataType) GetPlx4xTypeName() string {
 	return "ProgramDiagnostic2DataType"
 }
 

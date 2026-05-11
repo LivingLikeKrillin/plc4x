@@ -226,7 +226,7 @@ func CastSALDataHeating(structType any) SALDataHeating {
 	return nil
 }
 
-func (m *_SALDataHeating) GetTypeName() string {
+func (m *_SALDataHeating) GetPlx4xTypeName() string {
 	return "SALDataHeating"
 }
 

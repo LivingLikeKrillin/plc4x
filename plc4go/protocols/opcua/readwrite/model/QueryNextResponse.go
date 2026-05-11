@@ -273,7 +273,7 @@ func CastQueryNextResponse(structType any) QueryNextResponse {
 	return nil
 }
 
-func (m *_QueryNextResponse) GetTypeName() string {
+func (m *_QueryNextResponse) GetPlx4xTypeName() string {
 	return "QueryNextResponse"
 }
 

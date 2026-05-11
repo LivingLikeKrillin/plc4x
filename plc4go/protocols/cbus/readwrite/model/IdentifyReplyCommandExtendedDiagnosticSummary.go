@@ -498,7 +498,7 @@ func CastIdentifyReplyCommandExtendedDiagnosticSummary(structType any) IdentifyR
 	return nil
 }
 
-func (m *_IdentifyReplyCommandExtendedDiagnosticSummary) GetTypeName() string {
+func (m *_IdentifyReplyCommandExtendedDiagnosticSummary) GetPlx4xTypeName() string {
 	return "IdentifyReplyCommandExtendedDiagnosticSummary"
 }
 

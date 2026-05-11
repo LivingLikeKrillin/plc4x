@@ -381,7 +381,7 @@ func CastSecurityGroupDataType(structType any) SecurityGroupDataType {
 	return nil
 }
 
-func (m *_SecurityGroupDataType) GetTypeName() string {
+func (m *_SecurityGroupDataType) GetPlx4xTypeName() string {
 	return "SecurityGroupDataType"
 }
 

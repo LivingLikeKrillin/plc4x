@@ -258,7 +258,7 @@ func CastDataTypeDescription(structType any) DataTypeDescription {
 	return nil
 }
 
-func (m *_DataTypeDescription) GetTypeName() string {
+func (m *_DataTypeDescription) GetPlx4xTypeName() string {
 	return "DataTypeDescription"
 }
 

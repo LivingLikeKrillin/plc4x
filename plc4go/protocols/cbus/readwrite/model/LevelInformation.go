@@ -336,7 +336,7 @@ func CastLevelInformation(structType any) LevelInformation {
 	return nil
 }
 
-func (m *_LevelInformation) GetTypeName() string {
+func (m *_LevelInformation) GetPlx4xTypeName() string {
 	return "LevelInformation"
 }
 

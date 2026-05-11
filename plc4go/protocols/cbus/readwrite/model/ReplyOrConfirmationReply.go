@@ -254,7 +254,7 @@ func CastReplyOrConfirmationReply(structType any) ReplyOrConfirmationReply {
 	return nil
 }
 
-func (m *_ReplyOrConfirmationReply) GetTypeName() string {
+func (m *_ReplyOrConfirmationReply) GetPlx4xTypeName() string {
 	return "ReplyOrConfirmationReply"
 }
 

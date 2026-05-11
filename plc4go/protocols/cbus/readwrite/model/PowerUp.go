@@ -159,7 +159,7 @@ func CastPowerUp(structType any) PowerUp {
 	return nil
 }
 
-func (m *_PowerUp) GetTypeName() string {
+func (m *_PowerUp) GetPlx4xTypeName() string {
 	return "PowerUp"
 }
 

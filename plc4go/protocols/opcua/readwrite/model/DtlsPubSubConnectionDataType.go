@@ -306,7 +306,7 @@ func CastDtlsPubSubConnectionDataType(structType any) DtlsPubSubConnectionDataTy
 	return nil
 }
 
-func (m *_DtlsPubSubConnectionDataType) GetTypeName() string {
+func (m *_DtlsPubSubConnectionDataType) GetPlx4xTypeName() string {
 	return "DtlsPubSubConnectionDataType"
 }
 

@@ -255,7 +255,7 @@ func CastFirmataMessage(structType any) FirmataMessage {
 	return nil
 }
 
-func (m *_FirmataMessage) GetTypeName() string {
+func (m *_FirmataMessage) GetPlx4xTypeName() string {
 	return "FirmataMessage"
 }
 

@@ -288,7 +288,7 @@ func CastAggregateFilter(structType any) AggregateFilter {
 	return nil
 }
 
-func (m *_AggregateFilter) GetTypeName() string {
+func (m *_AggregateFilter) GetPlx4xTypeName() string {
 	return "AggregateFilter"
 }
 

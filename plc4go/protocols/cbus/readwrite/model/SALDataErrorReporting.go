@@ -225,7 +225,7 @@ func CastSALDataErrorReporting(structType any) SALDataErrorReporting {
 	return nil
 }
 
-func (m *_SALDataErrorReporting) GetTypeName() string {
+func (m *_SALDataErrorReporting) GetPlx4xTypeName() string {
 	return "SALDataErrorReporting"
 }
 

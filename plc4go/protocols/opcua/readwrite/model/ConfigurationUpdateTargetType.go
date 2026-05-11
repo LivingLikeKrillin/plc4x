@@ -240,7 +240,7 @@ func CastConfigurationUpdateTargetType(structType any) ConfigurationUpdateTarget
 	return nil
 }
 
-func (m *_ConfigurationUpdateTargetType) GetTypeName() string {
+func (m *_ConfigurationUpdateTargetType) GetPlx4xTypeName() string {
 	return "ConfigurationUpdateTargetType"
 }
 

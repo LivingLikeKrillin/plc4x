@@ -221,7 +221,7 @@ func CastStatusRequestLevel(structType any) StatusRequestLevel {
 	return nil
 }
 
-func (m *_StatusRequestLevel) GetTypeName() string {
+func (m *_StatusRequestLevel) GetPlx4xTypeName() string {
 	return "StatusRequestLevel"
 }
 

@@ -288,7 +288,7 @@ func CastSimpleAttributeOperand(structType any) SimpleAttributeOperand {
 	return nil
 }
 
-func (m *_SimpleAttributeOperand) GetTypeName() string {
+func (m *_SimpleAttributeOperand) GetPlx4xTypeName() string {
 	return "SimpleAttributeOperand"
 }
 

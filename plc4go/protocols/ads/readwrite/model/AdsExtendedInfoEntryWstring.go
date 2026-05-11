@@ -180,7 +180,7 @@ func CastAdsExtendedInfoEntryWstring(structType any) AdsExtendedInfoEntryWstring
 	return nil
 }
 
-func (m *_AdsExtendedInfoEntryWstring) GetTypeName() string {
+func (m *_AdsExtendedInfoEntryWstring) GetPlx4xTypeName() string {
 	return "AdsExtendedInfoEntryWstring"
 }
 

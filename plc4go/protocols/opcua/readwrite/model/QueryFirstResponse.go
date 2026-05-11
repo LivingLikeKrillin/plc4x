@@ -336,7 +336,7 @@ func CastQueryFirstResponse(structType any) QueryFirstResponse {
 	return nil
 }
 
-func (m *_QueryFirstResponse) GetTypeName() string {
+func (m *_QueryFirstResponse) GetPlx4xTypeName() string {
 	return "QueryFirstResponse"
 }
 

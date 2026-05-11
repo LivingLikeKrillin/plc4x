@@ -252,7 +252,7 @@ func CastSamplingIntervalDiagnosticsDataType(structType any) SamplingIntervalDia
 	return nil
 }
 
-func (m *_SamplingIntervalDiagnosticsDataType) GetTypeName() string {
+func (m *_SamplingIntervalDiagnosticsDataType) GetPlx4xTypeName() string {
 	return "SamplingIntervalDiagnosticsDataType"
 }
 

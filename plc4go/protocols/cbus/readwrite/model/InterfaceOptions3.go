@@ -208,7 +208,7 @@ func CastInterfaceOptions3(structType any) InterfaceOptions3 {
 	return nil
 }
 
-func (m *_InterfaceOptions3) GetTypeName() string {
+func (m *_InterfaceOptions3) GetPlx4xTypeName() string {
 	return "InterfaceOptions3"
 }
 

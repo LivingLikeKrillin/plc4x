@@ -354,7 +354,7 @@ func CastBrokerDataSetWriterTransportDataType(structType any) BrokerDataSetWrite
 	return nil
 }
 
-func (m *_BrokerDataSetWriterTransportDataType) GetTypeName() string {
+func (m *_BrokerDataSetWriterTransportDataType) GetPlx4xTypeName() string {
 	return "BrokerDataSetWriterTransportDataType"
 }
 

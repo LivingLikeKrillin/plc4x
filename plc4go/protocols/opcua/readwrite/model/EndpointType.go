@@ -306,7 +306,7 @@ func CastEndpointType(structType any) EndpointType {
 	return nil
 }
 
-func (m *_EndpointType) GetTypeName() string {
+func (m *_EndpointType) GetPlx4xTypeName() string {
 	return "EndpointType"
 }
 

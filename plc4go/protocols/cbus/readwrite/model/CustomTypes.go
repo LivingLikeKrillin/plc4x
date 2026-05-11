@@ -176,7 +176,7 @@ func CastCustomTypes(structType any) CustomTypes {
 	return nil
 }
 
-func (m *_CustomTypes) GetTypeName() string {
+func (m *_CustomTypes) GetPlx4xTypeName() string {
 	return "CustomTypes"
 }
 

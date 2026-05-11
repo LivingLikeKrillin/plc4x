@@ -226,7 +226,7 @@ func CastSALDataAudioAndVideo(structType any) SALDataAudioAndVideo {
 	return nil
 }
 
-func (m *_SALDataAudioAndVideo) GetTypeName() string {
+func (m *_SALDataAudioAndVideo) GetPlx4xTypeName() string {
 	return "SALDataAudioAndVideo"
 }
 

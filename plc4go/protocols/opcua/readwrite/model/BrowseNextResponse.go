@@ -255,7 +255,7 @@ func CastBrowseNextResponse(structType any) BrowseNextResponse {
 	return nil
 }
 
-func (m *_BrowseNextResponse) GetTypeName() string {
+func (m *_BrowseNextResponse) GetPlx4xTypeName() string {
 	return "BrowseNextResponse"
 }
 

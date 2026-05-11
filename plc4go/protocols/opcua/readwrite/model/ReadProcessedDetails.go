@@ -285,7 +285,7 @@ func CastReadProcessedDetails(structType any) ReadProcessedDetails {
 	return nil
 }
 
-func (m *_ReadProcessedDetails) GetTypeName() string {
+func (m *_ReadProcessedDetails) GetPlx4xTypeName() string {
 	return "ReadProcessedDetails"
 }
 

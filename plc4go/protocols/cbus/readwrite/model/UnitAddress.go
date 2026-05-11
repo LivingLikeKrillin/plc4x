@@ -161,7 +161,7 @@ func CastUnitAddress(structType any) UnitAddress {
 	return nil
 }
 
-func (m *_UnitAddress) GetTypeName() string {
+func (m *_UnitAddress) GetPlx4xTypeName() string {
 	return "UnitAddress"
 }
 

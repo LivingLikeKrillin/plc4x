@@ -229,7 +229,7 @@ func CastFirmataMessageAnalogIO(structType any) FirmataMessageAnalogIO {
 	return nil
 }
 
-func (m *_FirmataMessageAnalogIO) GetTypeName() string {
+func (m *_FirmataMessageAnalogIO) GetPlx4xTypeName() string {
 	return "FirmataMessageAnalogIO"
 }
 

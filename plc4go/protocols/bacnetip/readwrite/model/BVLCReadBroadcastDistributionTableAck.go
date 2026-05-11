@@ -209,7 +209,7 @@ func CastBVLCReadBroadcastDistributionTableAck(structType any) BVLCReadBroadcast
 	return nil
 }
 
-func (m *_BVLCReadBroadcastDistributionTableAck) GetTypeName() string {
+func (m *_BVLCReadBroadcastDistributionTableAck) GetPlx4xTypeName() string {
 	return "BVLCReadBroadcastDistributionTableAck"
 }
 

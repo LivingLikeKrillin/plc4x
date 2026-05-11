@@ -258,7 +258,7 @@ func CastOptionSet(structType any) OptionSet {
 	return nil
 }
 
-func (m *_OptionSet) GetTypeName() string {
+func (m *_OptionSet) GetPlx4xTypeName() string {
 	return "OptionSet"
 }
 

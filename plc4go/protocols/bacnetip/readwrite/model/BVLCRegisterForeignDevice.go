@@ -209,7 +209,7 @@ func CastBVLCRegisterForeignDevice(structType any) BVLCRegisterForeignDevice {
 	return nil
 }
 
-func (m *_BVLCRegisterForeignDevice) GetTypeName() string {
+func (m *_BVLCRegisterForeignDevice) GetPlx4xTypeName() string {
 	return "BVLCRegisterForeignDevice"
 }
 

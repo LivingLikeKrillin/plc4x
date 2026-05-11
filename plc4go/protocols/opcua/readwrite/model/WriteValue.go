@@ -306,7 +306,7 @@ func CastWriteValue(structType any) WriteValue {
 	return nil
 }
 
-func (m *_WriteValue) GetTypeName() string {
+func (m *_WriteValue) GetPlx4xTypeName() string {
 	return "WriteValue"
 }
 

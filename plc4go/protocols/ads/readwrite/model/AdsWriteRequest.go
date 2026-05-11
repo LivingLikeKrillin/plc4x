@@ -244,7 +244,7 @@ func CastAdsWriteRequest(structType any) AdsWriteRequest {
 	return nil
 }
 
-func (m *_AdsWriteRequest) GetTypeName() string {
+func (m *_AdsWriteRequest) GetPlx4xTypeName() string {
 	return "AdsWriteRequest"
 }
 

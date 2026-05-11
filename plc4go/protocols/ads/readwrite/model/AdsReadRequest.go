@@ -244,7 +244,7 @@ func CastAdsReadRequest(structType any) AdsReadRequest {
 	return nil
 }
 
-func (m *_AdsReadRequest) GetTypeName() string {
+func (m *_AdsReadRequest) GetPlx4xTypeName() string {
 	return "AdsReadRequest"
 }
 

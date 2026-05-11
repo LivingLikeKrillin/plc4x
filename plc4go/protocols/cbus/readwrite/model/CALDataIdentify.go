@@ -204,7 +204,7 @@ func CastCALDataIdentify(structType any) CALDataIdentify {
 	return nil
 }
 
-func (m *_CALDataIdentify) GetTypeName() string {
+func (m *_CALDataIdentify) GetPlx4xTypeName() string {
 	return "CALDataIdentify"
 }
 

@@ -243,7 +243,7 @@ func CastIdentifyReplyCommandNetworkVoltage(structType any) IdentifyReplyCommand
 	return nil
 }
 
-func (m *_IdentifyReplyCommandNetworkVoltage) GetTypeName() string {
+func (m *_IdentifyReplyCommandNetworkVoltage) GetPlx4xTypeName() string {
 	return "IdentifyReplyCommandNetworkVoltage"
 }
 

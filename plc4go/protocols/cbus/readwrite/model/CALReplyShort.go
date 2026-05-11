@@ -176,7 +176,7 @@ func CastCALReplyShort(structType any) CALReplyShort {
 	return nil
 }
 
-func (m *_CALReplyShort) GetTypeName() string {
+func (m *_CALReplyShort) GetPlx4xTypeName() string {
 	return "CALReplyShort"
 }
 

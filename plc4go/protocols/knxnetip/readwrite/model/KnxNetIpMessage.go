@@ -404,7 +404,7 @@ func CastKnxNetIpMessage(structType any) KnxNetIpMessage {
 	return nil
 }
 
-func (m *_KnxNetIpMessage) GetTypeName() string {
+func (m *_KnxNetIpMessage) GetPlx4xTypeName() string {
 	return "KnxNetIpMessage"
 }
 

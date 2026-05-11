@@ -224,7 +224,7 @@ func CastReadAtTimeDetails(structType any) ReadAtTimeDetails {
 	return nil
 }
 
-func (m *_ReadAtTimeDetails) GetTypeName() string {
+func (m *_ReadAtTimeDetails) GetPlx4xTypeName() string {
 	return "ReadAtTimeDetails"
 }
 

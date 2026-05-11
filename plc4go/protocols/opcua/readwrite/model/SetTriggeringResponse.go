@@ -285,7 +285,7 @@ func CastSetTriggeringResponse(structType any) SetTriggeringResponse {
 	return nil
 }
 
-func (m *_SetTriggeringResponse) GetTypeName() string {
+func (m *_SetTriggeringResponse) GetPlx4xTypeName() string {
 	return "SetTriggeringResponse"
 }
 

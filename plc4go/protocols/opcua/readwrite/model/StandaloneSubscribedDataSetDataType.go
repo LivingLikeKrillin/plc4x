@@ -306,7 +306,7 @@ func CastStandaloneSubscribedDataSetDataType(structType any) StandaloneSubscribe
 	return nil
 }
 
-func (m *_StandaloneSubscribedDataSetDataType) GetTypeName() string {
+func (m *_StandaloneSubscribedDataSetDataType) GetPlx4xTypeName() string {
 	return "StandaloneSubscribedDataSetDataType"
 }
 

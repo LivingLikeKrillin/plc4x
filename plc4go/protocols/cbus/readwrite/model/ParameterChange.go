@@ -159,7 +159,7 @@ func CastParameterChange(structType any) ParameterChange {
 	return nil
 }
 
-func (m *_ParameterChange) GetTypeName() string {
+func (m *_ParameterChange) GetPlx4xTypeName() string {
 	return "ParameterChange"
 }
 

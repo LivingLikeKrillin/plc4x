@@ -270,7 +270,7 @@ func CastReadRawModifiedDetails(structType any) ReadRawModifiedDetails {
 	return nil
 }
 
-func (m *_ReadRawModifiedDetails) GetTypeName() string {
+func (m *_ReadRawModifiedDetails) GetPlx4xTypeName() string {
 	return "ReadRawModifiedDetails"
 }
 

@@ -222,7 +222,7 @@ func CastPowerUpReply(structType any) PowerUpReply {
 	return nil
 }
 
-func (m *_PowerUpReply) GetTypeName() string {
+func (m *_PowerUpReply) GetPlx4xTypeName() string {
 	return "PowerUpReply"
 }
 

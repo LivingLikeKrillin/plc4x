@@ -255,7 +255,7 @@ func CastDeleteNodesResponse(structType any) DeleteNodesResponse {
 	return nil
 }
 
-func (m *_DeleteNodesResponse) GetTypeName() string {
+func (m *_DeleteNodesResponse) GetPlx4xTypeName() string {
 	return "DeleteNodesResponse"
 }
 

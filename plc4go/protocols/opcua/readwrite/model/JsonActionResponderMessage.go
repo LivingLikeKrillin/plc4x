@@ -339,7 +339,7 @@ func CastJsonActionResponderMessage(structType any) JsonActionResponderMessage {
 	return nil
 }
 
-func (m *_JsonActionResponderMessage) GetTypeName() string {
+func (m *_JsonActionResponderMessage) GetPlx4xTypeName() string {
 	return "JsonActionResponderMessage"
 }
 

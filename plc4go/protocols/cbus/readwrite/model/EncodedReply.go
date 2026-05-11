@@ -289,7 +289,7 @@ func CastEncodedReply(structType any) EncodedReply {
 	return nil
 }
 
-func (m *_EncodedReply) GetTypeName() string {
+func (m *_EncodedReply) GetPlx4xTypeName() string {
 	return "EncodedReply"
 }
 

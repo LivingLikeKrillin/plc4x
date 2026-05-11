@@ -227,7 +227,7 @@ func CastBVLCOriginalBroadcastNPDU(structType any) BVLCOriginalBroadcastNPDU {
 	return nil
 }
 
-func (m *_BVLCOriginalBroadcastNPDU) GetTypeName() string {
+func (m *_BVLCOriginalBroadcastNPDU) GetPlx4xTypeName() string {
 	return "BVLCOriginalBroadcastNPDU"
 }
 

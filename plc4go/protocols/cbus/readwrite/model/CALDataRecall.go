@@ -219,7 +219,7 @@ func CastCALDataRecall(structType any) CALDataRecall {
 	return nil
 }
 
-func (m *_CALDataRecall) GetTypeName() string {
+func (m *_CALDataRecall) GetPlx4xTypeName() string {
 	return "CALDataRecall"
 }
 

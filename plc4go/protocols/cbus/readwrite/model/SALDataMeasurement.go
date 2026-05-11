@@ -225,7 +225,7 @@ func CastSALDataMeasurement(structType any) SALDataMeasurement {
 	return nil
 }
 
-func (m *_SALDataMeasurement) GetTypeName() string {
+func (m *_SALDataMeasurement) GetPlx4xTypeName() string {
 	return "SALDataMeasurement"
 }
 

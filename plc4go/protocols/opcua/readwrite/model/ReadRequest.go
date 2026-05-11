@@ -270,7 +270,7 @@ func CastReadRequest(structType any) ReadRequest {
 	return nil
 }
 
-func (m *_ReadRequest) GetTypeName() string {
+func (m *_ReadRequest) GetPlx4xTypeName() string {
 	return "ReadRequest"
 }
 

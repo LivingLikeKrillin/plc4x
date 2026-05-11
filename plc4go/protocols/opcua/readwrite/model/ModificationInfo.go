@@ -255,7 +255,7 @@ func CastModificationInfo(structType any) ModificationInfo {
 	return nil
 }
 
-func (m *_ModificationInfo) GetTypeName() string {
+func (m *_ModificationInfo) GetPlx4xTypeName() string {
 	return "ModificationInfo"
 }
 

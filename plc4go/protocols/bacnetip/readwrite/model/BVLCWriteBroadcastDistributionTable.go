@@ -209,7 +209,7 @@ func CastBVLCWriteBroadcastDistributionTable(structType any) BVLCWriteBroadcastD
 	return nil
 }
 
-func (m *_BVLCWriteBroadcastDistributionTable) GetTypeName() string {
+func (m *_BVLCWriteBroadcastDistributionTable) GetPlx4xTypeName() string {
 	return "BVLCWriteBroadcastDistributionTable"
 }
 

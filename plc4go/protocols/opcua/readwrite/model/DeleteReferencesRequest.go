@@ -240,7 +240,7 @@ func CastDeleteReferencesRequest(structType any) DeleteReferencesRequest {
 	return nil
 }
 
-func (m *_DeleteReferencesRequest) GetTypeName() string {
+func (m *_DeleteReferencesRequest) GetPlx4xTypeName() string {
 	return "DeleteReferencesRequest"
 }
 

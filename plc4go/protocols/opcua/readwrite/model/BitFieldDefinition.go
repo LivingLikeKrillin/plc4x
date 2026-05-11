@@ -291,7 +291,7 @@ func CastBitFieldDefinition(structType any) BitFieldDefinition {
 	return nil
 }
 
-func (m *_BitFieldDefinition) GetTypeName() string {
+func (m *_BitFieldDefinition) GetPlx4xTypeName() string {
 	return "BitFieldDefinition"
 }
 

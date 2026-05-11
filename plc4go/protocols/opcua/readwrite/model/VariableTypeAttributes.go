@@ -416,7 +416,7 @@ func CastVariableTypeAttributes(structType any) VariableTypeAttributes {
 	return nil
 }
 
-func (m *_VariableTypeAttributes) GetTypeName() string {
+func (m *_VariableTypeAttributes) GetPlx4xTypeName() string {
 	return "VariableTypeAttributes"
 }
 

@@ -222,7 +222,7 @@ func CastConfigurationVersionDataType(structType any) ConfigurationVersionDataTy
 	return nil
 }
 
-func (m *_ConfigurationVersionDataType) GetTypeName() string {
+func (m *_ConfigurationVersionDataType) GetPlx4xTypeName() string {
 	return "ConfigurationVersionDataType"
 }
 

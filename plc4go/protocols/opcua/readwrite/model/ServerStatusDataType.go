@@ -318,7 +318,7 @@ func CastServerStatusDataType(structType any) ServerStatusDataType {
 	return nil
 }
 
-func (m *_ServerStatusDataType) GetTypeName() string {
+func (m *_ServerStatusDataType) GetPlx4xTypeName() string {
 	return "ServerStatusDataType"
 }
 

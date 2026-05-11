@@ -358,7 +358,7 @@ func CastAdsMethodInfo(structType any) AdsMethodInfo {
 	return nil
 }
 
-func (m *_AdsMethodInfo) GetTypeName() string {
+func (m *_AdsMethodInfo) GetPlx4xTypeName() string {
 	return "AdsMethodInfo"
 }
 

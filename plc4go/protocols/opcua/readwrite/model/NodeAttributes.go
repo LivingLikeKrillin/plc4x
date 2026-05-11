@@ -303,7 +303,7 @@ func CastNodeAttributes(structType any) NodeAttributes {
 	return nil
 }
 
-func (m *_NodeAttributes) GetTypeName() string {
+func (m *_NodeAttributes) GetPlx4xTypeName() string {
 	return "NodeAttributes"
 }
 

@@ -351,7 +351,7 @@ func CastDatagramWriterGroupTransport2DataType(structType any) DatagramWriterGro
 	return nil
 }
 
-func (m *_DatagramWriterGroupTransport2DataType) GetTypeName() string {
+func (m *_DatagramWriterGroupTransport2DataType) GetPlx4xTypeName() string {
 	return "DatagramWriterGroupTransport2DataType"
 }
 

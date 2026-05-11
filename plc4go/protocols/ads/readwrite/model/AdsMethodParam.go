@@ -303,7 +303,7 @@ func CastAdsMethodParam(structType any) AdsMethodParam {
 	return nil
 }
 
-func (m *_AdsMethodParam) GetTypeName() string {
+func (m *_AdsMethodParam) GetPlx4xTypeName() string {
 	return "AdsMethodParam"
 }
 

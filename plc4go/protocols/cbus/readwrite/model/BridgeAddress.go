@@ -161,7 +161,7 @@ func CastBridgeAddress(structType any) BridgeAddress {
 	return nil
 }
 
-func (m *_BridgeAddress) GetTypeName() string {
+func (m *_BridgeAddress) GetPlx4xTypeName() string {
 	return "BridgeAddress"
 }
 

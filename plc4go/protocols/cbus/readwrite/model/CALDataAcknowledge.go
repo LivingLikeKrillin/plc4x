@@ -219,7 +219,7 @@ func CastCALDataAcknowledge(structType any) CALDataAcknowledge {
 	return nil
 }
 
-func (m *_CALDataAcknowledge) GetTypeName() string {
+func (m *_CALDataAcknowledge) GetPlx4xTypeName() string {
 	return "CALDataAcknowledge"
 }
 

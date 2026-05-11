@@ -372,7 +372,7 @@ func CastServerDiagnosticsSummaryDataType(structType any) ServerDiagnosticsSumma
 	return nil
 }
 
-func (m *_ServerDiagnosticsSummaryDataType) GetTypeName() string {
+func (m *_ServerDiagnosticsSummaryDataType) GetPlx4xTypeName() string {
 	return "ServerDiagnosticsSummaryDataType"
 }
 

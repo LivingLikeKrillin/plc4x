@@ -222,7 +222,7 @@ func CastParameterChangeReply(structType any) ParameterChangeReply {
 	return nil
 }
 
-func (m *_ParameterChangeReply) GetTypeName() string {
+func (m *_ParameterChangeReply) GetPlx4xTypeName() string {
 	return "ParameterChangeReply"
 }
 

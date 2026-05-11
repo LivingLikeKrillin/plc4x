@@ -255,7 +255,7 @@ func CastSetPublishingModeResponse(structType any) SetPublishingModeResponse {
 	return nil
 }
 
-func (m *_SetPublishingModeResponse) GetTypeName() string {
+func (m *_SetPublishingModeResponse) GetPlx4xTypeName() string {
 	return "SetPublishingModeResponse"
 }
 

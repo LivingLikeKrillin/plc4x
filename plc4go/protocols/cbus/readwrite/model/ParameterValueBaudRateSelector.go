@@ -223,7 +223,7 @@ func CastParameterValueBaudRateSelector(structType any) ParameterValueBaudRateSe
 	return nil
 }
 
-func (m *_ParameterValueBaudRateSelector) GetTypeName() string {
+func (m *_ParameterValueBaudRateSelector) GetPlx4xTypeName() string {
 	return "ParameterValueBaudRateSelector"
 }
 

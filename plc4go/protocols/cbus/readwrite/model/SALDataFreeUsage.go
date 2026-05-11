@@ -180,7 +180,7 @@ func CastSALDataFreeUsage(structType any) SALDataFreeUsage {
 	return nil
 }
 
-func (m *_SALDataFreeUsage) GetTypeName() string {
+func (m *_SALDataFreeUsage) GetPlx4xTypeName() string {
 	return "SALDataFreeUsage"
 }
 

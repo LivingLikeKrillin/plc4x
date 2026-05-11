@@ -207,7 +207,7 @@ func CastIdentifyReplyCommandMinimumLevels(structType any) IdentifyReplyCommandM
 	return nil
 }
 
-func (m *_IdentifyReplyCommandMinimumLevels) GetTypeName() string {
+func (m *_IdentifyReplyCommandMinimumLevels) GetPlx4xTypeName() string {
 	return "IdentifyReplyCommandMinimumLevels"
 }
 

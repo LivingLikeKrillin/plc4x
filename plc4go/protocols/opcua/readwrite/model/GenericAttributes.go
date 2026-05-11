@@ -318,7 +318,7 @@ func CastGenericAttributes(structType any) GenericAttributes {
 	return nil
 }
 
-func (m *_GenericAttributes) GetTypeName() string {
+func (m *_GenericAttributes) GetPlx4xTypeName() string {
 	return "GenericAttributes"
 }
 

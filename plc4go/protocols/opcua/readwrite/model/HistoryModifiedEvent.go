@@ -222,7 +222,7 @@ func CastHistoryModifiedEvent(structType any) HistoryModifiedEvent {
 	return nil
 }
 
-func (m *_HistoryModifiedEvent) GetTypeName() string {
+func (m *_HistoryModifiedEvent) GetPlx4xTypeName() string {
 	return "HistoryModifiedEvent"
 }
 

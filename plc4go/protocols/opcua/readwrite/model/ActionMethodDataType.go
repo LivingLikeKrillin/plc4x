@@ -258,7 +258,7 @@ func CastActionMethodDataType(structType any) ActionMethodDataType {
 	return nil
 }
 
-func (m *_ActionMethodDataType) GetTypeName() string {
+func (m *_ActionMethodDataType) GetPlx4xTypeName() string {
 	return "ActionMethodDataType"
 }
 

@@ -258,7 +258,7 @@ func CastStatusChangeNotification(structType any) StatusChangeNotification {
 	return nil
 }
 
-func (m *_StatusChangeNotification) GetTypeName() string {
+func (m *_StatusChangeNotification) GetPlx4xTypeName() string {
 	return "StatusChangeNotification"
 }
 

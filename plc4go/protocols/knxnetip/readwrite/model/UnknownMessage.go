@@ -209,7 +209,7 @@ func CastUnknownMessage(structType any) UnknownMessage {
 	return nil
 }
 
-func (m *_UnknownMessage) GetTypeName() string {
+func (m *_UnknownMessage) GetPlx4xTypeName() string {
 	return "UnknownMessage"
 }
 

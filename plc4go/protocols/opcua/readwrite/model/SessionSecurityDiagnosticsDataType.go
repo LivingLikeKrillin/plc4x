@@ -453,7 +453,7 @@ func CastSessionSecurityDiagnosticsDataType(structType any) SessionSecurityDiagn
 	return nil
 }
 
-func (m *_SessionSecurityDiagnosticsDataType) GetTypeName() string {
+func (m *_SessionSecurityDiagnosticsDataType) GetPlx4xTypeName() string {
 	return "SessionSecurityDiagnosticsDataType"
 }
 

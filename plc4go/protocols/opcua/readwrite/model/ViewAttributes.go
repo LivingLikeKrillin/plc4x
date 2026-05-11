@@ -335,7 +335,7 @@ func CastViewAttributes(structType any) ViewAttributes {
 	return nil
 }
 
-func (m *_ViewAttributes) GetTypeName() string {
+func (m *_ViewAttributes) GetPlx4xTypeName() string {
 	return "ViewAttributes"
 }
 

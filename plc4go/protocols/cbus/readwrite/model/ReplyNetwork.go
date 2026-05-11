@@ -211,7 +211,7 @@ func CastReplyNetwork(structType any) ReplyNetwork {
 	return nil
 }
 
-func (m *_ReplyNetwork) GetTypeName() string {
+func (m *_ReplyNetwork) GetPlx4xTypeName() string {
 	return "ReplyNetwork"
 }
 

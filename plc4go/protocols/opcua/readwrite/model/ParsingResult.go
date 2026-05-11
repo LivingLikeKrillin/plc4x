@@ -255,7 +255,7 @@ func CastParsingResult(structType any) ParsingResult {
 	return nil
 }
 
-func (m *_ParsingResult) GetTypeName() string {
+func (m *_ParsingResult) GetPlx4xTypeName() string {
 	return "ParsingResult"
 }
 

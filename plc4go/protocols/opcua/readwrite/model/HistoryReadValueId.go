@@ -324,7 +324,7 @@ func CastHistoryReadValueId(structType any) HistoryReadValueId {
 	return nil
 }
 
-func (m *_HistoryReadValueId) GetTypeName() string {
+func (m *_HistoryReadValueId) GetPlx4xTypeName() string {
 	return "HistoryReadValueId"
 }
 

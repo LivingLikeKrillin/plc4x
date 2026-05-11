@@ -222,7 +222,7 @@ func CastSubscriptionAcknowledgement(structType any) SubscriptionAcknowledgement
 	return nil
 }
 
-func (m *_SubscriptionAcknowledgement) GetTypeName() string {
+func (m *_SubscriptionAcknowledgement) GetPlx4xTypeName() string {
 	return "SubscriptionAcknowledgement"
 }
 

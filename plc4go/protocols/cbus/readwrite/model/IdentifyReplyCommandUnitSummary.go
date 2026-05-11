@@ -259,7 +259,7 @@ func CastIdentifyReplyCommandUnitSummary(structType any) IdentifyReplyCommandUni
 	return nil
 }
 
-func (m *_IdentifyReplyCommandUnitSummary) GetTypeName() string {
+func (m *_IdentifyReplyCommandUnitSummary) GetPlx4xTypeName() string {
 	return "IdentifyReplyCommandUnitSummary"
 }
 

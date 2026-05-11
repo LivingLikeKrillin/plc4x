@@ -320,7 +320,7 @@ func CastBrowseDescription(structType any) BrowseDescription {
 	return nil
 }
 
-func (m *_BrowseDescription) GetTypeName() string {
+func (m *_BrowseDescription) GetPlx4xTypeName() string {
 	return "BrowseDescription"
 }
 

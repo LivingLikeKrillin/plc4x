@@ -241,7 +241,7 @@ func CastParameterValueApplicationAddress1(structType any) ParameterValueApplica
 	return nil
 }
 
-func (m *_ParameterValueApplicationAddress1) GetTypeName() string {
+func (m *_ParameterValueApplicationAddress1) GetPlx4xTypeName() string {
 	return "ParameterValueApplicationAddress1"
 }
 

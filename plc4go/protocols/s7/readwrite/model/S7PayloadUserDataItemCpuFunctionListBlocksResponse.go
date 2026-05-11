@@ -215,7 +215,7 @@ func CastS7PayloadUserDataItemCpuFunctionListBlocksResponse(structType any) S7Pa
 	return nil
 }
 
-func (m *_S7PayloadUserDataItemCpuFunctionListBlocksResponse) GetTypeName() string {
+func (m *_S7PayloadUserDataItemCpuFunctionListBlocksResponse) GetPlx4xTypeName() string {
 	return "S7PayloadUserDataItemCpuFunctionListBlocksResponse"
 }
 

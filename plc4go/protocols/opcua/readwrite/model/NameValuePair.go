@@ -258,7 +258,7 @@ func CastNameValuePair(structType any) NameValuePair {
 	return nil
 }
 
-func (m *_NameValuePair) GetTypeName() string {
+func (m *_NameValuePair) GetPlx4xTypeName() string {
 	return "NameValuePair"
 }
 

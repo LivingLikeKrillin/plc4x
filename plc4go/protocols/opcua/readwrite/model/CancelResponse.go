@@ -240,7 +240,7 @@ func CastCancelResponse(structType any) CancelResponse {
 	return nil
 }
 
-func (m *_CancelResponse) GetTypeName() string {
+func (m *_CancelResponse) GetPlx4xTypeName() string {
 	return "CancelResponse"
 }
 

@@ -159,7 +159,7 @@ func CastResponseTermination(structType any) ResponseTermination {
 	return nil
 }
 
-func (m *_ResponseTermination) GetTypeName() string {
+func (m *_ResponseTermination) GetPlx4xTypeName() string {
 	return "ResponseTermination"
 }
 

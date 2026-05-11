@@ -215,7 +215,7 @@ func CastEipListIdentityResponse(structType any) EipListIdentityResponse {
 	return nil
 }
 
-func (m *_EipListIdentityResponse) GetTypeName() string {
+func (m *_EipListIdentityResponse) GetPlx4xTypeName() string {
 	return "EipListIdentityResponse"
 }
 

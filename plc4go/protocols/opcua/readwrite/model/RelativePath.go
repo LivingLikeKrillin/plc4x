@@ -207,7 +207,7 @@ func CastRelativePath(structType any) RelativePath {
 	return nil
 }
 
-func (m *_RelativePath) GetTypeName() string {
+func (m *_RelativePath) GetPlx4xTypeName() string {
 	return "RelativePath"
 }
 

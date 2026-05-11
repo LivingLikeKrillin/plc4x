@@ -240,7 +240,7 @@ func CastMdnsDiscoveryConfiguration(structType any) MdnsDiscoveryConfiguration {
 	return nil
 }
 
-func (m *_MdnsDiscoveryConfiguration) GetTypeName() string {
+func (m *_MdnsDiscoveryConfiguration) GetPlx4xTypeName() string {
 	return "MdnsDiscoveryConfiguration"
 }
 

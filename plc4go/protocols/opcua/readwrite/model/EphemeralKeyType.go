@@ -258,7 +258,7 @@ func CastEphemeralKeyType(structType any) EphemeralKeyType {
 	return nil
 }
 
-func (m *_EphemeralKeyType) GetTypeName() string {
+func (m *_EphemeralKeyType) GetPlx4xTypeName() string {
 	return "EphemeralKeyType"
 }
 

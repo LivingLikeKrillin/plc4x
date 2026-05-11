@@ -207,7 +207,7 @@ func CastHistoryEvent(structType any) HistoryEvent {
 	return nil
 }
 
-func (m *_HistoryEvent) GetTypeName() string {
+func (m *_HistoryEvent) GetPlx4xTypeName() string {
 	return "HistoryEvent"
 }
 

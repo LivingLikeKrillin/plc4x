@@ -225,7 +225,7 @@ func CastParameterValueInterfaceOptions1PowerUpSettings(structType any) Paramete
 	return nil
 }
 
-func (m *_ParameterValueInterfaceOptions1PowerUpSettings) GetTypeName() string {
+func (m *_ParameterValueInterfaceOptions1PowerUpSettings) GetPlx4xTypeName() string {
 	return "ParameterValueInterfaceOptions1PowerUpSettings"
 }
 

@@ -222,7 +222,7 @@ func CastBaseConfigurationDataType(structType any) BaseConfigurationDataType {
 	return nil
 }
 
-func (m *_BaseConfigurationDataType) GetTypeName() string {
+func (m *_BaseConfigurationDataType) GetPlx4xTypeName() string {
 	return "BaseConfigurationDataType"
 }
 

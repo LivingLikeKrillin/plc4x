@@ -288,7 +288,7 @@ func CastStructureDefinition(structType any) StructureDefinition {
 	return nil
 }
 
-func (m *_StructureDefinition) GetTypeName() string {
+func (m *_StructureDefinition) GetPlx4xTypeName() string {
 	return "StructureDefinition"
 }
 

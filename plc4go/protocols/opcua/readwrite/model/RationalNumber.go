@@ -222,7 +222,7 @@ func CastRationalNumber(structType any) RationalNumber {
 	return nil
 }
 
-func (m *_RationalNumber) GetTypeName() string {
+func (m *_RationalNumber) GetPlx4xTypeName() string {
 	return "RationalNumber"
 }
 

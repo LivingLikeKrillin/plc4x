@@ -258,7 +258,7 @@ func CastSignatureData(structType any) SignatureData {
 	return nil
 }
 
-func (m *_SignatureData) GetTypeName() string {
+func (m *_SignatureData) GetPlx4xTypeName() string {
 	return "SignatureData"
 }
 

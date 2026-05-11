@@ -366,7 +366,7 @@ func CastPublishedVariableDataType(structType any) PublishedVariableDataType {
 	return nil
 }
 
-func (m *_PublishedVariableDataType) GetTypeName() string {
+func (m *_PublishedVariableDataType) GetPlx4xTypeName() string {
 	return "PublishedVariableDataType"
 }
 

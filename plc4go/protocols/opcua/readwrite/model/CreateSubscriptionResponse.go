@@ -285,7 +285,7 @@ func CastCreateSubscriptionResponse(structType any) CreateSubscriptionResponse {
 	return nil
 }
 
-func (m *_CreateSubscriptionResponse) GetTypeName() string {
+func (m *_CreateSubscriptionResponse) GetPlx4xTypeName() string {
 	return "CreateSubscriptionResponse"
 }
 

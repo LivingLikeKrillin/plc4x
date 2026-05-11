@@ -248,7 +248,7 @@ func CastRequestReset(structType any) RequestReset {
 	return nil
 }
 
-func (m *_RequestReset) GetTypeName() string {
+func (m *_RequestReset) GetPlx4xTypeName() string {
 	return "RequestReset"
 }
 

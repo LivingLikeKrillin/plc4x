@@ -240,7 +240,7 @@ func CastEventFilter(structType any) EventFilter {
 	return nil
 }
 
-func (m *_EventFilter) GetTypeName() string {
+func (m *_EventFilter) GetPlx4xTypeName() string {
 	return "EventFilter"
 }
 

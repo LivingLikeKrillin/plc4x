@@ -240,7 +240,7 @@ func CastBrowsePathResult(structType any) BrowsePathResult {
 	return nil
 }
 
-func (m *_BrowsePathResult) GetTypeName() string {
+func (m *_BrowsePathResult) GetPlx4xTypeName() string {
 	return "BrowsePathResult"
 }
 

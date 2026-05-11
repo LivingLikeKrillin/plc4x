@@ -207,7 +207,7 @@ func CastJsonDataSetWriterMessageDataType(structType any) JsonDataSetWriterMessa
 	return nil
 }
 
-func (m *_JsonDataSetWriterMessageDataType) GetTypeName() string {
+func (m *_JsonDataSetWriterMessageDataType) GetPlx4xTypeName() string {
 	return "JsonDataSetWriterMessageDataType"
 }
 

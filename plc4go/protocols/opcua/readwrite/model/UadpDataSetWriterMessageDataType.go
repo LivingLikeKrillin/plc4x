@@ -252,7 +252,7 @@ func CastUadpDataSetWriterMessageDataType(structType any) UadpDataSetWriterMessa
 	return nil
 }
 
-func (m *_UadpDataSetWriterMessageDataType) GetTypeName() string {
+func (m *_UadpDataSetWriterMessageDataType) GetPlx4xTypeName() string {
 	return "UadpDataSetWriterMessageDataType"
 }
 

@@ -345,7 +345,7 @@ func CastUadpDataSetReaderMessageDataType(structType any) UadpDataSetReaderMessa
 	return nil
 }
 
-func (m *_UadpDataSetReaderMessageDataType) GetTypeName() string {
+func (m *_UadpDataSetReaderMessageDataType) GetPlx4xTypeName() string {
 	return "UadpDataSetReaderMessageDataType"
 }
 

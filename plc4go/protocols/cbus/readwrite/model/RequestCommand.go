@@ -351,7 +351,7 @@ func CastRequestCommand(structType any) RequestCommand {
 	return nil
 }
 
-func (m *_RequestCommand) GetTypeName() string {
+func (m *_RequestCommand) GetPlx4xTypeName() string {
 	return "RequestCommand"
 }
 

@@ -258,7 +258,7 @@ func CastKeyValuePair(structType any) KeyValuePair {
 	return nil
 }
 
-func (m *_KeyValuePair) GetTypeName() string {
+func (m *_KeyValuePair) GetPlx4xTypeName() string {
 	return "KeyValuePair"
 }
 

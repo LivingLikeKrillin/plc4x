@@ -255,7 +255,7 @@ func CastFindServersOnNetworkResponse(structType any) FindServersOnNetworkRespon
 	return nil
 }
 
-func (m *_FindServersOnNetworkResponse) GetTypeName() string {
+func (m *_FindServersOnNetworkResponse) GetPlx4xTypeName() string {
 	return "FindServersOnNetworkResponse"
 }
 

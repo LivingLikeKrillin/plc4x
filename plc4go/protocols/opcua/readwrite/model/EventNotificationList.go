@@ -207,7 +207,7 @@ func CastEventNotificationList(structType any) EventNotificationList {
 	return nil
 }
 
-func (m *_EventNotificationList) GetTypeName() string {
+func (m *_EventNotificationList) GetPlx4xTypeName() string {
 	return "EventNotificationList"
 }
 

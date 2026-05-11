@@ -195,7 +195,7 @@ func CastRequestNull(structType any) RequestNull {
 	return nil
 }
 
-func (m *_RequestNull) GetTypeName() string {
+func (m *_RequestNull) GetPlx4xTypeName() string {
 	return "RequestNull"
 }
 

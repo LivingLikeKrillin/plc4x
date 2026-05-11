@@ -258,7 +258,7 @@ func CastRepublishResponse(structType any) RepublishResponse {
 	return nil
 }
 
-func (m *_RepublishResponse) GetTypeName() string {
+func (m *_RepublishResponse) GetPlx4xTypeName() string {
 	return "RepublishResponse"
 }
 

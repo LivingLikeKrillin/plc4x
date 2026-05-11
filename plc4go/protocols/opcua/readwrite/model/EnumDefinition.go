@@ -207,7 +207,7 @@ func CastEnumDefinition(structType any) EnumDefinition {
 	return nil
 }
 
-func (m *_EnumDefinition) GetTypeName() string {
+func (m *_EnumDefinition) GetPlx4xTypeName() string {
 	return "EnumDefinition"
 }
 

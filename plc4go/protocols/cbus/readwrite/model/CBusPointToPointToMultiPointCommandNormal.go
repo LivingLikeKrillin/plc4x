@@ -236,7 +236,7 @@ func CastCBusPointToPointToMultiPointCommandNormal(structType any) CBusPointToPo
 	return nil
 }
 
-func (m *_CBusPointToPointToMultiPointCommandNormal) GetTypeName() string {
+func (m *_CBusPointToPointToMultiPointCommandNormal) GetPlx4xTypeName() string {
 	return "CBusPointToPointToMultiPointCommandNormal"
 }
 

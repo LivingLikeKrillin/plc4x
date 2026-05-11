@@ -242,7 +242,7 @@ func CastCloseSessionRequest(structType any) CloseSessionRequest {
 	return nil
 }
 
-func (m *_CloseSessionRequest) GetTypeName() string {
+func (m *_CloseSessionRequest) GetPlx4xTypeName() string {
 	return "CloseSessionRequest"
 }
 

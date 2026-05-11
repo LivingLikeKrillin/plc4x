@@ -371,7 +371,7 @@ func CastMonitoredSALLongFormSmartMode(structType any) MonitoredSALLongFormSmart
 	return nil
 }
 
-func (m *_MonitoredSALLongFormSmartMode) GetTypeName() string {
+func (m *_MonitoredSALLongFormSmartMode) GetPlx4xTypeName() string {
 	return "MonitoredSALLongFormSmartMode"
 }
 

@@ -258,7 +258,7 @@ func CastNetworkAddressUrlDataType(structType any) NetworkAddressUrlDataType {
 	return nil
 }
 
-func (m *_NetworkAddressUrlDataType) GetTypeName() string {
+func (m *_NetworkAddressUrlDataType) GetPlx4xTypeName() string {
 	return "NetworkAddressUrlDataType"
 }
 

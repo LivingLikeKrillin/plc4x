@@ -335,7 +335,7 @@ func CastPubSubGroupDataType(structType any) PubSubGroupDataType {
 	return nil
 }
 
-func (m *_PubSubGroupDataType) GetTypeName() string {
+func (m *_PubSubGroupDataType) GetPlx4xTypeName() string {
 	return "PubSubGroupDataType"
 }
 

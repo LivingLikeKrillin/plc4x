@@ -368,7 +368,7 @@ func CastReferenceTypeAttributes(structType any) ReferenceTypeAttributes {
 	return nil
 }
 
-func (m *_ReferenceTypeAttributes) GetTypeName() string {
+func (m *_ReferenceTypeAttributes) GetPlx4xTypeName() string {
 	return "ReferenceTypeAttributes"
 }
 

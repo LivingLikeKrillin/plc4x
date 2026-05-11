@@ -255,7 +255,7 @@ func CastSetMonitoringModeResponse(structType any) SetMonitoringModeResponse {
 	return nil
 }
 
-func (m *_SetMonitoringModeResponse) GetTypeName() string {
+func (m *_SetMonitoringModeResponse) GetPlx4xTypeName() string {
 	return "SetMonitoringModeResponse"
 }
 

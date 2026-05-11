@@ -273,7 +273,7 @@ func CastQueryDataDescription(structType any) QueryDataDescription {
 	return nil
 }
 
-func (m *_QueryDataDescription) GetTypeName() string {
+func (m *_QueryDataDescription) GetPlx4xTypeName() string {
 	return "QueryDataDescription"
 }
 

@@ -246,7 +246,7 @@ func CastSendUnitData(structType any) SendUnitData {
 	return nil
 }
 
-func (m *_SendUnitData) GetTypeName() string {
+func (m *_SendUnitData) GetPlx4xTypeName() string {
 	return "SendUnitData"
 }
 

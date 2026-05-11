@@ -207,7 +207,7 @@ func CastEndpointUrlListDataType(structType any) EndpointUrlListDataType {
 	return nil
 }
 
-func (m *_EndpointUrlListDataType) GetTypeName() string {
+func (m *_EndpointUrlListDataType) GetPlx4xTypeName() string {
 	return "EndpointUrlListDataType"
 }
 

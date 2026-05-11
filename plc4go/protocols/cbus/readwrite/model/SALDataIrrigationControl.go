@@ -226,7 +226,7 @@ func CastSALDataIrrigationControl(structType any) SALDataIrrigationControl {
 	return nil
 }
 
-func (m *_SALDataIrrigationControl) GetTypeName() string {
+func (m *_SALDataIrrigationControl) GetPlx4xTypeName() string {
 	return "SALDataIrrigationControl"
 }
 

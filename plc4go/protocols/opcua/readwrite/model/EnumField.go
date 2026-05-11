@@ -306,7 +306,7 @@ func CastEnumField(structType any) EnumField {
 	return nil
 }
 
-func (m *_EnumField) GetTypeName() string {
+func (m *_EnumField) GetPlx4xTypeName() string {
 	return "EnumField"
 }
 

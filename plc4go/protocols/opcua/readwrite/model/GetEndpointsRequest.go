@@ -288,7 +288,7 @@ func CastGetEndpointsRequest(structType any) GetEndpointsRequest {
 	return nil
 }
 
-func (m *_GetEndpointsRequest) GetTypeName() string {
+func (m *_GetEndpointsRequest) GetPlx4xTypeName() string {
 	return "GetEndpointsRequest"
 }
 

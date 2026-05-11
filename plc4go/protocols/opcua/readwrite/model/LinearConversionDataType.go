@@ -252,7 +252,7 @@ func CastLinearConversionDataType(structType any) LinearConversionDataType {
 	return nil
 }
 
-func (m *_LinearConversionDataType) GetTypeName() string {
+func (m *_LinearConversionDataType) GetPlx4xTypeName() string {
 	return "LinearConversionDataType"
 }
 

@@ -241,7 +241,7 @@ func CastMonitoredSAL(structType any) MonitoredSAL {
 	return nil
 }
 
-func (m *_MonitoredSAL) GetTypeName() string {
+func (m *_MonitoredSAL) GetPlx4xTypeName() string {
 	return "MonitoredSAL"
 }
 

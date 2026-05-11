@@ -180,7 +180,7 @@ func CastLevelInformationAbsent(structType any) LevelInformationAbsent {
 	return nil
 }
 
-func (m *_LevelInformationAbsent) GetTypeName() string {
+func (m *_LevelInformationAbsent) GetPlx4xTypeName() string {
 	return "LevelInformationAbsent"
 }
 

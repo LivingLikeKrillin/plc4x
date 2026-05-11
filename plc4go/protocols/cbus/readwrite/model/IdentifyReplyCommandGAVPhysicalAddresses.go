@@ -207,7 +207,7 @@ func CastIdentifyReplyCommandGAVPhysicalAddresses(structType any) IdentifyReplyC
 	return nil
 }
 
-func (m *_IdentifyReplyCommandGAVPhysicalAddresses) GetTypeName() string {
+func (m *_IdentifyReplyCommandGAVPhysicalAddresses) GetPlx4xTypeName() string {
 	return "IdentifyReplyCommandGAVPhysicalAddresses"
 }
 

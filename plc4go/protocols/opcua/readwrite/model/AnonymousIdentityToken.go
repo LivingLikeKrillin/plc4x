@@ -225,7 +225,7 @@ func CastAnonymousIdentityToken(structType any) AnonymousIdentityToken {
 	return nil
 }
 
-func (m *_AnonymousIdentityToken) GetTypeName() string {
+func (m *_AnonymousIdentityToken) GetPlx4xTypeName() string {
 	return "AnonymousIdentityToken"
 }
 

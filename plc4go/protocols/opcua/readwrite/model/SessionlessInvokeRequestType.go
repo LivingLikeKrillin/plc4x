@@ -267,7 +267,7 @@ func CastSessionlessInvokeRequestType(structType any) SessionlessInvokeRequestTy
 	return nil
 }
 
-func (m *_SessionlessInvokeRequestType) GetTypeName() string {
+func (m *_SessionlessInvokeRequestType) GetPlx4xTypeName() string {
 	return "SessionlessInvokeRequestType"
 }
 

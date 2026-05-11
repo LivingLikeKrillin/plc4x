@@ -227,7 +227,7 @@ func CastCIPEncapsulationReadResponse(structType any) CIPEncapsulationReadRespon
 	return nil
 }
 
-func (m *_CIPEncapsulationReadResponse) GetTypeName() string {
+func (m *_CIPEncapsulationReadResponse) GetPlx4xTypeName() string {
 	return "CIPEncapsulationReadResponse"
 }
 

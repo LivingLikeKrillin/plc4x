@@ -239,7 +239,7 @@ func CastConfirmation(structType any) Confirmation {
 	return nil
 }
 
-func (m *_Confirmation) GetTypeName() string {
+func (m *_Confirmation) GetPlx4xTypeName() string {
 	return "Confirmation"
 }
 

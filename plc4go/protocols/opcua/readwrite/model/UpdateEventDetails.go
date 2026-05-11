@@ -288,7 +288,7 @@ func CastUpdateEventDetails(structType any) UpdateEventDetails {
 	return nil
 }
 
-func (m *_UpdateEventDetails) GetTypeName() string {
+func (m *_UpdateEventDetails) GetPlx4xTypeName() string {
 	return "UpdateEventDetails"
 }
 

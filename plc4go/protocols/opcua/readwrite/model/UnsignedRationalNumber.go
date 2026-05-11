@@ -222,7 +222,7 @@ func CastUnsignedRationalNumber(structType any) UnsignedRationalNumber {
 	return nil
 }
 
-func (m *_UnsignedRationalNumber) GetTypeName() string {
+func (m *_UnsignedRationalNumber) GetPlx4xTypeName() string {
 	return "UnsignedRationalNumber"
 }
 

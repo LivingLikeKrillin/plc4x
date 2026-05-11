@@ -227,7 +227,7 @@ func CastDescriptionRequest(structType any) DescriptionRequest {
 	return nil
 }
 
-func (m *_DescriptionRequest) GetTypeName() string {
+func (m *_DescriptionRequest) GetPlx4xTypeName() string {
 	return "DescriptionRequest"
 }
 

@@ -323,7 +323,7 @@ func CastParameterValue(structType any) ParameterValue {
 	return nil
 }
 
-func (m *_ParameterValue) GetTypeName() string {
+func (m *_ParameterValue) GetPlx4xTypeName() string {
 	return "ParameterValue"
 }
 

@@ -265,7 +265,7 @@ func CastRequestObsolete(structType any) RequestObsolete {
 	return nil
 }
 
-func (m *_RequestObsolete) GetTypeName() string {
+func (m *_RequestObsolete) GetPlx4xTypeName() string {
 	return "RequestObsolete"
 }
 

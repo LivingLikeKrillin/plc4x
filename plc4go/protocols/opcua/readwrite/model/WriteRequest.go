@@ -240,7 +240,7 @@ func CastWriteRequest(structType any) WriteRequest {
 	return nil
 }
 
-func (m *_WriteRequest) GetTypeName() string {
+func (m *_WriteRequest) GetPlx4xTypeName() string {
 	return "WriteRequest"
 }
 

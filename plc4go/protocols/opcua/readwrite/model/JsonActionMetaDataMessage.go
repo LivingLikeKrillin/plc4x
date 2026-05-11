@@ -450,7 +450,7 @@ func CastJsonActionMetaDataMessage(structType any) JsonActionMetaDataMessage {
 	return nil
 }
 
-func (m *_JsonActionMetaDataMessage) GetTypeName() string {
+func (m *_JsonActionMetaDataMessage) GetPlx4xTypeName() string {
 	return "JsonActionMetaDataMessage"
 }
 

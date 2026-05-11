@@ -339,7 +339,7 @@ func CastAttributeOperand(structType any) AttributeOperand {
 	return nil
 }
 
-func (m *_AttributeOperand) GetTypeName() string {
+func (m *_AttributeOperand) GetPlx4xTypeName() string {
 	return "AttributeOperand"
 }
 

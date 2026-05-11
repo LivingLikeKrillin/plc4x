@@ -260,7 +260,7 @@ func CastTunnelingRequest(structType any) TunnelingRequest {
 	return nil
 }
 
-func (m *_TunnelingRequest) GetTypeName() string {
+func (m *_TunnelingRequest) GetPlx4xTypeName() string {
 	return "TunnelingRequest"
 }
 

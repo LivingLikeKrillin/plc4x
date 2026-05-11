@@ -252,7 +252,7 @@ func CastChannelSecurityToken(structType any) ChannelSecurityToken {
 	return nil
 }
 
-func (m *_ChannelSecurityToken) GetTypeName() string {
+func (m *_ChannelSecurityToken) GetPlx4xTypeName() string {
 	return "ChannelSecurityToken"
 }
 

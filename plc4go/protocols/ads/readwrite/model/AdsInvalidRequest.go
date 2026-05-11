@@ -184,7 +184,7 @@ func CastAdsInvalidRequest(structType any) AdsInvalidRequest {
 	return nil
 }
 
-func (m *_AdsInvalidRequest) GetTypeName() string {
+func (m *_AdsInvalidRequest) GetPlx4xTypeName() string {
 	return "AdsInvalidRequest"
 }
 

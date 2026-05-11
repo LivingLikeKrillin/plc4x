@@ -222,7 +222,7 @@ func CastJsonDataSetReaderMessageDataType(structType any) JsonDataSetReaderMessa
 	return nil
 }
 
-func (m *_JsonDataSetReaderMessageDataType) GetTypeName() string {
+func (m *_JsonDataSetReaderMessageDataType) GetPlx4xTypeName() string {
 	return "JsonDataSetReaderMessageDataType"
 }
 

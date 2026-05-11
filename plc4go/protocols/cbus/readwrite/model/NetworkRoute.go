@@ -193,7 +193,7 @@ func CastNetworkRoute(structType any) NetworkRoute {
 	return nil
 }
 
-func (m *_NetworkRoute) GetTypeName() string {
+func (m *_NetworkRoute) GetPlx4xTypeName() string {
 	return "NetworkRoute"
 }
 

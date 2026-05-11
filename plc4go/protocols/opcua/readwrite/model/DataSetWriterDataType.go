@@ -401,7 +401,7 @@ func CastDataSetWriterDataType(structType any) DataSetWriterDataType {
 	return nil
 }
 
-func (m *_DataSetWriterDataType) GetTypeName() string {
+func (m *_DataSetWriterDataType) GetPlx4xTypeName() string {
 	return "DataSetWriterDataType"
 }
 

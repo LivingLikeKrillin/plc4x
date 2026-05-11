@@ -351,7 +351,7 @@ func CastRequestHeader(structType any) RequestHeader {
 	return nil
 }
 
-func (m *_RequestHeader) GetTypeName() string {
+func (m *_RequestHeader) GetPlx4xTypeName() string {
 	return "RequestHeader"
 }
 

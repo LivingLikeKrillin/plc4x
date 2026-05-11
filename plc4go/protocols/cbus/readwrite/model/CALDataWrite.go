@@ -252,7 +252,7 @@ func CastCALDataWrite(structType any) CALDataWrite {
 	return nil
 }
 
-func (m *_CALDataWrite) GetTypeName() string {
+func (m *_CALDataWrite) GetPlx4xTypeName() string {
 	return "CALDataWrite"
 }
 

@@ -163,7 +163,7 @@ func CastAmsString(structType any) AmsString {
 	return nil
 }
 
-func (m *_AmsString) GetTypeName() string {
+func (m *_AmsString) GetPlx4xTypeName() string {
 	return "AmsString"
 }
 

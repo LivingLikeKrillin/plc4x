@@ -291,7 +291,7 @@ func CastPubSubConfigurationValueDataType(structType any) PubSubConfigurationVal
 	return nil
 }
 
-func (m *_PubSubConfigurationValueDataType) GetTypeName() string {
+func (m *_PubSubConfigurationValueDataType) GetPlx4xTypeName() string {
 	return "PubSubConfigurationValueDataType"
 }
 

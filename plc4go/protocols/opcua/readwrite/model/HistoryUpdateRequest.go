@@ -240,7 +240,7 @@ func CastHistoryUpdateRequest(structType any) HistoryUpdateRequest {
 	return nil
 }
 
-func (m *_HistoryUpdateRequest) GetTypeName() string {
+func (m *_HistoryUpdateRequest) GetPlx4xTypeName() string {
 	return "HistoryUpdateRequest"
 }
 

@@ -225,7 +225,7 @@ func CastSALDataAccessControl(structType any) SALDataAccessControl {
 	return nil
 }
 
-func (m *_SALDataAccessControl) GetTypeName() string {
+func (m *_SALDataAccessControl) GetPlx4xTypeName() string {
 	return "SALDataAccessControl"
 }
 

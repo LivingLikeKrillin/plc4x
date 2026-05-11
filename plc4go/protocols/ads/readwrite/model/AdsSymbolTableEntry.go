@@ -602,7 +602,7 @@ func CastAdsSymbolTableEntry(structType any) AdsSymbolTableEntry {
 	return nil
 }
 
-func (m *_AdsSymbolTableEntry) GetTypeName() string {
+func (m *_AdsSymbolTableEntry) GetPlx4xTypeName() string {
 	return "AdsSymbolTableEntry"
 }
 

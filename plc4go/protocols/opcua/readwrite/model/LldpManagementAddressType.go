@@ -270,7 +270,7 @@ func CastLldpManagementAddressType(structType any) LldpManagementAddressType {
 	return nil
 }
 
-func (m *_LldpManagementAddressType) GetTypeName() string {
+func (m *_LldpManagementAddressType) GetPlx4xTypeName() string {
 	return "LldpManagementAddressType"
 }
 

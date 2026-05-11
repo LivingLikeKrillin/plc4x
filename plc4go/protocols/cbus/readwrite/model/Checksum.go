@@ -161,7 +161,7 @@ func CastChecksum(structType any) Checksum {
 	return nil
 }
 
-func (m *_Checksum) GetTypeName() string {
+func (m *_Checksum) GetPlx4xTypeName() string {
 	return "Checksum"
 }
 

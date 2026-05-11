@@ -207,7 +207,7 @@ func CastIdentifyReplyCommandLogicalAssignment(structType any) IdentifyReplyComm
 	return nil
 }
 
-func (m *_IdentifyReplyCommandLogicalAssignment) GetTypeName() string {
+func (m *_IdentifyReplyCommandLogicalAssignment) GetPlx4xTypeName() string {
 	return "IdentifyReplyCommandLogicalAssignment"
 }
 

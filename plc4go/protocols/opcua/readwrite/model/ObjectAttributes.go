@@ -318,7 +318,7 @@ func CastObjectAttributes(structType any) ObjectAttributes {
 	return nil
 }
 
-func (m *_ObjectAttributes) GetTypeName() string {
+func (m *_ObjectAttributes) GetPlx4xTypeName() string {
 	return "ObjectAttributes"
 }
 

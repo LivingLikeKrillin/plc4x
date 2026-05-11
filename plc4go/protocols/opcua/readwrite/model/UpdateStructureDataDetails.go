@@ -255,7 +255,7 @@ func CastUpdateStructureDataDetails(structType any) UpdateStructureDataDetails {
 	return nil
 }
 
-func (m *_UpdateStructureDataDetails) GetTypeName() string {
+func (m *_UpdateStructureDataDetails) GetPlx4xTypeName() string {
 	return "UpdateStructureDataDetails"
 }
 

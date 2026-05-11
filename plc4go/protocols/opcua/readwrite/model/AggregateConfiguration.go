@@ -270,7 +270,7 @@ func CastAggregateConfiguration(structType any) AggregateConfiguration {
 	return nil
 }
 
-func (m *_AggregateConfiguration) GetTypeName() string {
+func (m *_AggregateConfiguration) GetPlx4xTypeName() string {
 	return "AggregateConfiguration"
 }
 

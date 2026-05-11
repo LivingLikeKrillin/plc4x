@@ -258,7 +258,7 @@ func CastSemanticChangeStructureDataType(structType any) SemanticChangeStructure
 	return nil
 }
 
-func (m *_SemanticChangeStructureDataType) GetTypeName() string {
+func (m *_SemanticChangeStructureDataType) GetPlx4xTypeName() string {
 	return "SemanticChangeStructureDataType"
 }
 

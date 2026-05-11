@@ -208,7 +208,7 @@ func CastBACnetTagPayloadCharacterString(structType any) BACnetTagPayloadCharact
 	return nil
 }
 
-func (m *_BACnetTagPayloadCharacterString) GetTypeName() string {
+func (m *_BACnetTagPayloadCharacterString) GetPlx4xTypeName() string {
 	return "BACnetTagPayloadCharacterString"
 }
 

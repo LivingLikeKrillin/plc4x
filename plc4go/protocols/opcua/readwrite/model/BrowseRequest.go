@@ -288,7 +288,7 @@ func CastBrowseRequest(structType any) BrowseRequest {
 	return nil
 }
 
-func (m *_BrowseRequest) GetTypeName() string {
+func (m *_BrowseRequest) GetPlx4xTypeName() string {
 	return "BrowseRequest"
 }
 

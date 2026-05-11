@@ -234,7 +234,7 @@ func CastRequestSmartConnectShortcut(structType any) RequestSmartConnectShortcut
 	return nil
 }
 
-func (m *_RequestSmartConnectShortcut) GetTypeName() string {
+func (m *_RequestSmartConnectShortcut) GetPlx4xTypeName() string {
 	return "RequestSmartConnectShortcut"
 }
 

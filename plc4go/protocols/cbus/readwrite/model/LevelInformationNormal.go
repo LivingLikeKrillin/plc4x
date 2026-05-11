@@ -243,7 +243,7 @@ func CastLevelInformationNormal(structType any) LevelInformationNormal {
 	return nil
 }
 
-func (m *_LevelInformationNormal) GetTypeName() string {
+func (m *_LevelInformationNormal) GetPlx4xTypeName() string {
 	return "LevelInformationNormal"
 }
 

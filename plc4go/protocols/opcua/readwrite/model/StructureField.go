@@ -353,7 +353,7 @@ func CastStructureField(structType any) StructureField {
 	return nil
 }
 
-func (m *_StructureField) GetTypeName() string {
+func (m *_StructureField) GetPlx4xTypeName() string {
 	return "StructureField"
 }
 

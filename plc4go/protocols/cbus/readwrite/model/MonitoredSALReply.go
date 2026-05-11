@@ -221,7 +221,7 @@ func CastMonitoredSALReply(structType any) MonitoredSALReply {
 	return nil
 }
 
-func (m *_MonitoredSALReply) GetTypeName() string {
+func (m *_MonitoredSALReply) GetPlx4xTypeName() string {
 	return "MonitoredSALReply"
 }
 

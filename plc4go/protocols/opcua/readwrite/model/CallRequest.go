@@ -240,7 +240,7 @@ func CastCallRequest(structType any) CallRequest {
 	return nil
 }
 
-func (m *_CallRequest) GetTypeName() string {
+func (m *_CallRequest) GetPlx4xTypeName() string {
 	return "CallRequest"
 }
 

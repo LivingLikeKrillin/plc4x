@@ -240,7 +240,7 @@ func CastTranslateBrowsePathsToNodeIdsRequest(structType any) TranslateBrowsePat
 	return nil
 }
 
-func (m *_TranslateBrowsePathsToNodeIdsRequest) GetTypeName() string {
+func (m *_TranslateBrowsePathsToNodeIdsRequest) GetPlx4xTypeName() string {
 	return "TranslateBrowsePathsToNodeIdsRequest"
 }
 

@@ -282,7 +282,7 @@ func CastCBusOptions(structType any) CBusOptions {
 	return nil
 }
 
-func (m *_CBusOptions) GetTypeName() string {
+func (m *_CBusOptions) GetPlx4xTypeName() string {
 	return "CBusOptions"
 }
 

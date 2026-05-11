@@ -267,7 +267,7 @@ func CastDF1RequestProtectedTypedLogicalRead(structType any) DF1RequestProtected
 	return nil
 }
 
-func (m *_DF1RequestProtectedTypedLogicalRead) GetTypeName() string {
+func (m *_DF1RequestProtectedTypedLogicalRead) GetPlx4xTypeName() string {
 	return "DF1RequestProtectedTypedLogicalRead"
 }
 

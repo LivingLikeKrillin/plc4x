@@ -240,7 +240,7 @@ func CastAliasCategoryUpdateDataType(structType any) AliasCategoryUpdateDataType
 	return nil
 }
 
-func (m *_AliasCategoryUpdateDataType) GetTypeName() string {
+func (m *_AliasCategoryUpdateDataType) GetPlx4xTypeName() string {
 	return "AliasCategoryUpdateDataType"
 }
 

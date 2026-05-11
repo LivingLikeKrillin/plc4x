@@ -291,7 +291,7 @@ func CastTransactionErrorType(structType any) TransactionErrorType {
 	return nil
 }
 
-func (m *_TransactionErrorType) GetTypeName() string {
+func (m *_TransactionErrorType) GetPlx4xTypeName() string {
 	return "TransactionErrorType"
 }
 

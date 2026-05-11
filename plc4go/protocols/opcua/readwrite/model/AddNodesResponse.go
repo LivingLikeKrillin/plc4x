@@ -255,7 +255,7 @@ func CastAddNodesResponse(structType any) AddNodesResponse {
 	return nil
 }
 
-func (m *_AddNodesResponse) GetTypeName() string {
+func (m *_AddNodesResponse) GetPlx4xTypeName() string {
 	return "AddNodesResponse"
 }
 

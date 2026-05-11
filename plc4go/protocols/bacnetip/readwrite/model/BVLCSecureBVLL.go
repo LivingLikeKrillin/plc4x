@@ -209,7 +209,7 @@ func CastBVLCSecureBVLL(structType any) BVLCSecureBVLL {
 	return nil
 }
 
-func (m *_BVLCSecureBVLL) GetTypeName() string {
+func (m *_BVLCSecureBVLL) GetPlx4xTypeName() string {
 	return "BVLCSecureBVLL"
 }
 

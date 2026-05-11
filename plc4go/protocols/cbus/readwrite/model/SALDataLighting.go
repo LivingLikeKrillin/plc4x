@@ -225,7 +225,7 @@ func CastSALDataLighting(structType any) SALDataLighting {
 	return nil
 }
 
-func (m *_SALDataLighting) GetTypeName() string {
+func (m *_SALDataLighting) GetPlx4xTypeName() string {
 	return "SALDataLighting"
 }
 

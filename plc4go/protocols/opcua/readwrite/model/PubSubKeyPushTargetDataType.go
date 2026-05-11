@@ -399,7 +399,7 @@ func CastPubSubKeyPushTargetDataType(structType any) PubSubKeyPushTargetDataType
 	return nil
 }
 
-func (m *_PubSubKeyPushTargetDataType) GetTypeName() string {
+func (m *_PubSubKeyPushTargetDataType) GetPlx4xTypeName() string {
 	return "PubSubKeyPushTargetDataType"
 }
 

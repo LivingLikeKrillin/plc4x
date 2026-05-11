@@ -240,7 +240,7 @@ func CastRegisterNodesResponse(structType any) RegisterNodesResponse {
 	return nil
 }
 
-func (m *_RegisterNodesResponse) GetTypeName() string {
+func (m *_RegisterNodesResponse) GetPlx4xTypeName() string {
 	return "RegisterNodesResponse"
 }
 

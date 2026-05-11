@@ -356,7 +356,7 @@ func CastAddReferencesItem(structType any) AddReferencesItem {
 	return nil
 }
 
-func (m *_AddReferencesItem) GetTypeName() string {
+func (m *_AddReferencesItem) GetPlx4xTypeName() string {
 	return "AddReferencesItem"
 }
 

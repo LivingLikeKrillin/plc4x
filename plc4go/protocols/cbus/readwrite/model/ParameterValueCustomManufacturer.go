@@ -225,7 +225,7 @@ func CastParameterValueCustomManufacturer(structType any) ParameterValueCustomMa
 	return nil
 }
 
-func (m *_ParameterValueCustomManufacturer) GetTypeName() string {
+func (m *_ParameterValueCustomManufacturer) GetPlx4xTypeName() string {
 	return "ParameterValueCustomManufacturer"
 }
 

@@ -321,7 +321,7 @@ func CastAuthorizationServiceConfigurationDataType(structType any) Authorization
 	return nil
 }
 
-func (m *_AuthorizationServiceConfigurationDataType) GetTypeName() string {
+func (m *_AuthorizationServiceConfigurationDataType) GetPlx4xTypeName() string {
 	return "AuthorizationServiceConfigurationDataType"
 }
 

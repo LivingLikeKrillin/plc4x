@@ -312,7 +312,7 @@ func CastQuantityDimension(structType any) QuantityDimension {
 	return nil
 }
 
-func (m *_QuantityDimension) GetTypeName() string {
+func (m *_QuantityDimension) GetPlx4xTypeName() string {
 	return "QuantityDimension"
 }
 

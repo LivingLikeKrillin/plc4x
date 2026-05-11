@@ -308,7 +308,7 @@ func CastReferenceDescriptionDataType(structType any) ReferenceDescriptionDataTy
 	return nil
 }
 
-func (m *_ReferenceDescriptionDataType) GetTypeName() string {
+func (m *_ReferenceDescriptionDataType) GetPlx4xTypeName() string {
 	return "ReferenceDescriptionDataType"
 }
 

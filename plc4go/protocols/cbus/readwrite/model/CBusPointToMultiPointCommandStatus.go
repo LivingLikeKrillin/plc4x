@@ -224,7 +224,7 @@ func CastCBusPointToMultiPointCommandStatus(structType any) CBusPointToMultiPoin
 	return nil
 }
 
-func (m *_CBusPointToMultiPointCommandStatus) GetTypeName() string {
+func (m *_CBusPointToMultiPointCommandStatus) GetPlx4xTypeName() string {
 	return "CBusPointToMultiPointCommandStatus"
 }
 

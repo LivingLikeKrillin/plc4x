@@ -290,7 +290,7 @@ func CastNodeReference(structType any) NodeReference {
 	return nil
 }
 
-func (m *_NodeReference) GetTypeName() string {
+func (m *_NodeReference) GetPlx4xTypeName() string {
 	return "NodeReference"
 }
 

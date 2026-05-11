@@ -222,7 +222,7 @@ func CastDataChangeNotification(structType any) DataChangeNotification {
 	return nil
 }
 
-func (m *_DataChangeNotification) GetTypeName() string {
+func (m *_DataChangeNotification) GetPlx4xTypeName() string {
 	return "DataChangeNotification"
 }
 

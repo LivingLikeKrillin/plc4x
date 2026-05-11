@@ -318,7 +318,7 @@ func CastOpenSecureChannelRequest(structType any) OpenSecureChannelRequest {
 	return nil
 }
 
-func (m *_OpenSecureChannelRequest) GetTypeName() string {
+func (m *_OpenSecureChannelRequest) GetPlx4xTypeName() string {
 	return "OpenSecureChannelRequest"
 }
 

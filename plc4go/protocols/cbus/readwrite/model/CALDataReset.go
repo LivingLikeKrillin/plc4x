@@ -176,7 +176,7 @@ func CastCALDataReset(structType any) CALDataReset {
 	return nil
 }
 
-func (m *_CALDataReset) GetTypeName() string {
+func (m *_CALDataReset) GetPlx4xTypeName() string {
 	return "CALDataReset"
 }
 

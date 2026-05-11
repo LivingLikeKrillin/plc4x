@@ -225,7 +225,7 @@ func CastCBusMessageToClient(structType any) CBusMessageToClient {
 	return nil
 }
 
-func (m *_CBusMessageToClient) GetTypeName() string {
+func (m *_CBusMessageToClient) GetPlx4xTypeName() string {
 	return "CBusMessageToClient"
 }
 

@@ -240,7 +240,7 @@ func CastGetEndpointsResponse(structType any) GetEndpointsResponse {
 	return nil
 }
 
-func (m *_GetEndpointsResponse) GetTypeName() string {
+func (m *_GetEndpointsResponse) GetPlx4xTypeName() string {
 	return "GetEndpointsResponse"
 }
 

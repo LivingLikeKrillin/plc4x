@@ -320,7 +320,7 @@ func CastCertificateGroupDataType(structType any) CertificateGroupDataType {
 	return nil
 }
 
-func (m *_CertificateGroupDataType) GetTypeName() string {
+func (m *_CertificateGroupDataType) GetPlx4xTypeName() string {
 	return "CertificateGroupDataType"
 }
 

@@ -225,7 +225,7 @@ func CastSALDataClockAndTimekeeping(structType any) SALDataClockAndTimekeeping {
 	return nil
 }
 
-func (m *_SALDataClockAndTimekeeping) GetTypeName() string {
+func (m *_SALDataClockAndTimekeeping) GetPlx4xTypeName() string {
 	return "SALDataClockAndTimekeeping"
 }
 

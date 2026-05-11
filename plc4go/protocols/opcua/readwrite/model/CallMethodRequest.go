@@ -273,7 +273,7 @@ func CastCallMethodRequest(structType any) CallMethodRequest {
 	return nil
 }
 
-func (m *_CallMethodRequest) GetTypeName() string {
+func (m *_CallMethodRequest) GetPlx4xTypeName() string {
 	return "CallMethodRequest"
 }
 

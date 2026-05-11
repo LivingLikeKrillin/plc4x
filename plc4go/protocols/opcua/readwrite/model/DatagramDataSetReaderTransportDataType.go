@@ -306,7 +306,7 @@ func CastDatagramDataSetReaderTransportDataType(structType any) DatagramDataSetR
 	return nil
 }
 
-func (m *_DatagramDataSetReaderTransportDataType) GetTypeName() string {
+func (m *_DatagramDataSetReaderTransportDataType) GetPlx4xTypeName() string {
 	return "DatagramDataSetReaderTransportDataType"
 }
 

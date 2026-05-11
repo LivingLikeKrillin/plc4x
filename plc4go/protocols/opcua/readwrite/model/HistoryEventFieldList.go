@@ -207,7 +207,7 @@ func CastHistoryEventFieldList(structType any) HistoryEventFieldList {
 	return nil
 }
 
-func (m *_HistoryEventFieldList) GetTypeName() string {
+func (m *_HistoryEventFieldList) GetPlx4xTypeName() string {
 	return "HistoryEventFieldList"
 }
 

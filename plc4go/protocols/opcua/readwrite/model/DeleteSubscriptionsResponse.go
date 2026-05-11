@@ -255,7 +255,7 @@ func CastDeleteSubscriptionsResponse(structType any) DeleteSubscriptionsResponse
 	return nil
 }
 
-func (m *_DeleteSubscriptionsResponse) GetTypeName() string {
+func (m *_DeleteSubscriptionsResponse) GetPlx4xTypeName() string {
 	return "DeleteSubscriptionsResponse"
 }
 

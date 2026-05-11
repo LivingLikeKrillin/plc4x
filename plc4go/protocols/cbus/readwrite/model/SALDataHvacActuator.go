@@ -226,7 +226,7 @@ func CastSALDataHvacActuator(structType any) SALDataHvacActuator {
 	return nil
 }
 
-func (m *_SALDataHvacActuator) GetTypeName() string {
+func (m *_SALDataHvacActuator) GetPlx4xTypeName() string {
 	return "SALDataHvacActuator"
 }
 

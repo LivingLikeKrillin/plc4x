@@ -353,7 +353,7 @@ func CastJsonStatusMessage(structType any) JsonStatusMessage {
 	return nil
 }
 
-func (m *_JsonStatusMessage) GetTypeName() string {
+func (m *_JsonStatusMessage) GetPlx4xTypeName() string {
 	return "JsonStatusMessage"
 }
 

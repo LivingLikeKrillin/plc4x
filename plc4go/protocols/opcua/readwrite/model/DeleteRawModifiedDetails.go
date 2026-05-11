@@ -272,7 +272,7 @@ func CastDeleteRawModifiedDetails(structType any) DeleteRawModifiedDetails {
 	return nil
 }
 
-func (m *_DeleteRawModifiedDetails) GetTypeName() string {
+func (m *_DeleteRawModifiedDetails) GetPlx4xTypeName() string {
 	return "DeleteRawModifiedDetails"
 }
 

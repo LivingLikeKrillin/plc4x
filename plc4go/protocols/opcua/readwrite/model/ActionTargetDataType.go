@@ -273,7 +273,7 @@ func CastActionTargetDataType(structType any) ActionTargetDataType {
 	return nil
 }
 
-func (m *_ActionTargetDataType) GetTypeName() string {
+func (m *_ActionTargetDataType) GetPlx4xTypeName() string {
 	return "ActionTargetDataType"
 }
 

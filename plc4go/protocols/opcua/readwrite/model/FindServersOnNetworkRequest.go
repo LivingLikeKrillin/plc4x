@@ -270,7 +270,7 @@ func CastFindServersOnNetworkRequest(structType any) FindServersOnNetworkRequest
 	return nil
 }
 
-func (m *_FindServersOnNetworkRequest) GetTypeName() string {
+func (m *_FindServersOnNetworkRequest) GetPlx4xTypeName() string {
 	return "FindServersOnNetworkRequest"
 }
 

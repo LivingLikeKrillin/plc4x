@@ -235,7 +235,7 @@ func CastCBusCommandDeviceManagement(structType any) CBusCommandDeviceManagement
 	return nil
 }
 
-func (m *_CBusCommandDeviceManagement) GetTypeName() string {
+func (m *_CBusCommandDeviceManagement) GetPlx4xTypeName() string {
 	return "CBusCommandDeviceManagement"
 }
 

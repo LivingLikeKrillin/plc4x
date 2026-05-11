@@ -315,7 +315,7 @@ func CastModifySubscriptionRequest(structType any) ModifySubscriptionRequest {
 	return nil
 }
 
-func (m *_ModifySubscriptionRequest) GetTypeName() string {
+func (m *_ModifySubscriptionRequest) GetPlx4xTypeName() string {
 	return "ModifySubscriptionRequest"
 }
 

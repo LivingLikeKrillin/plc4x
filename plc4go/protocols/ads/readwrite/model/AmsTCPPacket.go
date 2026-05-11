@@ -184,7 +184,7 @@ func CastAmsTCPPacket(structType any) AmsTCPPacket {
 	return nil
 }
 
-func (m *_AmsTCPPacket) GetTypeName() string {
+func (m *_AmsTCPPacket) GetPlx4xTypeName() string {
 	return "AmsTCPPacket"
 }
 

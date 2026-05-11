@@ -160,7 +160,7 @@ func CastAdsString(structType any) AdsString {
 	return nil
 }
 
-func (m *_AdsString) GetTypeName() string {
+func (m *_AdsString) GetPlx4xTypeName() string {
 	return "AdsString"
 }
 

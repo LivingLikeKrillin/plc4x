@@ -255,7 +255,7 @@ func CastEventFilterResult(structType any) EventFilterResult {
 	return nil
 }
 
-func (m *_EventFilterResult) GetTypeName() string {
+func (m *_EventFilterResult) GetPlx4xTypeName() string {
 	return "EventFilterResult"
 }
 

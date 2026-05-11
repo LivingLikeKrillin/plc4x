@@ -389,7 +389,7 @@ func CastReferenceDescription(structType any) ReferenceDescription {
 	return nil
 }
 
-func (m *_ReferenceDescription) GetTypeName() string {
+func (m *_ReferenceDescription) GetPlx4xTypeName() string {
 	return "ReferenceDescription"
 }
 

@@ -453,7 +453,7 @@ func CastCreateSessionRequest(structType any) CreateSessionRequest {
 	return nil
 }
 
-func (m *_CreateSessionRequest) GetTypeName() string {
+func (m *_CreateSessionRequest) GetPlx4xTypeName() string {
 	return "CreateSessionRequest"
 }
 

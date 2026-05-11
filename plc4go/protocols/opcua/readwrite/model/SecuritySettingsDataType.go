@@ -303,7 +303,7 @@ func CastSecuritySettingsDataType(structType any) SecuritySettingsDataType {
 	return nil
 }
 
-func (m *_SecuritySettingsDataType) GetTypeName() string {
+func (m *_SecuritySettingsDataType) GetPlx4xTypeName() string {
 	return "SecuritySettingsDataType"
 }
 

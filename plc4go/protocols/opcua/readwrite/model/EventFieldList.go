@@ -222,7 +222,7 @@ func CastEventFieldList(structType any) EventFieldList {
 	return nil
 }
 
-func (m *_EventFieldList) GetTypeName() string {
+func (m *_EventFieldList) GetPlx4xTypeName() string {
 	return "EventFieldList"
 }
 

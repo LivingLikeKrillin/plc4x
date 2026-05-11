@@ -245,7 +245,7 @@ func CastCipRRData(structType any) CipRRData {
 	return nil
 }
 
-func (m *_CipRRData) GetTypeName() string {
+func (m *_CipRRData) GetPlx4xTypeName() string {
 	return "CipRRData"
 }
 

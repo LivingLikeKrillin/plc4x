@@ -294,7 +294,7 @@ func CastExtensionObject(structType any) ExtensionObject {
 	return nil
 }
 
-func (m *_ExtensionObject) GetTypeName() string {
+func (m *_ExtensionObject) GetPlx4xTypeName() string {
 	return "ExtensionObject"
 }
 

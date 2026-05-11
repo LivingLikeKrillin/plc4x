@@ -205,7 +205,7 @@ func CastCBusHeader(structType any) CBusHeader {
 	return nil
 }
 
-func (m *_CBusHeader) GetTypeName() string {
+func (m *_CBusHeader) GetPlx4xTypeName() string {
 	return "CBusHeader"
 }
 

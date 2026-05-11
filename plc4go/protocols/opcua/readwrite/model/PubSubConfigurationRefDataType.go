@@ -252,7 +252,7 @@ func CastPubSubConfigurationRefDataType(structType any) PubSubConfigurationRefDa
 	return nil
 }
 
-func (m *_PubSubConfigurationRefDataType) GetTypeName() string {
+func (m *_PubSubConfigurationRefDataType) GetPlx4xTypeName() string {
 	return "PubSubConfigurationRefDataType"
 }
 

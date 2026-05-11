@@ -207,7 +207,7 @@ func CastTargetVariablesDataType(structType any) TargetVariablesDataType {
 	return nil
 }
 
-func (m *_TargetVariablesDataType) GetTypeName() string {
+func (m *_TargetVariablesDataType) GetPlx4xTypeName() string {
 	return "TargetVariablesDataType"
 }
 

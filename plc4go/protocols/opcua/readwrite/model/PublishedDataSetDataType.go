@@ -321,7 +321,7 @@ func CastPublishedDataSetDataType(structType any) PublishedDataSetDataType {
 	return nil
 }
 
-func (m *_PublishedDataSetDataType) GetTypeName() string {
+func (m *_PublishedDataSetDataType) GetPlx4xTypeName() string {
 	return "PublishedDataSetDataType"
 }
 

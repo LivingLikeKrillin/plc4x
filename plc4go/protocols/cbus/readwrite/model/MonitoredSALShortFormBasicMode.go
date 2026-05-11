@@ -291,7 +291,7 @@ func CastMonitoredSALShortFormBasicMode(structType any) MonitoredSALShortFormBas
 	return nil
 }
 
-func (m *_MonitoredSALShortFormBasicMode) GetTypeName() string {
+func (m *_MonitoredSALShortFormBasicMode) GetPlx4xTypeName() string {
 	return "MonitoredSALShortFormBasicMode"
 }
 

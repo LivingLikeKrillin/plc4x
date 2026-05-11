@@ -191,7 +191,7 @@ func CastAdsAttributeEntry(structType any) AdsAttributeEntry {
 	return nil
 }
 
-func (m *_AdsAttributeEntry) GetTypeName() string {
+func (m *_AdsAttributeEntry) GetPlx4xTypeName() string {
 	return "AdsAttributeEntry"
 }
 

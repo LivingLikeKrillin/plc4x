@@ -234,7 +234,7 @@ func CastLogicAssignment(structType any) LogicAssignment {
 	return nil
 }
 
-func (m *_LogicAssignment) GetTypeName() string {
+func (m *_LogicAssignment) GetPlx4xTypeName() string {
 	return "LogicAssignment"
 }
 

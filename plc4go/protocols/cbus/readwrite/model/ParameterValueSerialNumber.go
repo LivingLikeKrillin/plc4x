@@ -241,7 +241,7 @@ func CastParameterValueSerialNumber(structType any) ParameterValueSerialNumber {
 	return nil
 }
 
-func (m *_ParameterValueSerialNumber) GetTypeName() string {
+func (m *_ParameterValueSerialNumber) GetPlx4xTypeName() string {
 	return "ParameterValueSerialNumber"
 }
 

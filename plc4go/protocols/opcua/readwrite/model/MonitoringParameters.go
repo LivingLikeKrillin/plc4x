@@ -287,7 +287,7 @@ func CastMonitoringParameters(structType any) MonitoringParameters {
 	return nil
 }
 
-func (m *_MonitoringParameters) GetTypeName() string {
+func (m *_MonitoringParameters) GetPlx4xTypeName() string {
 	return "MonitoringParameters"
 }
 

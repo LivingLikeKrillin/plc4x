@@ -270,7 +270,7 @@ func CastSetMonitoringModeRequest(structType any) SetMonitoringModeRequest {
 	return nil
 }
 
-func (m *_SetMonitoringModeRequest) GetTypeName() string {
+func (m *_SetMonitoringModeRequest) GetPlx4xTypeName() string {
 	return "SetMonitoringModeRequest"
 }
 

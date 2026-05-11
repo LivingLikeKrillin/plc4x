@@ -180,7 +180,7 @@ func CastSALDataReserved(structType any) SALDataReserved {
 	return nil
 }
 
-func (m *_SALDataReserved) GetTypeName() string {
+func (m *_SALDataReserved) GetPlx4xTypeName() string {
 	return "SALDataReserved"
 }
 

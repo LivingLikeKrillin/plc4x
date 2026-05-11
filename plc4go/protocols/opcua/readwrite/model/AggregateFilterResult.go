@@ -255,7 +255,7 @@ func CastAggregateFilterResult(structType any) AggregateFilterResult {
 	return nil
 }
 
-func (m *_AggregateFilterResult) GetTypeName() string {
+func (m *_AggregateFilterResult) GetPlx4xTypeName() string {
 	return "AggregateFilterResult"
 }
 

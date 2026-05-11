@@ -291,7 +291,7 @@ func CastCBusPointToPointCommand(structType any) CBusPointToPointCommand {
 	return nil
 }
 
-func (m *_CBusPointToPointCommand) GetTypeName() string {
+func (m *_CBusPointToPointCommand) GetPlx4xTypeName() string {
 	return "CBusPointToPointCommand"
 }
 

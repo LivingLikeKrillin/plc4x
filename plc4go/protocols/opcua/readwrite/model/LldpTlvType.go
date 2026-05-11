@@ -240,7 +240,7 @@ func CastLldpTlvType(structType any) LldpTlvType {
 	return nil
 }
 
-func (m *_LldpTlvType) GetTypeName() string {
+func (m *_LldpTlvType) GetPlx4xTypeName() string {
 	return "LldpTlvType"
 }
 

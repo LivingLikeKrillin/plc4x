@@ -225,7 +225,7 @@ func CastTransmitQosPriorityDataType(structType any) TransmitQosPriorityDataType
 	return nil
 }
 
-func (m *_TransmitQosPriorityDataType) GetTypeName() string {
+func (m *_TransmitQosPriorityDataType) GetPlx4xTypeName() string {
 	return "TransmitQosPriorityDataType"
 }
 

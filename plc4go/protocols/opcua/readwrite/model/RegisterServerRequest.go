@@ -258,7 +258,7 @@ func CastRegisterServerRequest(structType any) RegisterServerRequest {
 	return nil
 }
 
-func (m *_RegisterServerRequest) GetTypeName() string {
+func (m *_RegisterServerRequest) GetPlx4xTypeName() string {
 	return "RegisterServerRequest"
 }
 

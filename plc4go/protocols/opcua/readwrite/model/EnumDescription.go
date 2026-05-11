@@ -306,7 +306,7 @@ func CastEnumDescription(structType any) EnumDescription {
 	return nil
 }
 
-func (m *_EnumDescription) GetTypeName() string {
+func (m *_EnumDescription) GetPlx4xTypeName() string {
 	return "EnumDescription"
 }
 

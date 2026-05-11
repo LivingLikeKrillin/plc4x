@@ -225,7 +225,7 @@ func CastSALDataTelephonyStatusAndControl(structType any) SALDataTelephonyStatus
 	return nil
 }
 
-func (m *_SALDataTelephonyStatusAndControl) GetTypeName() string {
+func (m *_SALDataTelephonyStatusAndControl) GetPlx4xTypeName() string {
 	return "SALDataTelephonyStatusAndControl"
 }
 

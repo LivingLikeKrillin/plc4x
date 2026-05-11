@@ -226,7 +226,7 @@ func CastSALDataVentilation(structType any) SALDataVentilation {
 	return nil
 }
 
-func (m *_SALDataVentilation) GetTypeName() string {
+func (m *_SALDataVentilation) GetPlx4xTypeName() string {
 	return "SALDataVentilation"
 }
 

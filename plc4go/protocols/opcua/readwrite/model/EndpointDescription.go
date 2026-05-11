@@ -402,7 +402,7 @@ func CastEndpointDescription(structType any) EndpointDescription {
 	return nil
 }
 
-func (m *_EndpointDescription) GetTypeName() string {
+func (m *_EndpointDescription) GetPlx4xTypeName() string {
 	return "EndpointDescription"
 }
 

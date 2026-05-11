@@ -225,7 +225,7 @@ func CastRootExtensionObject(structType any) RootExtensionObject {
 	return nil
 }
 
-func (m *_RootExtensionObject) GetTypeName() string {
+func (m *_RootExtensionObject) GetPlx4xTypeName() string {
 	return "RootExtensionObject"
 }
 

@@ -311,7 +311,7 @@ func CastCIPEncapsulationPacket(structType any) CIPEncapsulationPacket {
 	return nil
 }
 
-func (m *_CIPEncapsulationPacket) GetTypeName() string {
+func (m *_CIPEncapsulationPacket) GetPlx4xTypeName() string {
 	return "CIPEncapsulationPacket"
 }
 
