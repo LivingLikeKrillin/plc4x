@@ -404,12 +404,12 @@ func KnxDatapointParseWithBuffer(ctx context.Context, readBuffer utils.ReadBuffe
 		}
 		_ = seconds // TODO: temporary till we fix TIME stuff in golang (see above in the template)
 
-		// Simple Field (nannosecondsOfSecond)
-		_, _nannosecondsOfSecondErr := /*TODO: migrate me*/ /*TODO: migrate me*/ readBuffer.ReadUint32("nannosecondsOfSecond", 32)
-		if _nannosecondsOfSecondErr != nil {
-			return nil, errors.Wrap(_nannosecondsOfSecondErr, "Error parsing 'nannosecondsOfSecond' field")
+		// Simple Field (nanosecondsOfSecond)
+		nanosecondsOfSecond, _nanosecondsOfSecondErr := /*TODO: migrate me*/ /*TODO: migrate me*/ readBuffer.ReadUint32("nanosecondsOfSecond", 32)
+		if _nanosecondsOfSecondErr != nil {
+			return nil, errors.Wrap(_nanosecondsOfSecondErr, "Error parsing 'nanosecondsOfSecond' field")
 		}
-		_ = nannosecondsOfSecond // TODO: temporary till we fix TIME stuff in golang (see above in the template)
+		_ = nanosecondsOfSecond // TODO: temporary till we fix TIME stuff in golang (see above in the template)
 		readBuffer.CloseContext("KnxDatapoint")
 	case datapointType == KnxDatapointType_DT: // DATE_AND_TIME
 		// Reserved Field (Just skip the bytes)
@@ -466,12 +466,12 @@ func KnxDatapointParseWithBuffer(ctx context.Context, readBuffer utils.ReadBuffe
 		}
 		_ = seconds // TODO: temporary till we fix TIME stuff in golang (see above in the template)
 
-		// Simple Field (nannosecondsOfSecond)
-		_, _nannosecondsOfSecondErr := /*TODO: migrate me*/ /*TODO: migrate me*/ readBuffer.ReadUint32("nannosecondsOfSecond", 32)
-		if _nannosecondsOfSecondErr != nil {
-			return nil, errors.Wrap(_nannosecondsOfSecondErr, "Error parsing 'nannosecondsOfSecond' field")
+		// Simple Field (nanosecondsOfSecond)
+		nanosecondsOfSecond, _nanosecondsOfSecondErr := /*TODO: migrate me*/ /*TODO: migrate me*/ readBuffer.ReadUint32("nanosecondsOfSecond", 32)
+		if _nanosecondsOfSecondErr != nil {
+			return nil, errors.Wrap(_nanosecondsOfSecondErr, "Error parsing 'nanosecondsOfSecond' field")
 		}
-		_ = nannosecondsOfSecond // TODO: temporary till we fix TIME stuff in golang (see above in the template)
+		_ = nanosecondsOfSecond // TODO: temporary till we fix TIME stuff in golang (see above in the template)
 		readBuffer.CloseContext("KnxDatapoint")
 	case datapointType == KnxDatapointType_DPT_Switch: // BOOL
 		// Reserved Field (Just skip the bytes)
@@ -8634,9 +8634,9 @@ func KnxDatapointSerializeWithWriteBuffer(ctx context.Context, writeBuffer utils
 			return errors.Wrap(_err, "Error serializing 'seconds' field")
 		}
 
-		// Simple Field (nannosecondsOfSecond)
-		if _err := /*TODO: migrate me*/ writeBuffer.WriteUint32("nannosecondsOfSecond", 32, uint32(value.(values.PlcDATE_AND_TIME).GetNannosecondsOfSecond())); _err != nil {
-			return errors.Wrap(_err, "Error serializing 'nannosecondsOfSecond' field")
+		// Simple Field (nanosecondsOfSecond)
+		if _err := /*TODO: migrate me*/ writeBuffer.WriteUint32("nanosecondsOfSecond", 32, uint32(value.(values.PlcDATE_AND_TIME).GetNanosecondsOfSecond())); _err != nil {
+			return errors.Wrap(_err, "Error serializing 'nanosecondsOfSecond' field")
 		}
 	case datapointType == KnxDatapointType_DT: // DATE_AND_TIME
 		// Reserved Field (Just skip the bytes)
@@ -8679,9 +8679,9 @@ func KnxDatapointSerializeWithWriteBuffer(ctx context.Context, writeBuffer utils
 			return errors.Wrap(_err, "Error serializing 'seconds' field")
 		}
 
-		// Simple Field (nannosecondsOfSecond)
-		if _err := /*TODO: migrate me*/ writeBuffer.WriteUint32("nannosecondsOfSecond", 32, uint32(value.(values.PlcDATE_AND_TIME).GetNannosecondsOfSecond())); _err != nil {
-			return errors.Wrap(_err, "Error serializing 'nannosecondsOfSecond' field")
+		// Simple Field (nanosecondsOfSecond)
+		if _err := /*TODO: migrate me*/ writeBuffer.WriteUint32("nanosecondsOfSecond", 32, uint32(value.(values.PlcDATE_AND_TIME).GetNanosecondsOfSecond())); _err != nil {
+			return errors.Wrap(_err, "Error serializing 'nanosecondsOfSecond' field")
 		}
 	case datapointType == KnxDatapointType_DPT_Switch: // BOOL
 		// Reserved Field (Just skip the bytes)

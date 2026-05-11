@@ -1862,6 +1862,7 @@ public class GoLanguageTemplateHelper extends BaseFreemarkerLanguageTemplateHelp
         Optional<Term> byteOrder = thisType.getAttribute("byteOrder");
         if (byteOrder.isPresent()) {
             emitRequiredImport("encoding/binary");
+            emitDataIoRequiredImport("encoding/binary");
             String byteOrderTranslated = switch (byteOrder.orElseThrow().stringRepresentation()) {
                 case "\"BIG_ENDIAN\"" -> "binary.BigEndian";
                 case "\"LITTLE_ENDIAN\"" -> "binary.LittleEndian";

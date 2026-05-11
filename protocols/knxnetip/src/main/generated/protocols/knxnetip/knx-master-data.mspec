@@ -1664,7 +1664,7 @@
             [simple   uint 8  hour       ]
             [simple   uint 8  minutes    ]
             [simple   uint 8  seconds    ]
-            [simple   uint 32 nannosecondsOfSecond]
+            [simple   uint 32 nanosecondsOfSecond]
         ]
         ['DT' DATE_AND_TIME
             [reserved uint 8  '0x00'     ]
@@ -1675,7 +1675,7 @@
             [simple   uint 8  hour       ]
             [simple   uint 8  minutes    ]
             [simple   uint 8  seconds    ]
-            [simple   uint 32 nannosecondsOfSecond]
+            [simple   uint 32 nanosecondsOfSecond]
         ]
 
     

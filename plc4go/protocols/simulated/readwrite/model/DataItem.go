@@ -21,6 +21,7 @@ package model
 
 import (
 	"context"
+	"encoding/binary"
 
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog"

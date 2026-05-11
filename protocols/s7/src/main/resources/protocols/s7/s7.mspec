@@ -872,7 +872,7 @@
             // One byte representing 00 - 59
             [simple uint 8  seconds              ]
             // Four byte with 3 4-bit values representing 0 - 999
-            [simple uint 32 nannosecondsOfSecond ]
+            [simple uint 32 nanosecondsOfSecond ]
         ]
     ]
 ]

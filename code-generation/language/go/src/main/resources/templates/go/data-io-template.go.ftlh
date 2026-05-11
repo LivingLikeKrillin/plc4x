@@ -182,7 +182,11 @@ func ${type.name}ParseWithBuffer(ctx context.Context, readBuffer utils.ReadBuffe
 			|| ((case.name == "LDATE") && (simpleField.name == "nanosecondsSinceEpoch"))
 			|| ((case.name == "TIME_OF_DAY") && (simpleField.name == "millisecondsSinceMidnight"))
 			|| ((case.name == "LTIME_OF_DAY") && (simpleField.name == "nanosecondsSinceMidnight"))
-			|| ((case.name == "DATE_AND_TIME") && (simpleField.name == "secondsSinceEpoch"))
+			|| ((case.name == "DATE_AND_TIME") && (
+				(simpleField.name == "secondsSinceEpoch")
+				|| (simpleField.name == "nanosecondsOfSecond")
+				)
+			)
 			|| ((case.name == "DATE_AND_LTIME") && (
 				(simpleField.name == "year")
 			  	|| (simpleField.name == "month")
@@ -191,7 +195,7 @@ func ${type.name}ParseWithBuffer(ctx context.Context, readBuffer utils.ReadBuffe
 				|| (simpleField.name == "minutes")
 				|| (simpleField.name == "seconds")
 				|| (simpleField.name == "nanoseconds")
-				|| (simpleField.name == "nannosecondsOfSecond")
+				|| (simpleField.name == "nanosecondsOfSecond")
 				|| (simpleField.name == "nanosecondsSinceEpoch")
 				|| (simpleField.name == "dayOfWeek")
 				)
