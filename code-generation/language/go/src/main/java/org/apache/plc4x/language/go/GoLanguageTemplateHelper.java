@@ -713,7 +713,7 @@ public class GoLanguageTemplateHelper extends BaseFreemarkerLanguageTemplateHelp
                 StringTypeReference stringTypeReference = (StringTypeReference) simpleTypeReference;
                 String encoding = "UTF8";
                 if (field != null) {
-                    final Term encodingTerm = field.getEncoding().orElse(new DefaultStringLiteral("UTF8"));
+                    final Term encodingTerm = field.getEncoding().orElse(new DefaultStringLiteral(encoding));
                     encoding = encodingTerm.asLiteral()
                         .orElseThrow(() -> new FreemarkerException("Encoding must be a literal"))
                         .asStringLiteral()
@@ -726,7 +726,7 @@ public class GoLanguageTemplateHelper extends BaseFreemarkerLanguageTemplateHelp
                 VstringTypeReference vstringTypeReference = (VstringTypeReference) simpleTypeReference;
                 String encoding = "UTF8";
                 if (field != null) {
-                    final Term encodingTerm = field.getEncoding().orElse(new DefaultStringLiteral("UTF8"));
+                    final Term encodingTerm = field.getEncoding().orElse(new DefaultStringLiteral(encoding));
                     encoding = encodingTerm.asLiteral()
                         .orElseThrow(() -> new FreemarkerException("Encoding must be a literal"))
                         .asStringLiteral()
