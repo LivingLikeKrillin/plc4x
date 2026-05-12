@@ -245,7 +245,9 @@ func (wb *byteWriteBuffer) WriteString(_ string, bitLength uint32, value string,
 	encoding := wb.ExtractEncoding(UpcastWriterArgs(writerArgs...)...)
 	encoding = nonAlphanumericRegex.ReplaceAllLiteralString(strings.ToUpper(encoding), "")
 	remainingBits := int64(bitLength) // we use int64 otherwise the subtraction below flips
-	// TODO: the implementation completely ignores encoding for now. Fix this
+	if encoding == "" {
+		encoding = "UTF8"
+	}
 	switch encoding {
 	case "UTF8":
 		for _, theByte := range []byte(value) {
