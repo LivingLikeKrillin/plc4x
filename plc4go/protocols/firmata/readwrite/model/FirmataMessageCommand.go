@@ -256,7 +256,7 @@ func (m *_FirmataMessageCommand) parse(ctx context.Context, readBuffer utils.Rea
 	currentPos := positionAware.GetPos()
 	_ = currentPos
 
-	command, err := ReadSimpleField[FirmataCommand](ctx, "command", ReadComplex[FirmataCommand](FirmataCommandParseWithBufferProducer[FirmataCommand]((bool)(response)), readBuffer), codegen.WithByteOrder(binary.BigEndian))
+	command, err := ReadSimpleField[FirmataCommand](ctx, "command", ReadComplex[FirmataCommand](FirmataCommandParseWithBufferProducer[FirmataCommand]((bool)(response)), readBuffer), codegen.WithEncoding("UTF16LE"), codegen.WithByteOrder(binary.BigEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'command' field"))
 	}
@@ -287,7 +287,7 @@ func (m *_FirmataMessageCommand) SerializeWithWriteBuffer(ctx context.Context, w
 			return errors.Wrap(pushErr, "Error pushing for FirmataMessageCommand")
 		}
 
-		if err := WriteSimpleField[FirmataCommand](ctx, "command", m.GetCommand(), WriteComplex[FirmataCommand](writeBuffer), codegen.WithByteOrder(binary.BigEndian)); err != nil {
+		if err := WriteSimpleField[FirmataCommand](ctx, "command", m.GetCommand(), WriteComplex[FirmataCommand](writeBuffer), codegen.WithEncoding("UTF16LE"), codegen.WithByteOrder(binary.BigEndian)); err != nil {
 			return errors.Wrap(err, "Error serializing 'command' field")
 		}
 

@@ -27,6 +27,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog"
 
+	"github.com/apache/plc4x/plc4go/spi/codegen"
 	. "github.com/apache/plc4x/plc4go/spi/codegen/fields"
 	. "github.com/apache/plc4x/plc4go/spi/codegen/io"
 	"github.com/apache/plc4x/plc4go/spi/utils"
@@ -253,13 +254,13 @@ func (m *_Range) parse(ctx context.Context, readBuffer utils.ReadBuffer, parent 
 	currentPos := positionAware.GetPos()
 	_ = currentPos
 
-	low, err := ReadSimpleField(ctx, "low", ReadDouble(readBuffer, uint8(64)))
+	low, err := ReadSimpleField(ctx, "low", ReadDouble(readBuffer, uint8(64)), codegen.WithEncoding("UTF8"))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'low' field"))
 	}
 	m.Low = low
 
-	high, err := ReadSimpleField(ctx, "high", ReadDouble(readBuffer, uint8(64)))
+	high, err := ReadSimpleField(ctx, "high", ReadDouble(readBuffer, uint8(64)), codegen.WithEncoding("UTF8"))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'high' field"))
 	}
@@ -290,11 +291,11 @@ func (m *_Range) SerializeWithWriteBuffer(ctx context.Context, writeBuffer utils
 			return errors.Wrap(pushErr, "Error pushing for Range")
 		}
 
-		if err := WriteSimpleField[float64](ctx, "low", m.GetLow(), WriteDouble(writeBuffer, 64)); err != nil {
+		if err := WriteSimpleField[float64](ctx, "low", m.GetLow(), WriteDouble(writeBuffer, 64), codegen.WithEncoding("UTF8")); err != nil {
 			return errors.Wrap(err, "Error serializing 'low' field")
 		}
 
-		if err := WriteSimpleField[float64](ctx, "high", m.GetHigh(), WriteDouble(writeBuffer, 64)); err != nil {
+		if err := WriteSimpleField[float64](ctx, "high", m.GetHigh(), WriteDouble(writeBuffer, 64), codegen.WithEncoding("UTF8")); err != nil {
 			return errors.Wrap(err, "Error serializing 'high' field")
 		}
 

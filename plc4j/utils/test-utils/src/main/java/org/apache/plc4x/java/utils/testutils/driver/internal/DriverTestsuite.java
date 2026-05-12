@@ -160,12 +160,20 @@ public class DriverTestsuite {
             String outputFlavor = extractOptionalText(root, "output-flavor");
             String driverName = XmlHelper.extractText(root, "driver-name");
 
-            // Parse byte order
-            String byteOrderStr = extractOptionalText(root, "byte-order");
+            // Parse byte order. Prefer the root attribute form (which matches the
+            // schema used by the EIP/Modbus testsuites — `<testsuite byteOrder="...">`
+            // also used by the ParserSerializerTestsuiteRunner). Fall back to a
+            // `<byte-order>` child element for older suites, then to BIG_ENDIAN
+            // as the historical default.
             String byteOrder = ByteOrderBigEndian.NAME;
-            if (byteOrderStr != null) {
-                // Accept both "BIG_ENDIAN" and "LITTLE_ENDIAN"
-                byteOrder = byteOrderStr.toUpperCase();
+            String byteOrderAttr = root.attributeValue("byteOrder");
+            if (byteOrderAttr != null) {
+                byteOrder = byteOrderAttr.toUpperCase();
+            } else {
+                String byteOrderStr = extractOptionalText(root, "byte-order");
+                if (byteOrderStr != null) {
+                    byteOrder = byteOrderStr.toUpperCase();
+                }
             }
 
             // Parse options

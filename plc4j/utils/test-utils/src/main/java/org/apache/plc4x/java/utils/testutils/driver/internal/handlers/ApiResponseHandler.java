@@ -73,16 +73,12 @@ public class ApiResponseHandler {
             Object response = future.get(DEFAULT_TIMEOUT_MS, TimeUnit.MILLISECONDS);
 
             // Validate based on the response type
-            if (response instanceof PlcReadResponse readResponse) {
-                validateReadResponse(readResponse, context);
-            } else if (response instanceof PlcWriteResponse writeResponse) {
-                validateWriteResponse(writeResponse);
-            } else if (response instanceof PlcBrowseResponse browseResponse) {
-                validateBrowseResponse(browseResponse, context);
-            } else if (response instanceof PlcSubscriptionResponse subscriptionResponse) {
-                validateSubscriptionResponse(subscriptionResponse);
-            } else {
-                LOGGER.warn("Unknown response type: {}", response.getClass().getName());
+            switch (response) {
+                case PlcReadResponse readResponse -> validateReadResponse(readResponse, context);
+                case PlcWriteResponse writeResponse -> validateWriteResponse(writeResponse);
+                case PlcBrowseResponse browseResponse -> validateBrowseResponse(browseResponse, context);
+                case PlcSubscriptionResponse subscriptionResponse -> validateSubscriptionResponse(subscriptionResponse);
+                default -> LOGGER.warn("Unknown response type: {}", response.getClass().getName());
             }
 
             LOGGER.debug("API response validated successfully");
@@ -187,7 +183,7 @@ public class ApiResponseHandler {
      */
     private Element serializeReadResponseToXml(PlcReadResponse response) {
         Element readResponseElement = DocumentHelper.createElement("PlcReadResponse");
-        Element valuesElement = readResponseElement.addElement("values");
+        Element valuesElement = readResponseElement.addElement("values").addAttribute("isList", "true");
 
         for (String tagName : response.getTagNames()) {
             Element tagElement = valuesElement.addElement(sanitizeXmlElementName(tagName));

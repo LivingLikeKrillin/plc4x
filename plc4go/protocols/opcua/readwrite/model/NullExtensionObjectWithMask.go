@@ -27,6 +27,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog"
 
+	"github.com/apache/plc4x/plc4go/spi/codegen"
 	. "github.com/apache/plc4x/plc4go/spi/codegen/fields"
 	"github.com/apache/plc4x/plc4go/spi/utils"
 )
@@ -230,7 +231,7 @@ func (m *_NullExtensionObjectWithMask) parse(ctx context.Context, readBuffer uti
 	currentPos := positionAware.GetPos()
 	_ = currentPos
 
-	body, err := ReadVirtualField[ExtensionObjectDefinition](ctx, "body", (*ExtensionObjectDefinition)(nil), nil)
+	body, err := ReadVirtualField[ExtensionObjectDefinition](ctx, "body", (*ExtensionObjectDefinition)(nil), nil, codegen.WithEncoding("UTF8"))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'body' field"))
 	}

@@ -1884,10 +1884,16 @@ public class GoLanguageTemplateHelper extends BaseFreemarkerLanguageTemplateHelp
 
     public String getFieldOptions(TypedField field, List<Argument> parserArguments) {
         StringBuilder sb = new StringBuilder();
-        field.getEncoding().ifPresent(term -> {
+        field.getAttribute("stringEncoding").ifPresentOrElse(term -> {
             emitCodegenRequiredImports();
             final String encoding = toParseExpression(field, field.getType(), term, parserArguments);
             sb.append(", codegen.WithEncoding(").append(encoding).append(")");
+        }, () -> {
+            field.getEncoding().ifPresent(term -> {
+                emitCodegenRequiredImports();
+                final String encoding = toParseExpression(field, field.getType(), term, parserArguments);
+                sb.append(", codegen.WithEncoding(").append(encoding).append(")");
+            });
         });
 
         field.getByteOrder().ifPresent(term -> {

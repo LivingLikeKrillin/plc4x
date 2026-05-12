@@ -4527,7 +4527,7 @@
                               <value dataType="uint" bitLength="8" stringRepresentation="PRIORITY_ARRAY">87</value>
                             </BACnetPropertyIdentifierTagged>
                           </propertyIdentifier>
-                          <values>
+                          <values isList="true">
                             <BACnetConstructedData>
                               <openingTag>
                                 <BACnetOpeningTag>

@@ -62,7 +62,7 @@
       <incoming-plc-bytes name="Read response bytes">0001000000050103020001</incoming-plc-bytes>  
       <api-response name="Read response"> 
         <PlcReadResponse>
-          <values>
+          <values isList="true">
             <holding-register_1_BOOL>
               <PlcResponseItem>
                 <code dataType="string" bitLength="16" encoding="UTF-8">OK</code>
@@ -124,7 +124,7 @@
       <incoming-plc-bytes name="Read response bytes">000300000005010302002A</incoming-plc-bytes>  
       <api-response name="Read response"> 
         <PlcReadResponse>
-          <values>
+          <values isList="true">
             <holding-register_2_BYTE>
               <PlcResponseItem>
                 <code dataType="string" bitLength="16" encoding="UTF-8">OK</code>
@@ -186,7 +186,7 @@
       <incoming-plc-bytes name="Read response bytes">000500000005010302A5B8</incoming-plc-bytes>  
       <api-response name="Read response"> 
         <PlcReadResponse>
-          <values>
+          <values isList="true">
             <holding-register_3_WORD>
               <PlcResponseItem>
                 <code dataType="string" bitLength="16" encoding="UTF-8">OK</code>
@@ -248,7 +248,7 @@
       <incoming-plc-bytes name="Read response bytes">000700000007010304FCDE88B8</incoming-plc-bytes>  
       <api-response name="Read response"> 
         <PlcReadResponse>
-          <values>
+          <values isList="true">
             <holding-register_4_DWORD>
               <PlcResponseItem>
                 <code dataType="string" bitLength="16" encoding="UTF-8">OK</code>
@@ -310,7 +310,7 @@
       <incoming-plc-bytes name="Read response bytes">00090000000B0103083AE02EE84D0449B2</incoming-plc-bytes>  
       <api-response name="Read response"> 
         <PlcReadResponse>
-          <values>
+          <values isList="true">
             <holding-register_6_LWORD>
               <PlcResponseItem>
                 <code dataType="string" bitLength="16" encoding="UTF-8">OK</code>
@@ -372,7 +372,7 @@
       <incoming-plc-bytes name="Read response bytes">000B0000000501030200D6</incoming-plc-bytes>  
       <api-response name="Read response"> 
         <PlcReadResponse>
-          <values>
+          <values isList="true">
             <holding-register_10_SINT>
               <PlcResponseItem>
                 <code dataType="string" bitLength="16" encoding="UTF-8">OK</code>
@@ -434,7 +434,7 @@
       <incoming-plc-bytes name="Read response bytes">000D00000005010302002A</incoming-plc-bytes>  
       <api-response name="Read response"> 
         <PlcReadResponse>
-          <values>
+          <values isList="true">
             <holding-register_11_USINT>
               <PlcResponseItem>
                 <code dataType="string" bitLength="16" encoding="UTF-8">OK</code>
@@ -496,7 +496,7 @@
       <incoming-plc-bytes name="Read response bytes">000F00000005010302F688</incoming-plc-bytes>  
       <api-response name="Read response"> 
         <PlcReadResponse>
-          <values>
+          <values isList="true">
             <holding-register_12_INT>
               <PlcResponseItem>
                 <code dataType="string" bitLength="16" encoding="UTF-8">OK</code>
@@ -558,7 +558,7 @@
       <incoming-plc-bytes name="Read response bytes">001100000005010302A5B8</incoming-plc-bytes>  
       <api-response name="Read response"> 
         <PlcReadResponse>
-          <values>
+          <values isList="true">
             <holding-register_13_UINT>
               <PlcResponseItem>
                 <code dataType="string" bitLength="16" encoding="UTF-8">OK</code>
@@ -620,7 +620,7 @@
       <incoming-plc-bytes name="Read response bytes">001300000007010304F18C9F48</incoming-plc-bytes>  
       <api-response name="Read response"> 
         <PlcReadResponse>
-          <values>
+          <values isList="true">
             <holding-register_14_DINT>
               <PlcResponseItem>
                 <code dataType="string" bitLength="16" encoding="UTF-8">OK</code>
@@ -682,7 +682,7 @@
       <incoming-plc-bytes name="Read response bytes">001500000007010304FCDE88B8</incoming-plc-bytes>  
       <api-response name="Read response"> 
         <PlcReadResponse>
-          <values>
+          <values isList="true">
             <holding-register_16_UDINT>
               <PlcResponseItem>
                 <code dataType="string" bitLength="16" encoding="UTF-8">OK</code>
@@ -744,7 +744,7 @@
       <incoming-plc-bytes name="Read response bytes">00170000000B010308C51FD117B2FBB64E</incoming-plc-bytes>  
       <api-response name="Read response"> 
         <PlcReadResponse>
-          <values>
+          <values isList="true">
             <holding-register_18_LINT>
               <PlcResponseItem>
                 <code dataType="string" bitLength="16" encoding="UTF-8">OK</code>
@@ -806,7 +806,7 @@
       <incoming-plc-bytes name="Read response bytes">00190000000B0103083AE02EE84D0449B2</incoming-plc-bytes>  
       <api-response name="Read response"> 
         <PlcReadResponse>
-          <values>
+          <values isList="true">
             <holding-register_22_ULINT>
               <PlcResponseItem>
                 <code dataType="string" bitLength="16" encoding="UTF-8">OK</code>
@@ -868,7 +868,7 @@
       <incoming-plc-bytes name="Read response bytes">001B0000000701030440490FDC</incoming-plc-bytes>  
       <api-response name="Read response"> 
         <PlcReadResponse>
-          <values>
+          <values isList="true">
             <holding-register_26_REAL>
               <PlcResponseItem>
                 <code dataType="string" bitLength="16" encoding="UTF-8">OK</code>
@@ -930,7 +930,7 @@
       <incoming-plc-bytes name="Read response bytes">001D0000000B0103084005BF0A8B145FCF</incoming-plc-bytes>  
       <api-response name="Read response"> 
         <PlcReadResponse>
-          <values>
+          <values isList="true">
             <holding-register_28_LREAL>
               <PlcResponseItem>
                 <code dataType="string" bitLength="16" encoding="UTF-8">OK</code>
@@ -1051,7 +1051,7 @@
       <incoming-plc-bytes name="Read response bytes">001F0000004101033E0001002AA5B8FCDE88B83AE02EE84D0449B200D6002AF688A5B8F18C9F48FCDE88B8C51FD117B2FBB64E3AE02EE84D0449B240490FDC4005BF0A8B145FCF</incoming-plc-bytes>  
       <api-response name="Read response"> 
         <PlcReadResponse>
-          <values>
+          <values isList="true">
             <holding-register_1_BOOL>
               <PlcResponseItem>
                 <code dataType="string" bitLength="16" encoding="UTF-8">OK</code>

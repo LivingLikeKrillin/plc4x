@@ -27,6 +27,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog"
 
+	"github.com/apache/plc4x/plc4go/spi/codegen"
 	. "github.com/apache/plc4x/plc4go/spi/codegen/fields"
 	. "github.com/apache/plc4x/plc4go/spi/codegen/io"
 	"github.com/apache/plc4x/plc4go/spi/utils"
@@ -253,13 +254,13 @@ func (m *_XVType) parse(ctx context.Context, readBuffer utils.ReadBuffer, parent
 	currentPos := positionAware.GetPos()
 	_ = currentPos
 
-	x, err := ReadSimpleField(ctx, "x", ReadDouble(readBuffer, uint8(64)))
+	x, err := ReadSimpleField(ctx, "x", ReadDouble(readBuffer, uint8(64)), codegen.WithEncoding("UTF8"))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'x' field"))
 	}
 	m.X = x
 
-	value, err := ReadSimpleField(ctx, "value", ReadFloat(readBuffer, uint8(32)))
+	value, err := ReadSimpleField(ctx, "value", ReadFloat(readBuffer, uint8(32)), codegen.WithEncoding("UTF8"))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'value' field"))
 	}
@@ -290,11 +291,11 @@ func (m *_XVType) SerializeWithWriteBuffer(ctx context.Context, writeBuffer util
 			return errors.Wrap(pushErr, "Error pushing for XVType")
 		}
 
-		if err := WriteSimpleField[float64](ctx, "x", m.GetX(), WriteDouble(writeBuffer, 64)); err != nil {
+		if err := WriteSimpleField[float64](ctx, "x", m.GetX(), WriteDouble(writeBuffer, 64), codegen.WithEncoding("UTF8")); err != nil {
 			return errors.Wrap(err, "Error serializing 'x' field")
 		}
 
-		if err := WriteSimpleField[float32](ctx, "value", m.GetValue(), WriteFloat(writeBuffer, 32)); err != nil {
+		if err := WriteSimpleField[float32](ctx, "value", m.GetValue(), WriteFloat(writeBuffer, 32), codegen.WithEncoding("UTF8")); err != nil {
 			return errors.Wrap(err, "Error serializing 'value' field")
 		}
 

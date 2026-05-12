@@ -27,6 +27,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog"
 
+	"github.com/apache/plc4x/plc4go/spi/codegen"
 	. "github.com/apache/plc4x/plc4go/spi/codegen/fields"
 	. "github.com/apache/plc4x/plc4go/spi/codegen/io"
 	"github.com/apache/plc4x/plc4go/spi/utils"
@@ -270,7 +271,7 @@ func (m *_BACnetTagPayloadCharacterString) parse(ctx context.Context, readBuffer
 	}
 	_ = actualLengthInBit
 
-	value, err := ReadSimpleField(ctx, "value", ReadString(readBuffer, uint32(actualLengthInBit)))
+	value, err := ReadSimpleField(ctx, "value", ReadString(readBuffer, uint32(actualLengthInBit)), codegen.WithEncoding("UTF8"))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'value' field"))
 	}
@@ -310,7 +311,7 @@ func (m *_BACnetTagPayloadCharacterString) SerializeWithWriteBuffer(ctx context.
 		return errors.Wrap(_actualLengthInBitErr, "Error serializing 'actualLengthInBit' field")
 	}
 
-	if err := WriteSimpleField[string](ctx, "value", m.GetValue(), WriteString(writeBuffer, int32(m.GetActualLengthInBit()))); err != nil {
+	if err := WriteSimpleField[string](ctx, "value", m.GetValue(), WriteString(writeBuffer, int32(m.GetActualLengthInBit())), codegen.WithEncoding("UTF8")); err != nil {
 		return errors.Wrap(err, "Error serializing 'value' field")
 	}
 

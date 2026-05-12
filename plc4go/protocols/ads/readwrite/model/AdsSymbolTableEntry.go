@@ -776,243 +776,243 @@ func (m *_AdsSymbolTableEntry) parse(ctx context.Context, readBuffer utils.ReadB
 	var startPos = positionAware.GetPos()
 	_ = startPos
 
-	entryLength, err := ReadSimpleField(ctx, "entryLength", ReadUnsignedInt(readBuffer, uint8(32)), codegen.WithByteOrder(binary.LittleEndian))
+	entryLength, err := ReadSimpleField(ctx, "entryLength", ReadUnsignedInt(readBuffer, uint8(32)), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'entryLength' field"))
 	}
 	m.EntryLength = entryLength
 
-	group, err := ReadSimpleField(ctx, "group", ReadUnsignedInt(readBuffer, uint8(32)), codegen.WithByteOrder(binary.LittleEndian))
+	group, err := ReadSimpleField(ctx, "group", ReadUnsignedInt(readBuffer, uint8(32)), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'group' field"))
 	}
 	m.Group = group
 
-	offset, err := ReadSimpleField(ctx, "offset", ReadUnsignedInt(readBuffer, uint8(32)), codegen.WithByteOrder(binary.LittleEndian))
+	offset, err := ReadSimpleField(ctx, "offset", ReadUnsignedInt(readBuffer, uint8(32)), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'offset' field"))
 	}
 	m.Offset = offset
 
-	size, err := ReadSimpleField(ctx, "size", ReadUnsignedInt(readBuffer, uint8(32)), codegen.WithByteOrder(binary.LittleEndian))
+	size, err := ReadSimpleField(ctx, "size", ReadUnsignedInt(readBuffer, uint8(32)), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'size' field"))
 	}
 	m.Size = size
 
-	dataType, err := ReadSimpleField(ctx, "dataType", ReadUnsignedInt(readBuffer, uint8(32)), codegen.WithByteOrder(binary.LittleEndian))
+	dataType, err := ReadSimpleField(ctx, "dataType", ReadUnsignedInt(readBuffer, uint8(32)), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'dataType' field"))
 	}
 	m.DataType = dataType
 
-	flagMethodDeref, err := ReadSimpleField(ctx, "flagMethodDeref", ReadBoolean(readBuffer), codegen.WithByteOrder(binary.LittleEndian))
+	flagMethodDeref, err := ReadSimpleField(ctx, "flagMethodDeref", ReadBoolean(readBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'flagMethodDeref' field"))
 	}
 	m.FlagMethodDeref = flagMethodDeref
 
-	flagItfMethodAccess, err := ReadSimpleField(ctx, "flagItfMethodAccess", ReadBoolean(readBuffer), codegen.WithByteOrder(binary.LittleEndian))
+	flagItfMethodAccess, err := ReadSimpleField(ctx, "flagItfMethodAccess", ReadBoolean(readBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'flagItfMethodAccess' field"))
 	}
 	m.FlagItfMethodAccess = flagItfMethodAccess
 
-	flagReadOnly, err := ReadSimpleField(ctx, "flagReadOnly", ReadBoolean(readBuffer), codegen.WithByteOrder(binary.LittleEndian))
+	flagReadOnly, err := ReadSimpleField(ctx, "flagReadOnly", ReadBoolean(readBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'flagReadOnly' field"))
 	}
 	m.FlagReadOnly = flagReadOnly
 
-	flagTComInterfacePointer, err := ReadSimpleField(ctx, "flagTComInterfacePointer", ReadBoolean(readBuffer), codegen.WithByteOrder(binary.LittleEndian))
+	flagTComInterfacePointer, err := ReadSimpleField(ctx, "flagTComInterfacePointer", ReadBoolean(readBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'flagTComInterfacePointer' field"))
 	}
 	m.FlagTComInterfacePointer = flagTComInterfacePointer
 
-	flagTypeGuid, err := ReadImplicitField[bool](ctx, "flagTypeGuid", ReadBoolean(readBuffer), codegen.WithByteOrder(binary.LittleEndian))
+	flagTypeGuid, err := ReadImplicitField[bool](ctx, "flagTypeGuid", ReadBoolean(readBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'flagTypeGuid' field"))
 	}
 	_ = flagTypeGuid
 
-	flagReferenceTo, err := ReadSimpleField(ctx, "flagReferenceTo", ReadBoolean(readBuffer), codegen.WithByteOrder(binary.LittleEndian))
+	flagReferenceTo, err := ReadSimpleField(ctx, "flagReferenceTo", ReadBoolean(readBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'flagReferenceTo' field"))
 	}
 	m.FlagReferenceTo = flagReferenceTo
 
-	flagBitValue, err := ReadSimpleField(ctx, "flagBitValue", ReadBoolean(readBuffer), codegen.WithByteOrder(binary.LittleEndian))
+	flagBitValue, err := ReadSimpleField(ctx, "flagBitValue", ReadBoolean(readBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'flagBitValue' field"))
 	}
 	m.FlagBitValue = flagBitValue
 
-	flagPersistent, err := ReadSimpleField(ctx, "flagPersistent", ReadBoolean(readBuffer), codegen.WithByteOrder(binary.LittleEndian))
+	flagPersistent, err := ReadSimpleField(ctx, "flagPersistent", ReadBoolean(readBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'flagPersistent' field"))
 	}
 	m.FlagPersistent = flagPersistent
 
-	flagCompilerGenerated, err := ReadSimpleField(ctx, "flagCompilerGenerated", ReadBoolean(readBuffer), codegen.WithByteOrder(binary.LittleEndian))
+	flagCompilerGenerated, err := ReadSimpleField(ctx, "flagCompilerGenerated", ReadBoolean(readBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'flagCompilerGenerated' field"))
 	}
 	m.FlagCompilerGenerated = flagCompilerGenerated
 
-	reservedField0, err := ReadReservedField(ctx, "reserved", ReadUnsignedByte(readBuffer, uint8(1)), uint8(0x0), codegen.WithByteOrder(binary.LittleEndian))
+	reservedField0, err := ReadReservedField(ctx, "reserved", ReadUnsignedByte(readBuffer, uint8(1)), uint8(0x0), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing reserved field"))
 	}
 	m.reservedField0 = reservedField0
 
-	flagSystemServiceSymbol, err := ReadSimpleField(ctx, "flagSystemServiceSymbol", ReadBoolean(readBuffer), codegen.WithByteOrder(binary.LittleEndian))
+	flagSystemServiceSymbol, err := ReadSimpleField(ctx, "flagSystemServiceSymbol", ReadBoolean(readBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'flagSystemServiceSymbol' field"))
 	}
 	m.FlagSystemServiceSymbol = flagSystemServiceSymbol
 
-	flagExtendedFlags, err := ReadSimpleField(ctx, "flagExtendedFlags", ReadBoolean(readBuffer), codegen.WithByteOrder(binary.LittleEndian))
+	flagExtendedFlags, err := ReadSimpleField(ctx, "flagExtendedFlags", ReadBoolean(readBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'flagExtendedFlags' field"))
 	}
 	m.FlagExtendedFlags = flagExtendedFlags
 
-	flagInitOnReset, err := ReadSimpleField(ctx, "flagInitOnReset", ReadBoolean(readBuffer), codegen.WithByteOrder(binary.LittleEndian))
+	flagInitOnReset, err := ReadSimpleField(ctx, "flagInitOnReset", ReadBoolean(readBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'flagInitOnReset' field"))
 	}
 	m.FlagInitOnReset = flagInitOnReset
 
-	flagStatic, err := ReadSimpleField(ctx, "flagStatic", ReadBoolean(readBuffer), codegen.WithByteOrder(binary.LittleEndian))
+	flagStatic, err := ReadSimpleField(ctx, "flagStatic", ReadBoolean(readBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'flagStatic' field"))
 	}
 	m.FlagStatic = flagStatic
 
-	flagAttributes, err := ReadImplicitField[bool](ctx, "flagAttributes", ReadBoolean(readBuffer), codegen.WithByteOrder(binary.LittleEndian))
+	flagAttributes, err := ReadImplicitField[bool](ctx, "flagAttributes", ReadBoolean(readBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'flagAttributes' field"))
 	}
 	_ = flagAttributes
 
-	flagContextMask, err := ReadImplicitField[bool](ctx, "flagContextMask", ReadBoolean(readBuffer), codegen.WithByteOrder(binary.LittleEndian))
+	flagContextMask, err := ReadImplicitField[bool](ctx, "flagContextMask", ReadBoolean(readBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'flagContextMask' field"))
 	}
 	_ = flagContextMask
 
-	reservedField1, err := ReadReservedField(ctx, "reserved", ReadUnsignedByte(readBuffer, uint8(3)), uint8(0x0), codegen.WithByteOrder(binary.LittleEndian))
+	reservedField1, err := ReadReservedField(ctx, "reserved", ReadUnsignedByte(readBuffer, uint8(3)), uint8(0x0), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing reserved field"))
 	}
 	m.reservedField1 = reservedField1
 
-	flagVariantType, err := ReadSimpleField(ctx, "flagVariantType", ReadBoolean(readBuffer), codegen.WithByteOrder(binary.LittleEndian))
+	flagVariantType, err := ReadSimpleField(ctx, "flagVariantType", ReadBoolean(readBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'flagVariantType' field"))
 	}
 	m.FlagVariantType = flagVariantType
 
-	flagOnlineChangePtrRefType, err := ReadSimpleField(ctx, "flagOnlineChangePtrRefType", ReadBoolean(readBuffer), codegen.WithByteOrder(binary.LittleEndian))
+	flagOnlineChangePtrRefType, err := ReadSimpleField(ctx, "flagOnlineChangePtrRefType", ReadBoolean(readBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'flagOnlineChangePtrRefType' field"))
 	}
 	m.FlagOnlineChangePtrRefType = flagOnlineChangePtrRefType
 
-	flagRefactorInfo, err := ReadSimpleField(ctx, "flagRefactorInfo", ReadBoolean(readBuffer), codegen.WithByteOrder(binary.LittleEndian))
+	flagRefactorInfo, err := ReadSimpleField(ctx, "flagRefactorInfo", ReadBoolean(readBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'flagRefactorInfo' field"))
 	}
 	m.FlagRefactorInfo = flagRefactorInfo
 
-	flagRedundancyIgnore, err := ReadSimpleField(ctx, "flagRedundancyIgnore", ReadBoolean(readBuffer), codegen.WithByteOrder(binary.LittleEndian))
+	flagRedundancyIgnore, err := ReadSimpleField(ctx, "flagRedundancyIgnore", ReadBoolean(readBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'flagRedundancyIgnore' field"))
 	}
 	m.FlagRedundancyIgnore = flagRedundancyIgnore
 
-	flagPlcPointerType, err := ReadSimpleField(ctx, "flagPlcPointerType", ReadBoolean(readBuffer), codegen.WithByteOrder(binary.LittleEndian))
+	flagPlcPointerType, err := ReadSimpleField(ctx, "flagPlcPointerType", ReadBoolean(readBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'flagPlcPointerType' field"))
 	}
 	m.FlagPlcPointerType = flagPlcPointerType
 
-	reservedField2, err := ReadReservedField(ctx, "reserved", ReadUnsignedByte(readBuffer, uint8(8)), uint8(0x00), codegen.WithByteOrder(binary.LittleEndian))
+	reservedField2, err := ReadReservedField(ctx, "reserved", ReadUnsignedByte(readBuffer, uint8(8)), uint8(0x00), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing reserved field"))
 	}
 	m.reservedField2 = reservedField2
 
-	nameLength, err := ReadImplicitField[uint16](ctx, "nameLength", ReadUnsignedShort(readBuffer, uint8(16)), codegen.WithByteOrder(binary.LittleEndian))
+	nameLength, err := ReadImplicitField[uint16](ctx, "nameLength", ReadUnsignedShort(readBuffer, uint8(16)), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'nameLength' field"))
 	}
 	_ = nameLength
 
-	dataTypeNameLength, err := ReadImplicitField[uint16](ctx, "dataTypeNameLength", ReadUnsignedShort(readBuffer, uint8(16)), codegen.WithByteOrder(binary.LittleEndian))
+	dataTypeNameLength, err := ReadImplicitField[uint16](ctx, "dataTypeNameLength", ReadUnsignedShort(readBuffer, uint8(16)), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'dataTypeNameLength' field"))
 	}
 	_ = dataTypeNameLength
 
-	commentLength, err := ReadImplicitField[uint16](ctx, "commentLength", ReadUnsignedShort(readBuffer, uint8(16)), codegen.WithByteOrder(binary.LittleEndian))
+	commentLength, err := ReadImplicitField[uint16](ctx, "commentLength", ReadUnsignedShort(readBuffer, uint8(16)), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'commentLength' field"))
 	}
 	_ = commentLength
 
-	name, err := ReadSimpleField(ctx, "name", ReadString(readBuffer, uint32(int32(nameLength)*int32(int32(8)))), codegen.WithByteOrder(binary.LittleEndian))
+	name, err := ReadSimpleField(ctx, "name", ReadString(readBuffer, uint32(int32(nameLength)*int32(int32(8)))), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'name' field"))
 	}
 	m.Name = name
 
-	nameTerminator, err := ReadConstField[uint8](ctx, "nameTerminator", ReadUnsignedByte(readBuffer, uint8(8)), AdsSymbolTableEntry_NAMETERMINATOR, codegen.WithByteOrder(binary.LittleEndian))
+	nameTerminator, err := ReadConstField[uint8](ctx, "nameTerminator", ReadUnsignedByte(readBuffer, uint8(8)), AdsSymbolTableEntry_NAMETERMINATOR, codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'nameTerminator' field"))
 	}
 	_ = nameTerminator
 
-	dataTypeName, err := ReadSimpleField(ctx, "dataTypeName", ReadString(readBuffer, uint32(int32(dataTypeNameLength)*int32(int32(8)))), codegen.WithByteOrder(binary.LittleEndian))
+	dataTypeName, err := ReadSimpleField(ctx, "dataTypeName", ReadString(readBuffer, uint32(int32(dataTypeNameLength)*int32(int32(8)))), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'dataTypeName' field"))
 	}
 	m.DataTypeName = dataTypeName
 
-	dataTypeNameTerminator, err := ReadConstField[uint8](ctx, "dataTypeNameTerminator", ReadUnsignedByte(readBuffer, uint8(8)), AdsSymbolTableEntry_DATATYPENAMETERMINATOR, codegen.WithByteOrder(binary.LittleEndian))
+	dataTypeNameTerminator, err := ReadConstField[uint8](ctx, "dataTypeNameTerminator", ReadUnsignedByte(readBuffer, uint8(8)), AdsSymbolTableEntry_DATATYPENAMETERMINATOR, codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'dataTypeNameTerminator' field"))
 	}
 	_ = dataTypeNameTerminator
 
-	comment, err := ReadSimpleField(ctx, "comment", ReadString(readBuffer, uint32(int32(commentLength)*int32(int32(8)))), codegen.WithByteOrder(binary.LittleEndian))
+	comment, err := ReadSimpleField(ctx, "comment", ReadString(readBuffer, uint32(int32(commentLength)*int32(int32(8)))), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'comment' field"))
 	}
 	m.Comment = comment
 
-	commentTerminator, err := ReadConstField[uint8](ctx, "commentTerminator", ReadUnsignedByte(readBuffer, uint8(8)), AdsSymbolTableEntry_COMMENTTERMINATOR, codegen.WithByteOrder(binary.LittleEndian))
+	commentTerminator, err := ReadConstField[uint8](ctx, "commentTerminator", ReadUnsignedByte(readBuffer, uint8(8)), AdsSymbolTableEntry_COMMENTTERMINATOR, codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'commentTerminator' field"))
 	}
 	_ = commentTerminator
 
 	var contextMask *uint32
-	contextMask, err = ReadOptionalField[uint32](ctx, "contextMask", ReadUnsignedInt(readBuffer, uint8(32)), flagContextMask, codegen.WithByteOrder(binary.LittleEndian))
+	contextMask, err = ReadOptionalField[uint32](ctx, "contextMask", ReadUnsignedInt(readBuffer, uint8(32)), flagContextMask, codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'contextMask' field"))
 	}
 	m.ContextMask = contextMask
 
-	guid, err := readBuffer.ReadByteArray("guid", int(utils.InlineIf(bool((flagTypeGuid) == (true)), func() any { return int32(int32(16)) }, func() any { return int32(int32(0)) }).(int32)), codegen.WithByteOrder(binary.LittleEndian))
+	guid, err := readBuffer.ReadByteArray("guid", int(utils.InlineIf(bool((flagTypeGuid) == (true)), func() any { return int32(int32(16)) }, func() any { return int32(int32(0)) }).(int32)), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'guid' field"))
 	}
 	m.Guid = guid
 
 	var attributes AdsDataTypeAttributes
-	_attributes, err := ReadOptionalField[AdsDataTypeAttributes](ctx, "attributes", ReadComplex[AdsDataTypeAttributes](AdsDataTypeAttributesParseWithBuffer, readBuffer), flagAttributes, codegen.WithByteOrder(binary.LittleEndian))
+	_attributes, err := ReadOptionalField[AdsDataTypeAttributes](ctx, "attributes", ReadComplex[AdsDataTypeAttributes](AdsDataTypeAttributesParseWithBuffer, readBuffer), flagAttributes, codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'attributes' field"))
 	}
@@ -1021,7 +1021,7 @@ func (m *_AdsSymbolTableEntry) parse(ctx context.Context, readBuffer utils.ReadB
 		m.Attributes = attributes
 	}
 
-	rest, err := readBuffer.ReadByteArray("rest", int(int32(entryLength)-int32((int32((positionAware.GetPos()-startPos))/int32(int32(8))))), codegen.WithByteOrder(binary.LittleEndian))
+	rest, err := readBuffer.ReadByteArray("rest", int(int32(entryLength)-int32((int32((positionAware.GetPos()-startPos))/int32(int32(8))))), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian))
 	if err != nil {
 		return nil, errors.Wrap(err, fmt.Sprintf("Error parsing 'rest' field"))
 	}
@@ -1051,167 +1051,167 @@ func (m *_AdsSymbolTableEntry) SerializeWithWriteBuffer(ctx context.Context, wri
 		return errors.Wrap(pushErr, "Error pushing for AdsSymbolTableEntry")
 	}
 
-	if err := WriteSimpleField[uint32](ctx, "entryLength", m.GetEntryLength(), WriteUnsignedInt(writeBuffer, 32), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[uint32](ctx, "entryLength", m.GetEntryLength(), WriteUnsignedInt(writeBuffer, 32), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'entryLength' field")
 	}
 
-	if err := WriteSimpleField[uint32](ctx, "group", m.GetGroup(), WriteUnsignedInt(writeBuffer, 32), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[uint32](ctx, "group", m.GetGroup(), WriteUnsignedInt(writeBuffer, 32), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'group' field")
 	}
 
-	if err := WriteSimpleField[uint32](ctx, "offset", m.GetOffset(), WriteUnsignedInt(writeBuffer, 32), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[uint32](ctx, "offset", m.GetOffset(), WriteUnsignedInt(writeBuffer, 32), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'offset' field")
 	}
 
-	if err := WriteSimpleField[uint32](ctx, "size", m.GetSize(), WriteUnsignedInt(writeBuffer, 32), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[uint32](ctx, "size", m.GetSize(), WriteUnsignedInt(writeBuffer, 32), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'size' field")
 	}
 
-	if err := WriteSimpleField[uint32](ctx, "dataType", m.GetDataType(), WriteUnsignedInt(writeBuffer, 32), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[uint32](ctx, "dataType", m.GetDataType(), WriteUnsignedInt(writeBuffer, 32), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'dataType' field")
 	}
 
-	if err := WriteSimpleField[bool](ctx, "flagMethodDeref", m.GetFlagMethodDeref(), WriteBoolean(writeBuffer), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[bool](ctx, "flagMethodDeref", m.GetFlagMethodDeref(), WriteBoolean(writeBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'flagMethodDeref' field")
 	}
 
-	if err := WriteSimpleField[bool](ctx, "flagItfMethodAccess", m.GetFlagItfMethodAccess(), WriteBoolean(writeBuffer), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[bool](ctx, "flagItfMethodAccess", m.GetFlagItfMethodAccess(), WriteBoolean(writeBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'flagItfMethodAccess' field")
 	}
 
-	if err := WriteSimpleField[bool](ctx, "flagReadOnly", m.GetFlagReadOnly(), WriteBoolean(writeBuffer), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[bool](ctx, "flagReadOnly", m.GetFlagReadOnly(), WriteBoolean(writeBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'flagReadOnly' field")
 	}
 
-	if err := WriteSimpleField[bool](ctx, "flagTComInterfacePointer", m.GetFlagTComInterfacePointer(), WriteBoolean(writeBuffer), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[bool](ctx, "flagTComInterfacePointer", m.GetFlagTComInterfacePointer(), WriteBoolean(writeBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'flagTComInterfacePointer' field")
 	}
 	flagTypeGuid := bool(bool((len(m.GetGuid())) > (0)))
-	if err := WriteImplicitField(ctx, "flagTypeGuid", flagTypeGuid, WriteBoolean(writeBuffer), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteImplicitField(ctx, "flagTypeGuid", flagTypeGuid, WriteBoolean(writeBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'flagTypeGuid' field")
 	}
 
-	if err := WriteSimpleField[bool](ctx, "flagReferenceTo", m.GetFlagReferenceTo(), WriteBoolean(writeBuffer), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[bool](ctx, "flagReferenceTo", m.GetFlagReferenceTo(), WriteBoolean(writeBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'flagReferenceTo' field")
 	}
 
-	if err := WriteSimpleField[bool](ctx, "flagBitValue", m.GetFlagBitValue(), WriteBoolean(writeBuffer), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[bool](ctx, "flagBitValue", m.GetFlagBitValue(), WriteBoolean(writeBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'flagBitValue' field")
 	}
 
-	if err := WriteSimpleField[bool](ctx, "flagPersistent", m.GetFlagPersistent(), WriteBoolean(writeBuffer), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[bool](ctx, "flagPersistent", m.GetFlagPersistent(), WriteBoolean(writeBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'flagPersistent' field")
 	}
 
-	if err := WriteSimpleField[bool](ctx, "flagCompilerGenerated", m.GetFlagCompilerGenerated(), WriteBoolean(writeBuffer), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[bool](ctx, "flagCompilerGenerated", m.GetFlagCompilerGenerated(), WriteBoolean(writeBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'flagCompilerGenerated' field")
 	}
 
-	if err := WriteReservedField[uint8](ctx, "reserved", uint8(0x0), WriteUnsignedByte(writeBuffer, 1), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteReservedField[uint8](ctx, "reserved", uint8(0x0), WriteUnsignedByte(writeBuffer, 1), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'reserved' field number 1")
 	}
 
-	if err := WriteSimpleField[bool](ctx, "flagSystemServiceSymbol", m.GetFlagSystemServiceSymbol(), WriteBoolean(writeBuffer), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[bool](ctx, "flagSystemServiceSymbol", m.GetFlagSystemServiceSymbol(), WriteBoolean(writeBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'flagSystemServiceSymbol' field")
 	}
 
-	if err := WriteSimpleField[bool](ctx, "flagExtendedFlags", m.GetFlagExtendedFlags(), WriteBoolean(writeBuffer), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[bool](ctx, "flagExtendedFlags", m.GetFlagExtendedFlags(), WriteBoolean(writeBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'flagExtendedFlags' field")
 	}
 
-	if err := WriteSimpleField[bool](ctx, "flagInitOnReset", m.GetFlagInitOnReset(), WriteBoolean(writeBuffer), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[bool](ctx, "flagInitOnReset", m.GetFlagInitOnReset(), WriteBoolean(writeBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'flagInitOnReset' field")
 	}
 
-	if err := WriteSimpleField[bool](ctx, "flagStatic", m.GetFlagStatic(), WriteBoolean(writeBuffer), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[bool](ctx, "flagStatic", m.GetFlagStatic(), WriteBoolean(writeBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'flagStatic' field")
 	}
 	flagAttributes := bool(bool((m.GetAttributes()) != (nil)))
-	if err := WriteImplicitField(ctx, "flagAttributes", flagAttributes, WriteBoolean(writeBuffer), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteImplicitField(ctx, "flagAttributes", flagAttributes, WriteBoolean(writeBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'flagAttributes' field")
 	}
 	flagContextMask := bool(bool((m.GetContextMask()) != (nil)))
-	if err := WriteImplicitField(ctx, "flagContextMask", flagContextMask, WriteBoolean(writeBuffer), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteImplicitField(ctx, "flagContextMask", flagContextMask, WriteBoolean(writeBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'flagContextMask' field")
 	}
 
-	if err := WriteReservedField[uint8](ctx, "reserved", uint8(0x0), WriteUnsignedByte(writeBuffer, 3), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteReservedField[uint8](ctx, "reserved", uint8(0x0), WriteUnsignedByte(writeBuffer, 3), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'reserved' field number 2")
 	}
 
-	if err := WriteSimpleField[bool](ctx, "flagVariantType", m.GetFlagVariantType(), WriteBoolean(writeBuffer), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[bool](ctx, "flagVariantType", m.GetFlagVariantType(), WriteBoolean(writeBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'flagVariantType' field")
 	}
 
-	if err := WriteSimpleField[bool](ctx, "flagOnlineChangePtrRefType", m.GetFlagOnlineChangePtrRefType(), WriteBoolean(writeBuffer), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[bool](ctx, "flagOnlineChangePtrRefType", m.GetFlagOnlineChangePtrRefType(), WriteBoolean(writeBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'flagOnlineChangePtrRefType' field")
 	}
 
-	if err := WriteSimpleField[bool](ctx, "flagRefactorInfo", m.GetFlagRefactorInfo(), WriteBoolean(writeBuffer), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[bool](ctx, "flagRefactorInfo", m.GetFlagRefactorInfo(), WriteBoolean(writeBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'flagRefactorInfo' field")
 	}
 
-	if err := WriteSimpleField[bool](ctx, "flagRedundancyIgnore", m.GetFlagRedundancyIgnore(), WriteBoolean(writeBuffer), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[bool](ctx, "flagRedundancyIgnore", m.GetFlagRedundancyIgnore(), WriteBoolean(writeBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'flagRedundancyIgnore' field")
 	}
 
-	if err := WriteSimpleField[bool](ctx, "flagPlcPointerType", m.GetFlagPlcPointerType(), WriteBoolean(writeBuffer), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[bool](ctx, "flagPlcPointerType", m.GetFlagPlcPointerType(), WriteBoolean(writeBuffer), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'flagPlcPointerType' field")
 	}
 
-	if err := WriteReservedField[uint8](ctx, "reserved", uint8(0x00), WriteUnsignedByte(writeBuffer, 8), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteReservedField[uint8](ctx, "reserved", uint8(0x00), WriteUnsignedByte(writeBuffer, 8), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'reserved' field number 3")
 	}
 	nameLength := uint16(uint16(len(m.GetName())))
-	if err := WriteImplicitField(ctx, "nameLength", nameLength, WriteUnsignedShort(writeBuffer, 16), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteImplicitField(ctx, "nameLength", nameLength, WriteUnsignedShort(writeBuffer, 16), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'nameLength' field")
 	}
 	dataTypeNameLength := uint16(uint16(len(m.GetDataTypeName())))
-	if err := WriteImplicitField(ctx, "dataTypeNameLength", dataTypeNameLength, WriteUnsignedShort(writeBuffer, 16), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteImplicitField(ctx, "dataTypeNameLength", dataTypeNameLength, WriteUnsignedShort(writeBuffer, 16), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'dataTypeNameLength' field")
 	}
 	commentLength := uint16(uint16(len(m.GetComment())))
-	if err := WriteImplicitField(ctx, "commentLength", commentLength, WriteUnsignedShort(writeBuffer, 16), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteImplicitField(ctx, "commentLength", commentLength, WriteUnsignedShort(writeBuffer, 16), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'commentLength' field")
 	}
 
-	if err := WriteSimpleField[string](ctx, "name", m.GetName(), WriteString(writeBuffer, int32(int32(uint16(len(m.GetName())))*int32(int32(8)))), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[string](ctx, "name", m.GetName(), WriteString(writeBuffer, int32(int32(uint16(len(m.GetName())))*int32(int32(8)))), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'name' field")
 	}
 
-	if err := WriteConstField(ctx, "nameTerminator", AdsSymbolTableEntry_NAMETERMINATOR, WriteUnsignedByte(writeBuffer, 8), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteConstField(ctx, "nameTerminator", AdsSymbolTableEntry_NAMETERMINATOR, WriteUnsignedByte(writeBuffer, 8), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'nameTerminator' field")
 	}
 
-	if err := WriteSimpleField[string](ctx, "dataTypeName", m.GetDataTypeName(), WriteString(writeBuffer, int32(int32(uint16(len(m.GetDataTypeName())))*int32(int32(8)))), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[string](ctx, "dataTypeName", m.GetDataTypeName(), WriteString(writeBuffer, int32(int32(uint16(len(m.GetDataTypeName())))*int32(int32(8)))), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'dataTypeName' field")
 	}
 
-	if err := WriteConstField(ctx, "dataTypeNameTerminator", AdsSymbolTableEntry_DATATYPENAMETERMINATOR, WriteUnsignedByte(writeBuffer, 8), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteConstField(ctx, "dataTypeNameTerminator", AdsSymbolTableEntry_DATATYPENAMETERMINATOR, WriteUnsignedByte(writeBuffer, 8), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'dataTypeNameTerminator' field")
 	}
 
-	if err := WriteSimpleField[string](ctx, "comment", m.GetComment(), WriteString(writeBuffer, int32(int32(uint16(len(m.GetComment())))*int32(int32(8)))), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteSimpleField[string](ctx, "comment", m.GetComment(), WriteString(writeBuffer, int32(int32(uint16(len(m.GetComment())))*int32(int32(8)))), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'comment' field")
 	}
 
-	if err := WriteConstField(ctx, "commentTerminator", AdsSymbolTableEntry_COMMENTTERMINATOR, WriteUnsignedByte(writeBuffer, 8), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteConstField(ctx, "commentTerminator", AdsSymbolTableEntry_COMMENTTERMINATOR, WriteUnsignedByte(writeBuffer, 8), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'commentTerminator' field")
 	}
 
-	if err := WriteOptionalField[uint32](ctx, "contextMask", m.GetContextMask(), WriteUnsignedInt(writeBuffer, 32), true, codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteOptionalField[uint32](ctx, "contextMask", m.GetContextMask(), WriteUnsignedInt(writeBuffer, 32), true, codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'contextMask' field")
 	}
 
-	if err := WriteByteArrayField(ctx, "guid", m.GetGuid(), WriteByteArray(writeBuffer, 8), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteByteArrayField(ctx, "guid", m.GetGuid(), WriteByteArray(writeBuffer, 8), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'guid' field")
 	}
 
-	if err := WriteOptionalField[AdsDataTypeAttributes](ctx, "attributes", new(m.GetAttributes()), WriteComplex[AdsDataTypeAttributes](writeBuffer), true, codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteOptionalField[AdsDataTypeAttributes](ctx, "attributes", new(m.GetAttributes()), WriteComplex[AdsDataTypeAttributes](writeBuffer), true, codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'attributes' field")
 	}
 
-	if err := WriteByteArrayField(ctx, "rest", m.GetRest(), WriteByteArray(writeBuffer, 8), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
+	if err := WriteByteArrayField(ctx, "rest", m.GetRest(), WriteByteArray(writeBuffer, 8), codegen.WithEncoding("UTF8"), codegen.WithByteOrder(binary.LittleEndian)); err != nil {
 		return errors.Wrap(err, "Error serializing 'rest' field")
 	}
 

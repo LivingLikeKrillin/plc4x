@@ -29,7 +29,7 @@ import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -63,7 +63,7 @@ class ApiResponseHandlerTest {
         // Create PlcReadResponse XML with expected values
         // Note: The actual XML generated includes type attributes, so we match that format
         Element responseXml = DocumentHelper.createElement("PlcReadResponse");
-        Element valuesElement = responseXml.addElement("values");
+        Element valuesElement = responseXml.addElement("values").addAttribute("isList", "true");
         Element tagElement = valuesElement.addElement("testTag");
         Element responseItem = tagElement.addElement("PlcResponseItem");
         Element codeElement = responseItem.addElement("code");
@@ -81,7 +81,7 @@ class ApiResponseHandlerTest {
         PlcReadResponse mockResponse = mock(PlcReadResponse.class);
         PlcValue mockValue = mock(PlcValue.class);
 
-        when(mockResponse.getTagNames()).thenReturn(Arrays.asList("testTag"));
+        when(mockResponse.getTagNames()).thenReturn(List.of("testTag"));
         when(mockResponse.getResponseCode("testTag")).thenReturn(PlcResponseCode.OK);
         when(mockResponse.getPlcValue("testTag")).thenReturn(mockValue);
         when(mockValue.isList()).thenReturn(false);
@@ -104,7 +104,7 @@ class ApiResponseHandlerTest {
         // Create PlcReadResponse XML with expected values
         // Note: The actual XML generated includes type attributes, so we match that format
         Element responseXml = DocumentHelper.createElement("PlcReadResponse");
-        Element valuesElement = responseXml.addElement("values");
+        Element valuesElement = responseXml.addElement("values").addAttribute("isList", "true");
         Element tagElement = valuesElement.addElement("testTag");
         Element responseItem = tagElement.addElement("PlcResponseItem");
         Element codeElement = responseItem.addElement("code");
@@ -122,7 +122,7 @@ class ApiResponseHandlerTest {
         PlcReadResponse mockResponse = mock(PlcReadResponse.class);
         PlcValue mockValue = mock(PlcValue.class);
 
-        when(mockResponse.getTagNames()).thenReturn(Arrays.asList("testTag"));
+        when(mockResponse.getTagNames()).thenReturn(List.of("testTag"));
         when(mockResponse.getResponseCode("testTag")).thenReturn(PlcResponseCode.OK);
         when(mockResponse.getPlcValue("testTag")).thenReturn(mockValue);
         when(mockValue.isList()).thenReturn(false);
@@ -150,7 +150,7 @@ class ApiResponseHandlerTest {
 
         // Mock the write response
         PlcWriteResponse mockResponse = mock(PlcWriteResponse.class);
-        when(mockResponse.getTagNames()).thenReturn(Arrays.asList("testTag"));
+        when(mockResponse.getTagNames()).thenReturn(List.of("testTag"));
         when(mockResponse.getResponseCode("testTag")).thenReturn(PlcResponseCode.OK);
 
         CompletableFuture<PlcWriteResponse> future = CompletableFuture.completedFuture(mockResponse);
@@ -173,7 +173,7 @@ class ApiResponseHandlerTest {
 
         // Mock the write response returning NOT_FOUND
         PlcWriteResponse mockResponse = mock(PlcWriteResponse.class);
-        when(mockResponse.getTagNames()).thenReturn(Arrays.asList("testTag"));
+        when(mockResponse.getTagNames()).thenReturn(List.of("testTag"));
         when(mockResponse.getResponseCode("testTag")).thenReturn(PlcResponseCode.NOT_FOUND);
 
         CompletableFuture<PlcWriteResponse> future = CompletableFuture.completedFuture(mockResponse);
