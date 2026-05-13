@@ -181,10 +181,10 @@
         ]
         ['0x4D','false' CipWriteRequest
             [implicit   uint    8           requestPathSize 'COUNT(tag) / 2'                                           ]
-            [array      byte                tag   length  'requestPathSize * 2'                                        ]
+            [array      byte                tag   count   'requestPathSize * 2'                                        ]
             [simple     CIPDataTypeCode     dataType                                                                   ]
             [simple     uint    16          elementNb                                                                  ]
-            [array      byte                data  length  'dataType.size * elementNb'                                  ]
+            [array      byte                data  count   'dataType.size * elementNb'                                  ]
         ]
         ['0x4D','true'  CipWriteResponse
             [reserved   uint        8       '0x00'                                                                     ]

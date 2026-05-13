@@ -1551,8 +1551,9 @@
     ['796' M_YUNCH ['857', '"YUNCH"']]
     ['797' M_LUMI_VIETNAM ['858', '"Lumi Vietnam"']]
     ['798' M_ARCOLA_AI_LIMITED ['859', '"Arcola AI Limited"']]
-    ['799' M_ABB___RESERVED ['43954', '"ABB - reserved"']]
-    ['800' M_BUSCH_JAEGER_ELEKTRO___RESERVED ['43959', '"Busch-Jaeger Elektro - reserved"']]
+    ['799' M_ZHEJIANG_DOOYA_INTELLIGENT_TECHNOLOGY_CO___LTD_ ['860', '"Zhejiang Dooya Intelligent Technology Co., Ltd."']]
+    ['800' M_ABB___RESERVED ['43954', '"ABB - reserved"']]
+    ['801' M_BUSCH_JAEGER_ELEKTRO___RESERVED ['43959', '"Busch-Jaeger Elektro - reserved"']]
     
 ]
 

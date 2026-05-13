@@ -1632,6 +1632,8 @@
   ['1619' QINGPING_TECHNOLOGY_BEIJING_CO_LTD ['1619', '"Qingping Technology Beijing Co., Ltd."']]
   ['1620' P_SSYSTEC_GMBH ['1620', '"PSsystec GmbH"']]
   ['1621' ES_OTOMASYON_SAN_TIC_LTD_STI ['1621', '"3ES Otomasyon San. Tic. Ltd. Sti."']]
+  ['1622' NETWORK_CORPORATION ['1622', '"Network Corporation"']]
+  ['1623' VEAWE_INFO_DYNAMICS_PRIVATE_LIMITED ['1623', '"Veawe Info Dynamics Private Limited"']]
  
   ['0xFFFF' UNKNOWN_VENDOR ['0xFFFF', '"Unknown"']]
 ]

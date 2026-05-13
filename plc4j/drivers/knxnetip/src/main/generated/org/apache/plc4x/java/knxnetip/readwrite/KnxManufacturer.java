@@ -1623,9 +1623,11 @@ public enum KnxManufacturer {
 
   M_ARCOLA_AI_LIMITED((int) 798, (int) 859, "Arcola AI Limited"),
 
-  M_ABB___RESERVED((int) 799, (int) 43954, "ABB - reserved"),
+  M_ZHEJIANG_DOOYA_INTELLIGENT_TECHNOLOGY_CO___LTD_((int) 799, (int) 860, "Zhejiang Dooya Intelligent Technology Co., Ltd."),
 
-  M_BUSCH_JAEGER_ELEKTRO___RESERVED((int) 800, (int) 43959, "Busch-Jaeger Elektro - reserved");
+  M_ABB___RESERVED((int) 800, (int) 43954, "ABB - reserved"),
+
+  M_BUSCH_JAEGER_ELEKTRO___RESERVED((int) 801, (int) 43959, "Busch-Jaeger Elektro - reserved");
 
   private static final Map<Integer, KnxManufacturer> map;
 

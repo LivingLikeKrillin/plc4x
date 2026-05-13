@@ -108,7 +108,7 @@ public class CipWriteRequest extends CipService implements Message {
     short requestPathSize = FieldReaderFactory.readImplicitField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("requestPathSize"));
 
     // Array Field: tag
-    byte[] tag = readBuffer.readBits(Math.toIntExact((requestPathSize) * (2)), WithOption.WithName("tag"));
+    byte[] tag = readBuffer.readBits(Math.toIntExact(((requestPathSize) * (2)) * 8), WithOption.WithName("tag"));
 
     // Simple Field (enum): dataType
     CIPDataTypeCode dataType = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(CIPDataTypeCode::enumForValue, DataReaderFactory.readUnsignedInt(readBuffer, 16)), WithOption.WithName("dataType"));
@@ -117,7 +117,7 @@ public class CipWriteRequest extends CipService implements Message {
     int elementNb = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("elementNb"));
 
     // Array Field: data
-    byte[] data = readBuffer.readBits(Math.toIntExact((dataType.getSize()) * (elementNb)), WithOption.WithName("data"));
+    byte[] data = readBuffer.readBits(Math.toIntExact(((dataType.getSize()) * (elementNb)) * 8), WithOption.WithName("data"));
 
     readBuffer.popContext();
     return new CipServiceBuilderImpl(tag, dataType, elementNb, data);

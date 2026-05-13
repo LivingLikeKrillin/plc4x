@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package org.apache.plc4x.java.eip.base;
+package org.apache.plc4x.java.eip.base.manual;
 
 import org.apache.plc4x.java.api.PlcConnection;
 import org.apache.plc4x.java.api.PlcDriverManager;
@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 public class ManualEipTest {
 
     public static void main(String[] args) {
-        try (PlcConnection plcConnection = PlcDriverManager.getDefault().getConnectionManager().getConnection("eip:tcp://192.168.23.10:44818")) {
+        try (PlcConnection plcConnection = PlcDriverManager.getDefault().getConnectionManager().getConnection("eip://192.168.24.32")) {
             PlcReadRequest.Builder builder = plcConnection.readRequestBuilder();
             builder.addTagAddress("param", "%out01");
             var readRequest = builder.build();
