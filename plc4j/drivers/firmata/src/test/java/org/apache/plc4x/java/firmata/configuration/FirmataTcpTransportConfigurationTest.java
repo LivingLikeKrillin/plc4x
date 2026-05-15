@@ -16,14 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.java.firmata.readwrite;
+package org.apache.plc4x.java.firmata.configuration;
 
-import org.apache.plc4x.test.parserserializer.ParserSerializerTestsuiteRunner;
+import org.junit.jupiter.api.Test;
 
-public class FirmataParserSerializerTest extends ParserSerializerTestsuiteRunner {
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-    public FirmataParserSerializerTest() {
-        super("/protocols/firmata/ParserSerializerTestsuite.xml");
+class FirmataTcpTransportConfigurationTest {
+
+    /**
+     * StandardFirmataWiFi.ino / StandardFirmataEthernet.ino convention is
+     * port 3030 — make sure the driver default matches so users don't have
+     * to spell it on the URL.
+     */
+    @Test
+    void defaultPortIs3030() {
+        assertEquals(3030, new FirmataTcpTransportConfiguration().getDefaultPort());
     }
 
 }

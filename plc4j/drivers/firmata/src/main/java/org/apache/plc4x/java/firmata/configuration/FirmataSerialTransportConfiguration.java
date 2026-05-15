@@ -16,10 +16,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.java.firmata.readwrite.configuration;
 
-import org.apache.plc4x.java.spi.configuration.PlcConnectionConfiguration;
+package org.apache.plc4x.java.firmata.configuration;
 
-public class FirmataConfiguration implements PlcConnectionConfiguration {
+import org.apache.plc4x.java.transport.serial.config.SerialTransportConfiguration;
 
+/**
+ * Marker subclass so the driver framework can resolve a Firmata-specific
+ * serial transport configuration from the connection URL. Defaults inherited
+ * from {@link SerialTransportConfiguration}; users can still override
+ * everything (baud rate, parity, etc.) on the URL.
+ */
+public class FirmataSerialTransportConfiguration extends SerialTransportConfiguration {
 }

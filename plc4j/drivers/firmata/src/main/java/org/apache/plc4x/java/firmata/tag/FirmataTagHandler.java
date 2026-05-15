@@ -16,12 +16,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.java.firmata.readwrite.tag;
+package org.apache.plc4x.java.firmata.tag;
 
 import org.apache.plc4x.java.api.exceptions.PlcInvalidTagException;
 import org.apache.plc4x.java.api.model.PlcTag;
 import org.apache.plc4x.java.api.model.PlcQuery;
-import org.apache.plc4x.java.spi.connection.PlcTagHandler;
+import org.apache.plc4x.java.spi.drivers.tags.PlcTagHandler;
 
 public class FirmataTagHandler implements PlcTagHandler {
 

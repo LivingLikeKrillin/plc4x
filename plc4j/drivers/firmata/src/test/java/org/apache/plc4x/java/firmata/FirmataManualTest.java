@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package org.apache.plc4x.java.firmata.readwrite;
+package org.apache.plc4x.java.firmata;
 
 import org.apache.plc4x.java.api.PlcConnection;
 import org.apache.plc4x.java.api.PlcDriverManager;
