@@ -33,9 +33,6 @@ import java.util.Map;
 /**
  * Walks the ADS symbol- and data-type tables to translate a {@link SymbolicAdsTag} into a
  * {@link ResolvedAdsTag} (absolute group/offset/size + decoder shape).
- *
- * <p>Pattern ported from ToddySoft's {@code AdsBaseOperation} — see
- * {@code AdsBaseOperation.resolvePart / resolveArray / resolveChild}.
  */
 public final class TagResolver {
 

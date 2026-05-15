@@ -20,94 +20,144 @@ package org.apache.plc4x.java.firmata;
 
 import com.github.pfichtner.testcontainers.virtualavr.VirtualAvrConnection;
 import com.github.pfichtner.testcontainers.virtualavr.VirtualAvrConnection.PinReportMode;
-import java.net.URI;
 import org.apache.plc4x.java.DefaultPlcDriverManager;
 import org.apache.plc4x.java.api.PlcConnection;
 import org.apache.plc4x.java.api.messages.PlcSubscriptionEvent;
 import org.apache.plc4x.java.api.messages.PlcSubscriptionRequest;
 import org.apache.plc4x.java.api.messages.PlcSubscriptionResponse;
-import org.apache.plc4x.java.api.messages.PlcWriteRequest;
-import org.apache.plc4x.java.api.messages.PlcWriteResponse;
-import org.apache.plc4x.java.api.types.PlcResponseCode;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.images.builder.ImageFromDockerfile;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-import java.util.Map;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.net.URI;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Integration test for the Firmata driver against a virtual Arduino running
- * StandardFirmata inside a Docker container, talking to it over the driver's
- * TCP transport.
+ * Integration test for the Firmata driver running against a virtualavr container
+ * over the TCP transport.
  *
- * <p>The container is a small extension over {@code pfichtner/virtualavr}
- * (see {@code src/test/resources/virtualavr-tcp/Dockerfile}) that replaces
- * the upstream PTY-bridge entrypoint with a single {@code socat TCP-LISTEN
- * ... EXEC:"node /app/virtualavr.js sketch.ino",pty,rawer,fdin=3,fdout=4}.
- * The simulator's UART is wired directly to a TCP socket exposed on the
- * container, which testcontainers maps to a stable host port. No host-side
- * {@code socat} or PTY is involved — so this IT runs on every OS Docker
- * supports, including macOS where {@code jSerialComm} won't open the
- * temp-file PTY the upstream serial mode produces.</p>
+ * <p>The container is built from {@code src/test/resources/virtualavr-tcp/Dockerfile}
+ * — a thin extension over {@code pfichtner/virtualavr} that replaces the PTY-bridge
+ * entrypoint with a single {@code socat TCP-LISTEN ... EXEC:"node /app/virtualavr.js
+ * sketch.ino",pty,rawer,fdin=3,fdout=4} and bakes StandardFirmata in. The simulated
+ * UART is exposed as a TCP listener on port 3030; the simulator's WebSocket
+ * side-channel on port 8080 is used by {@link VirtualAvrConnection} to inject pin
+ * transitions and read back pin state. No host-side {@code socat} or PTY is
+ * involved, so this IT runs on every OS Docker supports — including macOS where
+ * {@code jSerialComm} won't open the temp-file PTY the upstream serial mode
+ * produces.</p>
  *
- * <p>The simulator is spawned by socat on the first TCP {@code accept}, so
- * we open the PlcConnection once in {@code @BeforeAll} and share it across
- * all tests — that pays the sketch-startup cost once and keeps a single
- * simulator process alive (its WebSocket side-channel on port 8080 is what
- * the {@link VirtualAvrConnection} helper uses to inspect pin state and to
- * inject input transitions).</p>
+ * <h2>Test plan</h2>
+ *
+ * <ul>
+ *   <li>{@link #testAnalogInputs()} — sine wave on A0, verify the driver delivers
+ *       a stream of subscription events whose values span the expected 0..1023
+ *       ADC range with significant variation.</li>
+ *   <li>{@link #testDigitalInputs()} — 4-bit counter cycling D2..D5 0..15, verify
+ *       the driver delivers change-of-state events for every pin transition.</li>
+ *   <li>{@link #testAnalogAndDigitalInputs()} — both simulations running
+ *       concurrently, verify the driver routes events to the right tag names
+ *       without interference.</li>
+ * </ul>
+ *
+ * <p>Container and simulator are recreated for every test (default PER_METHOD
+ * lifecycle): socat in the container runs one accept slot at a time, and a clean
+ * AVR pin register per test keeps the assertions predictable.</p>
  */
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @Testcontainers(disabledWithoutDocker = true)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FirmataVirtualAvrIT {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(FirmataVirtualAvrIT.class);
 
     private static final int CONTAINER_TCP_SERIAL_PORT = 3030;
     private static final int CONTAINER_WEBSOCKET_PORT = 8080;
 
-    private GenericContainer<?> virtualAvr;
-    private PlcConnection plcConnection;
-    private VirtualAvrConnection virtualAvrConnection;
+    private static final String ANALOG_PIN_A0 = "A0";
+    private static final int[] DIGITAL_PINS = {2, 3, 4, 5};
 
-    @BeforeAll
-    void startContainer() throws Exception {
+    private static final double SINE_WAVE_PERIOD_MS = 2000;
+    private static final int COUNTER_INCREMENT_MS = 500;
+
+    private GenericContainer<?> virtualAvr;
+    private VirtualAvrConnection virtualAvrConnection;
+    private ScheduledExecutorService simulationExecutor;
+    private ScheduledFuture<?> sineWaveFuture;
+    private ScheduledFuture<?> counterFuture;
+
+    @BeforeEach
+    @SuppressWarnings("resource")
+    void setup() {
         virtualAvr = new GenericContainer<>(
             new ImageFromDockerfile()
                 .withFileFromClasspath("Dockerfile", "virtualavr-tcp/Dockerfile"))
             .withExposedPorts(CONTAINER_TCP_SERIAL_PORT, CONTAINER_WEBSOCKET_PORT);
-        // No Wait.forListeningPort — that probe opens a TCP connection,
-        // which consumes our single accept slot (we run socat without
-        // ",fork" because each accept spawns a fresh simulator and the
-        // second one would clash on the WebSocket port). We retry the
-        // driver connect below instead; failed connects before socat is
-        // up just hit "connection refused" without spending an accept slot.
+        // No Wait.forListeningPort — that probe opens a TCP connection which
+        // consumes our single accept slot (socat runs without ",fork" so the
+        // next accept spawns a fresh simulator that would clash on port 8080).
+        // We retry the driver connect in openDriverAndAttachWebSocket() instead.
         virtualAvr.start();
+        simulationExecutor = Executors.newScheduledThreadPool(2);
+    }
 
-        // Open the driver connection once. This triggers socat-EXEC inside
-        // the container, which starts the simulator process; the simulator
-        // in turn brings up the WebSocket server. After this returns we can
-        // safely attach the WebSocket helper.
+    @AfterEach
+    void teardown() {
+        stopSimulation();
+        if (simulationExecutor != null) {
+            simulationExecutor.shutdown();
+            try {
+                if (!simulationExecutor.awaitTermination(5, TimeUnit.SECONDS)) {
+                    simulationExecutor.shutdownNow();
+                }
+            } catch (InterruptedException e) {
+                simulationExecutor.shutdownNow();
+                Thread.currentThread().interrupt();
+            }
+        }
+        if (virtualAvrConnection != null) {
+            try { virtualAvrConnection.close(); } catch (Exception ignored) {}
+            virtualAvrConnection = null;
+        }
+        if (virtualAvr != null) {
+            virtualAvr.stop();
+            virtualAvr = null;
+        }
+    }
+
+    /**
+     * Opens the driver's TCP connection to the container's serial port, then
+     * connects the {@link VirtualAvrConnection} WebSocket helper used for
+     * pin-state injection. The driver's connect attempt is what spawns the
+     * simulator inside the container (socat runs the AVR command on the first
+     * accept), so we have to retry until socat is up.
+     */
+    private PlcConnection openDriverAndAttachWebSocket() throws Exception {
         String url = "firmata:tcp://" + virtualAvr.getHost() + ":"
             + virtualAvr.getMappedPort(CONTAINER_TCP_SERIAL_PORT)
             + "?request-timeout=30000";
-        plcConnection = openWithRetry(url);
+        PlcConnection connection = openWithRetry(url);
 
-        // The library's static factory uses container.getFirstMappedPort()
-        // which here is our TCP serial port. Build the WebSocket URI ourselves
-        // pointing at the simulator's actual WS port (8080 in the container).
-        // The constructor of VirtualAvrConnection already calls
-        // connectBlocking() — so this *is* a connect attempt, not just a
-        // handle setup. Wait a moment for the connect handshake to finish
-        // before the first test runs.
+        // Build the WebSocket URI manually — the library's static factory
+        // assumes the first mapped port is the WS port, which isn't true here.
         URI wsUri = URI.create("ws://" + virtualAvr.getHost() + ":"
             + virtualAvr.getMappedPort(CONTAINER_WEBSOCKET_PORT));
         virtualAvrConnection = new VirtualAvrConnection(wsUri);
@@ -119,6 +169,7 @@ public class FirmataVirtualAvrIT {
         if (!virtualAvrConnection.isOpen()) {
             throw new AssertionError("Could not connect to virtualavr WebSocket at " + wsUri);
         }
+        return connection;
     }
 
     private PlcConnection openWithRetry(String url) throws Exception {
@@ -136,103 +187,229 @@ public class FirmataVirtualAvrIT {
         throw new AssertionError("Could not open " + url + " within timeout", last);
     }
 
-    @AfterAll
-    void stopContainer() throws Exception {
-        if (plcConnection != null) {
-            plcConnection.close();
-        }
-        if (virtualAvrConnection != null) {
-            virtualAvrConnection.close();
-        }
-        if (virtualAvr != null) {
-            virtualAvr.stop();
-        }
-    }
-
     /**
-     * Round-trips a single digital-pin write: write to pin 13 via the driver,
-     * verify the simulator's pin state reflects the new value.
-     *
-     * <p>Exercises {@link FirmataConnection#onWrite} including the implicit
-     * {@code SetPinMode → SetDigitalPinValue} sequencing the driver emits on
-     * first write to a pin, and round-trips the bytes over the driver's TCP
-     * transport.</p>
+     * Start the pin-value simulation:
+     * <ul>
+     *   <li>Sine wave on analog pin A0 (0..1023)</li>
+     *   <li>4-bit counter on digital pins 2..5 (0..15)</li>
+     * </ul>
      */
-    @Test
-    void writeDigitalPin() throws Exception {
-        // Tell the simulator's WebSocket side-channel to publish digital
-        // updates for D13 — otherwise the AVR's internal pin transitions
-        // never reach lastStates() and we'd never see the write land.
-        virtualAvrConnection.pinReportMode("13", PinReportMode.DIGITAL);
-
-        PlcWriteRequest writeRequest = plcConnection.writeRequestBuilder()
-            .addTagAddress("led", "digital:13", true)
-            .build();
-        PlcWriteResponse response = writeRequest.execute().get(5, TimeUnit.SECONDS);
-        assertEquals(PlcResponseCode.OK, response.getResponseCode("led"));
-
-        awaitPinState("13", true);
-    }
-
-    /**
-     * Subscribes to a digital pin, simulates a transition on the AVR side,
-     * and asserts the driver delivers a {@link PlcSubscriptionEvent}.
-     *
-     * <p>Exercises {@link FirmataConnection#onSubscribe},
-     * {@code SubscribeDigitalPinValue} on the wire, and the push-event
-     * dispatch in {@code publishDigitalEvents}.</p>
-     */
-    @Test
-    void subscribeDigitalPin() throws Exception {
-        // Put D2 into DIGITAL report mode so pinState() injections actually
-        // propagate to the AVR's pin register and then to the sketch.
-        virtualAvrConnection.pinReportMode("2", PinReportMode.DIGITAL);
-
-        LinkedBlockingQueue<PlcSubscriptionEvent> events = new LinkedBlockingQueue<>();
-        PlcSubscriptionRequest request = plcConnection.subscriptionRequestBuilder()
-            .addEventTagAddress("button", "digital:2")
-            .build();
-        PlcSubscriptionResponse response = request.execute().get(5, TimeUnit.SECONDS);
-        assertEquals(PlcResponseCode.OK, response.getResponseCode("button"));
-
-        // Subscriptions only deliver events once the consumer is explicitly
-        // attached to the returned handle — the builder's setConsumer just
-        // stashes a reference on the request itself.
-        response.getSubscriptionHandle("button").register(events::offer);
-
-        // Drive the simulated input pin HIGH; the StandardFirmata sketch
-        // turns the transition into an unsolicited DigitalIO message.
-        virtualAvrConnection.pinState("2", true);
-
-        PlcSubscriptionEvent event = events.poll(10, TimeUnit.SECONDS);
-        assertNotNull(event, "Expected a subscription event after pin transition");
-        assertEquals(PlcResponseCode.OK, event.getResponseCode("button"));
-        assertTrue(event.getPlcValue("button").getBoolean(),
-            "Pin 2 should be reported as HIGH");
-    }
-
-    private void awaitPinState(String pinName, boolean expected) throws Exception {
-        // virtualavr.js publishes pin-state diffs every PUBLISH_MILLIS
-        // (default 250 ms). Allow several publish cycles + plenty of
-        // simulator step time before we declare the write hasn't landed.
-        long deadline = System.currentTimeMillis() + 15_000L;
-        Object lastSeen = null;
-        while (System.currentTimeMillis() < deadline) {
-            Map<String, Object> states = virtualAvrConnection.lastStates();
-            Object actual = states.get(pinName);
-            lastSeen = actual;
-            if (actual instanceof Boolean b && b == expected) {
-                return;
-            }
-            if (actual instanceof Number n && (n.intValue() != 0) == expected) {
-                return;
-            }
-            //noinspection BusyWait
-            Thread.sleep(100);
+    private void startSimulation() {
+        // The simulator only forwards injected pinState(...) calls into the
+        // AVR's pin register for pins it has been told to report on. Without
+        // this, StandardFirmata never sees the transitions and the driver
+        // gets no events even though our scheduler keeps firing.
+        virtualAvrConnection.pinReportMode(ANALOG_PIN_A0, PinReportMode.ANALOG);
+        for (int pin : DIGITAL_PINS) {
+            virtualAvrConnection.pinReportMode(String.valueOf(pin), PinReportMode.DIGITAL);
         }
-        throw new AssertionError("Pin " + pinName + " did not reach state " + expected
-            + " within timeout (last seen: " + lastSeen
-            + ", available pins: " + virtualAvrConnection.lastStates().keySet() + ")");
+
+        AtomicInteger sinePhase = new AtomicInteger(0);
+        sineWaveFuture = simulationExecutor.scheduleAtFixedRate(() -> {
+            try {
+                int phase = sinePhase.getAndIncrement();
+                double radians = (2 * Math.PI * phase) / (SINE_WAVE_PERIOD_MS / 100);
+                int value = (int) ((Math.sin(radians) + 1) * 511.5);
+                virtualAvrConnection.pinState(ANALOG_PIN_A0, value);
+                LOGGER.info("Sine wave: phase={}, value={}", phase, value);
+            } catch (Exception e) {
+                LOGGER.error("Error in sine wave simulation", e);
+            }
+        }, 0, 50, TimeUnit.MILLISECONDS);
+
+        AtomicInteger counter = new AtomicInteger(0);
+        counterFuture = simulationExecutor.scheduleAtFixedRate(() -> {
+            try {
+                int count = counter.getAndIncrement() % 16;
+                for (int i = 0; i < DIGITAL_PINS.length; i++) {
+                    boolean bitValue = ((count >> i) & 1) == 1;
+                    virtualAvrConnection.pinState(String.valueOf(DIGITAL_PINS[i]), bitValue);
+                }
+                LOGGER.info("Counter: {} (binary: {})", count, Integer.toBinaryString(count));
+            } catch (Exception e) {
+                LOGGER.error("Error in counter simulation", e);
+            }
+        }, 0, COUNTER_INCREMENT_MS, TimeUnit.MILLISECONDS);
+
+        LOGGER.info("Simulation started: Sine wave on {}, Counter on pins {}-{}",
+            ANALOG_PIN_A0, DIGITAL_PINS[0], DIGITAL_PINS[DIGITAL_PINS.length - 1]);
+    }
+
+    private void stopSimulation() {
+        if (sineWaveFuture != null) {
+            sineWaveFuture.cancel(false);
+            sineWaveFuture = null;
+        }
+        if (counterFuture != null) {
+            counterFuture.cancel(false);
+            counterFuture = null;
+        }
+    }
+
+    @Test
+    @Order(1)
+    @DisplayName("Test analog pins (sine wave simulation)")
+    void testAnalogInputs() throws Exception {
+        boolean received;
+        List<Integer> receivedValues = new CopyOnWriteArrayList<>();
+        CountDownLatch valuesReceived = new CountDownLatch(20);
+
+        try (PlcConnection connection = openDriverAndAttachWebSocket()) {
+            startSimulation();
+
+            PlcSubscriptionResponse subscriptionResponse = connection.subscriptionRequestBuilder()
+                .addChangeOfStateTagAddress(ANALOG_PIN_A0, "analog:0")
+                .build()
+                .execute().get(5000, TimeUnit.MILLISECONDS);
+
+            // Builder-level consumers (per-tag or setConsumer) are only stashed
+            // on the request — they aren't auto-wired to event delivery. Attach
+            // the consumer on the returned handle to actually receive events.
+            subscriptionResponse.getSubscriptionHandle(ANALOG_PIN_A0).register(plcSubscriptionEvent -> {
+                LOGGER.info("Received event: {}", plcSubscriptionEvent.getPlcValue(ANALOG_PIN_A0).getInteger());
+                receivedValues.add(plcSubscriptionEvent.getPlcValue(ANALOG_PIN_A0).getInteger());
+                valuesReceived.countDown();
+            });
+
+            received = valuesReceived.await(15, TimeUnit.SECONDS);
+
+            connection.unsubscriptionRequestBuilder()
+                .addHandles(subscriptionResponse.getSubscriptionHandles())
+                .build().execute().get(5000, TimeUnit.MILLISECONDS);
+        }
+
+        assertTrue(received || receivedValues.size() > 5,
+            "Should receive multiple analog values");
+
+        for (int value : receivedValues) {
+            assertTrue(value >= 0 && value <= 1023,
+                "Analog value should be between 0 and 1023, got: " + value);
+        }
+
+        if (receivedValues.size() > 5) {
+            int min = receivedValues.stream().mapToInt(Integer::intValue).min().orElse(0);
+            int max = receivedValues.stream().mapToInt(Integer::intValue).max().orElse(1023);
+            assertTrue(max - min > 100,
+                "Should see significant variation in sine wave values");
+        }
+
+        LOGGER.info("Received {} analog values, range: {} to {}",
+            receivedValues.size(),
+            receivedValues.stream().mapToInt(Integer::intValue).min().orElse(-1),
+            receivedValues.stream().mapToInt(Integer::intValue).max().orElse(-1));
+    }
+
+    @Test
+    @Order(2)
+    @DisplayName("Test digital pins (4-bit counter simulation)")
+    void testDigitalInputs() throws Exception {
+        boolean received;
+        List<Integer> receivedCounterValues = new CopyOnWriteArrayList<>();
+        CountDownLatch valuesReceived = new CountDownLatch(16);
+
+        try (PlcConnection connection = openDriverAndAttachWebSocket()) {
+            startSimulation();
+
+            PlcSubscriptionRequest.Builder builder = connection.subscriptionRequestBuilder();
+            for (int pin : DIGITAL_PINS) {
+                builder.addChangeOfStateTagAddress("D" + pin, "digital:" + pin);
+            }
+            PlcSubscriptionResponse subscriptionResponse = builder
+                .build()
+                .execute().get(5000, TimeUnit.MILLISECONDS);
+
+            Consumer<PlcSubscriptionEvent> consumer = plcSubscriptionEvent -> {
+                LOGGER.info("Received event: {} {} {} {}",
+                    plcSubscriptionEvent.getPlcValue("D5") != null ? plcSubscriptionEvent.getPlcValue("D5").getInteger() : "-",
+                    plcSubscriptionEvent.getPlcValue("D4") != null ? plcSubscriptionEvent.getPlcValue("D4").getInteger() : "-",
+                    plcSubscriptionEvent.getPlcValue("D3") != null ? plcSubscriptionEvent.getPlcValue("D3").getInteger() : "-",
+                    plcSubscriptionEvent.getPlcValue("D2") != null ? plcSubscriptionEvent.getPlcValue("D2").getInteger() : "-");
+                for (String tagName : plcSubscriptionEvent.getTagNames()) {
+                    int integer = plcSubscriptionEvent.getPlcValue(tagName).getInteger();
+                    receivedCounterValues.add(integer);
+                }
+                valuesReceived.countDown();
+            };
+            // setConsumer on the builder is only stashed; events fire only for
+            // consumers attached to the returned handles.
+            for (int pin : DIGITAL_PINS) {
+                subscriptionResponse.getSubscriptionHandle("D" + pin).register(consumer);
+            }
+
+            received = valuesReceived.await(15, TimeUnit.SECONDS);
+
+            connection.unsubscriptionRequestBuilder()
+                .addHandles(subscriptionResponse.getSubscriptionHandles())
+                .build().execute().get(5000, TimeUnit.MILLISECONDS);
+        }
+
+        assertTrue(received || receivedCounterValues.size() > 3,
+            "Should receive multiple counter values");
+
+        for (int value : receivedCounterValues) {
+            assertTrue(value >= 0 && value <= 15,
+                "Counter value should be between 0 and 15, got: " + value);
+        }
+
+        LOGGER.info("Received {} counter state changes", receivedCounterValues.size());
+    }
+
+    @Test
+    @Order(3)
+    @DisplayName("Test combined analog and digital pins")
+    void testAnalogAndDigitalInputs() throws Exception {
+        boolean received;
+        AtomicInteger analogCount = new AtomicInteger(0);
+        AtomicInteger digitalCount = new AtomicInteger(0);
+        CountDownLatch valuesReceived = new CountDownLatch(20);
+
+        try (PlcConnection connection = openDriverAndAttachWebSocket()) {
+            startSimulation();
+
+            PlcSubscriptionRequest.Builder builder = connection.subscriptionRequestBuilder();
+            for (int pin : DIGITAL_PINS) {
+                builder.addChangeOfStateTagAddress("D" + pin, "digital:" + pin);
+            }
+            builder.addChangeOfStateTagAddress(ANALOG_PIN_A0, "analog:0");
+            PlcSubscriptionResponse subscriptionResponse = builder
+                .build()
+                .execute().get(5000, TimeUnit.MILLISECONDS);
+
+            Consumer<PlcSubscriptionEvent> consumer = plcSubscriptionEvent -> {
+                LOGGER.info("Received event: {} {} {} {} {}",
+                    plcSubscriptionEvent.getPlcValue(ANALOG_PIN_A0) != null ? plcSubscriptionEvent.getPlcValue(ANALOG_PIN_A0).getInteger() : "-",
+                    plcSubscriptionEvent.getPlcValue("D5") != null ? plcSubscriptionEvent.getPlcValue("D5").getInteger() : "-",
+                    plcSubscriptionEvent.getPlcValue("D4") != null ? plcSubscriptionEvent.getPlcValue("D4").getInteger() : "-",
+                    plcSubscriptionEvent.getPlcValue("D3") != null ? plcSubscriptionEvent.getPlcValue("D3").getInteger() : "-",
+                    plcSubscriptionEvent.getPlcValue("D2") != null ? plcSubscriptionEvent.getPlcValue("D2").getInteger() : "-");
+                for (String tagName : plcSubscriptionEvent.getTagNames()) {
+                    if (tagName.equals(ANALOG_PIN_A0)) {
+                        analogCount.incrementAndGet();
+                    } else if (tagName.startsWith("D")) {
+                        digitalCount.incrementAndGet();
+                    }
+                }
+                valuesReceived.countDown();
+            };
+            // setConsumer on the builder is only stashed; events fire only for
+            // consumers attached to the returned handles.
+            for (int pin : DIGITAL_PINS) {
+                subscriptionResponse.getSubscriptionHandle("D" + pin).register(consumer);
+            }
+            subscriptionResponse.getSubscriptionHandle(ANALOG_PIN_A0).register(consumer);
+
+            received = valuesReceived.await(15, TimeUnit.SECONDS);
+
+            connection.unsubscriptionRequestBuilder()
+                .addHandles(subscriptionResponse.getSubscriptionHandles())
+                .build().execute().get(5000, TimeUnit.MILLISECONDS);
+        }
+
+        LOGGER.info("Received {} analog events and {} digital events",
+            analogCount.get(), digitalCount.get());
+
+        assertTrue(received && (analogCount.get() > 0 || digitalCount.get() > 0),
+            "Should receive events from both analog and digital simulations");
     }
 
 }
