@@ -78,17 +78,17 @@ public class InformationObjectWithSevenByteTime_MEASURED_VALUE_SCALED_VALUE exte
   public static InformationObjectWithSevenByteTimeBuilder staticParseInformationObjectWithSevenByteTimeBuilder(
       ReadBuffer readBuffer, TypeIdentification typeIdentification, byte numTimeByte) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("InformationObjectWithSevenByteTime_MEASURED_VALUE_SCALED_VALUE"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("InformationObjectWithSevenByteTime_MEASURED_VALUE_SCALED_VALUE"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: sva
-    ScaledValue sva = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (ScaledValue) ScaledValue.staticParse(readBuffer), readBuffer), WithOption.WithName("sva"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    ScaledValue sva = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (ScaledValue) ScaledValue.staticParse(readBuffer), readBuffer), WithOption.WithName("sva"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: qds
-    QualityDescriptor qds = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (QualityDescriptor) QualityDescriptor.staticParse(readBuffer), readBuffer), WithOption.WithName("qds"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    QualityDescriptor qds = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (QualityDescriptor) QualityDescriptor.staticParse(readBuffer), readBuffer), WithOption.WithName("qds"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: cp56Time2a
-    SevenOctetBinaryTime cp56Time2a = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (SevenOctetBinaryTime) SevenOctetBinaryTime.staticParse(readBuffer), readBuffer), WithOption.WithName("cp56Time2a"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    SevenOctetBinaryTime cp56Time2a = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (SevenOctetBinaryTime) SevenOctetBinaryTime.staticParse(readBuffer), readBuffer), WithOption.WithName("cp56Time2a"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new InformationObjectWithSevenByteTimeBuilderImpl(sva, qds, cp56Time2a);
@@ -96,17 +96,17 @@ public class InformationObjectWithSevenByteTime_MEASURED_VALUE_SCALED_VALUE exte
 
   protected void serializeInformationObjectWithSevenByteTimeChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithSevenByteTime_MEASURED_VALUE_SCALED_VALUE"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithSevenByteTime_MEASURED_VALUE_SCALED_VALUE"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: sva
-    FieldWriterFactory.writeSimpleField((ScaledValue) sva, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("sva"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((ScaledValue) sva, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("sva"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: qds
-    FieldWriterFactory.writeSimpleField((QualityDescriptor) qds, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("qds"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((QualityDescriptor) qds, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("qds"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: cp56Time2a
-    FieldWriterFactory.writeSimpleField((SevenOctetBinaryTime) cp56Time2a, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("cp56Time2a"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((SevenOctetBinaryTime) cp56Time2a, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("cp56Time2a"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

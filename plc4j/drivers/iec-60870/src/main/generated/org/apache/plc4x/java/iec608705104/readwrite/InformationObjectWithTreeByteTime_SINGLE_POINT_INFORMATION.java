@@ -68,14 +68,14 @@ public class InformationObjectWithTreeByteTime_SINGLE_POINT_INFORMATION extends 
   public static InformationObjectWithTreeByteTimeBuilder staticParseInformationObjectWithTreeByteTimeBuilder(
       ReadBuffer readBuffer, TypeIdentification typeIdentification, byte numTimeByte) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("InformationObjectWithTreeByteTime_SINGLE_POINT_INFORMATION"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("InformationObjectWithTreeByteTime_SINGLE_POINT_INFORMATION"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: siq
-    SinglePointInformation siq = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (SinglePointInformation) SinglePointInformation.staticParse(readBuffer), readBuffer), WithOption.WithName("siq"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    SinglePointInformation siq = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (SinglePointInformation) SinglePointInformation.staticParse(readBuffer), readBuffer), WithOption.WithName("siq"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: cp24Time2a
-    ThreeOctetBinaryTime cp24Time2a = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (ThreeOctetBinaryTime) ThreeOctetBinaryTime.staticParse(readBuffer), readBuffer), WithOption.WithName("cp24Time2a"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    ThreeOctetBinaryTime cp24Time2a = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (ThreeOctetBinaryTime) ThreeOctetBinaryTime.staticParse(readBuffer), readBuffer), WithOption.WithName("cp24Time2a"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new InformationObjectWithTreeByteTimeBuilderImpl(siq, cp24Time2a);
@@ -83,14 +83,14 @@ public class InformationObjectWithTreeByteTime_SINGLE_POINT_INFORMATION extends 
 
   protected void serializeInformationObjectWithTreeByteTimeChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithTreeByteTime_SINGLE_POINT_INFORMATION"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithTreeByteTime_SINGLE_POINT_INFORMATION"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: siq
-    FieldWriterFactory.writeSimpleField((SinglePointInformation) siq, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("siq"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((SinglePointInformation) siq, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("siq"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: cp24Time2a
-    FieldWriterFactory.writeSimpleField((ThreeOctetBinaryTime) cp24Time2a, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("cp24Time2a"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((ThreeOctetBinaryTime) cp24Time2a, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("cp24Time2a"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

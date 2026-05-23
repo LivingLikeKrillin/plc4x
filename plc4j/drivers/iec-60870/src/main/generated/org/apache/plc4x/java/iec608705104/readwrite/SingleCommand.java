@@ -56,17 +56,17 @@ public class SingleCommand implements Message {
   }
 
   public static SingleCommand staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("SingleCommand"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("SingleCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: qoc
-    QualifierOfCommand qoc = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (QualifierOfCommand) QualifierOfCommand.staticParse(readBuffer), readBuffer), WithOption.WithName("qoc"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    QualifierOfCommand qoc = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (QualifierOfCommand) QualifierOfCommand.staticParse(readBuffer), readBuffer), WithOption.WithName("qoc"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldReaderFactory.readReservedField(DataReaderFactory.readUnsignedByte(readBuffer, 1), (byte) 0, WithOption.WithName("SingleCommand.reserved1"));
 
     // Simple Field: commandOn
-    boolean commandOn = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("commandOn"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean commandOn = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("commandOn"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new SingleCommand(qoc, commandOn);
@@ -74,17 +74,17 @@ public class SingleCommand implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("SingleCommand"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("SingleCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: qoc
-    FieldWriterFactory.writeSimpleField((QualifierOfCommand) qoc, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("qoc"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((QualifierOfCommand) qoc, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("qoc"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldWriterFactory.writeReservedField((byte) 0, DataWriterFactory.writeUnsignedByte(writeBuffer, 1));
 
     // Simple Field: commandOn
-    FieldWriterFactory.writeSimpleField((boolean) commandOn, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("commandOn"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) commandOn, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("commandOn"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

@@ -120,35 +120,35 @@ public class ASDU implements Message {
   }
 
   public static ASDU staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("ASDU"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("ASDU"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): typeIdentification
-    TypeIdentification typeIdentification = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(TypeIdentification::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("typeIdentification"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    TypeIdentification typeIdentification = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(TypeIdentification::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("typeIdentification"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: structureQualifier
-    boolean structureQualifier = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("structureQualifier"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean structureQualifier = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("structureQualifier"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Implicit Field: numberOfObjects
-    byte numberOfObjects = FieldReaderFactory.readImplicitField(DataReaderFactory.readUnsignedByte(readBuffer, 7), WithOption.WithName("numberOfObjects"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    byte numberOfObjects = FieldReaderFactory.readImplicitField(DataReaderFactory.readUnsignedByte(readBuffer, 7), WithOption.WithName("numberOfObjects"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: test
-    boolean test = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("test"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean test = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("test"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: negative
-    boolean negative = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("negative"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean negative = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("negative"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): causeOfTransmission
-    CauseOfTransmission causeOfTransmission = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(CauseOfTransmission::enumForValue, DataReaderFactory.readUnsignedByte(readBuffer, 6)), WithOption.WithName("causeOfTransmission"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    CauseOfTransmission causeOfTransmission = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(CauseOfTransmission::enumForValue, DataReaderFactory.readUnsignedByte(readBuffer, 6)), WithOption.WithName("causeOfTransmission"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: originatorAddress
-    short originatorAddress = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("originatorAddress"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    short originatorAddress = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("originatorAddress"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: asduAddressField
-    int asduAddressField = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("asduAddressField"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    int asduAddressField = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("asduAddressField"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Array Field: informationObjects
-    List<InformationObject> informationObjects = FieldReaderFactory.readCountArrayField(DataReaderFactory.readComplex(() -> (InformationObject) InformationObject.staticParse(readBuffer, (org.apache.plc4x.java.iec608705104.readwrite.TypeIdentification) (typeIdentification), (byte) (typeIdentification.getNumTimeBytes())), readBuffer), numberOfObjects, WithOption.WithName("informationObjects"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    List<InformationObject> informationObjects = FieldReaderFactory.readCountArrayField(DataReaderFactory.readComplex(() -> (InformationObject) InformationObject.staticParse(readBuffer, (org.apache.plc4x.java.iec608705104.readwrite.TypeIdentification) (typeIdentification), (byte) (typeIdentification.getNumTimeBytes())), readBuffer), numberOfObjects, WithOption.WithName("informationObjects"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new ASDU(typeIdentification, structureQualifier, test, negative, causeOfTransmission, originatorAddress, asduAddressField, informationObjects);
@@ -156,36 +156,36 @@ public class ASDU implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("ASDU"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("ASDU"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): typeIdentification
-    FieldWriterFactory.writeSimpleEnumField((TypeIdentification) typeIdentification, DataWriterFactory.writeEnum(TypeIdentification::getValue, TypeIdentification::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("typeIdentification"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleEnumField((TypeIdentification) typeIdentification, DataWriterFactory.writeEnum(TypeIdentification::getValue, TypeIdentification::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("typeIdentification"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: structureQualifier
-    FieldWriterFactory.writeSimpleField((boolean) structureQualifier, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("structureQualifier"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) structureQualifier, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("structureQualifier"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Implicit Field: numberOfObjects
     byte numberOfObjects = (byte) (StaticHelper.COUNT(informationObjects));
-    FieldWriterFactory.writeImplicitField((byte) numberOfObjects, DataWriterFactory.writeUnsignedByte(writeBuffer, 7), WithOption.WithName("numberOfObjects"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeImplicitField((byte) numberOfObjects, DataWriterFactory.writeUnsignedByte(writeBuffer, 7), WithOption.WithName("numberOfObjects"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: test
-    FieldWriterFactory.writeSimpleField((boolean) test, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("test"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) test, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("test"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: negative
-    FieldWriterFactory.writeSimpleField((boolean) negative, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("negative"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) negative, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("negative"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): causeOfTransmission
-    FieldWriterFactory.writeSimpleEnumField((CauseOfTransmission) causeOfTransmission, DataWriterFactory.writeEnum(CauseOfTransmission::getValue, CauseOfTransmission::name, DataWriterFactory.writeUnsignedByte(writeBuffer, 6)), WithOption.WithName("causeOfTransmission"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleEnumField((CauseOfTransmission) causeOfTransmission, DataWriterFactory.writeEnum(CauseOfTransmission::getValue, CauseOfTransmission::name, DataWriterFactory.writeUnsignedByte(writeBuffer, 6)), WithOption.WithName("causeOfTransmission"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: originatorAddress
-    FieldWriterFactory.writeSimpleField((short) originatorAddress, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("originatorAddress"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((short) originatorAddress, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("originatorAddress"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: asduAddressField
-    FieldWriterFactory.writeSimpleField((int) asduAddressField, DataWriterFactory.writeUnsignedInt(writeBuffer, 16), WithOption.WithName("asduAddressField"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((int) asduAddressField, DataWriterFactory.writeUnsignedInt(writeBuffer, 16), WithOption.WithName("asduAddressField"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Array Field: informationObjects
-    FieldWriterFactory.writeComplexTypeArrayField(informationObjects, writeBuffer, WithOption.WithName("informationObjects"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeComplexTypeArrayField(informationObjects, writeBuffer, WithOption.WithName("informationObjects"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

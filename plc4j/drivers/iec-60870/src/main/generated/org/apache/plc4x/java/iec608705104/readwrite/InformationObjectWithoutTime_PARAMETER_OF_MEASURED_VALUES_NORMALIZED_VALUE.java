@@ -68,14 +68,14 @@ public class InformationObjectWithoutTime_PARAMETER_OF_MEASURED_VALUES_NORMALIZE
   public static InformationObjectWithoutTimeBuilder staticParseInformationObjectWithoutTimeBuilder(
       ReadBuffer readBuffer, TypeIdentification typeIdentification, byte numTimeByte) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_PARAMETER_OF_MEASURED_VALUES_NORMALIZED_VALUE"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_PARAMETER_OF_MEASURED_VALUES_NORMALIZED_VALUE"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: nva
-    NormalizedValue nva = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (NormalizedValue) NormalizedValue.staticParse(readBuffer), readBuffer), WithOption.WithName("nva"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    NormalizedValue nva = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (NormalizedValue) NormalizedValue.staticParse(readBuffer), readBuffer), WithOption.WithName("nva"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: qpm
-    QualifierOfParameterOfMeasuredValues qpm = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (QualifierOfParameterOfMeasuredValues) QualifierOfParameterOfMeasuredValues.staticParse(readBuffer), readBuffer), WithOption.WithName("qpm"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    QualifierOfParameterOfMeasuredValues qpm = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (QualifierOfParameterOfMeasuredValues) QualifierOfParameterOfMeasuredValues.staticParse(readBuffer), readBuffer), WithOption.WithName("qpm"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new InformationObjectWithoutTimeBuilderImpl(nva, qpm);
@@ -83,14 +83,14 @@ public class InformationObjectWithoutTime_PARAMETER_OF_MEASURED_VALUES_NORMALIZE
 
   protected void serializeInformationObjectWithoutTimeChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_PARAMETER_OF_MEASURED_VALUES_NORMALIZED_VALUE"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_PARAMETER_OF_MEASURED_VALUES_NORMALIZED_VALUE"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: nva
-    FieldWriterFactory.writeSimpleField((NormalizedValue) nva, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("nva"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((NormalizedValue) nva, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("nva"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: qpm
-    FieldWriterFactory.writeSimpleField((QualifierOfParameterOfMeasuredValues) qpm, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("qpm"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((QualifierOfParameterOfMeasuredValues) qpm, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("qpm"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

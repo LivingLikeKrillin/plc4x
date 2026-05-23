@@ -56,14 +56,14 @@ public class QualifierOfCommand implements Message {
   }
 
   public static QualifierOfCommand staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("QualifierOfCommand"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("QualifierOfCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: select
-    boolean select = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("select"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean select = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("select"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: qualifier
-    byte qualifier = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 5), WithOption.WithName("qualifier"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    byte qualifier = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 5), WithOption.WithName("qualifier"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new QualifierOfCommand(select, qualifier);
@@ -71,14 +71,14 @@ public class QualifierOfCommand implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("QualifierOfCommand"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("QualifierOfCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: select
-    FieldWriterFactory.writeSimpleField((boolean) select, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("select"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) select, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("select"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: qualifier
-    FieldWriterFactory.writeSimpleField((byte) qualifier, DataWriterFactory.writeUnsignedByte(writeBuffer, 5), WithOption.WithName("qualifier"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((byte) qualifier, DataWriterFactory.writeUnsignedByte(writeBuffer, 5), WithOption.WithName("qualifier"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

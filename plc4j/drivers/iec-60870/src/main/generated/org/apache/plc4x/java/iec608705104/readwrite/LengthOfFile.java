@@ -32,7 +32,7 @@ public class LengthOfFile implements Message {
   }
 
   public static LengthOfFile staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("LengthOfFile"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("LengthOfFile"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     readBuffer.popContext();
@@ -41,7 +41,7 @@ public class LengthOfFile implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("LengthOfFile"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("LengthOfFile"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     writeBuffer.popContext();

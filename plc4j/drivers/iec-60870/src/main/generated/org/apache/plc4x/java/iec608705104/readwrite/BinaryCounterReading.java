@@ -87,23 +87,23 @@ public class BinaryCounterReading implements Message {
   }
 
   public static BinaryCounterReading staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("BinaryCounterReading"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("BinaryCounterReading"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: counterValue
-    long counterValue = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 32), WithOption.WithName("counterValue"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    long counterValue = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 32), WithOption.WithName("counterValue"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: counterValid
-    boolean counterValid = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("counterValid"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean counterValid = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("counterValid"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: counterAdjusted
-    boolean counterAdjusted = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("counterAdjusted"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean counterAdjusted = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("counterAdjusted"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: carry
-    boolean carry = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("carry"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean carry = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("carry"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: sequenceNumber
-    byte sequenceNumber = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 5), WithOption.WithName("sequenceNumber"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    byte sequenceNumber = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 5), WithOption.WithName("sequenceNumber"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new BinaryCounterReading(counterValue, counterValid, counterAdjusted, carry, sequenceNumber);
@@ -111,23 +111,23 @@ public class BinaryCounterReading implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("BinaryCounterReading"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("BinaryCounterReading"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: counterValue
-    FieldWriterFactory.writeSimpleField((long) counterValue, DataWriterFactory.writeUnsignedLong(writeBuffer, 32), WithOption.WithName("counterValue"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((long) counterValue, DataWriterFactory.writeUnsignedLong(writeBuffer, 32), WithOption.WithName("counterValue"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: counterValid
-    FieldWriterFactory.writeSimpleField((boolean) counterValid, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("counterValid"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) counterValid, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("counterValid"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: counterAdjusted
-    FieldWriterFactory.writeSimpleField((boolean) counterAdjusted, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("counterAdjusted"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) counterAdjusted, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("counterAdjusted"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: carry
-    FieldWriterFactory.writeSimpleField((boolean) carry, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("carry"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) carry, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("carry"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: sequenceNumber
-    FieldWriterFactory.writeSimpleField((byte) sequenceNumber, DataWriterFactory.writeUnsignedByte(writeBuffer, 5), WithOption.WithName("sequenceNumber"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((byte) sequenceNumber, DataWriterFactory.writeUnsignedByte(writeBuffer, 5), WithOption.WithName("sequenceNumber"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

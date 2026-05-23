@@ -58,11 +58,11 @@ public class InformationObjectWithoutTime_DOUBLE_POINT_INFORMATION extends Infor
   public static InformationObjectWithoutTimeBuilder staticParseInformationObjectWithoutTimeBuilder(
       ReadBuffer readBuffer, TypeIdentification typeIdentification, byte numTimeByte) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_DOUBLE_POINT_INFORMATION"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_DOUBLE_POINT_INFORMATION"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: diq
-    DoublePointInformation diq = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (DoublePointInformation) DoublePointInformation.staticParse(readBuffer), readBuffer), WithOption.WithName("diq"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    DoublePointInformation diq = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (DoublePointInformation) DoublePointInformation.staticParse(readBuffer), readBuffer), WithOption.WithName("diq"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new InformationObjectWithoutTimeBuilderImpl(diq);
@@ -70,11 +70,11 @@ public class InformationObjectWithoutTime_DOUBLE_POINT_INFORMATION extends Infor
 
   protected void serializeInformationObjectWithoutTimeChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_DOUBLE_POINT_INFORMATION"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_DOUBLE_POINT_INFORMATION"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: diq
-    FieldWriterFactory.writeSimpleField((DoublePointInformation) diq, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("diq"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((DoublePointInformation) diq, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("diq"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

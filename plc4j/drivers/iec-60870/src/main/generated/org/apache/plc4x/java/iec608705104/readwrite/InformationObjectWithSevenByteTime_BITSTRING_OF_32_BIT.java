@@ -78,17 +78,17 @@ public class InformationObjectWithSevenByteTime_BITSTRING_OF_32_BIT extends Info
   public static InformationObjectWithSevenByteTimeBuilder staticParseInformationObjectWithSevenByteTimeBuilder(
       ReadBuffer readBuffer, TypeIdentification typeIdentification, byte numTimeByte) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("InformationObjectWithSevenByteTime_BITSTRING_OF_32_BIT"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("InformationObjectWithSevenByteTime_BITSTRING_OF_32_BIT"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: bsi
-    BinaryStateInformation bsi = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (BinaryStateInformation) BinaryStateInformation.staticParse(readBuffer), readBuffer), WithOption.WithName("bsi"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    BinaryStateInformation bsi = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (BinaryStateInformation) BinaryStateInformation.staticParse(readBuffer), readBuffer), WithOption.WithName("bsi"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: qds
-    QualityDescriptor qds = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (QualityDescriptor) QualityDescriptor.staticParse(readBuffer), readBuffer), WithOption.WithName("qds"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    QualityDescriptor qds = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (QualityDescriptor) QualityDescriptor.staticParse(readBuffer), readBuffer), WithOption.WithName("qds"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: cp56Time2a
-    SevenOctetBinaryTime cp56Time2a = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (SevenOctetBinaryTime) SevenOctetBinaryTime.staticParse(readBuffer), readBuffer), WithOption.WithName("cp56Time2a"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    SevenOctetBinaryTime cp56Time2a = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (SevenOctetBinaryTime) SevenOctetBinaryTime.staticParse(readBuffer), readBuffer), WithOption.WithName("cp56Time2a"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new InformationObjectWithSevenByteTimeBuilderImpl(bsi, qds, cp56Time2a);
@@ -96,17 +96,17 @@ public class InformationObjectWithSevenByteTime_BITSTRING_OF_32_BIT extends Info
 
   protected void serializeInformationObjectWithSevenByteTimeChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithSevenByteTime_BITSTRING_OF_32_BIT"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithSevenByteTime_BITSTRING_OF_32_BIT"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: bsi
-    FieldWriterFactory.writeSimpleField((BinaryStateInformation) bsi, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("bsi"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((BinaryStateInformation) bsi, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("bsi"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: qds
-    FieldWriterFactory.writeSimpleField((QualityDescriptor) qds, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("qds"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((QualityDescriptor) qds, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("qds"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: cp56Time2a
-    FieldWriterFactory.writeSimpleField((SevenOctetBinaryTime) cp56Time2a, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("cp56Time2a"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((SevenOctetBinaryTime) cp56Time2a, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("cp56Time2a"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

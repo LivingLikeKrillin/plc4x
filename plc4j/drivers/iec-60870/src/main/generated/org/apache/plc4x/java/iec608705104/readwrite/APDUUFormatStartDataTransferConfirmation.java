@@ -37,7 +37,7 @@ public class APDUUFormatStartDataTransferConfirmation extends APDU implements Me
   }
 
   public static APDUBuilder staticParseAPDUBuilder(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("APDUUFormatStartDataTransferConfirmation"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("APDUUFormatStartDataTransferConfirmation"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Padding Field: padding0
@@ -48,7 +48,7 @@ public class APDUUFormatStartDataTransferConfirmation extends APDU implements Me
   }
 
   protected void serializeAPDUChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("APDUUFormatStartDataTransferConfirmation"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("APDUUFormatStartDataTransferConfirmation"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Padding Field: padding0

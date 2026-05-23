@@ -58,11 +58,11 @@ public class InformationObjectWithoutTime_COUNTER_INTERROGATION_COMMAND extends 
   public static InformationObjectWithoutTimeBuilder staticParseInformationObjectWithoutTimeBuilder(
       ReadBuffer readBuffer, TypeIdentification typeIdentification, byte numTimeByte) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_COUNTER_INTERROGATION_COMMAND"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_COUNTER_INTERROGATION_COMMAND"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: qcc
-    QualifierOfCounterInterrogationCommand qcc = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (QualifierOfCounterInterrogationCommand) QualifierOfCounterInterrogationCommand.staticParse(readBuffer), readBuffer), WithOption.WithName("qcc"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    QualifierOfCounterInterrogationCommand qcc = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (QualifierOfCounterInterrogationCommand) QualifierOfCounterInterrogationCommand.staticParse(readBuffer), readBuffer), WithOption.WithName("qcc"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new InformationObjectWithoutTimeBuilderImpl(qcc);
@@ -70,11 +70,11 @@ public class InformationObjectWithoutTime_COUNTER_INTERROGATION_COMMAND extends 
 
   protected void serializeInformationObjectWithoutTimeChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_COUNTER_INTERROGATION_COMMAND"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_COUNTER_INTERROGATION_COMMAND"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: qcc
-    FieldWriterFactory.writeSimpleField((QualifierOfCounterInterrogationCommand) qcc, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("qcc"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((QualifierOfCounterInterrogationCommand) qcc, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("qcc"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

@@ -58,11 +58,11 @@ public class InformationObjectWithoutTime_BITSTRING_32_BIT_COMMAND extends Infor
   public static InformationObjectWithoutTimeBuilder staticParseInformationObjectWithoutTimeBuilder(
       ReadBuffer readBuffer, TypeIdentification typeIdentification, byte numTimeByte) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_BITSTRING_32_BIT_COMMAND"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_BITSTRING_32_BIT_COMMAND"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: bsi
-    BinaryStateInformation bsi = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (BinaryStateInformation) BinaryStateInformation.staticParse(readBuffer), readBuffer), WithOption.WithName("bsi"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    BinaryStateInformation bsi = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (BinaryStateInformation) BinaryStateInformation.staticParse(readBuffer), readBuffer), WithOption.WithName("bsi"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new InformationObjectWithoutTimeBuilderImpl(bsi);
@@ -70,11 +70,11 @@ public class InformationObjectWithoutTime_BITSTRING_32_BIT_COMMAND extends Infor
 
   protected void serializeInformationObjectWithoutTimeChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_BITSTRING_32_BIT_COMMAND"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_BITSTRING_32_BIT_COMMAND"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: bsi
-    FieldWriterFactory.writeSimpleField((BinaryStateInformation) bsi, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("bsi"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((BinaryStateInformation) bsi, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("bsi"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

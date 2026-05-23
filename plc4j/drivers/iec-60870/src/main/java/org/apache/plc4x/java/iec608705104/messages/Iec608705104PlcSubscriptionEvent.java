@@ -17,22 +17,32 @@
  * under the License.
  */
 
-package org.apache.plc4x.java.iec608705104.readwrite.messages;
+package org.apache.plc4x.java.iec608705104.messages;
 
 import org.apache.plc4x.java.api.model.PlcTag;
 import org.apache.plc4x.java.api.value.PlcValue;
-import org.apache.plc4x.java.spi.messages.DefaultPlcSubscriptionEvent;
-import org.apache.plc4x.java.spi.messages.utils.PlcResponseItem;
+import org.apache.plc4x.java.spi.drivers.messages.DefaultPlcSubscriptionEvent;
+import org.apache.plc4x.java.spi.drivers.messages.items.PlcResponseItem;
 
 import java.time.Instant;
 import java.util.Map;
+import java.util.Objects;
 
+/**
+ * Specialisation of {@link DefaultPlcSubscriptionEvent} that carries the
+ * source {@link PlcTag} for each value — so listeners can recover the
+ * ASDU address that produced the event without having to re-parse the
+ * tag name.
+ */
 public class Iec608705104PlcSubscriptionEvent extends DefaultPlcSubscriptionEvent {
 
     private final Map<String, PlcTag> tags;
-    public Iec608705104PlcSubscriptionEvent(Instant timestamp, Map<String, PlcTag> tags, Map<String, PlcResponseItem<PlcValue>> values) {
+
+    public Iec608705104PlcSubscriptionEvent(Instant timestamp,
+                                            Map<String, PlcTag> tags,
+                                            Map<String, PlcResponseItem<PlcValue>> values) {
         super(timestamp, values);
-        this.tags = tags;
+        this.tags = Objects.requireNonNull(tags, "tags");
     }
 
     @Override

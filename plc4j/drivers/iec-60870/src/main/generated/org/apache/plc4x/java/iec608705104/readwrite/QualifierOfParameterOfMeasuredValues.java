@@ -68,17 +68,17 @@ public class QualifierOfParameterOfMeasuredValues implements Message {
 
   public static QualifierOfParameterOfMeasuredValues staticParse(ReadBuffer readBuffer) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("QualifierOfParameterOfMeasuredValues"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("QualifierOfParameterOfMeasuredValues"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: parameterInOperation
-    boolean parameterInOperation = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("parameterInOperation"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean parameterInOperation = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("parameterInOperation"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: localParameterChange
-    boolean localParameterChange = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("localParameterChange"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean localParameterChange = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("localParameterChange"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: kindOfParameter
-    byte kindOfParameter = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 6), WithOption.WithName("kindOfParameter"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    byte kindOfParameter = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 6), WithOption.WithName("kindOfParameter"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new QualifierOfParameterOfMeasuredValues(parameterInOperation, localParameterChange, kindOfParameter);
@@ -86,17 +86,17 @@ public class QualifierOfParameterOfMeasuredValues implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("QualifierOfParameterOfMeasuredValues"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("QualifierOfParameterOfMeasuredValues"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: parameterInOperation
-    FieldWriterFactory.writeSimpleField((boolean) parameterInOperation, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("parameterInOperation"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) parameterInOperation, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("parameterInOperation"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: localParameterChange
-    FieldWriterFactory.writeSimpleField((boolean) localParameterChange, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("localParameterChange"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) localParameterChange, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("localParameterChange"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: kindOfParameter
-    FieldWriterFactory.writeSimpleField((byte) kindOfParameter, DataWriterFactory.writeUnsignedByte(writeBuffer, 6), WithOption.WithName("kindOfParameter"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((byte) kindOfParameter, DataWriterFactory.writeUnsignedByte(writeBuffer, 6), WithOption.WithName("kindOfParameter"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

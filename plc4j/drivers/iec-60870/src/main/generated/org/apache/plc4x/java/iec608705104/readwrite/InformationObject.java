@@ -56,11 +56,11 @@ public abstract class InformationObject implements Message {
 
   public static InformationObject staticParse(ReadBuffer readBuffer,
       TypeIdentification typeIdentification, byte numTimeByte) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("InformationObject"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("InformationObject"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: address
-    int address = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedInt(readBuffer, 24), WithOption.WithName("address"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    int address = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedInt(readBuffer, 24), WithOption.WithName("address"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Switch Field
     InformationObjectBuilder builder = null;
@@ -81,11 +81,11 @@ public abstract class InformationObject implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("InformationObject"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("InformationObject"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: address
-    FieldWriterFactory.writeSimpleField((int) address, DataWriterFactory.writeUnsignedInt(writeBuffer, 24), WithOption.WithName("address"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((int) address, DataWriterFactory.writeUnsignedInt(writeBuffer, 24), WithOption.WithName("address"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Switch Field
     serializeInformationObjectChild(writeBuffer);

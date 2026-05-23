@@ -56,7 +56,7 @@ public abstract class InformationObjectWithSevenByteTime extends InformationObje
 
   public static InformationObjectBuilder staticParseInformationObjectBuilder(ReadBuffer readBuffer,
       TypeIdentification typeIdentification, byte numTimeByte) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("InformationObjectWithSevenByteTime"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("InformationObjectWithSevenByteTime"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Switch Field
@@ -93,7 +93,7 @@ public abstract class InformationObjectWithSevenByteTime extends InformationObje
   }
 
   protected void serializeInformationObjectChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithSevenByteTime"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithSevenByteTime"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Switch Field

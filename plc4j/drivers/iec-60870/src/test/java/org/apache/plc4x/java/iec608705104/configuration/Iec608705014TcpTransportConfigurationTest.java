@@ -16,17 +16,19 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+package org.apache.plc4x.java.iec608705104.configuration;
 
-package org.apache.plc4x.java.iec608705104.readwrite.configuration;
+import org.apache.plc4x.java.iec608705104.configuration.Iec608705014TcpTransportConfiguration;
+import org.junit.jupiter.api.Test;
 
-import org.apache.plc4x.java.iec608705104.readwrite.Constants;
-import org.apache.plc4x.java.transport.tcp.DefaultTcpTransportConfiguration;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Iec608705014TcpTransportConfiguration extends DefaultTcpTransportConfiguration {
+class Iec608705014TcpTransportConfigurationTest {
 
-    @Override
-    public int getDefaultPort() {
-        return Constants.DEFAULTPORT;
+    @Test
+    void defaultPortIsIecRegistered() {
+        // IEC-60870-5-104 is registered with IANA on TCP/2404.
+        assertEquals(2404, new Iec608705014TcpTransportConfiguration().getDefaultPort());
     }
 
 }

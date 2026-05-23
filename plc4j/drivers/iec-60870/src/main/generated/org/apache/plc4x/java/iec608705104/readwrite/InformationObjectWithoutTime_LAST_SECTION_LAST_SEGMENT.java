@@ -88,20 +88,20 @@ public class InformationObjectWithoutTime_LAST_SECTION_LAST_SEGMENT extends Info
   public static InformationObjectWithoutTimeBuilder staticParseInformationObjectWithoutTimeBuilder(
       ReadBuffer readBuffer, TypeIdentification typeIdentification, byte numTimeByte) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_LAST_SECTION_LAST_SEGMENT"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_LAST_SECTION_LAST_SEGMENT"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: nof
-    NameOfFile nof = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (NameOfFile) NameOfFile.staticParse(readBuffer), readBuffer), WithOption.WithName("nof"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    NameOfFile nof = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (NameOfFile) NameOfFile.staticParse(readBuffer), readBuffer), WithOption.WithName("nof"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: nos
-    NameOfSection nos = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (NameOfSection) NameOfSection.staticParse(readBuffer), readBuffer), WithOption.WithName("nos"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    NameOfSection nos = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (NameOfSection) NameOfSection.staticParse(readBuffer), readBuffer), WithOption.WithName("nos"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: lsq
-    LastSectionOrSegmentQualifier lsq = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (LastSectionOrSegmentQualifier) LastSectionOrSegmentQualifier.staticParse(readBuffer), readBuffer), WithOption.WithName("lsq"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    LastSectionOrSegmentQualifier lsq = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (LastSectionOrSegmentQualifier) LastSectionOrSegmentQualifier.staticParse(readBuffer), readBuffer), WithOption.WithName("lsq"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: chs
-    Checksum chs = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (Checksum) Checksum.staticParse(readBuffer), readBuffer), WithOption.WithName("chs"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    Checksum chs = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (Checksum) Checksum.staticParse(readBuffer), readBuffer), WithOption.WithName("chs"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new InformationObjectWithoutTimeBuilderImpl(nof, nos, lsq, chs);
@@ -109,20 +109,20 @@ public class InformationObjectWithoutTime_LAST_SECTION_LAST_SEGMENT extends Info
 
   protected void serializeInformationObjectWithoutTimeChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_LAST_SECTION_LAST_SEGMENT"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_LAST_SECTION_LAST_SEGMENT"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: nof
-    FieldWriterFactory.writeSimpleField((NameOfFile) nof, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("nof"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((NameOfFile) nof, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("nof"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: nos
-    FieldWriterFactory.writeSimpleField((NameOfSection) nos, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("nos"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((NameOfSection) nos, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("nos"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: lsq
-    FieldWriterFactory.writeSimpleField((LastSectionOrSegmentQualifier) lsq, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("lsq"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((LastSectionOrSegmentQualifier) lsq, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("lsq"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: chs
-    FieldWriterFactory.writeSimpleField((Checksum) chs, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("chs"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((Checksum) chs, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("chs"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

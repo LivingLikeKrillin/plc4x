@@ -56,14 +56,14 @@ public class RegulatingStepCommand implements Message {
   }
 
   public static RegulatingStepCommand staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("RegulatingStepCommand"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("RegulatingStepCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: qoc
-    QualifierOfCommand qoc = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (QualifierOfCommand) QualifierOfCommand.staticParse(readBuffer), readBuffer), WithOption.WithName("qoc"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    QualifierOfCommand qoc = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (QualifierOfCommand) QualifierOfCommand.staticParse(readBuffer), readBuffer), WithOption.WithName("qoc"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: rcs
-    byte rcs = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 2), WithOption.WithName("rcs"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    byte rcs = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 2), WithOption.WithName("rcs"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new RegulatingStepCommand(qoc, rcs);
@@ -71,14 +71,14 @@ public class RegulatingStepCommand implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("RegulatingStepCommand"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("RegulatingStepCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: qoc
-    FieldWriterFactory.writeSimpleField((QualifierOfCommand) qoc, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("qoc"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((QualifierOfCommand) qoc, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("qoc"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: rcs
-    FieldWriterFactory.writeSimpleField((byte) rcs, DataWriterFactory.writeUnsignedByte(writeBuffer, 2), WithOption.WithName("rcs"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((byte) rcs, DataWriterFactory.writeUnsignedByte(writeBuffer, 2), WithOption.WithName("rcs"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

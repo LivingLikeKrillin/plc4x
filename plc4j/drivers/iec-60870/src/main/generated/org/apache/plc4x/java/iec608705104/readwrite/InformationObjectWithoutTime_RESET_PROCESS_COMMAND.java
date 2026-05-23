@@ -58,11 +58,11 @@ public class InformationObjectWithoutTime_RESET_PROCESS_COMMAND extends Informat
   public static InformationObjectWithoutTimeBuilder staticParseInformationObjectWithoutTimeBuilder(
       ReadBuffer readBuffer, TypeIdentification typeIdentification, byte numTimeByte) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_RESET_PROCESS_COMMAND"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_RESET_PROCESS_COMMAND"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: qrp
-    QualifierOfResetProcessCommand qrp = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (QualifierOfResetProcessCommand) QualifierOfResetProcessCommand.staticParse(readBuffer), readBuffer), WithOption.WithName("qrp"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    QualifierOfResetProcessCommand qrp = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (QualifierOfResetProcessCommand) QualifierOfResetProcessCommand.staticParse(readBuffer), readBuffer), WithOption.WithName("qrp"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new InformationObjectWithoutTimeBuilderImpl(qrp);
@@ -70,11 +70,11 @@ public class InformationObjectWithoutTime_RESET_PROCESS_COMMAND extends Informat
 
   protected void serializeInformationObjectWithoutTimeChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_RESET_PROCESS_COMMAND"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_RESET_PROCESS_COMMAND"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: qrp
-    FieldWriterFactory.writeSimpleField((QualifierOfResetProcessCommand) qrp, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("qrp"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((QualifierOfResetProcessCommand) qrp, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("qrp"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

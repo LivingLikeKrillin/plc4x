@@ -58,11 +58,11 @@ public class InformationObjectWithoutTime_PARAMETER_ACTIVATION extends Informati
   public static InformationObjectWithoutTimeBuilder staticParseInformationObjectWithoutTimeBuilder(
       ReadBuffer readBuffer, TypeIdentification typeIdentification, byte numTimeByte) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_PARAMETER_ACTIVATION"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_PARAMETER_ACTIVATION"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: qpa
-    QualifierOfParameterActivation qpa = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (QualifierOfParameterActivation) QualifierOfParameterActivation.staticParse(readBuffer), readBuffer), WithOption.WithName("qpa"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    QualifierOfParameterActivation qpa = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (QualifierOfParameterActivation) QualifierOfParameterActivation.staticParse(readBuffer), readBuffer), WithOption.WithName("qpa"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new InformationObjectWithoutTimeBuilderImpl(qpa);
@@ -70,11 +70,11 @@ public class InformationObjectWithoutTime_PARAMETER_ACTIVATION extends Informati
 
   protected void serializeInformationObjectWithoutTimeChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_PARAMETER_ACTIVATION"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_PARAMETER_ACTIVATION"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: qpa
-    FieldWriterFactory.writeSimpleField((QualifierOfParameterActivation) qpa, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("qpa"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((QualifierOfParameterActivation) qpa, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("qpa"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

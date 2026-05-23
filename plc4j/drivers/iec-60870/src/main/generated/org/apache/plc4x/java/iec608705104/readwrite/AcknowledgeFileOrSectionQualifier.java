@@ -33,7 +33,7 @@ public class AcknowledgeFileOrSectionQualifier implements Message {
 
   public static AcknowledgeFileOrSectionQualifier staticParse(ReadBuffer readBuffer) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("AcknowledgeFileOrSectionQualifier"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("AcknowledgeFileOrSectionQualifier"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     readBuffer.popContext();
@@ -42,7 +42,7 @@ public class AcknowledgeFileOrSectionQualifier implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("AcknowledgeFileOrSectionQualifier"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("AcknowledgeFileOrSectionQualifier"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     writeBuffer.popContext();

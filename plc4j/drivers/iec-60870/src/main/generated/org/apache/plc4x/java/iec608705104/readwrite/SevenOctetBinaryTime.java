@@ -138,47 +138,47 @@ public class SevenOctetBinaryTime implements Message {
   }
 
   public static SevenOctetBinaryTime staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("SevenOctetBinaryTime"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("SevenOctetBinaryTime"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: milliseconds
-    int milliseconds = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("milliseconds"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    int milliseconds = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("milliseconds"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: invalid
-    boolean invalid = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("invalid"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean invalid = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("invalid"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: substituted
-    boolean substituted = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("substituted"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean substituted = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("substituted"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: minutes
-    byte minutes = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 6), WithOption.WithName("minutes"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    byte minutes = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 6), WithOption.WithName("minutes"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: daylightSaving
-    boolean daylightSaving = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("daylightSaving"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean daylightSaving = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("daylightSaving"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldReaderFactory.readReservedField(DataReaderFactory.readUnsignedByte(readBuffer, 2), (byte) 0x00, WithOption.WithName("SevenOctetBinaryTime.reserved5"));
 
     // Simple Field: hour
-    byte hour = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 5), WithOption.WithName("hour"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    byte hour = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 5), WithOption.WithName("hour"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: dayOfWeek
-    byte dayOfWeek = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 3), WithOption.WithName("dayOfWeek"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    byte dayOfWeek = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 3), WithOption.WithName("dayOfWeek"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: day
-    byte day = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 5), WithOption.WithName("day"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    byte day = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 5), WithOption.WithName("day"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldReaderFactory.readReservedField(DataReaderFactory.readUnsignedByte(readBuffer, 4), (byte) 0x00, WithOption.WithName("SevenOctetBinaryTime.reserved9"));
 
     // Simple Field: month
-    byte month = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 4), WithOption.WithName("month"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    byte month = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 4), WithOption.WithName("month"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldReaderFactory.readReservedField(DataReaderFactory.readUnsignedByte(readBuffer, 1), (byte) 0x00, WithOption.WithName("SevenOctetBinaryTime.reserved11"));
 
     // Simple Field: year
-    byte year = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 7), WithOption.WithName("year"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    byte year = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 7), WithOption.WithName("year"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new SevenOctetBinaryTime(milliseconds, invalid, substituted, minutes, daylightSaving, hour, dayOfWeek, day, month, year);
@@ -186,47 +186,47 @@ public class SevenOctetBinaryTime implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("SevenOctetBinaryTime"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("SevenOctetBinaryTime"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: milliseconds
-    FieldWriterFactory.writeSimpleField((int) milliseconds, DataWriterFactory.writeUnsignedInt(writeBuffer, 16), WithOption.WithName("milliseconds"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((int) milliseconds, DataWriterFactory.writeUnsignedInt(writeBuffer, 16), WithOption.WithName("milliseconds"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: invalid
-    FieldWriterFactory.writeSimpleField((boolean) invalid, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("invalid"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) invalid, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("invalid"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: substituted
-    FieldWriterFactory.writeSimpleField((boolean) substituted, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("substituted"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) substituted, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("substituted"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: minutes
-    FieldWriterFactory.writeSimpleField((byte) minutes, DataWriterFactory.writeUnsignedByte(writeBuffer, 6), WithOption.WithName("minutes"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((byte) minutes, DataWriterFactory.writeUnsignedByte(writeBuffer, 6), WithOption.WithName("minutes"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: daylightSaving
-    FieldWriterFactory.writeSimpleField((boolean) daylightSaving, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("daylightSaving"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) daylightSaving, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("daylightSaving"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldWriterFactory.writeReservedField((byte) 0x00, DataWriterFactory.writeUnsignedByte(writeBuffer, 2));
 
     // Simple Field: hour
-    FieldWriterFactory.writeSimpleField((byte) hour, DataWriterFactory.writeUnsignedByte(writeBuffer, 5), WithOption.WithName("hour"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((byte) hour, DataWriterFactory.writeUnsignedByte(writeBuffer, 5), WithOption.WithName("hour"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: dayOfWeek
-    FieldWriterFactory.writeSimpleField((byte) dayOfWeek, DataWriterFactory.writeUnsignedByte(writeBuffer, 3), WithOption.WithName("dayOfWeek"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((byte) dayOfWeek, DataWriterFactory.writeUnsignedByte(writeBuffer, 3), WithOption.WithName("dayOfWeek"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: day
-    FieldWriterFactory.writeSimpleField((byte) day, DataWriterFactory.writeUnsignedByte(writeBuffer, 5), WithOption.WithName("day"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((byte) day, DataWriterFactory.writeUnsignedByte(writeBuffer, 5), WithOption.WithName("day"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldWriterFactory.writeReservedField((byte) 0x00, DataWriterFactory.writeUnsignedByte(writeBuffer, 4));
 
     // Simple Field: month
-    FieldWriterFactory.writeSimpleField((byte) month, DataWriterFactory.writeUnsignedByte(writeBuffer, 4), WithOption.WithName("month"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((byte) month, DataWriterFactory.writeUnsignedByte(writeBuffer, 4), WithOption.WithName("month"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldWriterFactory.writeReservedField((byte) 0x00, DataWriterFactory.writeUnsignedByte(writeBuffer, 1));
 
     // Simple Field: year
-    FieldWriterFactory.writeSimpleField((byte) year, DataWriterFactory.writeUnsignedByte(writeBuffer, 7), WithOption.WithName("year"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((byte) year, DataWriterFactory.writeUnsignedByte(writeBuffer, 7), WithOption.WithName("year"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

@@ -17,14 +17,22 @@
  * under the License.
  */
 
-package org.apache.plc4x.java.iec608705104.readwrite.utils;
+package org.apache.plc4x.java.iec608705104.tag;
 
-import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
+import org.apache.plc4x.java.api.model.PlcQuery;
+import org.apache.plc4x.java.api.model.PlcTag;
+import org.apache.plc4x.java.spi.drivers.tags.PlcTagHandler;
 
-public class StaticHelper {
+public class Iec608705104TagHandler implements PlcTagHandler {
 
-    public static boolean finished(ReadBuffer readBuffer) {
-        return readBuffer.getRemainingBits() < 8;
+    @Override
+    public PlcTag parseTag(String tagAddress) {
+        return new Iec608705104Tag(0, 0);
+    }
+
+    @Override
+    public PlcQuery parseQuery(String query) {
+        return null;
     }
 
 }

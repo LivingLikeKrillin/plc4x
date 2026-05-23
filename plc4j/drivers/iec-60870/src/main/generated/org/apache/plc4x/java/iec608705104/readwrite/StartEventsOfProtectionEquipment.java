@@ -99,29 +99,29 @@ public class StartEventsOfProtectionEquipment implements Message {
 
   public static StartEventsOfProtectionEquipment staticParse(ReadBuffer readBuffer) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("StartEventsOfProtectionEquipment"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("StartEventsOfProtectionEquipment"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Reserved Field
     FieldReaderFactory.readReservedField(DataReaderFactory.readUnsignedByte(readBuffer, 2), (byte) 0, WithOption.WithName("StartEventsOfProtectionEquipment.reserved0"));
 
     // Simple Field: startOfOperationInReverseDirection
-    boolean startOfOperationInReverseDirection = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("startOfOperationInReverseDirection"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean startOfOperationInReverseDirection = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("startOfOperationInReverseDirection"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: startOfOperationIE
-    boolean startOfOperationIE = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("startOfOperationIE"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean startOfOperationIE = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("startOfOperationIE"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: stateOfOperationPhaseL3
-    boolean stateOfOperationPhaseL3 = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("stateOfOperationPhaseL3"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean stateOfOperationPhaseL3 = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("stateOfOperationPhaseL3"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: stateOfOperationPhaseL2
-    boolean stateOfOperationPhaseL2 = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("stateOfOperationPhaseL2"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean stateOfOperationPhaseL2 = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("stateOfOperationPhaseL2"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: stateOfOperationPhaseL1
-    boolean stateOfOperationPhaseL1 = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("stateOfOperationPhaseL1"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean stateOfOperationPhaseL1 = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("stateOfOperationPhaseL1"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: generalStartOfOperation
-    boolean generalStartOfOperation = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("generalStartOfOperation"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean generalStartOfOperation = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("generalStartOfOperation"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new StartEventsOfProtectionEquipment(startOfOperationInReverseDirection, startOfOperationIE, stateOfOperationPhaseL3, stateOfOperationPhaseL2, stateOfOperationPhaseL1, generalStartOfOperation);
@@ -129,29 +129,29 @@ public class StartEventsOfProtectionEquipment implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("StartEventsOfProtectionEquipment"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("StartEventsOfProtectionEquipment"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Reserved Field
     FieldWriterFactory.writeReservedField((byte) 0, DataWriterFactory.writeUnsignedByte(writeBuffer, 2));
 
     // Simple Field: startOfOperationInReverseDirection
-    FieldWriterFactory.writeSimpleField((boolean) startOfOperationInReverseDirection, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("startOfOperationInReverseDirection"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) startOfOperationInReverseDirection, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("startOfOperationInReverseDirection"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: startOfOperationIE
-    FieldWriterFactory.writeSimpleField((boolean) startOfOperationIE, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("startOfOperationIE"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) startOfOperationIE, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("startOfOperationIE"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: stateOfOperationPhaseL3
-    FieldWriterFactory.writeSimpleField((boolean) stateOfOperationPhaseL3, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("stateOfOperationPhaseL3"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) stateOfOperationPhaseL3, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("stateOfOperationPhaseL3"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: stateOfOperationPhaseL2
-    FieldWriterFactory.writeSimpleField((boolean) stateOfOperationPhaseL2, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("stateOfOperationPhaseL2"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) stateOfOperationPhaseL2, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("stateOfOperationPhaseL2"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: stateOfOperationPhaseL1
-    FieldWriterFactory.writeSimpleField((boolean) stateOfOperationPhaseL1, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("stateOfOperationPhaseL1"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) stateOfOperationPhaseL1, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("stateOfOperationPhaseL1"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: generalStartOfOperation
-    FieldWriterFactory.writeSimpleField((boolean) generalStartOfOperation, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("generalStartOfOperation"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) generalStartOfOperation, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("generalStartOfOperation"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

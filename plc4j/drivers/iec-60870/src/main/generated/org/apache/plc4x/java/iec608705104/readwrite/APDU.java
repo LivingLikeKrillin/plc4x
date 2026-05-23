@@ -58,17 +58,17 @@ public abstract class APDU implements Message {
   }
 
   public static APDU staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("APDU"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("APDU"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Const Field: startByte
-    short startByte = FieldReaderFactory.readConstField(DataReaderFactory.readUnsignedShort(readBuffer, 8), STARTBYTE, WithOption.WithName("startByte"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    short startByte = FieldReaderFactory.readConstField(DataReaderFactory.readUnsignedShort(readBuffer, 8), STARTBYTE, WithOption.WithName("startByte"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Implicit Field: apciLength
-    short apciLength = FieldReaderFactory.readImplicitField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("apciLength"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    short apciLength = FieldReaderFactory.readImplicitField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("apciLength"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: command
-    int command = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("command"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    int command = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("command"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Switch Field
     APDUBuilder builder = null;
@@ -99,18 +99,18 @@ public abstract class APDU implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("APDU"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("APDU"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Const Field: startByte
-    FieldWriterFactory.writeConstField((short) STARTBYTE, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("startByte"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeConstField((short) STARTBYTE, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("startByte"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Implicit Field: apciLength
     short apciLength = (short) ((getLengthInBytes()) - (2));
-    FieldWriterFactory.writeImplicitField((short) apciLength, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("apciLength"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeImplicitField((short) apciLength, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("apciLength"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: command
-    FieldWriterFactory.writeSimpleField((int) command, DataWriterFactory.writeUnsignedInt(writeBuffer, 16), WithOption.WithName("command"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((int) command, DataWriterFactory.writeUnsignedInt(writeBuffer, 16), WithOption.WithName("command"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Switch Field
     serializeAPDUChild(writeBuffer);

@@ -68,14 +68,14 @@ public class InformationObjectWithoutTime_SET_POINT_COMMAND_NORMALISED_VALUE ext
   public static InformationObjectWithoutTimeBuilder staticParseInformationObjectWithoutTimeBuilder(
       ReadBuffer readBuffer, TypeIdentification typeIdentification, byte numTimeByte) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_SET_POINT_COMMAND_NORMALISED_VALUE"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_SET_POINT_COMMAND_NORMALISED_VALUE"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: nva
-    NormalizedValue nva = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (NormalizedValue) NormalizedValue.staticParse(readBuffer), readBuffer), WithOption.WithName("nva"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    NormalizedValue nva = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (NormalizedValue) NormalizedValue.staticParse(readBuffer), readBuffer), WithOption.WithName("nva"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: qos
-    QualifierOfSetPointCommand qos = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (QualifierOfSetPointCommand) QualifierOfSetPointCommand.staticParse(readBuffer), readBuffer), WithOption.WithName("qos"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    QualifierOfSetPointCommand qos = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (QualifierOfSetPointCommand) QualifierOfSetPointCommand.staticParse(readBuffer), readBuffer), WithOption.WithName("qos"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new InformationObjectWithoutTimeBuilderImpl(nva, qos);
@@ -83,14 +83,14 @@ public class InformationObjectWithoutTime_SET_POINT_COMMAND_NORMALISED_VALUE ext
 
   protected void serializeInformationObjectWithoutTimeChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_SET_POINT_COMMAND_NORMALISED_VALUE"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_SET_POINT_COMMAND_NORMALISED_VALUE"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: nva
-    FieldWriterFactory.writeSimpleField((NormalizedValue) nva, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("nva"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((NormalizedValue) nva, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("nva"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: qos
-    FieldWriterFactory.writeSimpleField((QualifierOfSetPointCommand) qos, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("qos"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((QualifierOfSetPointCommand) qos, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("qos"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

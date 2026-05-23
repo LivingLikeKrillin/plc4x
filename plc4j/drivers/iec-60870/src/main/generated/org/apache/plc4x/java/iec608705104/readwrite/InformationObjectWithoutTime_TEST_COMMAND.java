@@ -58,11 +58,11 @@ public class InformationObjectWithoutTime_TEST_COMMAND extends InformationObject
   public static InformationObjectWithoutTimeBuilder staticParseInformationObjectWithoutTimeBuilder(
       ReadBuffer readBuffer, TypeIdentification typeIdentification, byte numTimeByte) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_TEST_COMMAND"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_TEST_COMMAND"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: fbp
-    FixedTestBitPatternTwoOctet fbp = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (FixedTestBitPatternTwoOctet) FixedTestBitPatternTwoOctet.staticParse(readBuffer), readBuffer), WithOption.WithName("fbp"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FixedTestBitPatternTwoOctet fbp = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (FixedTestBitPatternTwoOctet) FixedTestBitPatternTwoOctet.staticParse(readBuffer), readBuffer), WithOption.WithName("fbp"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new InformationObjectWithoutTimeBuilderImpl(fbp);
@@ -70,11 +70,11 @@ public class InformationObjectWithoutTime_TEST_COMMAND extends InformationObject
 
   protected void serializeInformationObjectWithoutTimeChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_TEST_COMMAND"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_TEST_COMMAND"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: fbp
-    FieldWriterFactory.writeSimpleField((FixedTestBitPatternTwoOctet) fbp, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("fbp"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((FixedTestBitPatternTwoOctet) fbp, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("fbp"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

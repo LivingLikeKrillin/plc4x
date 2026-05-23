@@ -87,26 +87,26 @@ public class DoublePointInformation implements Message {
   }
 
   public static DoublePointInformation staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("DoublePointInformation"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("DoublePointInformation"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: invalid
-    boolean invalid = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("invalid"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean invalid = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("invalid"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: notTopical
-    boolean notTopical = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("notTopical"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean notTopical = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("notTopical"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: substituted
-    boolean substituted = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("substituted"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean substituted = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("substituted"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: blocked
-    boolean blocked = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("blocked"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    boolean blocked = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("blocked"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldReaderFactory.readReservedField(DataReaderFactory.readUnsignedByte(readBuffer, 2), (byte) 0, WithOption.WithName("DoublePointInformation.reserved4"));
 
     // Simple Field: dpiCode
-    byte dpiCode = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 2), WithOption.WithName("dpiCode"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    byte dpiCode = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 2), WithOption.WithName("dpiCode"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new DoublePointInformation(invalid, notTopical, substituted, blocked, dpiCode);
@@ -114,26 +114,26 @@ public class DoublePointInformation implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("DoublePointInformation"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("DoublePointInformation"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: invalid
-    FieldWriterFactory.writeSimpleField((boolean) invalid, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("invalid"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) invalid, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("invalid"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: notTopical
-    FieldWriterFactory.writeSimpleField((boolean) notTopical, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("notTopical"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) notTopical, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("notTopical"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: substituted
-    FieldWriterFactory.writeSimpleField((boolean) substituted, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("substituted"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) substituted, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("substituted"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: blocked
-    FieldWriterFactory.writeSimpleField((boolean) blocked, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("blocked"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((boolean) blocked, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("blocked"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldWriterFactory.writeReservedField((byte) 0, DataWriterFactory.writeUnsignedByte(writeBuffer, 2));
 
     // Simple Field: dpiCode
-    FieldWriterFactory.writeSimpleField((byte) dpiCode, DataWriterFactory.writeUnsignedByte(writeBuffer, 2), WithOption.WithName("dpiCode"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((byte) dpiCode, DataWriterFactory.writeUnsignedByte(writeBuffer, 2), WithOption.WithName("dpiCode"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

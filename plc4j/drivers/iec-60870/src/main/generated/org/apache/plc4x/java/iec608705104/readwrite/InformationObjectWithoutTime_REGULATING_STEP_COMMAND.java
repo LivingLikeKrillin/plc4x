@@ -58,11 +58,11 @@ public class InformationObjectWithoutTime_REGULATING_STEP_COMMAND extends Inform
   public static InformationObjectWithoutTimeBuilder staticParseInformationObjectWithoutTimeBuilder(
       ReadBuffer readBuffer, TypeIdentification typeIdentification, byte numTimeByte) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_REGULATING_STEP_COMMAND"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_REGULATING_STEP_COMMAND"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: rco
-    RegulatingStepCommand rco = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (RegulatingStepCommand) RegulatingStepCommand.staticParse(readBuffer), readBuffer), WithOption.WithName("rco"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    RegulatingStepCommand rco = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (RegulatingStepCommand) RegulatingStepCommand.staticParse(readBuffer), readBuffer), WithOption.WithName("rco"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new InformationObjectWithoutTimeBuilderImpl(rco);
@@ -70,11 +70,11 @@ public class InformationObjectWithoutTime_REGULATING_STEP_COMMAND extends Inform
 
   protected void serializeInformationObjectWithoutTimeChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_REGULATING_STEP_COMMAND"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_REGULATING_STEP_COMMAND"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: rco
-    FieldWriterFactory.writeSimpleField((RegulatingStepCommand) rco, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("rco"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((RegulatingStepCommand) rco, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("rco"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

@@ -58,11 +58,11 @@ public class InformationObjectWithoutTime_END_OF_INITIALISATION extends Informat
   public static InformationObjectWithoutTimeBuilder staticParseInformationObjectWithoutTimeBuilder(
       ReadBuffer readBuffer, TypeIdentification typeIdentification, byte numTimeByte) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_END_OF_INITIALISATION"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_END_OF_INITIALISATION"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: coi
-    CauseOfInitialization coi = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (CauseOfInitialization) CauseOfInitialization.staticParse(readBuffer), readBuffer), WithOption.WithName("coi"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    CauseOfInitialization coi = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (CauseOfInitialization) CauseOfInitialization.staticParse(readBuffer), readBuffer), WithOption.WithName("coi"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new InformationObjectWithoutTimeBuilderImpl(coi);
@@ -70,11 +70,11 @@ public class InformationObjectWithoutTime_END_OF_INITIALISATION extends Informat
 
   protected void serializeInformationObjectWithoutTimeChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_END_OF_INITIALISATION"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("InformationObjectWithoutTime_END_OF_INITIALISATION"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: coi
-    FieldWriterFactory.writeSimpleField((CauseOfInitialization) coi, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("coi"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((CauseOfInitialization) coi, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("coi"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

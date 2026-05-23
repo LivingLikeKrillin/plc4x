@@ -56,14 +56,14 @@ public class DoubleCommand implements Message {
   }
 
   public static DoubleCommand staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("DoubleCommand"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("DoubleCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: qoc
-    QualifierOfCommand qoc = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (QualifierOfCommand) QualifierOfCommand.staticParse(readBuffer), readBuffer), WithOption.WithName("qoc"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    QualifierOfCommand qoc = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (QualifierOfCommand) QualifierOfCommand.staticParse(readBuffer), readBuffer), WithOption.WithName("qoc"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: dcs
-    byte dcs = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 2), WithOption.WithName("dcs"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    byte dcs = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 2), WithOption.WithName("dcs"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new DoubleCommand(qoc, dcs);
@@ -71,14 +71,14 @@ public class DoubleCommand implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("DoubleCommand"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("DoubleCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: qoc
-    FieldWriterFactory.writeSimpleField((QualifierOfCommand) qoc, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("qoc"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((QualifierOfCommand) qoc, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("qoc"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: dcs
-    FieldWriterFactory.writeSimpleField((byte) dcs, DataWriterFactory.writeUnsignedByte(writeBuffer, 2), WithOption.WithName("dcs"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((byte) dcs, DataWriterFactory.writeUnsignedByte(writeBuffer, 2), WithOption.WithName("dcs"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

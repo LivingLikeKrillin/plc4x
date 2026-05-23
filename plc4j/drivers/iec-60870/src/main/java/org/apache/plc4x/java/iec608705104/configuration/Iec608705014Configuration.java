@@ -17,18 +17,18 @@
  * under the License.
  */
 
-package org.apache.plc4x.java.iec608705104.readwrite.configuration;
+package org.apache.plc4x.java.iec608705104.configuration;
 
-import org.apache.plc4x.java.spi.configuration.PlcConnectionConfiguration;
-import org.apache.plc4x.java.spi.configuration.annotations.ConfigurationParameter;
-import org.apache.plc4x.java.spi.configuration.annotations.Description;
-import org.apache.plc4x.java.spi.configuration.annotations.defaults.IntDefaultValue;
+import org.apache.plc4x.java.spi.config.Configuration;
+import org.apache.plc4x.java.spi.config.annotations.ConfigurationParameter;
+import org.apache.plc4x.java.spi.config.annotations.Description;
+import org.apache.plc4x.java.spi.config.annotations.defaults.IntDefaultValue;
 
-public class Iec608705014Configuration implements PlcConnectionConfiguration {
+public class Iec608705014Configuration implements Configuration {
 
     @ConfigurationParameter("request-timeout")
     @IntDefaultValue(4000)
-    @Description("Default timeout for all types of requests.")
+    @Description("Maximum time (in milliseconds) to wait for the test-frame and start-data-transfer handshake replies during connection setup.")
     protected int requestTimeout;
 
     public int getRequestTimeout() {

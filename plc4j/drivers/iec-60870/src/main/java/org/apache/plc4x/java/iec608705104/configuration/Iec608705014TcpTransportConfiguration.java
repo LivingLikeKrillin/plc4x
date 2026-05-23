@@ -17,22 +17,16 @@
  * under the License.
  */
 
-package org.apache.plc4x.java.iec608705104.readwrite.tag;
+package org.apache.plc4x.java.iec608705104.configuration;
 
-import org.apache.plc4x.java.api.model.PlcQuery;
-import org.apache.plc4x.java.api.model.PlcTag;
-import org.apache.plc4x.java.spi.connection.PlcTagHandler;
+import org.apache.plc4x.java.iec608705104.readwrite.Constants;
+import org.apache.plc4x.java.transport.tcp.config.TcpTransportConfiguration;
 
-public class Iec608705104TagHandler implements PlcTagHandler {
-
-    @Override
-    public PlcTag parseTag(String tagAddress) {
-        return new Iec608705104Tag(0, 0);
-    }
+public class Iec608705014TcpTransportConfiguration extends TcpTransportConfiguration {
 
     @Override
-    public PlcQuery parseQuery(String query) {
-        return null;
+    public int getDefaultPort() {
+        return Constants.DEFAULTPORT;
     }
 
 }

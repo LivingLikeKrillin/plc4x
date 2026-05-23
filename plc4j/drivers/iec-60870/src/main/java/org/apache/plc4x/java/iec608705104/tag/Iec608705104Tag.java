@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package org.apache.plc4x.java.iec608705104.readwrite.tag;
+package org.apache.plc4x.java.iec608705104.tag;
 
 import org.apache.plc4x.java.api.model.ArrayInfo;
 import org.apache.plc4x.java.api.model.PlcTag;

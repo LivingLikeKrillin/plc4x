@@ -57,28 +57,28 @@ public class APDUIFormat extends APDU implements Message {
   }
 
   public static APDUBuilder staticParseAPDUBuilder(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("APDUIFormat"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("APDUIFormat"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: receiveSequenceNo
-    int receiveSequenceNo = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("receiveSequenceNo"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    int receiveSequenceNo = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("receiveSequenceNo"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: asdu
-    ASDU asdu = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (ASDU) ASDU.staticParse(readBuffer), readBuffer), WithOption.WithName("asdu"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    ASDU asdu = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (ASDU) ASDU.staticParse(readBuffer), readBuffer), WithOption.WithName("asdu"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new APDUBuilderImpl(receiveSequenceNo, asdu);
   }
 
   protected void serializeAPDUChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("APDUIFormat"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("APDUIFormat"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: receiveSequenceNo
-    FieldWriterFactory.writeSimpleField((int) receiveSequenceNo, DataWriterFactory.writeUnsignedInt(writeBuffer, 16), WithOption.WithName("receiveSequenceNo"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((int) receiveSequenceNo, DataWriterFactory.writeUnsignedInt(writeBuffer, 16), WithOption.WithName("receiveSequenceNo"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: asdu
-    FieldWriterFactory.writeSimpleField((ASDU) asdu, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("asdu"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((ASDU) asdu, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("asdu"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package org.apache.plc4x.java.iec608705104.readwrite.protocol;
+package org.apache.plc4x.java.iec608705104.protocol;
 
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.plc4x.java.api.value.PlcValue;

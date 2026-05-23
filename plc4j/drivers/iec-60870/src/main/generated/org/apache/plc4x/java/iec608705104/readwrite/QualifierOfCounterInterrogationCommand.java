@@ -57,14 +57,14 @@ public class QualifierOfCounterInterrogationCommand implements Message {
 
   public static QualifierOfCounterInterrogationCommand staticParse(ReadBuffer readBuffer) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("QualifierOfCounterInterrogationCommand"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("QualifierOfCounterInterrogationCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: freeze
-    byte freeze = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 2), WithOption.WithName("freeze"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    byte freeze = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 2), WithOption.WithName("freeze"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: request
-    byte request = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 6), WithOption.WithName("request"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    byte request = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 6), WithOption.WithName("request"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new QualifierOfCounterInterrogationCommand(freeze, request);
@@ -72,14 +72,14 @@ public class QualifierOfCounterInterrogationCommand implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("QualifierOfCounterInterrogationCommand"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("QualifierOfCounterInterrogationCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: freeze
-    FieldWriterFactory.writeSimpleField((byte) freeze, DataWriterFactory.writeUnsignedByte(writeBuffer, 2), WithOption.WithName("freeze"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((byte) freeze, DataWriterFactory.writeUnsignedByte(writeBuffer, 2), WithOption.WithName("freeze"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: request
-    FieldWriterFactory.writeSimpleField((byte) request, DataWriterFactory.writeUnsignedByte(writeBuffer, 6), WithOption.WithName("request"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((byte) request, DataWriterFactory.writeUnsignedByte(writeBuffer, 6), WithOption.WithName("request"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }
