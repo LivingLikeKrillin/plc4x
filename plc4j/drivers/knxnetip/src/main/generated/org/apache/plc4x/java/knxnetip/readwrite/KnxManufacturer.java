@@ -1625,9 +1625,15 @@ public enum KnxManufacturer {
 
   M_ZHEJIANG_DOOYA_INTELLIGENT_TECHNOLOGY_CO___LTD_((int) 799, (int) 860, "Zhejiang Dooya Intelligent Technology Co., Ltd."),
 
-  M_ABB___RESERVED((int) 800, (int) 43954, "ABB - reserved"),
+  M_HUARUI((int) 800, (int) 861, "HUARUI"),
 
-  M_BUSCH_JAEGER_ELEKTRO___RESERVED((int) 801, (int) 43959, "Busch-Jaeger Elektro - reserved");
+  M_TECHNOVATION_ALLIANCE_ENTERPRISE_B_V((int) 801, (int) 862, "Technovation Alliance Enterprise B.V"),
+
+  M_BI_TECH_ELECTRONICS((int) 802, (int) 863, "BI-TECH Electronics"),
+
+  M_ABB___RESERVED((int) 803, (int) 43954, "ABB - reserved"),
+
+  M_BUSCH_JAEGER_ELEKTRO___RESERVED((int) 804, (int) 43959, "Busch-Jaeger Elektro - reserved");
 
   private static final Map<Integer, KnxManufacturer> map;
 

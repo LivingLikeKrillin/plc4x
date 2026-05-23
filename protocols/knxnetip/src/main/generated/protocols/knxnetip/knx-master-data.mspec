@@ -1552,8 +1552,11 @@
     ['797' M_LUMI_VIETNAM ['858', '"Lumi Vietnam"']]
     ['798' M_ARCOLA_AI_LIMITED ['859', '"Arcola AI Limited"']]
     ['799' M_ZHEJIANG_DOOYA_INTELLIGENT_TECHNOLOGY_CO___LTD_ ['860', '"Zhejiang Dooya Intelligent Technology Co., Ltd."']]
-    ['800' M_ABB___RESERVED ['43954', '"ABB - reserved"']]
-    ['801' M_BUSCH_JAEGER_ELEKTRO___RESERVED ['43959', '"Busch-Jaeger Elektro - reserved"']]
+    ['800' M_HUARUI ['861', '"HUARUI"']]
+    ['801' M_TECHNOVATION_ALLIANCE_ENTERPRISE_B_V ['862', '"Technovation Alliance Enterprise B.V"']]
+    ['802' M_BI_TECH_ELECTRONICS ['863', '"BI-TECH Electronics"']]
+    ['803' M_ABB___RESERVED ['43954', '"ABB - reserved"']]
+    ['804' M_BUSCH_JAEGER_ELEKTRO___RESERVED ['43959', '"Busch-Jaeger Elektro - reserved"']]
     
 ]
 
