@@ -16,11 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.java.can.generic;
+package org.apache.plc4x.java.canopen;
 
 import org.apache.plc4x.java.api.model.PlcTag;
-import org.apache.plc4x.java.can.generic.configuration.GenericCANConfiguration;
-import org.apache.plc4x.java.can.generic.tag.GenericCANTag;
+import org.apache.plc4x.java.canopen.configuration.CANOpenConfiguration;
+import org.apache.plc4x.java.canopen.tag.CANOpenTag;
 import org.apache.plc4x.java.spi.config.Configuration;
 import org.apache.plc4x.java.spi.drivers.ConnectionBase;
 import org.apache.plc4x.java.spi.drivers.DriverBase;
@@ -30,28 +30,21 @@ import org.apache.plc4x.java.utils.auditlog.api.AuditLog;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Generic CAN driver, transport-agnostic so long as the chosen transport
- * presents incoming traffic as fixed 16-byte SocketCAN-style frames (true for
- * both {@code can-socketcan} and {@code can-virtualcan}).
- *
- * <p>URL: {@code genericcan:&lt;transport&gt;://...}</p>
- */
-public class GenericCANDriver extends DriverBase {
+public class CANOpenDriver extends DriverBase {
 
     @Override
     public String getProtocolCode() {
-        return "genericcan";
+        return "canopen";
     }
 
     @Override
     public String getProtocolName() {
-        return "Generic CAN";
+        return "CANopen";
     }
 
     @Override
     protected Class<? extends Configuration> getConfigurationClass() {
-        return GenericCANConfiguration.class;
+        return CANOpenConfiguration.class;
     }
 
     @Override
@@ -65,7 +58,7 @@ public class GenericCANDriver extends DriverBase {
     }
 
     @Override
-    protected boolean canSubscribe() {
+    protected boolean canRead() {
         return true;
     }
 
@@ -75,15 +68,20 @@ public class GenericCANDriver extends DriverBase {
     }
 
     @Override
+    protected boolean canSubscribe() {
+        return true;
+    }
+
+    @Override
     protected ConnectionBase<?> getConnection(Configuration configuration,
                                               TransportInstance<?> transportInstance,
                                               AuditLog auditLog) {
-        return new GenericCANConnection((GenericCANConfiguration) configuration, transportInstance, auditLog);
+        return new CANOpenConnection((CANOpenConfiguration) configuration, transportInstance, auditLog);
     }
 
     @Override
     public PlcTag prepareTag(String tagAddress) {
-        return GenericCANTag.matches(tagAddress).orElse(null);
+        return CANOpenTag.of(tagAddress);
     }
 
 }

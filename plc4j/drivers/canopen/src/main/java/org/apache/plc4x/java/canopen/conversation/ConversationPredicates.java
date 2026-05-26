@@ -16,11 +16,25 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.java.canopen.listener;
+package org.apache.plc4x.java.canopen.conversation;
 
 import org.apache.plc4x.java.canopen.readwrite.CANOpenFrame;
+import org.apache.plc4x.java.canopen.readwrite.CANOpenSDOResponse;
+import org.apache.plc4x.java.canopen.readwrite.CANOpenService;
 
-public interface Callback {
-    void receive(CANOpenFrame frame);
+import java.util.function.Predicate;
+
+/** Reusable predicates for {@link CANConversation#expect(Predicate, java.time.Duration)}. */
+public final class ConversationPredicates {
+
+    private ConversationPredicates() {
+    }
+
+    /** Matches a TRANSMIT_SDO frame from the given node id whose payload is a {@link CANOpenSDOResponse}. */
+    public static Predicate<CANOpenFrame> sdoTransmitFrom(int nodeId) {
+        return frame -> frame.getNodeId() == nodeId
+            && frame.getService() == CANOpenService.TRANSMIT_SDO
+            && frame.getPayload() instanceof CANOpenSDOResponse;
+    }
+
 }
-

@@ -285,18 +285,20 @@ public class ReadBufferByteBased extends AbstractBufferByteBased implements Read
 
     @Override
     public float readFloat(int numBits, WithOption... options) throws BufferException {
-        if (numBits != 32) {
-            throw new BufferException("Float can only be read using 32 bits");
-        }
-
         Optional<Encoding> encodingOptional = getFloatEncoding(options);
-        Encoding encoding = encodingOptional.orElseThrow(() -> new BufferException("No encoding defined for signed integer values"));
-        if(encoding instanceof EncodingDefault encodingDefault) {
+        Encoding encoding = encodingOptional.orElseThrow(() -> new BufferException("No encoding defined for float values"));
+        // IEEE 754 only supports 32-bit floats; other encodings (e.g. KNXFloat,
+        // which is a 16-bit format) decide their own size constraints inside
+        // their decodeFloat implementation.
+        if (encoding instanceof EncodingDefault encodingDefault) {
+            if ("IEEE754".equals(encoding.getName()) && numBits != 32) {
+                throw new BufferException("IEEE 754 floats can only be read using 32 bits");
+            }
             ensureAvailable(numBits);
             byte[] bytes = readBits(numBits);
             bytes = getByteOrder(options).process(bytes);
             return encodingDefault.decodeFloat(numBits, bytes);
-        } else if(encoding instanceof EncodingRaw encodingRaw) {
+        } else if (encoding instanceof EncodingRaw encodingRaw) {
             return encodingRaw.decodeFloat(numBits, this);
         }
         throw new BufferException("Unsupported encoding type: " +  encoding.getClass().getName());

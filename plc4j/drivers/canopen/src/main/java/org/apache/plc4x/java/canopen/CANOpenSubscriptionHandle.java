@@ -16,19 +16,26 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.java.canopen.protocol;
+package org.apache.plc4x.java.canopen;
 
-import org.apache.plc4x.java.canopen.tag.CANOpenSubscriptionTag;
+import org.apache.plc4x.java.api.messages.PlcSubscriptionEvent;
+import org.apache.plc4x.java.api.model.PlcConsumerRegistration;
+import org.apache.plc4x.java.api.model.PlcSubscriptionHandle;
 import org.apache.plc4x.java.canopen.readwrite.CANOpenService;
-import org.apache.plc4x.java.spi.messages.PlcSubscriber;
-import org.apache.plc4x.java.spi.model.DefaultPlcSubscriptionHandle;
+import org.apache.plc4x.java.canopen.tag.CANOpenSubscriptionTag;
+import org.apache.plc4x.java.spi.drivers.functions.PlcSubscriber;
 
-public class CANOpenSubscriptionHandle extends DefaultPlcSubscriptionHandle {
+import java.util.Collections;
+import java.util.function.Consumer;
+
+public class CANOpenSubscriptionHandle implements PlcSubscriptionHandle {
+
+    private final PlcSubscriber subscriber;
     private final String name;
     private final CANOpenSubscriptionTag tag;
 
     public CANOpenSubscriptionHandle(PlcSubscriber subscriber, String name, CANOpenSubscriptionTag tag) {
-        super(subscriber);
+        this.subscriber = subscriber;
         this.name = name;
         this.tag = tag;
     }
@@ -48,8 +55,16 @@ public class CANOpenSubscriptionHandle extends DefaultPlcSubscriptionHandle {
         return tag;
     }
 
+    @Override
+    public PlcConsumerRegistration register(Consumer<PlcSubscriptionEvent> consumer) {
+        return subscriber.registerConsumer(consumer, Collections.singletonList(this));
+    }
+
+    @Override
     public String toString() {
-        return "CANopenSubscriptionHandle [service=" + tag.getService() + ", node=" + intAndHex(tag.getNodeId()) + ", cob=" + intAndHex(tag.getService().getMin() + tag.getNodeId()) + "]";
+        return "CANopenSubscriptionHandle [service=" + tag.getService()
+            + ", node=" + intAndHex(tag.getNodeId())
+            + ", cob=" + intAndHex(tag.getService().getMin() + tag.getNodeId()) + "]";
     }
 
     private static String intAndHex(int val) {

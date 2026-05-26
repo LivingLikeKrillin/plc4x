@@ -19,6 +19,7 @@
 package org.apache.plc4x.java.spi.buffers.bytebased.encoding;
 
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
+import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -26,6 +27,13 @@ import java.nio.charset.StandardCharsets;
 /**
  * In ASCII encoding, numbers are simply represented as their ASCII-encoded string value
  * Each value must have a bit-length that must be a multiple of 8.
+ *
+ * <p>Strings in ASCII fields are right-padded with spaces ({@code 0x20}) — the
+ * Open-Protocol spec mandates this and the round-trip decode (in
+ * {@link BaseStringEncoding}) already trims trailing spaces, so this matches.
+ * The {@link BaseStringEncoding#encodeString(int, String, boolean)} default
+ * leaves a zero-padded byte array, which other ASCII users could quietly
+ * tolerate but which Open-Protocol explicitly forbids.</p>
  */
 public class EncodingASCII extends BaseStringEncoding {
 
@@ -50,6 +58,28 @@ public class EncodingASCII extends BaseStringEncoding {
     @Override
     protected Charset getCharset() {
         return StandardCharsets.US_ASCII;
+    }
+
+    /**
+     * String values get right-padded with spaces ({@code 0x20}) rather than
+     * the default zero-pad. Numeric values still get the parent class's
+     * '0'-left-pad treatment.
+     */
+    @Override
+    public byte[] encodeString(int numBits, String value) throws BufferException {
+        byte[] result = super.encodeString(numBits, value);
+        int numBytes = numBits / 8;
+        byte[] valueBytes = value == null ? new byte[0] : value.getBytes(getCharset());
+        // The parent left the trailing slots (after the actual string bytes)
+        // zero-initialized; replace those with ASCII spaces. We only touch
+        // bytes the parent didn't populate — anything inside the string range
+        // is left untouched.
+        for (int i = valueBytes.length; i < numBytes; i++) {
+            if (result[i] == 0) {
+                result[i] = ' ';
+            }
+        }
+        return result;
     }
 
 }
