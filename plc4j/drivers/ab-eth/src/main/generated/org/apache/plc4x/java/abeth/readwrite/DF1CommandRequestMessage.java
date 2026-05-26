@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -56,22 +57,22 @@ public class DF1CommandRequestMessage extends DF1RequestMessage implements Messa
 
   public static DF1RequestMessageBuilder staticParseDF1RequestMessageBuilder(ReadBuffer readBuffer)
       throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("DF1CommandRequestMessage"));
+    readBuffer.pushContext(WithOption.WithName("DF1CommandRequestMessage"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: command
-    DF1RequestCommand command = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (DF1RequestCommand) DF1RequestCommand.staticParse(readBuffer), readBuffer), WithOption.WithName("command"));
+    DF1RequestCommand command = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (DF1RequestCommand) DF1RequestCommand.staticParse(readBuffer), readBuffer), WithOption.WithName("command"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new DF1RequestMessageBuilderImpl(command);
   }
 
   protected void serializeDF1RequestMessageChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("DF1CommandRequestMessage"));
+    writeBuffer.pushContext(WithOption.WithName("DF1CommandRequestMessage"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: command
-    FieldWriterFactory.writeSimpleField((DF1RequestCommand) command, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("command"));
+    FieldWriterFactory.writeSimpleField((DF1RequestCommand) command, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("command"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

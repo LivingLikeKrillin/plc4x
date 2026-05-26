@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -82,20 +83,20 @@ public class IdentifyReplyCommandNetworkVoltage extends IdentifyReplyCommand imp
 
   public static IdentifyReplyCommandBuilder staticParseIdentifyReplyCommandBuilder(
       ReadBuffer readBuffer, Attribute attribute, byte numBytes) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandNetworkVoltage"));
+    readBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandNetworkVoltage"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: volts
-    String volts = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, 16), WithOption.WithName("volts"));
+    String volts = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, 16), WithOption.WithName("volts"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Const Field: dot
-    byte dot = FieldReaderFactory.readConstField(DataReaderFactory.readByte(readBuffer, 8), DOT, WithOption.WithName("dot"));
+    byte dot = FieldReaderFactory.readConstField(DataReaderFactory.readByte(readBuffer, 8), DOT, WithOption.WithName("dot"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: voltsDecimalPlace
-    String voltsDecimalPlace = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, 16), WithOption.WithName("voltsDecimalPlace"));
+    String voltsDecimalPlace = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, 16), WithOption.WithName("voltsDecimalPlace"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Const Field: v
-    byte v = FieldReaderFactory.readConstField(DataReaderFactory.readByte(readBuffer, 8), V, WithOption.WithName("v"));
+    byte v = FieldReaderFactory.readConstField(DataReaderFactory.readByte(readBuffer, 8), V, WithOption.WithName("v"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new IdentifyReplyCommandBuilderImpl(volts, voltsDecimalPlace);
@@ -103,20 +104,20 @@ public class IdentifyReplyCommandNetworkVoltage extends IdentifyReplyCommand imp
 
   protected void serializeIdentifyReplyCommandChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandNetworkVoltage"));
+    writeBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandNetworkVoltage"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: volts
-    FieldWriterFactory.writeSimpleField((String) volts, DataWriterFactory.writeString(writeBuffer, 16), WithOption.WithName("volts"));
+    FieldWriterFactory.writeSimpleField((String) volts, DataWriterFactory.writeString(writeBuffer, 16), WithOption.WithName("volts"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Const Field: dot
-    FieldWriterFactory.writeConstField((byte) DOT, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("dot"));
+    FieldWriterFactory.writeConstField((byte) DOT, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("dot"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: voltsDecimalPlace
-    FieldWriterFactory.writeSimpleField((String) voltsDecimalPlace, DataWriterFactory.writeString(writeBuffer, 16), WithOption.WithName("voltsDecimalPlace"));
+    FieldWriterFactory.writeSimpleField((String) voltsDecimalPlace, DataWriterFactory.writeString(writeBuffer, 16), WithOption.WithName("voltsDecimalPlace"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Const Field: v
-    FieldWriterFactory.writeConstField((byte) V, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("v"));
+    FieldWriterFactory.writeConstField((byte) V, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("v"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -59,11 +60,11 @@ public abstract class CALReply implements Message {
 
   public static CALReply staticParse(ReadBuffer readBuffer, CBusOptions cBusOptions,
       RequestContext requestContext) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("CALReply"));
+    readBuffer.pushContext(WithOption.WithName("CALReply"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Peek Field: calType
-    byte calType = FieldReaderFactory.readPeekField(DataReaderFactory.readByte(readBuffer, 8), WithOption.WithName("calType"));
+    byte calType = FieldReaderFactory.readPeekField(DataReaderFactory.readByte(readBuffer, 8), WithOption.WithName("calType"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Switch Field
     CALReplyBuilder builder = null;
@@ -77,7 +78,7 @@ public abstract class CALReply implements Message {
     }
 
     // Simple Field: calData
-    CALData calData = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (CALData) CALData.staticParse(readBuffer, (org.apache.plc4x.java.cbus.readwrite.RequestContext) (requestContext)), readBuffer), WithOption.WithName("calData"));
+    CALData calData = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (CALData) CALData.staticParse(readBuffer, (org.apache.plc4x.java.cbus.readwrite.RequestContext) (requestContext)), readBuffer), WithOption.WithName("calData"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return builder.build(calType, calData);
@@ -85,7 +86,7 @@ public abstract class CALReply implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CALReply"));
+    writeBuffer.pushContext(WithOption.WithName("CALReply"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Peek Field: calType
@@ -94,7 +95,7 @@ public abstract class CALReply implements Message {
     serializeCALReplyChild(writeBuffer);
 
     // Simple Field: calData
-    FieldWriterFactory.writeSimpleField((CALData) calData, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("calData"));
+    FieldWriterFactory.writeSimpleField((CALData) calData, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("calData"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

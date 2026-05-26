@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -56,11 +57,11 @@ public class CustomTypes implements Message {
 
   public static CustomTypes staticParse(ReadBuffer readBuffer, short numBytes) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("CustomTypes"));
+    readBuffer.pushContext(WithOption.WithName("CustomTypes"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: customString
-    String customString = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, (8) * (numBytes)), WithOption.WithName("customString"));
+    String customString = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, (8) * (numBytes)), WithOption.WithName("customString"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new CustomTypes(numBytes, customString);
@@ -68,11 +69,11 @@ public class CustomTypes implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CustomTypes"));
+    writeBuffer.pushContext(WithOption.WithName("CustomTypes"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: customString
-    FieldWriterFactory.writeSimpleField((String) customString, DataWriterFactory.writeString(writeBuffer, (8) * (numBytes)), WithOption.WithName("customString"));
+    FieldWriterFactory.writeSimpleField((String) customString, DataWriterFactory.writeString(writeBuffer, (8) * (numBytes)), WithOption.WithName("customString"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

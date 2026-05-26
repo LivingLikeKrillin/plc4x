@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -50,11 +51,11 @@ public class CBusPointToPointCommandDirect extends CBusPointToPointCommand imple
 
   public static CBusPointToPointCommandBuilder staticParseCBusPointToPointCommandBuilder(
       ReadBuffer readBuffer, CBusOptions cBusOptions) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("CBusPointToPointCommandDirect"));
+    readBuffer.pushContext(WithOption.WithName("CBusPointToPointCommandDirect"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: unitAddress
-    UnitAddress unitAddress = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (UnitAddress) UnitAddress.staticParse(readBuffer), readBuffer), WithOption.WithName("unitAddress"));
+    UnitAddress unitAddress = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (UnitAddress) UnitAddress.staticParse(readBuffer), readBuffer), WithOption.WithName("unitAddress"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldReaderFactory.readReservedField(DataReaderFactory.readUnsignedShort(readBuffer, 8), (short) 0x00, WithOption.WithName("CBusPointToPointCommandDirect.reserved1"));
@@ -65,11 +66,11 @@ public class CBusPointToPointCommandDirect extends CBusPointToPointCommand imple
 
   protected void serializeCBusPointToPointCommandChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CBusPointToPointCommandDirect"));
+    writeBuffer.pushContext(WithOption.WithName("CBusPointToPointCommandDirect"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: unitAddress
-    FieldWriterFactory.writeSimpleField((UnitAddress) unitAddress, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("unitAddress"));
+    FieldWriterFactory.writeSimpleField((UnitAddress) unitAddress, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("unitAddress"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldWriterFactory.writeReservedField((short) 0x00, DataWriterFactory.writeUnsignedShort(writeBuffer, 8));

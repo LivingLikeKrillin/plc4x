@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.exceptions.ParseAssertException;
@@ -119,29 +120,29 @@ public class MonitoredSALLongFormSmartMode extends MonitoredSAL implements Messa
 
   public static MonitoredSALBuilder staticParseMonitoredSALBuilder(ReadBuffer readBuffer,
       CBusOptions cBusOptions) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("MonitoredSALLongFormSmartMode"));
+    readBuffer.pushContext(WithOption.WithName("MonitoredSALLongFormSmartMode"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Reserved Field
     FieldReaderFactory.readReservedField(DataReaderFactory.readByte(readBuffer, 8), (byte) 0x05, WithOption.WithName("MonitoredSALLongFormSmartMode.reserved0"));
 
     // Peek Field: terminatingByte
-    int terminatingByte = FieldReaderFactory.readPeekField(DataReaderFactory.readUnsignedInt(readBuffer, 24), WithOption.WithName("terminatingByte"));
+    int terminatingByte = FieldReaderFactory.readPeekField(DataReaderFactory.readUnsignedInt(readBuffer, 24), WithOption.WithName("terminatingByte"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: isUnitAddress (doesn't parse anything, just makes the value available)
-    boolean isUnitAddress = FieldReaderFactory.readVirtualField(boolean.class, (((terminatingByte) & (0xff))) == (0x00), WithOption.WithName("isUnitAddress"));
+    boolean isUnitAddress = FieldReaderFactory.readVirtualField(boolean.class, (((terminatingByte) & (0xff))) == (0x00), WithOption.WithName("isUnitAddress"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Optional Field (conditional): unitAddress
-    UnitAddress unitAddress = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (UnitAddress) UnitAddress.staticParse(readBuffer), readBuffer), isUnitAddress, WithOption.WithName("unitAddress"));
+    UnitAddress unitAddress = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (UnitAddress) UnitAddress.staticParse(readBuffer), readBuffer), isUnitAddress, WithOption.WithName("unitAddress"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Optional Field (conditional): bridgeAddress
-    BridgeAddress bridgeAddress = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (BridgeAddress) BridgeAddress.staticParse(readBuffer), readBuffer), !(isUnitAddress), WithOption.WithName("bridgeAddress"));
+    BridgeAddress bridgeAddress = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (BridgeAddress) BridgeAddress.staticParse(readBuffer), readBuffer), !(isUnitAddress), WithOption.WithName("bridgeAddress"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): application
-    ApplicationIdContainer application = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ApplicationIdContainer::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("application"));
+    ApplicationIdContainer application = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ApplicationIdContainer::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("application"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Optional Field (conditional): reservedByte
-    Byte reservedByte = FieldReaderFactory.readOptionalField(DataReaderFactory.readByte(readBuffer, 8), isUnitAddress, WithOption.WithName("reservedByte"));
+    Byte reservedByte = FieldReaderFactory.readOptionalField(DataReaderFactory.readByte(readBuffer, 8), isUnitAddress, WithOption.WithName("reservedByte"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Validation Field
     if(!(((isUnitAddress) && ((reservedByte) == (0x00))) || (!(isUnitAddress)))) {
@@ -149,17 +150,17 @@ public class MonitoredSALLongFormSmartMode extends MonitoredSAL implements Messa
     }
 
     // Optional Field (conditional): replyNetwork
-    ReplyNetwork replyNetwork = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (ReplyNetwork) ReplyNetwork.staticParse(readBuffer), readBuffer), !(isUnitAddress), WithOption.WithName("replyNetwork"));
+    ReplyNetwork replyNetwork = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (ReplyNetwork) ReplyNetwork.staticParse(readBuffer), readBuffer), !(isUnitAddress), WithOption.WithName("replyNetwork"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Optional Field: salData
-    SALData salData = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (SALData) SALData.staticParse(readBuffer, (org.apache.plc4x.java.cbus.readwrite.ApplicationId) (application.getApplicationId())), readBuffer), WithOption.WithName("salData"));
+    SALData salData = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (SALData) SALData.staticParse(readBuffer, (org.apache.plc4x.java.cbus.readwrite.ApplicationId) (application.getApplicationId())), readBuffer), WithOption.WithName("salData"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new MonitoredSALBuilderImpl(terminatingByte, unitAddress, bridgeAddress, application, reservedByte, replyNetwork, salData);
   }
 
   protected void serializeMonitoredSALChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("MonitoredSALLongFormSmartMode"));
+    writeBuffer.pushContext(WithOption.WithName("MonitoredSALLongFormSmartMode"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Reserved Field
@@ -172,32 +173,32 @@ public class MonitoredSALLongFormSmartMode extends MonitoredSAL implements Messa
 
     if(unitAddress != null) {
       // Optional Field: unitAddress
-      FieldWriterFactory.writeOptionalField((UnitAddress) unitAddress, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("unitAddress"));
+      FieldWriterFactory.writeOptionalField((UnitAddress) unitAddress, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("unitAddress"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     }
 
     if(bridgeAddress != null) {
       // Optional Field: bridgeAddress
-      FieldWriterFactory.writeOptionalField((BridgeAddress) bridgeAddress, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("bridgeAddress"));
+      FieldWriterFactory.writeOptionalField((BridgeAddress) bridgeAddress, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("bridgeAddress"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     }
 
     // Simple Field (enum): application
-    FieldWriterFactory.writeSimpleEnumField((ApplicationIdContainer) application, DataWriterFactory.writeEnum(ApplicationIdContainer::getValue, ApplicationIdContainer::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("application"));
+    FieldWriterFactory.writeSimpleEnumField((ApplicationIdContainer) application, DataWriterFactory.writeEnum(ApplicationIdContainer::getValue, ApplicationIdContainer::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("application"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     if(reservedByte != null) {
       // Optional Field: reservedByte
-      FieldWriterFactory.writeOptionalField((Byte) reservedByte, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("reservedByte"));
+      FieldWriterFactory.writeOptionalField((Byte) reservedByte, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("reservedByte"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     }
 
     // Validation Field (Nothing needed here)
 
     if(replyNetwork != null) {
       // Optional Field: replyNetwork
-      FieldWriterFactory.writeOptionalField((ReplyNetwork) replyNetwork, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("replyNetwork"));
+      FieldWriterFactory.writeOptionalField((ReplyNetwork) replyNetwork, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("replyNetwork"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     }
 
     if(salData != null) {
       // Optional Field: salData
-      FieldWriterFactory.writeOptionalField((SALData) salData, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("salData"));
+      FieldWriterFactory.writeOptionalField((SALData) salData, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("salData"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     }
 
     writeBuffer.popContext();

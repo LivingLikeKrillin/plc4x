@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.exceptions.ParseAssertException;
 import org.apache.plc4x.java.spi.fields.utils.ThreadLocalHelper;
 
@@ -42,7 +43,7 @@ public class SALDataRoomControlSystem extends SALData implements Message {
 
   public static SALDataBuilder staticParseSALDataBuilder(ReadBuffer readBuffer,
       ApplicationId applicationId) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("SALDataRoomControlSystem"));
+    readBuffer.pushContext(WithOption.WithName("SALDataRoomControlSystem"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Validation Field
@@ -55,7 +56,7 @@ public class SALDataRoomControlSystem extends SALData implements Message {
   }
 
   protected void serializeSALDataChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("SALDataRoomControlSystem"));
+    writeBuffer.pushContext(WithOption.WithName("SALDataRoomControlSystem"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Validation Field (Nothing needed here)

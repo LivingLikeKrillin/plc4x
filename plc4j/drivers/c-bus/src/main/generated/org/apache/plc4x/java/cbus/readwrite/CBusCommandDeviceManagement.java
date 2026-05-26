@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -66,34 +67,34 @@ public class CBusCommandDeviceManagement extends CBusCommand implements Message 
 
   public static CBusCommandBuilder staticParseCBusCommandBuilder(ReadBuffer readBuffer,
       CBusOptions cBusOptions) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("CBusCommandDeviceManagement"));
+    readBuffer.pushContext(WithOption.WithName("CBusCommandDeviceManagement"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): paramNo
-    Parameter paramNo = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(Parameter::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("paramNo"));
+    Parameter paramNo = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(Parameter::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("paramNo"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Const Field: delimiter
-    byte delimiter = FieldReaderFactory.readConstField(DataReaderFactory.readByte(readBuffer, 8), DELIMITER, WithOption.WithName("delimiter"));
+    byte delimiter = FieldReaderFactory.readConstField(DataReaderFactory.readByte(readBuffer, 8), DELIMITER, WithOption.WithName("delimiter"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: parameterValue
-    byte parameterValue = FieldReaderFactory.readSimpleField(DataReaderFactory.readByte(readBuffer, 8), WithOption.WithName("parameterValue"));
+    byte parameterValue = FieldReaderFactory.readSimpleField(DataReaderFactory.readByte(readBuffer, 8), WithOption.WithName("parameterValue"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new CBusCommandBuilderImpl(paramNo, parameterValue);
   }
 
   protected void serializeCBusCommandChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CBusCommandDeviceManagement"));
+    writeBuffer.pushContext(WithOption.WithName("CBusCommandDeviceManagement"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): paramNo
-    FieldWriterFactory.writeSimpleEnumField((Parameter) paramNo, DataWriterFactory.writeEnum(Parameter::getValue, Parameter::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("paramNo"));
+    FieldWriterFactory.writeSimpleEnumField((Parameter) paramNo, DataWriterFactory.writeEnum(Parameter::getValue, Parameter::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("paramNo"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Const Field: delimiter
-    FieldWriterFactory.writeConstField((byte) DELIMITER, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("delimiter"));
+    FieldWriterFactory.writeConstField((byte) DELIMITER, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("delimiter"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: parameterValue
-    FieldWriterFactory.writeSimpleField((byte) parameterValue, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("parameterValue"));
+    FieldWriterFactory.writeSimpleField((byte) parameterValue, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("parameterValue"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

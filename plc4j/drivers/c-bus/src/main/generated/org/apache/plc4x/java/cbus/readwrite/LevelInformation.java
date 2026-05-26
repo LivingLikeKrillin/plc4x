@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
 import org.apache.plc4x.java.spi.fields.utils.EvaluationHelper;
@@ -103,35 +104,35 @@ public abstract class LevelInformation implements Message {
   }
 
   public static LevelInformation staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("LevelInformation"));
+    readBuffer.pushContext(WithOption.WithName("LevelInformation"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Peek Field: raw
-    int raw = FieldReaderFactory.readPeekField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("raw"));
+    int raw = FieldReaderFactory.readPeekField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("raw"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: nibble1 (doesn't parse anything, just makes the value available)
-    byte nibble1 = FieldReaderFactory.readVirtualField(byte.class, (((raw) & (0xF000))) >> (12), WithOption.WithName("nibble1"));
+    byte nibble1 = FieldReaderFactory.readVirtualField(byte.class, (((raw) & (0xF000))) >> (12), WithOption.WithName("nibble1"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: nibble2 (doesn't parse anything, just makes the value available)
-    byte nibble2 = FieldReaderFactory.readVirtualField(byte.class, (((raw) & (0x0F00))) >> (8), WithOption.WithName("nibble2"));
+    byte nibble2 = FieldReaderFactory.readVirtualField(byte.class, (((raw) & (0x0F00))) >> (8), WithOption.WithName("nibble2"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: nibble3 (doesn't parse anything, just makes the value available)
-    byte nibble3 = FieldReaderFactory.readVirtualField(byte.class, (((raw) & (0x00F0))) >> (4), WithOption.WithName("nibble3"));
+    byte nibble3 = FieldReaderFactory.readVirtualField(byte.class, (((raw) & (0x00F0))) >> (4), WithOption.WithName("nibble3"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: nibble4 (doesn't parse anything, just makes the value available)
-    byte nibble4 = FieldReaderFactory.readVirtualField(byte.class, (((raw) & (0x000F))) >> (0), WithOption.WithName("nibble4"));
+    byte nibble4 = FieldReaderFactory.readVirtualField(byte.class, (((raw) & (0x000F))) >> (0), WithOption.WithName("nibble4"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: isAbsent (doesn't parse anything, just makes the value available)
-    boolean isAbsent = FieldReaderFactory.readVirtualField(boolean.class, ((((nibble1) == (0x0)) && ((nibble2) == (0x0))) && ((nibble3) == (0x0))) && ((nibble4) == (0x0)), WithOption.WithName("isAbsent"));
+    boolean isAbsent = FieldReaderFactory.readVirtualField(boolean.class, ((((nibble1) == (0x0)) && ((nibble2) == (0x0))) && ((nibble3) == (0x0))) && ((nibble4) == (0x0)), WithOption.WithName("isAbsent"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: isCorruptedByNoise (doesn't parse anything, just makes the value available)
-    boolean isCorruptedByNoise = FieldReaderFactory.readVirtualField(boolean.class, (!(isAbsent)) && ((((((((((nibble1) < (0x5))) || (((nibble1) == (0x8)))) || (((nibble1) == (0xC))))) || ((((((nibble2) < (0x5))) || (((nibble2) == (0x8)))) || (((nibble2) == (0xC)))))) || ((((((nibble3) < (0x5))) || (((nibble3) == (0x8)))) || (((nibble3) == (0xC)))))) || ((((((nibble4) < (0x5))) || (((nibble4) == (0x8)))) || (((nibble4) == (0xC))))))), WithOption.WithName("isCorruptedByNoise"));
+    boolean isCorruptedByNoise = FieldReaderFactory.readVirtualField(boolean.class, (!(isAbsent)) && ((((((((((nibble1) < (0x5))) || (((nibble1) == (0x8)))) || (((nibble1) == (0xC))))) || ((((((nibble2) < (0x5))) || (((nibble2) == (0x8)))) || (((nibble2) == (0xC)))))) || ((((((nibble3) < (0x5))) || (((nibble3) == (0x8)))) || (((nibble3) == (0xC)))))) || ((((((nibble4) < (0x5))) || (((nibble4) == (0x8)))) || (((nibble4) == (0xC))))))), WithOption.WithName("isCorruptedByNoise"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: isCorruptedByNoiseOrLevelsDiffer (doesn't parse anything, just makes the value available)
-    boolean isCorruptedByNoiseOrLevelsDiffer = FieldReaderFactory.readVirtualField(boolean.class, (!(isAbsent)) && ((((((((((nibble1) == (0x7))) || (((nibble1) == (0xB)))) || (((nibble1) > (0xC))))) || ((((((nibble2) == (0x7))) || (((nibble2) == (0xB)))) || (((nibble2) > (0xC)))))) || ((((((nibble3) == (0x7))) || (((nibble3) == (0xB)))) || (((nibble3) > (0xC)))))) || ((((((nibble4) == (0x7))) || (((nibble4) == (0xB)))) || (((nibble4) > (0xC))))))), WithOption.WithName("isCorruptedByNoiseOrLevelsDiffer"));
+    boolean isCorruptedByNoiseOrLevelsDiffer = FieldReaderFactory.readVirtualField(boolean.class, (!(isAbsent)) && ((((((((((nibble1) == (0x7))) || (((nibble1) == (0xB)))) || (((nibble1) > (0xC))))) || ((((((nibble2) == (0x7))) || (((nibble2) == (0xB)))) || (((nibble2) > (0xC)))))) || ((((((nibble3) == (0x7))) || (((nibble3) == (0xB)))) || (((nibble3) > (0xC)))))) || ((((((nibble4) == (0x7))) || (((nibble4) == (0xB)))) || (((nibble4) > (0xC))))))), WithOption.WithName("isCorruptedByNoiseOrLevelsDiffer"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: isCorrupted (doesn't parse anything, just makes the value available)
-    boolean isCorrupted = FieldReaderFactory.readVirtualField(boolean.class, (isCorruptedByNoise) || (isCorruptedByNoiseOrLevelsDiffer), WithOption.WithName("isCorrupted"));
+    boolean isCorrupted = FieldReaderFactory.readVirtualField(boolean.class, (isCorruptedByNoise) || (isCorruptedByNoiseOrLevelsDiffer), WithOption.WithName("isCorrupted"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Switch Field
     LevelInformationBuilder builder = null;
@@ -152,7 +153,7 @@ public abstract class LevelInformation implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("LevelInformation"));
+    writeBuffer.pushContext(WithOption.WithName("LevelInformation"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Peek Field: raw

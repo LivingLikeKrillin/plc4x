@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.exceptions.ParseAssertException;
@@ -55,7 +56,7 @@ public class ParameterValueInterfaceOptions1PowerUpSettings extends ParameterVal
 
   public static ParameterValueBuilder staticParseParameterValueBuilder(ReadBuffer readBuffer,
       ParameterType parameterType, short numBytes) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("ParameterValueInterfaceOptions1PowerUpSettings"));
+    readBuffer.pushContext(WithOption.WithName("ParameterValueInterfaceOptions1PowerUpSettings"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Validation Field
@@ -64,20 +65,20 @@ public class ParameterValueInterfaceOptions1PowerUpSettings extends ParameterVal
     }
 
     // Simple Field: value
-    InterfaceOptions1PowerUpSettings value = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (InterfaceOptions1PowerUpSettings) InterfaceOptions1PowerUpSettings.staticParse(readBuffer), readBuffer), WithOption.WithName("value"));
+    InterfaceOptions1PowerUpSettings value = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (InterfaceOptions1PowerUpSettings) InterfaceOptions1PowerUpSettings.staticParse(readBuffer), readBuffer), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new ParameterValueBuilderImpl(value);
   }
 
   protected void serializeParameterValueChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("ParameterValueInterfaceOptions1PowerUpSettings"));
+    writeBuffer.pushContext(WithOption.WithName("ParameterValueInterfaceOptions1PowerUpSettings"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Validation Field (Nothing needed here)
 
     // Simple Field: value
-    FieldWriterFactory.writeSimpleField((InterfaceOptions1PowerUpSettings) value, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("value"));
+    FieldWriterFactory.writeSimpleField((InterfaceOptions1PowerUpSettings) value, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

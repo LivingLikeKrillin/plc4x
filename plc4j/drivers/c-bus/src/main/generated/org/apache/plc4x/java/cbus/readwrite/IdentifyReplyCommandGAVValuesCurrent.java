@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.writer.FieldWriterFactory;
 import org.apache.plc4x.java.spi.fields.utils.ThreadLocalHelper;
@@ -52,11 +53,11 @@ public class IdentifyReplyCommandGAVValuesCurrent extends IdentifyReplyCommand i
 
   public static IdentifyReplyCommandBuilder staticParseIdentifyReplyCommandBuilder(
       ReadBuffer readBuffer, Attribute attribute, byte numBytes) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandGAVValuesCurrent"));
+    readBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandGAVValuesCurrent"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Array Field: values
-    byte[] values = readBuffer.readBits(Math.toIntExact((numBytes) * 8), WithOption.WithName("values"));
+    byte[] values = readBuffer.readBits(Math.toIntExact((numBytes) * 8), WithOption.WithName("values"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new IdentifyReplyCommandBuilderImpl(values);
@@ -64,11 +65,11 @@ public class IdentifyReplyCommandGAVValuesCurrent extends IdentifyReplyCommand i
 
   protected void serializeIdentifyReplyCommandChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandGAVValuesCurrent"));
+    writeBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandGAVValuesCurrent"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Array Field: values
-    FieldWriterFactory.writeByteArrayField(values, DataWriterFactory.writeByteArray(writeBuffer, (int) ((values != null) ? values.length : 0)), WithOption.WithName("values"));
+    FieldWriterFactory.writeByteArrayField(values, DataWriterFactory.writeByteArray(writeBuffer, (int) ((values != null) ? values.length : 0)), WithOption.WithName("values"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

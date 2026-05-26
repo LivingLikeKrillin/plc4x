@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -55,22 +56,22 @@ public class SALDataTriggerControl extends SALData implements Message {
 
   public static SALDataBuilder staticParseSALDataBuilder(ReadBuffer readBuffer,
       ApplicationId applicationId) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("SALDataTriggerControl"));
+    readBuffer.pushContext(WithOption.WithName("SALDataTriggerControl"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: triggerControlData
-    TriggerControlData triggerControlData = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (TriggerControlData) TriggerControlData.staticParse(readBuffer), readBuffer), WithOption.WithName("triggerControlData"));
+    TriggerControlData triggerControlData = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (TriggerControlData) TriggerControlData.staticParse(readBuffer), readBuffer), WithOption.WithName("triggerControlData"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new SALDataBuilderImpl(triggerControlData);
   }
 
   protected void serializeSALDataChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("SALDataTriggerControl"));
+    writeBuffer.pushContext(WithOption.WithName("SALDataTriggerControl"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: triggerControlData
-    FieldWriterFactory.writeSimpleField((TriggerControlData) triggerControlData, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("triggerControlData"));
+    FieldWriterFactory.writeSimpleField((TriggerControlData) triggerControlData, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("triggerControlData"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

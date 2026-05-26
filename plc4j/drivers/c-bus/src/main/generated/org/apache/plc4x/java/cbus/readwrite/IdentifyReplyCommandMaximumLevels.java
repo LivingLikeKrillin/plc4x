@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.writer.FieldWriterFactory;
 import org.apache.plc4x.java.spi.fields.utils.ThreadLocalHelper;
@@ -52,11 +53,11 @@ public class IdentifyReplyCommandMaximumLevels extends IdentifyReplyCommand impl
 
   public static IdentifyReplyCommandBuilder staticParseIdentifyReplyCommandBuilder(
       ReadBuffer readBuffer, Attribute attribute, byte numBytes) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandMaximumLevels"));
+    readBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandMaximumLevels"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Array Field: maximumLevels
-    byte[] maximumLevels = readBuffer.readBits(Math.toIntExact((numBytes) * 8), WithOption.WithName("maximumLevels"));
+    byte[] maximumLevels = readBuffer.readBits(Math.toIntExact((numBytes) * 8), WithOption.WithName("maximumLevels"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new IdentifyReplyCommandBuilderImpl(maximumLevels);
@@ -64,11 +65,11 @@ public class IdentifyReplyCommandMaximumLevels extends IdentifyReplyCommand impl
 
   protected void serializeIdentifyReplyCommandChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandMaximumLevels"));
+    writeBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandMaximumLevels"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Array Field: maximumLevels
-    FieldWriterFactory.writeByteArrayField(maximumLevels, DataWriterFactory.writeByteArray(writeBuffer, (int) ((maximumLevels != null) ? maximumLevels.length : 0)), WithOption.WithName("maximumLevels"));
+    FieldWriterFactory.writeByteArrayField(maximumLevels, DataWriterFactory.writeByteArray(writeBuffer, (int) ((maximumLevels != null) ? maximumLevels.length : 0)), WithOption.WithName("maximumLevels"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

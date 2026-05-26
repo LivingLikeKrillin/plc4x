@@ -19,8 +19,8 @@
 package org.apache.plc4x.java.cbus;
 
 import org.apache.plc4x.java.cbus.readwrite.*;
-import org.apache.plc4x.java.spi.generation.ReadBufferByteBased;
-import org.apache.plc4x.java.spi.generation.WriteBufferByteBased;
+import org.apache.plc4x.java.spi.buffers.bytebased.ReadBufferByteBased;
+import org.apache.plc4x.java.spi.buffers.bytebased.WriteBufferByteBased;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
@@ -467,7 +467,7 @@ public class RandomPackagesTest {
             RequestCommand request = new RequestCommand(RequestType.REQUEST_COMMAND, null, null, null, new RequestTermination(), cBusOptions, cbusCommand, null, null);
             CBusMessageToServer cBusMessageToServer = new CBusMessageToServer(request);
 
-            WriteBufferByteBased writeBuffer = new WriteBufferByteBased(cBusMessageToServer.getLengthInBytes());
+            WriteBufferByteBased writeBuffer = new WriteBufferByteBased(new byte[cBusMessageToServer.getLengthInBytes()]);
             cBusMessageToServer.serialize(writeBuffer);
             System.out.println(new String(writeBuffer.getBytes()));
         }

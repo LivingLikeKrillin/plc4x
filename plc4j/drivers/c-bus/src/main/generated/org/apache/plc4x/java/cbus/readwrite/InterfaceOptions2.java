@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -67,14 +68,14 @@ public class InterfaceOptions2 implements Message {
   }
 
   public static InterfaceOptions2 staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("InterfaceOptions2"));
+    readBuffer.pushContext(WithOption.WithName("InterfaceOptions2"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Reserved Field
     FieldReaderFactory.readReservedField(DataReaderFactory.readBoolean(readBuffer), (boolean) false, WithOption.WithName("InterfaceOptions2.reserved0"));
 
     // Simple Field: burden
-    boolean burden = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("burden"));
+    boolean burden = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("burden"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldReaderFactory.readReservedField(DataReaderFactory.readBoolean(readBuffer), (boolean) false, WithOption.WithName("InterfaceOptions2.reserved2"));
@@ -92,7 +93,7 @@ public class InterfaceOptions2 implements Message {
     FieldReaderFactory.readReservedField(DataReaderFactory.readBoolean(readBuffer), (boolean) false, WithOption.WithName("InterfaceOptions2.reserved6"));
 
     // Simple Field: clockGen
-    boolean clockGen = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("clockGen"));
+    boolean clockGen = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("clockGen"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new InterfaceOptions2(burden, clockGen);
@@ -100,14 +101,14 @@ public class InterfaceOptions2 implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("InterfaceOptions2"));
+    writeBuffer.pushContext(WithOption.WithName("InterfaceOptions2"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Reserved Field
     FieldWriterFactory.writeReservedField((boolean) false, DataWriterFactory.writeBoolean(writeBuffer));
 
     // Simple Field: burden
-    FieldWriterFactory.writeSimpleField((boolean) burden, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("burden"));
+    FieldWriterFactory.writeSimpleField((boolean) burden, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("burden"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldWriterFactory.writeReservedField((boolean) false, DataWriterFactory.writeBoolean(writeBuffer));
@@ -125,7 +126,7 @@ public class InterfaceOptions2 implements Message {
     FieldWriterFactory.writeReservedField((boolean) false, DataWriterFactory.writeBoolean(writeBuffer));
 
     // Simple Field: clockGen
-    FieldWriterFactory.writeSimpleField((boolean) clockGen, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("clockGen"));
+    FieldWriterFactory.writeSimpleField((boolean) clockGen, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("clockGen"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

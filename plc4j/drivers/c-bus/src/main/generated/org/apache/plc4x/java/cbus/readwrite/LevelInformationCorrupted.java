@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -78,40 +79,40 @@ public class LevelInformationCorrupted extends LevelInformation implements Messa
 
   public static LevelInformationBuilder staticParseLevelInformationBuilder(ReadBuffer readBuffer)
       throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("LevelInformationCorrupted"));
+    readBuffer.pushContext(WithOption.WithName("LevelInformationCorrupted"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: corruptedNibble1
-    byte corruptedNibble1 = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 4), WithOption.WithName("corruptedNibble1"));
+    byte corruptedNibble1 = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 4), WithOption.WithName("corruptedNibble1"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: corruptedNibble2
-    byte corruptedNibble2 = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 4), WithOption.WithName("corruptedNibble2"));
+    byte corruptedNibble2 = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 4), WithOption.WithName("corruptedNibble2"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: corruptedNibble3
-    byte corruptedNibble3 = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 4), WithOption.WithName("corruptedNibble3"));
+    byte corruptedNibble3 = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 4), WithOption.WithName("corruptedNibble3"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: corruptedNibble4
-    byte corruptedNibble4 = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 4), WithOption.WithName("corruptedNibble4"));
+    byte corruptedNibble4 = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 4), WithOption.WithName("corruptedNibble4"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new LevelInformationBuilderImpl(corruptedNibble1, corruptedNibble2, corruptedNibble3, corruptedNibble4);
   }
 
   protected void serializeLevelInformationChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("LevelInformationCorrupted"));
+    writeBuffer.pushContext(WithOption.WithName("LevelInformationCorrupted"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: corruptedNibble1
-    FieldWriterFactory.writeSimpleField((byte) corruptedNibble1, DataWriterFactory.writeUnsignedByte(writeBuffer, 4), WithOption.WithName("corruptedNibble1"));
+    FieldWriterFactory.writeSimpleField((byte) corruptedNibble1, DataWriterFactory.writeUnsignedByte(writeBuffer, 4), WithOption.WithName("corruptedNibble1"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: corruptedNibble2
-    FieldWriterFactory.writeSimpleField((byte) corruptedNibble2, DataWriterFactory.writeUnsignedByte(writeBuffer, 4), WithOption.WithName("corruptedNibble2"));
+    FieldWriterFactory.writeSimpleField((byte) corruptedNibble2, DataWriterFactory.writeUnsignedByte(writeBuffer, 4), WithOption.WithName("corruptedNibble2"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: corruptedNibble3
-    FieldWriterFactory.writeSimpleField((byte) corruptedNibble3, DataWriterFactory.writeUnsignedByte(writeBuffer, 4), WithOption.WithName("corruptedNibble3"));
+    FieldWriterFactory.writeSimpleField((byte) corruptedNibble3, DataWriterFactory.writeUnsignedByte(writeBuffer, 4), WithOption.WithName("corruptedNibble3"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: corruptedNibble4
-    FieldWriterFactory.writeSimpleField((byte) corruptedNibble4, DataWriterFactory.writeUnsignedByte(writeBuffer, 4), WithOption.WithName("corruptedNibble4"));
+    FieldWriterFactory.writeSimpleField((byte) corruptedNibble4, DataWriterFactory.writeUnsignedByte(writeBuffer, 4), WithOption.WithName("corruptedNibble4"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

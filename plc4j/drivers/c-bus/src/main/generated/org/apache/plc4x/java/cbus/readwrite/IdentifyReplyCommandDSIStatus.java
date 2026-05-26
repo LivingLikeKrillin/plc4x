@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -147,38 +148,38 @@ public class IdentifyReplyCommandDSIStatus extends IdentifyReplyCommand implemen
 
   public static IdentifyReplyCommandBuilder staticParseIdentifyReplyCommandBuilder(
       ReadBuffer readBuffer, Attribute attribute, byte numBytes) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandDSIStatus"));
+    readBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandDSIStatus"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): channelStatus1
-    ChannelStatus channelStatus1 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ChannelStatus::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("channelStatus1"));
+    ChannelStatus channelStatus1 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ChannelStatus::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("channelStatus1"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): channelStatus2
-    ChannelStatus channelStatus2 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ChannelStatus::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("channelStatus2"));
+    ChannelStatus channelStatus2 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ChannelStatus::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("channelStatus2"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): channelStatus3
-    ChannelStatus channelStatus3 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ChannelStatus::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("channelStatus3"));
+    ChannelStatus channelStatus3 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ChannelStatus::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("channelStatus3"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): channelStatus4
-    ChannelStatus channelStatus4 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ChannelStatus::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("channelStatus4"));
+    ChannelStatus channelStatus4 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ChannelStatus::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("channelStatus4"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): channelStatus5
-    ChannelStatus channelStatus5 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ChannelStatus::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("channelStatus5"));
+    ChannelStatus channelStatus5 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ChannelStatus::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("channelStatus5"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): channelStatus6
-    ChannelStatus channelStatus6 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ChannelStatus::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("channelStatus6"));
+    ChannelStatus channelStatus6 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ChannelStatus::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("channelStatus6"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): channelStatus7
-    ChannelStatus channelStatus7 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ChannelStatus::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("channelStatus7"));
+    ChannelStatus channelStatus7 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ChannelStatus::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("channelStatus7"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): channelStatus8
-    ChannelStatus channelStatus8 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ChannelStatus::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("channelStatus8"));
+    ChannelStatus channelStatus8 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ChannelStatus::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("channelStatus8"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): unitStatus
-    UnitStatus unitStatus = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(UnitStatus::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("unitStatus"));
+    UnitStatus unitStatus = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(UnitStatus::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("unitStatus"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: dimmingUCRevisionNumber
-    byte dimmingUCRevisionNumber = FieldReaderFactory.readSimpleField(DataReaderFactory.readByte(readBuffer, 8), WithOption.WithName("dimmingUCRevisionNumber"));
+    byte dimmingUCRevisionNumber = FieldReaderFactory.readSimpleField(DataReaderFactory.readByte(readBuffer, 8), WithOption.WithName("dimmingUCRevisionNumber"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new IdentifyReplyCommandBuilderImpl(channelStatus1, channelStatus2, channelStatus3, channelStatus4, channelStatus5, channelStatus6, channelStatus7, channelStatus8, unitStatus, dimmingUCRevisionNumber);
@@ -186,38 +187,38 @@ public class IdentifyReplyCommandDSIStatus extends IdentifyReplyCommand implemen
 
   protected void serializeIdentifyReplyCommandChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandDSIStatus"));
+    writeBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandDSIStatus"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): channelStatus1
-    FieldWriterFactory.writeSimpleEnumField((ChannelStatus) channelStatus1, DataWriterFactory.writeEnum(ChannelStatus::getValue, ChannelStatus::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("channelStatus1"));
+    FieldWriterFactory.writeSimpleEnumField((ChannelStatus) channelStatus1, DataWriterFactory.writeEnum(ChannelStatus::getValue, ChannelStatus::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("channelStatus1"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): channelStatus2
-    FieldWriterFactory.writeSimpleEnumField((ChannelStatus) channelStatus2, DataWriterFactory.writeEnum(ChannelStatus::getValue, ChannelStatus::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("channelStatus2"));
+    FieldWriterFactory.writeSimpleEnumField((ChannelStatus) channelStatus2, DataWriterFactory.writeEnum(ChannelStatus::getValue, ChannelStatus::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("channelStatus2"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): channelStatus3
-    FieldWriterFactory.writeSimpleEnumField((ChannelStatus) channelStatus3, DataWriterFactory.writeEnum(ChannelStatus::getValue, ChannelStatus::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("channelStatus3"));
+    FieldWriterFactory.writeSimpleEnumField((ChannelStatus) channelStatus3, DataWriterFactory.writeEnum(ChannelStatus::getValue, ChannelStatus::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("channelStatus3"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): channelStatus4
-    FieldWriterFactory.writeSimpleEnumField((ChannelStatus) channelStatus4, DataWriterFactory.writeEnum(ChannelStatus::getValue, ChannelStatus::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("channelStatus4"));
+    FieldWriterFactory.writeSimpleEnumField((ChannelStatus) channelStatus4, DataWriterFactory.writeEnum(ChannelStatus::getValue, ChannelStatus::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("channelStatus4"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): channelStatus5
-    FieldWriterFactory.writeSimpleEnumField((ChannelStatus) channelStatus5, DataWriterFactory.writeEnum(ChannelStatus::getValue, ChannelStatus::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("channelStatus5"));
+    FieldWriterFactory.writeSimpleEnumField((ChannelStatus) channelStatus5, DataWriterFactory.writeEnum(ChannelStatus::getValue, ChannelStatus::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("channelStatus5"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): channelStatus6
-    FieldWriterFactory.writeSimpleEnumField((ChannelStatus) channelStatus6, DataWriterFactory.writeEnum(ChannelStatus::getValue, ChannelStatus::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("channelStatus6"));
+    FieldWriterFactory.writeSimpleEnumField((ChannelStatus) channelStatus6, DataWriterFactory.writeEnum(ChannelStatus::getValue, ChannelStatus::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("channelStatus6"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): channelStatus7
-    FieldWriterFactory.writeSimpleEnumField((ChannelStatus) channelStatus7, DataWriterFactory.writeEnum(ChannelStatus::getValue, ChannelStatus::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("channelStatus7"));
+    FieldWriterFactory.writeSimpleEnumField((ChannelStatus) channelStatus7, DataWriterFactory.writeEnum(ChannelStatus::getValue, ChannelStatus::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("channelStatus7"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): channelStatus8
-    FieldWriterFactory.writeSimpleEnumField((ChannelStatus) channelStatus8, DataWriterFactory.writeEnum(ChannelStatus::getValue, ChannelStatus::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("channelStatus8"));
+    FieldWriterFactory.writeSimpleEnumField((ChannelStatus) channelStatus8, DataWriterFactory.writeEnum(ChannelStatus::getValue, ChannelStatus::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("channelStatus8"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): unitStatus
-    FieldWriterFactory.writeSimpleEnumField((UnitStatus) unitStatus, DataWriterFactory.writeEnum(UnitStatus::getValue, UnitStatus::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("unitStatus"));
+    FieldWriterFactory.writeSimpleEnumField((UnitStatus) unitStatus, DataWriterFactory.writeEnum(UnitStatus::getValue, UnitStatus::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("unitStatus"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: dimmingUCRevisionNumber
-    FieldWriterFactory.writeSimpleField((byte) dimmingUCRevisionNumber, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("dimmingUCRevisionNumber"));
+    FieldWriterFactory.writeSimpleField((byte) dimmingUCRevisionNumber, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("dimmingUCRevisionNumber"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

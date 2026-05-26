@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.utils.ThreadLocalHelper;
 
 /**
@@ -34,7 +35,7 @@ public class RequestEmpty extends Request implements Message {
 
   public static RequestBuilder staticParseRequestBuilder(ReadBuffer readBuffer,
       CBusOptions cBusOptions) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("RequestEmpty"));
+    readBuffer.pushContext(WithOption.WithName("RequestEmpty"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     readBuffer.popContext();
@@ -42,7 +43,7 @@ public class RequestEmpty extends Request implements Message {
   }
 
   protected void serializeRequestChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("RequestEmpty"));
+    writeBuffer.pushContext(WithOption.WithName("RequestEmpty"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     writeBuffer.popContext();

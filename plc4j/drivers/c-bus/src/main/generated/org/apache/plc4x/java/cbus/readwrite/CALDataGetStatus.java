@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -59,28 +60,28 @@ public class CALDataGetStatus extends CALData implements Message {
 
   public static CALDataBuilder staticParseCALDataBuilder(ReadBuffer readBuffer,
       RequestContext requestContext) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("CALDataGetStatus"));
+    readBuffer.pushContext(WithOption.WithName("CALDataGetStatus"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): paramNo
-    Parameter paramNo = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(Parameter::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("paramNo"));
+    Parameter paramNo = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(Parameter::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("paramNo"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: count
-    short count = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("count"));
+    short count = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("count"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new CALDataBuilderImpl(paramNo, count);
   }
 
   protected void serializeCALDataChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CALDataGetStatus"));
+    writeBuffer.pushContext(WithOption.WithName("CALDataGetStatus"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): paramNo
-    FieldWriterFactory.writeSimpleEnumField((Parameter) paramNo, DataWriterFactory.writeEnum(Parameter::getValue, Parameter::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("paramNo"));
+    FieldWriterFactory.writeSimpleEnumField((Parameter) paramNo, DataWriterFactory.writeEnum(Parameter::getValue, Parameter::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("paramNo"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: count
-    FieldWriterFactory.writeSimpleField((short) count, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("count"));
+    FieldWriterFactory.writeSimpleField((short) count, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("count"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

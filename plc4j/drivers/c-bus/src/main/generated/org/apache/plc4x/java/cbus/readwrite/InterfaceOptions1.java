@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -100,32 +101,32 @@ public class InterfaceOptions1 implements Message {
   }
 
   public static InterfaceOptions1 staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("InterfaceOptions1"));
+    readBuffer.pushContext(WithOption.WithName("InterfaceOptions1"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Reserved Field
     FieldReaderFactory.readReservedField(DataReaderFactory.readBoolean(readBuffer), (boolean) false, WithOption.WithName("InterfaceOptions1.reserved0"));
 
     // Simple Field: idmon
-    boolean idmon = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("idmon"));
+    boolean idmon = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("idmon"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: monitor
-    boolean monitor = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("monitor"));
+    boolean monitor = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("monitor"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: smart
-    boolean smart = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("smart"));
+    boolean smart = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("smart"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: srchk
-    boolean srchk = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("srchk"));
+    boolean srchk = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("srchk"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: xonXoff
-    boolean xonXoff = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("xonXoff"));
+    boolean xonXoff = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("xonXoff"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldReaderFactory.readReservedField(DataReaderFactory.readBoolean(readBuffer), (boolean) false, WithOption.WithName("InterfaceOptions1.reserved6"));
 
     // Simple Field: connect
-    boolean connect = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("connect"));
+    boolean connect = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("connect"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new InterfaceOptions1(idmon, monitor, smart, srchk, xonXoff, connect);
@@ -133,32 +134,32 @@ public class InterfaceOptions1 implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("InterfaceOptions1"));
+    writeBuffer.pushContext(WithOption.WithName("InterfaceOptions1"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Reserved Field
     FieldWriterFactory.writeReservedField((boolean) false, DataWriterFactory.writeBoolean(writeBuffer));
 
     // Simple Field: idmon
-    FieldWriterFactory.writeSimpleField((boolean) idmon, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("idmon"));
+    FieldWriterFactory.writeSimpleField((boolean) idmon, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("idmon"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: monitor
-    FieldWriterFactory.writeSimpleField((boolean) monitor, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("monitor"));
+    FieldWriterFactory.writeSimpleField((boolean) monitor, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("monitor"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: smart
-    FieldWriterFactory.writeSimpleField((boolean) smart, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("smart"));
+    FieldWriterFactory.writeSimpleField((boolean) smart, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("smart"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: srchk
-    FieldWriterFactory.writeSimpleField((boolean) srchk, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("srchk"));
+    FieldWriterFactory.writeSimpleField((boolean) srchk, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("srchk"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: xonXoff
-    FieldWriterFactory.writeSimpleField((boolean) xonXoff, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("xonXoff"));
+    FieldWriterFactory.writeSimpleField((boolean) xonXoff, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("xonXoff"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldWriterFactory.writeReservedField((boolean) false, DataWriterFactory.writeBoolean(writeBuffer));
 
     // Simple Field: connect
-    FieldWriterFactory.writeSimpleField((boolean) connect, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("connect"));
+    FieldWriterFactory.writeSimpleField((boolean) connect, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("connect"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

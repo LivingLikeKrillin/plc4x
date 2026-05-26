@@ -87,26 +87,26 @@ public abstract class CIPEncapsulationPacket implements Message {
   }
 
   public static CIPEncapsulationPacket staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("CIPEncapsulationPacket"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("CIPEncapsulationPacket"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Discriminator Field: commandType
-    int commandType = FieldReaderFactory.readDiscriminatorField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("commandType"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"));
+    int commandType = FieldReaderFactory.readDiscriminatorField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("commandType"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Implicit Field: packetLen
-    int packetLen = FieldReaderFactory.readImplicitField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("packetLen"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"));
+    int packetLen = FieldReaderFactory.readImplicitField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("packetLen"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: sessionHandle
-    long sessionHandle = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 32), WithOption.WithName("sessionHandle"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"));
+    long sessionHandle = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 32), WithOption.WithName("sessionHandle"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: status
-    long status = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 32), WithOption.WithName("status"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"));
+    long status = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 32), WithOption.WithName("status"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Array Field: senderContext
-    List<Short> senderContext = FieldReaderFactory.readCountArrayField(DataReaderFactory.readUnsignedShort(readBuffer, 8), 8, WithOption.WithName("senderContext"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"));
+    List<Short> senderContext = FieldReaderFactory.readCountArrayField(DataReaderFactory.readUnsignedShort(readBuffer, 8), 8, WithOption.WithName("senderContext"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: options
-    long options = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 32), WithOption.WithName("options"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"));
+    long options = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 32), WithOption.WithName("options"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldReaderFactory.readReservedField(DataReaderFactory.readUnsignedLong(readBuffer, 32), (long) 0x00000000, WithOption.WithName("CIPEncapsulationPacket.reserved6"));
@@ -132,28 +132,28 @@ public abstract class CIPEncapsulationPacket implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CIPEncapsulationPacket"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("CIPEncapsulationPacket"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     int commandType = (int) getCommandType();
     // Discriminator Field: commandType
-    FieldWriterFactory.writeDiscriminatorField((int) commandType, DataWriterFactory.writeUnsignedInt(writeBuffer, 16), WithOption.WithName("commandType"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"));
+    FieldWriterFactory.writeDiscriminatorField((int) commandType, DataWriterFactory.writeUnsignedInt(writeBuffer, 16), WithOption.WithName("commandType"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Implicit Field: packetLen
     int packetLen = (int) ((getLengthInBytes()) - (28));
-    FieldWriterFactory.writeImplicitField((int) packetLen, DataWriterFactory.writeUnsignedInt(writeBuffer, 16), WithOption.WithName("packetLen"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"));
+    FieldWriterFactory.writeImplicitField((int) packetLen, DataWriterFactory.writeUnsignedInt(writeBuffer, 16), WithOption.WithName("packetLen"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: sessionHandle
-    FieldWriterFactory.writeSimpleField((long) sessionHandle, DataWriterFactory.writeUnsignedLong(writeBuffer, 32), WithOption.WithName("sessionHandle"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((long) sessionHandle, DataWriterFactory.writeUnsignedLong(writeBuffer, 32), WithOption.WithName("sessionHandle"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: status
-    FieldWriterFactory.writeSimpleField((long) status, DataWriterFactory.writeUnsignedLong(writeBuffer, 32), WithOption.WithName("status"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((long) status, DataWriterFactory.writeUnsignedLong(writeBuffer, 32), WithOption.WithName("status"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Array Field: senderContext
-    FieldWriterFactory.writeSimpleTypeArrayField(senderContext, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("senderContext"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"));
+    FieldWriterFactory.writeSimpleTypeArrayField(senderContext, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("senderContext"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: options
-    FieldWriterFactory.writeSimpleField((long) options, DataWriterFactory.writeUnsignedLong(writeBuffer, 32), WithOption.WithName("options"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((long) options, DataWriterFactory.writeUnsignedLong(writeBuffer, 32), WithOption.WithName("options"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldWriterFactory.writeReservedField((long) 0x00000000, DataWriterFactory.writeUnsignedLong(writeBuffer, 32));

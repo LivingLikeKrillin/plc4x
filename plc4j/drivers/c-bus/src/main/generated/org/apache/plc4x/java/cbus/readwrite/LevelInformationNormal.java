@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -72,34 +73,34 @@ public class LevelInformationNormal extends LevelInformation implements Message 
 
   public static LevelInformationBuilder staticParseLevelInformationBuilder(ReadBuffer readBuffer)
       throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("LevelInformationNormal"));
+    readBuffer.pushContext(WithOption.WithName("LevelInformationNormal"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): pair1
-    LevelInformationNibblePair pair1 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(LevelInformationNibblePair::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("pair1"));
+    LevelInformationNibblePair pair1 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(LevelInformationNibblePair::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("pair1"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): pair2
-    LevelInformationNibblePair pair2 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(LevelInformationNibblePair::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("pair2"));
+    LevelInformationNibblePair pair2 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(LevelInformationNibblePair::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("pair2"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: actualLevel (doesn't parse anything, just makes the value available)
-    short actualLevel = FieldReaderFactory.readVirtualField(short.class, ((pair2.getNibbleValue()) << (4)) | (pair1.getNibbleValue()), WithOption.WithName("actualLevel"));
+    short actualLevel = FieldReaderFactory.readVirtualField(short.class, ((pair2.getNibbleValue()) << (4)) | (pair1.getNibbleValue()), WithOption.WithName("actualLevel"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: actualLevelInPercent (doesn't parse anything, just makes the value available)
-    float actualLevelInPercent = FieldReaderFactory.readVirtualField(float.class, ((100F) * (((actualLevel) + (2F)))) / (255F), WithOption.WithName("actualLevelInPercent"));
+    float actualLevelInPercent = FieldReaderFactory.readVirtualField(float.class, ((100F) * (((actualLevel) + (2F)))) / (255F), WithOption.WithName("actualLevelInPercent"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new LevelInformationBuilderImpl(pair1, pair2);
   }
 
   protected void serializeLevelInformationChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("LevelInformationNormal"));
+    writeBuffer.pushContext(WithOption.WithName("LevelInformationNormal"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): pair1
-    FieldWriterFactory.writeSimpleEnumField((LevelInformationNibblePair) pair1, DataWriterFactory.writeEnum(LevelInformationNibblePair::getValue, LevelInformationNibblePair::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("pair1"));
+    FieldWriterFactory.writeSimpleEnumField((LevelInformationNibblePair) pair1, DataWriterFactory.writeEnum(LevelInformationNibblePair::getValue, LevelInformationNibblePair::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("pair1"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): pair2
-    FieldWriterFactory.writeSimpleEnumField((LevelInformationNibblePair) pair2, DataWriterFactory.writeEnum(LevelInformationNibblePair::getValue, LevelInformationNibblePair::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("pair2"));
+    FieldWriterFactory.writeSimpleEnumField((LevelInformationNibblePair) pair2, DataWriterFactory.writeEnum(LevelInformationNibblePair::getValue, LevelInformationNibblePair::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("pair2"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: actualLevel (doesn't serialize anything, just makes the value available)
     short actualLevel = (short) getActualLevel();

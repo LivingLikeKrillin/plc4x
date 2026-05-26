@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -55,22 +56,22 @@ public class CBusMessageToClient extends CBusMessage implements Message {
   public static CBusMessageBuilder staticParseCBusMessageBuilder(ReadBuffer readBuffer,
       boolean isResponse, RequestContext requestContext, CBusOptions cBusOptions) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("CBusMessageToClient"));
+    readBuffer.pushContext(WithOption.WithName("CBusMessageToClient"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: reply
-    ReplyOrConfirmation reply = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (ReplyOrConfirmation) ReplyOrConfirmation.staticParse(readBuffer, (org.apache.plc4x.java.cbus.readwrite.CBusOptions) (cBusOptions), (org.apache.plc4x.java.cbus.readwrite.RequestContext) (requestContext)), readBuffer), WithOption.WithName("reply"));
+    ReplyOrConfirmation reply = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (ReplyOrConfirmation) ReplyOrConfirmation.staticParse(readBuffer, (org.apache.plc4x.java.cbus.readwrite.CBusOptions) (cBusOptions), (org.apache.plc4x.java.cbus.readwrite.RequestContext) (requestContext)), readBuffer), WithOption.WithName("reply"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new CBusMessageBuilderImpl(reply);
   }
 
   protected void serializeCBusMessageChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CBusMessageToClient"));
+    writeBuffer.pushContext(WithOption.WithName("CBusMessageToClient"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: reply
-    FieldWriterFactory.writeSimpleField((ReplyOrConfirmation) reply, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("reply"));
+    FieldWriterFactory.writeSimpleField((ReplyOrConfirmation) reply, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("reply"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

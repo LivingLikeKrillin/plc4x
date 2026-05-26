@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -54,11 +55,11 @@ public class IdentifyReplyCommandManufacturer extends IdentifyReplyCommand imple
 
   public static IdentifyReplyCommandBuilder staticParseIdentifyReplyCommandBuilder(
       ReadBuffer readBuffer, Attribute attribute, byte numBytes) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandManufacturer"));
+    readBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandManufacturer"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: manufacturerName
-    String manufacturerName = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, 64), WithOption.WithName("manufacturerName"));
+    String manufacturerName = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, 64), WithOption.WithName("manufacturerName"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new IdentifyReplyCommandBuilderImpl(manufacturerName);
@@ -66,11 +67,11 @@ public class IdentifyReplyCommandManufacturer extends IdentifyReplyCommand imple
 
   protected void serializeIdentifyReplyCommandChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandManufacturer"));
+    writeBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandManufacturer"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: manufacturerName
-    FieldWriterFactory.writeSimpleField((String) manufacturerName, DataWriterFactory.writeString(writeBuffer, 64), WithOption.WithName("manufacturerName"));
+    FieldWriterFactory.writeSimpleField((String) manufacturerName, DataWriterFactory.writeString(writeBuffer, 64), WithOption.WithName("manufacturerName"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

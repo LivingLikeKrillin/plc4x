@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -58,17 +59,17 @@ public class NetworkProtocolControlInformation implements Message {
 
   public static NetworkProtocolControlInformation staticParse(ReadBuffer readBuffer) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("NetworkProtocolControlInformation"));
+    readBuffer.pushContext(WithOption.WithName("NetworkProtocolControlInformation"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Reserved Field
     FieldReaderFactory.readReservedField(DataReaderFactory.readUnsignedByte(readBuffer, 2), (byte) 0x0, WithOption.WithName("NetworkProtocolControlInformation.reserved0"));
 
     // Simple Field: stackCounter
-    byte stackCounter = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 3), WithOption.WithName("stackCounter"));
+    byte stackCounter = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 3), WithOption.WithName("stackCounter"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: stackDepth
-    byte stackDepth = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 3), WithOption.WithName("stackDepth"));
+    byte stackDepth = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 3), WithOption.WithName("stackDepth"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new NetworkProtocolControlInformation(stackCounter, stackDepth);
@@ -76,17 +77,17 @@ public class NetworkProtocolControlInformation implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("NetworkProtocolControlInformation"));
+    writeBuffer.pushContext(WithOption.WithName("NetworkProtocolControlInformation"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Reserved Field
     FieldWriterFactory.writeReservedField((byte) 0x0, DataWriterFactory.writeUnsignedByte(writeBuffer, 2));
 
     // Simple Field: stackCounter
-    FieldWriterFactory.writeSimpleField((byte) stackCounter, DataWriterFactory.writeUnsignedByte(writeBuffer, 3), WithOption.WithName("stackCounter"));
+    FieldWriterFactory.writeSimpleField((byte) stackCounter, DataWriterFactory.writeUnsignedByte(writeBuffer, 3), WithOption.WithName("stackCounter"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: stackDepth
-    FieldWriterFactory.writeSimpleField((byte) stackDepth, DataWriterFactory.writeUnsignedByte(writeBuffer, 3), WithOption.WithName("stackDepth"));
+    FieldWriterFactory.writeSimpleField((byte) stackDepth, DataWriterFactory.writeUnsignedByte(writeBuffer, 3), WithOption.WithName("stackDepth"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

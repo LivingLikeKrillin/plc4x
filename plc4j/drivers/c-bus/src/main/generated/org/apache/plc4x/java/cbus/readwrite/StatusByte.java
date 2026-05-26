@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -75,20 +76,20 @@ public class StatusByte implements Message {
   }
 
   public static StatusByte staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("StatusByte"));
+    readBuffer.pushContext(WithOption.WithName("StatusByte"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): gav3
-    GAVState gav3 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(GAVState::enumForValue, DataReaderFactory.readUnsignedByte(readBuffer, 2)), WithOption.WithName("gav3"));
+    GAVState gav3 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(GAVState::enumForValue, DataReaderFactory.readUnsignedByte(readBuffer, 2)), WithOption.WithName("gav3"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): gav2
-    GAVState gav2 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(GAVState::enumForValue, DataReaderFactory.readUnsignedByte(readBuffer, 2)), WithOption.WithName("gav2"));
+    GAVState gav2 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(GAVState::enumForValue, DataReaderFactory.readUnsignedByte(readBuffer, 2)), WithOption.WithName("gav2"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): gav1
-    GAVState gav1 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(GAVState::enumForValue, DataReaderFactory.readUnsignedByte(readBuffer, 2)), WithOption.WithName("gav1"));
+    GAVState gav1 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(GAVState::enumForValue, DataReaderFactory.readUnsignedByte(readBuffer, 2)), WithOption.WithName("gav1"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): gav0
-    GAVState gav0 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(GAVState::enumForValue, DataReaderFactory.readUnsignedByte(readBuffer, 2)), WithOption.WithName("gav0"));
+    GAVState gav0 = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(GAVState::enumForValue, DataReaderFactory.readUnsignedByte(readBuffer, 2)), WithOption.WithName("gav0"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new StatusByte(gav3, gav2, gav1, gav0);
@@ -96,20 +97,20 @@ public class StatusByte implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("StatusByte"));
+    writeBuffer.pushContext(WithOption.WithName("StatusByte"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): gav3
-    FieldWriterFactory.writeSimpleEnumField((GAVState) gav3, DataWriterFactory.writeEnum(GAVState::getValue, GAVState::name, DataWriterFactory.writeUnsignedByte(writeBuffer, 2)), WithOption.WithName("gav3"));
+    FieldWriterFactory.writeSimpleEnumField((GAVState) gav3, DataWriterFactory.writeEnum(GAVState::getValue, GAVState::name, DataWriterFactory.writeUnsignedByte(writeBuffer, 2)), WithOption.WithName("gav3"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): gav2
-    FieldWriterFactory.writeSimpleEnumField((GAVState) gav2, DataWriterFactory.writeEnum(GAVState::getValue, GAVState::name, DataWriterFactory.writeUnsignedByte(writeBuffer, 2)), WithOption.WithName("gav2"));
+    FieldWriterFactory.writeSimpleEnumField((GAVState) gav2, DataWriterFactory.writeEnum(GAVState::getValue, GAVState::name, DataWriterFactory.writeUnsignedByte(writeBuffer, 2)), WithOption.WithName("gav2"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): gav1
-    FieldWriterFactory.writeSimpleEnumField((GAVState) gav1, DataWriterFactory.writeEnum(GAVState::getValue, GAVState::name, DataWriterFactory.writeUnsignedByte(writeBuffer, 2)), WithOption.WithName("gav1"));
+    FieldWriterFactory.writeSimpleEnumField((GAVState) gav1, DataWriterFactory.writeEnum(GAVState::getValue, GAVState::name, DataWriterFactory.writeUnsignedByte(writeBuffer, 2)), WithOption.WithName("gav1"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): gav0
-    FieldWriterFactory.writeSimpleEnumField((GAVState) gav0, DataWriterFactory.writeEnum(GAVState::getValue, GAVState::name, DataWriterFactory.writeUnsignedByte(writeBuffer, 2)), WithOption.WithName("gav0"));
+    FieldWriterFactory.writeSimpleEnumField((GAVState) gav0, DataWriterFactory.writeEnum(GAVState::getValue, GAVState::name, DataWriterFactory.writeUnsignedByte(writeBuffer, 2)), WithOption.WithName("gav0"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

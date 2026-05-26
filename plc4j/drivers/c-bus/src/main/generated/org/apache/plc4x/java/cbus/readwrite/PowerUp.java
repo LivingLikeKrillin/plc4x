@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -53,14 +54,14 @@ public class PowerUp implements Message {
   }
 
   public static PowerUp staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("PowerUp"));
+    readBuffer.pushContext(WithOption.WithName("PowerUp"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Const Field: powerUpIndicator1
-    byte powerUpIndicator1 = FieldReaderFactory.readConstField(DataReaderFactory.readByte(readBuffer, 8), POWERUPINDICATOR1, WithOption.WithName("powerUpIndicator1"));
+    byte powerUpIndicator1 = FieldReaderFactory.readConstField(DataReaderFactory.readByte(readBuffer, 8), POWERUPINDICATOR1, WithOption.WithName("powerUpIndicator1"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Const Field: powerUpIndicator2
-    byte powerUpIndicator2 = FieldReaderFactory.readConstField(DataReaderFactory.readByte(readBuffer, 8), POWERUPINDICATOR2, WithOption.WithName("powerUpIndicator2"));
+    byte powerUpIndicator2 = FieldReaderFactory.readConstField(DataReaderFactory.readByte(readBuffer, 8), POWERUPINDICATOR2, WithOption.WithName("powerUpIndicator2"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new PowerUp();
@@ -68,14 +69,14 @@ public class PowerUp implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("PowerUp"));
+    writeBuffer.pushContext(WithOption.WithName("PowerUp"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Const Field: powerUpIndicator1
-    FieldWriterFactory.writeConstField((byte) POWERUPINDICATOR1, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("powerUpIndicator1"));
+    FieldWriterFactory.writeConstField((byte) POWERUPINDICATOR1, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("powerUpIndicator1"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Const Field: powerUpIndicator2
-    FieldWriterFactory.writeConstField((byte) POWERUPINDICATOR2, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("powerUpIndicator2"));
+    FieldWriterFactory.writeConstField((byte) POWERUPINDICATOR2, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("powerUpIndicator2"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

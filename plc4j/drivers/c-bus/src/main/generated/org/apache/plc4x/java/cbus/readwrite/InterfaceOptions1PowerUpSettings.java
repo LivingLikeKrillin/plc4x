@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -46,11 +47,11 @@ public class InterfaceOptions1PowerUpSettings implements Message {
 
   public static InterfaceOptions1PowerUpSettings staticParse(ReadBuffer readBuffer) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("InterfaceOptions1PowerUpSettings"));
+    readBuffer.pushContext(WithOption.WithName("InterfaceOptions1PowerUpSettings"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: interfaceOptions1
-    InterfaceOptions1 interfaceOptions1 = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (InterfaceOptions1) InterfaceOptions1.staticParse(readBuffer), readBuffer), WithOption.WithName("interfaceOptions1"));
+    InterfaceOptions1 interfaceOptions1 = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (InterfaceOptions1) InterfaceOptions1.staticParse(readBuffer), readBuffer), WithOption.WithName("interfaceOptions1"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new InterfaceOptions1PowerUpSettings(interfaceOptions1);
@@ -58,11 +59,11 @@ public class InterfaceOptions1PowerUpSettings implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("InterfaceOptions1PowerUpSettings"));
+    writeBuffer.pushContext(WithOption.WithName("InterfaceOptions1PowerUpSettings"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: interfaceOptions1
-    FieldWriterFactory.writeSimpleField((InterfaceOptions1) interfaceOptions1, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("interfaceOptions1"));
+    FieldWriterFactory.writeSimpleField((InterfaceOptions1) interfaceOptions1, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("interfaceOptions1"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

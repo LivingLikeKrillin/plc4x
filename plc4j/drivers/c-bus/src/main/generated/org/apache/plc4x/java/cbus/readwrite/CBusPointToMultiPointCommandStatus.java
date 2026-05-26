@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -51,7 +52,7 @@ public class CBusPointToMultiPointCommandStatus extends CBusPointToMultiPointCom
 
   public static CBusPointToMultiPointCommandBuilder staticParseCBusPointToMultiPointCommandBuilder(
       ReadBuffer readBuffer, CBusOptions cBusOptions) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("CBusPointToMultiPointCommandStatus"));
+    readBuffer.pushContext(WithOption.WithName("CBusPointToMultiPointCommandStatus"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Reserved Field
@@ -61,7 +62,7 @@ public class CBusPointToMultiPointCommandStatus extends CBusPointToMultiPointCom
     FieldReaderFactory.readReservedField(DataReaderFactory.readByte(readBuffer, 8), (byte) 0x00, WithOption.WithName("CBusPointToMultiPointCommandStatus.reserved1"));
 
     // Simple Field: statusRequest
-    StatusRequest statusRequest = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (StatusRequest) StatusRequest.staticParse(readBuffer), readBuffer), WithOption.WithName("statusRequest"));
+    StatusRequest statusRequest = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (StatusRequest) StatusRequest.staticParse(readBuffer), readBuffer), WithOption.WithName("statusRequest"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new CBusPointToMultiPointCommandBuilderImpl(statusRequest);
@@ -69,7 +70,7 @@ public class CBusPointToMultiPointCommandStatus extends CBusPointToMultiPointCom
 
   protected void serializeCBusPointToMultiPointCommandChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CBusPointToMultiPointCommandStatus"));
+    writeBuffer.pushContext(WithOption.WithName("CBusPointToMultiPointCommandStatus"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Reserved Field
@@ -79,7 +80,7 @@ public class CBusPointToMultiPointCommandStatus extends CBusPointToMultiPointCom
     FieldWriterFactory.writeReservedField((byte) 0x00, DataWriterFactory.writeByte(writeBuffer, 8));
 
     // Simple Field: statusRequest
-    FieldWriterFactory.writeSimpleField((StatusRequest) statusRequest, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("statusRequest"));
+    FieldWriterFactory.writeSimpleField((StatusRequest) statusRequest, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("statusRequest"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

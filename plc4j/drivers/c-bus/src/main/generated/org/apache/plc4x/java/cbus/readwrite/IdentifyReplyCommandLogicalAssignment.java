@@ -22,6 +22,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
 import org.apache.plc4x.java.spi.fields.fields.writer.FieldWriterFactory;
@@ -54,11 +55,11 @@ public class IdentifyReplyCommandLogicalAssignment extends IdentifyReplyCommand 
 
   public static IdentifyReplyCommandBuilder staticParseIdentifyReplyCommandBuilder(
       ReadBuffer readBuffer, Attribute attribute, byte numBytes) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandLogicalAssignment"));
+    readBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandLogicalAssignment"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Array Field: logicAssigment
-    List<LogicAssignment> logicAssigment = FieldReaderFactory.readCountArrayField(DataReaderFactory.readComplex(() -> (LogicAssignment) LogicAssignment.staticParse(readBuffer), readBuffer), numBytes, WithOption.WithName("logicAssigment"));
+    List<LogicAssignment> logicAssigment = FieldReaderFactory.readCountArrayField(DataReaderFactory.readComplex(() -> (LogicAssignment) LogicAssignment.staticParse(readBuffer), readBuffer), numBytes, WithOption.WithName("logicAssigment"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new IdentifyReplyCommandBuilderImpl(logicAssigment);
@@ -66,11 +67,11 @@ public class IdentifyReplyCommandLogicalAssignment extends IdentifyReplyCommand 
 
   protected void serializeIdentifyReplyCommandChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandLogicalAssignment"));
+    writeBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandLogicalAssignment"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Array Field: logicAssigment
-    FieldWriterFactory.writeComplexTypeArrayField(logicAssigment, writeBuffer, WithOption.WithName("logicAssigment"));
+    FieldWriterFactory.writeComplexTypeArrayField(logicAssigment, writeBuffer, WithOption.WithName("logicAssigment"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

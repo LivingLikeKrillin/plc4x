@@ -22,6 +22,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.exceptions.ParseAssertException;
@@ -86,7 +87,7 @@ public abstract class CALData implements Message {
 
   public static CALData staticParse(ReadBuffer readBuffer, RequestContext requestContext) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("CALData"));
+    readBuffer.pushContext(WithOption.WithName("CALData"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Validation Field
@@ -95,13 +96,13 @@ public abstract class CALData implements Message {
     }
 
     // Simple Field (enum): commandTypeContainer
-    CALCommandTypeContainer commandTypeContainer = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(CALCommandTypeContainer::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("commandTypeContainer"));
+    CALCommandTypeContainer commandTypeContainer = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(CALCommandTypeContainer::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("commandTypeContainer"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: commandType (doesn't parse anything, just makes the value available)
-    CALCommandType commandType = FieldReaderFactory.readVirtualField(CALCommandType.class, commandTypeContainer.getCommandType(), WithOption.WithName("commandType"));
+    CALCommandType commandType = FieldReaderFactory.readVirtualField(CALCommandType.class, commandTypeContainer.getCommandType(), WithOption.WithName("commandType"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: sendIdentifyRequestBefore (doesn't parse anything, just makes the value available)
-    boolean sendIdentifyRequestBefore = FieldReaderFactory.readVirtualField(boolean.class, (((requestContext) != (null)) ? requestContext.getSendIdentifyRequestBefore() : false), WithOption.WithName("sendIdentifyRequestBefore"));
+    boolean sendIdentifyRequestBefore = FieldReaderFactory.readVirtualField(boolean.class, (((requestContext) != (null)) ? requestContext.getSendIdentifyRequestBefore() : false), WithOption.WithName("sendIdentifyRequestBefore"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Switch Field
     CALDataBuilder builder = null;
@@ -131,7 +132,7 @@ public abstract class CALData implements Message {
     }
 
     // Optional Field: additionalData
-    CALData additionalData = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (CALData) CALData.staticParse(readBuffer, (org.apache.plc4x.java.cbus.readwrite.RequestContext) (null)), readBuffer), WithOption.WithName("additionalData"));
+    CALData additionalData = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (CALData) CALData.staticParse(readBuffer, (org.apache.plc4x.java.cbus.readwrite.RequestContext) (null)), readBuffer), WithOption.WithName("additionalData"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return builder.build(requestContext, commandTypeContainer, additionalData);
@@ -139,13 +140,13 @@ public abstract class CALData implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CALData"));
+    writeBuffer.pushContext(WithOption.WithName("CALData"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Validation Field (Nothing needed here)
 
     // Simple Field (enum): commandTypeContainer
-    FieldWriterFactory.writeSimpleEnumField((CALCommandTypeContainer) commandTypeContainer, DataWriterFactory.writeEnum(CALCommandTypeContainer::getValue, CALCommandTypeContainer::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("commandTypeContainer"));
+    FieldWriterFactory.writeSimpleEnumField((CALCommandTypeContainer) commandTypeContainer, DataWriterFactory.writeEnum(CALCommandTypeContainer::getValue, CALCommandTypeContainer::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("commandTypeContainer"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: commandType (doesn't serialize anything, just makes the value available)
     CALCommandType commandType = (CALCommandType) getCommandType();
@@ -158,7 +159,7 @@ public abstract class CALData implements Message {
 
     if(additionalData != null) {
       // Optional Field: additionalData
-      FieldWriterFactory.writeOptionalField((CALData) additionalData, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("additionalData"));
+      FieldWriterFactory.writeOptionalField((CALData) additionalData, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("additionalData"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     }
 
     writeBuffer.popContext();

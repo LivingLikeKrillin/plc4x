@@ -22,6 +22,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -76,41 +77,41 @@ public class RequestDirectCommandAccess extends Request implements Message {
 
   public static RequestBuilder staticParseRequestBuilder(ReadBuffer readBuffer,
       CBusOptions cBusOptions) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("RequestDirectCommandAccess"));
+    readBuffer.pushContext(WithOption.WithName("RequestDirectCommandAccess"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Const Field: at
-    byte at = FieldReaderFactory.readConstField(DataReaderFactory.readByte(readBuffer, 8), AT, WithOption.WithName("at"));
+    byte at = FieldReaderFactory.readConstField(DataReaderFactory.readByte(readBuffer, 8), AT, WithOption.WithName("at"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Manual Field: calData
-    CALData calData = FieldReaderFactory.readManualField(readBuffer, () -> (CALData) (StaticHelper.readCALData(readBuffer)), WithOption.WithName("calData"));
+    CALData calData = FieldReaderFactory.readManualField(readBuffer, () -> (CALData) (StaticHelper.readCALData(readBuffer)), WithOption.WithName("calData"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: calDataDecoded (doesn't parse anything, just makes the value available)
-    CALData calDataDecoded = FieldReaderFactory.readVirtualField(CALData.class, calData, WithOption.WithName("calDataDecoded"));
+    CALData calDataDecoded = FieldReaderFactory.readVirtualField(CALData.class, calData, WithOption.WithName("calDataDecoded"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Optional Field: alpha
-    Alpha alpha = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (Alpha) Alpha.staticParse(readBuffer), readBuffer), WithOption.WithName("alpha"));
+    Alpha alpha = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (Alpha) Alpha.staticParse(readBuffer), readBuffer), WithOption.WithName("alpha"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new RequestBuilderImpl(calData, alpha);
   }
 
   protected void serializeRequestChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("RequestDirectCommandAccess"));
+    writeBuffer.pushContext(WithOption.WithName("RequestDirectCommandAccess"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Const Field: at
-    FieldWriterFactory.writeConstField((byte) AT, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("at"));
+    FieldWriterFactory.writeConstField((byte) AT, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("at"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Manual Field: calData
-    FieldWriterFactory.writeManualField(() -> StaticHelper.writeCALData(writeBuffer, calData), writeBuffer, WithOption.WithName("calData"));
+    FieldWriterFactory.writeManualField(() -> StaticHelper.writeCALData(writeBuffer, calData), writeBuffer, WithOption.WithName("calData"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: calDataDecoded (doesn't serialize anything, just makes the value available)
     CALData calDataDecoded = (CALData) getCalDataDecoded();
 
     if(alpha != null) {
       // Optional Field: alpha
-      FieldWriterFactory.writeOptionalField((Alpha) alpha, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("alpha"));
+      FieldWriterFactory.writeOptionalField((Alpha) alpha, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("alpha"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     }
 
     writeBuffer.popContext();

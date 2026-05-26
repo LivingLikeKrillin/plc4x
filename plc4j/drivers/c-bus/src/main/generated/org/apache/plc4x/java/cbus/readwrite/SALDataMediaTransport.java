@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -56,22 +57,22 @@ public class SALDataMediaTransport extends SALData implements Message {
 
   public static SALDataBuilder staticParseSALDataBuilder(ReadBuffer readBuffer,
       ApplicationId applicationId) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("SALDataMediaTransport"));
+    readBuffer.pushContext(WithOption.WithName("SALDataMediaTransport"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: mediaTransportControlData
-    MediaTransportControlData mediaTransportControlData = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (MediaTransportControlData) MediaTransportControlData.staticParse(readBuffer), readBuffer), WithOption.WithName("mediaTransportControlData"));
+    MediaTransportControlData mediaTransportControlData = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (MediaTransportControlData) MediaTransportControlData.staticParse(readBuffer), readBuffer), WithOption.WithName("mediaTransportControlData"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new SALDataBuilderImpl(mediaTransportControlData);
   }
 
   protected void serializeSALDataChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("SALDataMediaTransport"));
+    writeBuffer.pushContext(WithOption.WithName("SALDataMediaTransport"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: mediaTransportControlData
-    FieldWriterFactory.writeSimpleField((MediaTransportControlData) mediaTransportControlData, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("mediaTransportControlData"));
+    FieldWriterFactory.writeSimpleField((MediaTransportControlData) mediaTransportControlData, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("mediaTransportControlData"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

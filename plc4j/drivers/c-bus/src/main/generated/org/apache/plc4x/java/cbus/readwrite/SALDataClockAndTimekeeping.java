@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -56,22 +57,22 @@ public class SALDataClockAndTimekeeping extends SALData implements Message {
 
   public static SALDataBuilder staticParseSALDataBuilder(ReadBuffer readBuffer,
       ApplicationId applicationId) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("SALDataClockAndTimekeeping"));
+    readBuffer.pushContext(WithOption.WithName("SALDataClockAndTimekeeping"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: clockAndTimekeepingData
-    ClockAndTimekeepingData clockAndTimekeepingData = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (ClockAndTimekeepingData) ClockAndTimekeepingData.staticParse(readBuffer), readBuffer), WithOption.WithName("clockAndTimekeepingData"));
+    ClockAndTimekeepingData clockAndTimekeepingData = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (ClockAndTimekeepingData) ClockAndTimekeepingData.staticParse(readBuffer), readBuffer), WithOption.WithName("clockAndTimekeepingData"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new SALDataBuilderImpl(clockAndTimekeepingData);
   }
 
   protected void serializeSALDataChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("SALDataClockAndTimekeeping"));
+    writeBuffer.pushContext(WithOption.WithName("SALDataClockAndTimekeeping"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: clockAndTimekeepingData
-    FieldWriterFactory.writeSimpleField((ClockAndTimekeepingData) clockAndTimekeepingData, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("clockAndTimekeepingData"));
+    FieldWriterFactory.writeSimpleField((ClockAndTimekeepingData) clockAndTimekeepingData, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("clockAndTimekeepingData"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

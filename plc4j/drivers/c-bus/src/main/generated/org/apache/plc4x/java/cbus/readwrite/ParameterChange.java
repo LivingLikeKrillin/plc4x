@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -53,14 +54,14 @@ public class ParameterChange implements Message {
   }
 
   public static ParameterChange staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("ParameterChange"));
+    readBuffer.pushContext(WithOption.WithName("ParameterChange"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Const Field: specialChar1
-    byte specialChar1 = FieldReaderFactory.readConstField(DataReaderFactory.readByte(readBuffer, 8), SPECIALCHAR1, WithOption.WithName("specialChar1"));
+    byte specialChar1 = FieldReaderFactory.readConstField(DataReaderFactory.readByte(readBuffer, 8), SPECIALCHAR1, WithOption.WithName("specialChar1"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Const Field: specialChar2
-    byte specialChar2 = FieldReaderFactory.readConstField(DataReaderFactory.readByte(readBuffer, 8), SPECIALCHAR2, WithOption.WithName("specialChar2"));
+    byte specialChar2 = FieldReaderFactory.readConstField(DataReaderFactory.readByte(readBuffer, 8), SPECIALCHAR2, WithOption.WithName("specialChar2"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new ParameterChange();
@@ -68,14 +69,14 @@ public class ParameterChange implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("ParameterChange"));
+    writeBuffer.pushContext(WithOption.WithName("ParameterChange"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Const Field: specialChar1
-    FieldWriterFactory.writeConstField((byte) SPECIALCHAR1, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("specialChar1"));
+    FieldWriterFactory.writeConstField((byte) SPECIALCHAR1, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("specialChar1"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Const Field: specialChar2
-    FieldWriterFactory.writeConstField((byte) SPECIALCHAR2, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("specialChar2"));
+    FieldWriterFactory.writeConstField((byte) SPECIALCHAR2, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("specialChar2"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

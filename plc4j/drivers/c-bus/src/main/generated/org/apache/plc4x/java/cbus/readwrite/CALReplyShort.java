@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.utils.ThreadLocalHelper;
 
 /**
@@ -33,7 +34,7 @@ public class CALReplyShort extends CALReply implements Message {
 
   public static CALReplyBuilder staticParseCALReplyBuilder(ReadBuffer readBuffer,
       CBusOptions cBusOptions, RequestContext requestContext) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("CALReplyShort"));
+    readBuffer.pushContext(WithOption.WithName("CALReplyShort"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     readBuffer.popContext();
@@ -41,7 +42,7 @@ public class CALReplyShort extends CALReply implements Message {
   }
 
   protected void serializeCALReplyChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CALReplyShort"));
+    writeBuffer.pushContext(WithOption.WithName("CALReplyShort"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     writeBuffer.popContext();

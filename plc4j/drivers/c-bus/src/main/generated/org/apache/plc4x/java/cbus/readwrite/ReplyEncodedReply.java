@@ -22,6 +22,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
 import org.apache.plc4x.java.spi.fields.fields.writer.FieldWriterFactory;
 import org.apache.plc4x.java.spi.fields.utils.ThreadLocalHelper;
@@ -81,37 +82,37 @@ public class ReplyEncodedReply extends Reply implements Message {
 
   public static ReplyBuilder staticParseReplyBuilder(ReadBuffer readBuffer, CBusOptions cBusOptions,
       RequestContext requestContext) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("ReplyEncodedReply"));
+    readBuffer.pushContext(WithOption.WithName("ReplyEncodedReply"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Manual Field: encodedReply
-    EncodedReply encodedReply = FieldReaderFactory.readManualField(readBuffer, () -> (EncodedReply) (StaticHelper.readEncodedReply(readBuffer, cBusOptions, requestContext, cBusOptions.getSrchk())), WithOption.WithName("encodedReply"));
+    EncodedReply encodedReply = FieldReaderFactory.readManualField(readBuffer, () -> (EncodedReply) (StaticHelper.readEncodedReply(readBuffer, cBusOptions, requestContext, cBusOptions.getSrchk())), WithOption.WithName("encodedReply"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: encodedReplyDecoded (doesn't parse anything, just makes the value available)
-    EncodedReply encodedReplyDecoded = FieldReaderFactory.readVirtualField(EncodedReply.class, encodedReply, WithOption.WithName("encodedReplyDecoded"));
+    EncodedReply encodedReplyDecoded = FieldReaderFactory.readVirtualField(EncodedReply.class, encodedReply, WithOption.WithName("encodedReplyDecoded"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Manual Field: chksum
-    Checksum chksum = FieldReaderFactory.readManualField(readBuffer, () -> (Checksum) (StaticHelper.readAndValidateChecksum(readBuffer, encodedReply, cBusOptions.getSrchk())), WithOption.WithName("chksum"));
+    Checksum chksum = FieldReaderFactory.readManualField(readBuffer, () -> (Checksum) (StaticHelper.readAndValidateChecksum(readBuffer, encodedReply, cBusOptions.getSrchk())), WithOption.WithName("chksum"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: chksumDecoded (doesn't parse anything, just makes the value available)
-    Checksum chksumDecoded = FieldReaderFactory.readVirtualField(Checksum.class, chksum, WithOption.WithName("chksumDecoded"));
+    Checksum chksumDecoded = FieldReaderFactory.readVirtualField(Checksum.class, chksum, WithOption.WithName("chksumDecoded"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new ReplyBuilderImpl(cBusOptions, encodedReply, chksum);
   }
 
   protected void serializeReplyChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("ReplyEncodedReply"));
+    writeBuffer.pushContext(WithOption.WithName("ReplyEncodedReply"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Manual Field: encodedReply
-    FieldWriterFactory.writeManualField(() -> StaticHelper.writeEncodedReply(writeBuffer, encodedReply), writeBuffer, WithOption.WithName("encodedReply"));
+    FieldWriterFactory.writeManualField(() -> StaticHelper.writeEncodedReply(writeBuffer, encodedReply), writeBuffer, WithOption.WithName("encodedReply"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: encodedReplyDecoded (doesn't serialize anything, just makes the value available)
     EncodedReply encodedReplyDecoded = (EncodedReply) getEncodedReplyDecoded();
 
     // Manual Field: chksum
-    FieldWriterFactory.writeManualField(() -> StaticHelper.calculateChecksum(writeBuffer, encodedReply, cBusOptions.getSrchk()), writeBuffer, WithOption.WithName("chksum"));
+    FieldWriterFactory.writeManualField(() -> StaticHelper.calculateChecksum(writeBuffer, encodedReply, cBusOptions.getSrchk()), writeBuffer, WithOption.WithName("chksum"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: chksumDecoded (doesn't serialize anything, just makes the value available)
     Checksum chksumDecoded = (Checksum) getChksumDecoded();

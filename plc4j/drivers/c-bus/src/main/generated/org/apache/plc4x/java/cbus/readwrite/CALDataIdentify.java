@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -48,22 +49,22 @@ public class CALDataIdentify extends CALData implements Message {
 
   public static CALDataBuilder staticParseCALDataBuilder(ReadBuffer readBuffer,
       RequestContext requestContext) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("CALDataIdentify"));
+    readBuffer.pushContext(WithOption.WithName("CALDataIdentify"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): attribute
-    Attribute attribute = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(Attribute::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("attribute"));
+    Attribute attribute = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(Attribute::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("attribute"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new CALDataBuilderImpl(attribute);
   }
 
   protected void serializeCALDataChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CALDataIdentify"));
+    writeBuffer.pushContext(WithOption.WithName("CALDataIdentify"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): attribute
-    FieldWriterFactory.writeSimpleEnumField((Attribute) attribute, DataWriterFactory.writeEnum(Attribute::getValue, Attribute::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("attribute"));
+    FieldWriterFactory.writeSimpleEnumField((Attribute) attribute, DataWriterFactory.writeEnum(Attribute::getValue, Attribute::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("attribute"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

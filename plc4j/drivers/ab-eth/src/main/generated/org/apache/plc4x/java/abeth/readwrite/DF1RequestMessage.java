@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -85,26 +86,26 @@ public abstract class DF1RequestMessage implements Message {
   }
 
   public static DF1RequestMessage staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("DF1RequestMessage"));
+    readBuffer.pushContext(WithOption.WithName("DF1RequestMessage"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: destinationAddress
-    short destinationAddress = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("destinationAddress"));
+    short destinationAddress = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("destinationAddress"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: sourceAddress
-    short sourceAddress = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("sourceAddress"));
+    short sourceAddress = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("sourceAddress"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldReaderFactory.readReservedField(DataReaderFactory.readUnsignedInt(readBuffer, 16), (int) 0x0000, WithOption.WithName("DF1RequestMessage.reserved2"));
 
     // Discriminator Field: commandCode
-    short commandCode = FieldReaderFactory.readDiscriminatorField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("commandCode"));
+    short commandCode = FieldReaderFactory.readDiscriminatorField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("commandCode"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: status
-    short status = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("status"));
+    short status = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("status"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: transactionCounter
-    int transactionCounter = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("transactionCounter"));
+    int transactionCounter = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("transactionCounter"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Switch Field
     DF1RequestMessageBuilder builder = null;
@@ -121,27 +122,27 @@ public abstract class DF1RequestMessage implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("DF1RequestMessage"));
+    writeBuffer.pushContext(WithOption.WithName("DF1RequestMessage"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: destinationAddress
-    FieldWriterFactory.writeSimpleField((short) destinationAddress, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("destinationAddress"));
+    FieldWriterFactory.writeSimpleField((short) destinationAddress, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("destinationAddress"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: sourceAddress
-    FieldWriterFactory.writeSimpleField((short) sourceAddress, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("sourceAddress"));
+    FieldWriterFactory.writeSimpleField((short) sourceAddress, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("sourceAddress"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldWriterFactory.writeReservedField((int) 0x0000, DataWriterFactory.writeUnsignedInt(writeBuffer, 16));
 
     short commandCode = (short) getCommandCode();
     // Discriminator Field: commandCode
-    FieldWriterFactory.writeDiscriminatorField((short) commandCode, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("commandCode"));
+    FieldWriterFactory.writeDiscriminatorField((short) commandCode, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("commandCode"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: status
-    FieldWriterFactory.writeSimpleField((short) status, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("status"));
+    FieldWriterFactory.writeSimpleField((short) status, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("status"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: transactionCounter
-    FieldWriterFactory.writeSimpleField((int) transactionCounter, DataWriterFactory.writeUnsignedInt(writeBuffer, 16), WithOption.WithName("transactionCounter"));
+    FieldWriterFactory.writeSimpleField((int) transactionCounter, DataWriterFactory.writeUnsignedInt(writeBuffer, 16), WithOption.WithName("transactionCounter"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Switch Field
     serializeDF1RequestMessageChild(writeBuffer);

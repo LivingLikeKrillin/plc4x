@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -60,28 +61,28 @@ public class CALDataIdentifyReply extends CALData implements Message {
   public static CALDataBuilder staticParseCALDataBuilder(ReadBuffer readBuffer,
       CALCommandTypeContainer commandTypeContainer, RequestContext requestContext) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("CALDataIdentifyReply"));
+    readBuffer.pushContext(WithOption.WithName("CALDataIdentifyReply"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): attribute
-    Attribute attribute = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(Attribute::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("attribute"));
+    Attribute attribute = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(Attribute::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("attribute"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: identifyReplyCommand
-    IdentifyReplyCommand identifyReplyCommand = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (IdentifyReplyCommand) IdentifyReplyCommand.staticParse(readBuffer, (org.apache.plc4x.java.cbus.readwrite.Attribute) (attribute), (byte) ((commandTypeContainer.getNumBytes()) - (1))), readBuffer), WithOption.WithName("identifyReplyCommand"));
+    IdentifyReplyCommand identifyReplyCommand = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (IdentifyReplyCommand) IdentifyReplyCommand.staticParse(readBuffer, (org.apache.plc4x.java.cbus.readwrite.Attribute) (attribute), (byte) ((commandTypeContainer.getNumBytes()) - (1))), readBuffer), WithOption.WithName("identifyReplyCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new CALDataBuilderImpl(attribute, identifyReplyCommand);
   }
 
   protected void serializeCALDataChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CALDataIdentifyReply"));
+    writeBuffer.pushContext(WithOption.WithName("CALDataIdentifyReply"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): attribute
-    FieldWriterFactory.writeSimpleEnumField((Attribute) attribute, DataWriterFactory.writeEnum(Attribute::getValue, Attribute::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("attribute"));
+    FieldWriterFactory.writeSimpleEnumField((Attribute) attribute, DataWriterFactory.writeEnum(Attribute::getValue, Attribute::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("attribute"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: identifyReplyCommand
-    FieldWriterFactory.writeSimpleField((IdentifyReplyCommand) identifyReplyCommand, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("identifyReplyCommand"));
+    FieldWriterFactory.writeSimpleField((IdentifyReplyCommand) identifyReplyCommand, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("identifyReplyCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

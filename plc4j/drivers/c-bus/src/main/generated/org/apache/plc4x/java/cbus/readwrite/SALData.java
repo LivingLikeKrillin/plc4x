@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -54,7 +55,7 @@ public abstract class SALData implements Message {
 
   public static SALData staticParse(ReadBuffer readBuffer, ApplicationId applicationId) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("SALData"));
+    readBuffer.pushContext(WithOption.WithName("SALData"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Switch Field
@@ -111,7 +112,7 @@ public abstract class SALData implements Message {
     }
 
     // Optional Field: salData
-    SALData salData = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (SALData) SALData.staticParse(readBuffer, (org.apache.plc4x.java.cbus.readwrite.ApplicationId) (applicationId)), readBuffer), WithOption.WithName("salData"));
+    SALData salData = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (SALData) SALData.staticParse(readBuffer, (org.apache.plc4x.java.cbus.readwrite.ApplicationId) (applicationId)), readBuffer), WithOption.WithName("salData"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return builder.build(salData);
@@ -119,7 +120,7 @@ public abstract class SALData implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("SALData"));
+    writeBuffer.pushContext(WithOption.WithName("SALData"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Switch Field
@@ -127,7 +128,7 @@ public abstract class SALData implements Message {
 
     if(salData != null) {
       // Optional Field: salData
-      FieldWriterFactory.writeOptionalField((SALData) salData, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("salData"));
+      FieldWriterFactory.writeOptionalField((SALData) salData, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("salData"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     }
 
     writeBuffer.popContext();

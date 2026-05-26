@@ -22,6 +22,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -103,53 +104,53 @@ public class RequestCommand extends Request implements Message {
 
   public static RequestBuilder staticParseRequestBuilder(ReadBuffer readBuffer,
       CBusOptions cBusOptions) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("RequestCommand"));
+    readBuffer.pushContext(WithOption.WithName("RequestCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Const Field: initiator
-    byte initiator = FieldReaderFactory.readConstField(DataReaderFactory.readByte(readBuffer, 8), INITIATOR, WithOption.WithName("initiator"));
+    byte initiator = FieldReaderFactory.readConstField(DataReaderFactory.readByte(readBuffer, 8), INITIATOR, WithOption.WithName("initiator"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Manual Field: cbusCommand
-    CBusCommand cbusCommand = FieldReaderFactory.readManualField(readBuffer, () -> (CBusCommand) (StaticHelper.readCBusCommand(readBuffer, cBusOptions, cBusOptions.getSrchk())), WithOption.WithName("cbusCommand"));
+    CBusCommand cbusCommand = FieldReaderFactory.readManualField(readBuffer, () -> (CBusCommand) (StaticHelper.readCBusCommand(readBuffer, cBusOptions, cBusOptions.getSrchk())), WithOption.WithName("cbusCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: cbusCommandDecoded (doesn't parse anything, just makes the value available)
-    CBusCommand cbusCommandDecoded = FieldReaderFactory.readVirtualField(CBusCommand.class, cbusCommand, WithOption.WithName("cbusCommandDecoded"));
+    CBusCommand cbusCommandDecoded = FieldReaderFactory.readVirtualField(CBusCommand.class, cbusCommand, WithOption.WithName("cbusCommandDecoded"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Manual Field: chksum
-    Checksum chksum = FieldReaderFactory.readManualField(readBuffer, () -> (Checksum) (StaticHelper.readAndValidateChecksum(readBuffer, cbusCommand, cBusOptions.getSrchk())), WithOption.WithName("chksum"));
+    Checksum chksum = FieldReaderFactory.readManualField(readBuffer, () -> (Checksum) (StaticHelper.readAndValidateChecksum(readBuffer, cbusCommand, cBusOptions.getSrchk())), WithOption.WithName("chksum"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: chksumDecoded (doesn't parse anything, just makes the value available)
-    Checksum chksumDecoded = FieldReaderFactory.readVirtualField(Checksum.class, chksum, WithOption.WithName("chksumDecoded"));
+    Checksum chksumDecoded = FieldReaderFactory.readVirtualField(Checksum.class, chksum, WithOption.WithName("chksumDecoded"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Optional Field: alpha
-    Alpha alpha = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (Alpha) Alpha.staticParse(readBuffer), readBuffer), WithOption.WithName("alpha"));
+    Alpha alpha = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (Alpha) Alpha.staticParse(readBuffer), readBuffer), WithOption.WithName("alpha"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new RequestBuilderImpl(cBusOptions, cbusCommand, chksum, alpha);
   }
 
   protected void serializeRequestChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("RequestCommand"));
+    writeBuffer.pushContext(WithOption.WithName("RequestCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Const Field: initiator
-    FieldWriterFactory.writeConstField((byte) INITIATOR, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("initiator"));
+    FieldWriterFactory.writeConstField((byte) INITIATOR, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("initiator"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Manual Field: cbusCommand
-    FieldWriterFactory.writeManualField(() -> StaticHelper.writeCBusCommand(writeBuffer, cbusCommand), writeBuffer, WithOption.WithName("cbusCommand"));
+    FieldWriterFactory.writeManualField(() -> StaticHelper.writeCBusCommand(writeBuffer, cbusCommand), writeBuffer, WithOption.WithName("cbusCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: cbusCommandDecoded (doesn't serialize anything, just makes the value available)
     CBusCommand cbusCommandDecoded = (CBusCommand) getCbusCommandDecoded();
 
     // Manual Field: chksum
-    FieldWriterFactory.writeManualField(() -> StaticHelper.calculateChecksum(writeBuffer, cbusCommand, cBusOptions.getSrchk()), writeBuffer, WithOption.WithName("chksum"));
+    FieldWriterFactory.writeManualField(() -> StaticHelper.calculateChecksum(writeBuffer, cbusCommand, cBusOptions.getSrchk()), writeBuffer, WithOption.WithName("chksum"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: chksumDecoded (doesn't serialize anything, just makes the value available)
     Checksum chksumDecoded = (Checksum) getChksumDecoded();
 
     if(alpha != null) {
       // Optional Field: alpha
-      FieldWriterFactory.writeOptionalField((Alpha) alpha, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("alpha"));
+      FieldWriterFactory.writeOptionalField((Alpha) alpha, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("alpha"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     }
 
     writeBuffer.popContext();

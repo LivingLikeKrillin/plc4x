@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.exceptions.ParseAssertException;
@@ -109,29 +110,29 @@ public class CALReplyLong extends CALReply implements Message {
 
   public static CALReplyBuilder staticParseCALReplyBuilder(ReadBuffer readBuffer,
       CBusOptions cBusOptions, RequestContext requestContext) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("CALReplyLong"));
+    readBuffer.pushContext(WithOption.WithName("CALReplyLong"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Reserved Field
     FieldReaderFactory.readReservedField(DataReaderFactory.readByte(readBuffer, 8), (byte) 0x86, WithOption.WithName("CALReplyLong.reserved0"));
 
     // Peek Field: terminatingByte
-    int terminatingByte = FieldReaderFactory.readPeekField(DataReaderFactory.readUnsignedInt(readBuffer, 24), WithOption.WithName("terminatingByte"));
+    int terminatingByte = FieldReaderFactory.readPeekField(DataReaderFactory.readUnsignedInt(readBuffer, 24), WithOption.WithName("terminatingByte"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: isUnitAddress (doesn't parse anything, just makes the value available)
-    boolean isUnitAddress = FieldReaderFactory.readVirtualField(boolean.class, (((terminatingByte) & (0xff))) == (0x00), WithOption.WithName("isUnitAddress"));
+    boolean isUnitAddress = FieldReaderFactory.readVirtualField(boolean.class, (((terminatingByte) & (0xff))) == (0x00), WithOption.WithName("isUnitAddress"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Optional Field (conditional): unitAddress
-    UnitAddress unitAddress = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (UnitAddress) UnitAddress.staticParse(readBuffer), readBuffer), isUnitAddress, WithOption.WithName("unitAddress"));
+    UnitAddress unitAddress = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (UnitAddress) UnitAddress.staticParse(readBuffer), readBuffer), isUnitAddress, WithOption.WithName("unitAddress"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Optional Field (conditional): bridgeAddress
-    BridgeAddress bridgeAddress = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (BridgeAddress) BridgeAddress.staticParse(readBuffer), readBuffer), !(isUnitAddress), WithOption.WithName("bridgeAddress"));
+    BridgeAddress bridgeAddress = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (BridgeAddress) BridgeAddress.staticParse(readBuffer), readBuffer), !(isUnitAddress), WithOption.WithName("bridgeAddress"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: serialInterfaceAddress
-    SerialInterfaceAddress serialInterfaceAddress = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (SerialInterfaceAddress) SerialInterfaceAddress.staticParse(readBuffer), readBuffer), WithOption.WithName("serialInterfaceAddress"));
+    SerialInterfaceAddress serialInterfaceAddress = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (SerialInterfaceAddress) SerialInterfaceAddress.staticParse(readBuffer), readBuffer), WithOption.WithName("serialInterfaceAddress"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Optional Field (conditional): reservedByte
-    Byte reservedByte = FieldReaderFactory.readOptionalField(DataReaderFactory.readByte(readBuffer, 8), isUnitAddress, WithOption.WithName("reservedByte"));
+    Byte reservedByte = FieldReaderFactory.readOptionalField(DataReaderFactory.readByte(readBuffer, 8), isUnitAddress, WithOption.WithName("reservedByte"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Validation Field
     if(!(((isUnitAddress) && ((reservedByte) == (0x00))) || (!(isUnitAddress)))) {
@@ -139,14 +140,14 @@ public class CALReplyLong extends CALReply implements Message {
     }
 
     // Optional Field (conditional): replyNetwork
-    ReplyNetwork replyNetwork = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (ReplyNetwork) ReplyNetwork.staticParse(readBuffer), readBuffer), !(isUnitAddress), WithOption.WithName("replyNetwork"));
+    ReplyNetwork replyNetwork = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (ReplyNetwork) ReplyNetwork.staticParse(readBuffer), readBuffer), !(isUnitAddress), WithOption.WithName("replyNetwork"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new CALReplyBuilderImpl(terminatingByte, unitAddress, bridgeAddress, serialInterfaceAddress, reservedByte, replyNetwork);
   }
 
   protected void serializeCALReplyChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CALReplyLong"));
+    writeBuffer.pushContext(WithOption.WithName("CALReplyLong"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Reserved Field
@@ -159,27 +160,27 @@ public class CALReplyLong extends CALReply implements Message {
 
     if(unitAddress != null) {
       // Optional Field: unitAddress
-      FieldWriterFactory.writeOptionalField((UnitAddress) unitAddress, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("unitAddress"));
+      FieldWriterFactory.writeOptionalField((UnitAddress) unitAddress, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("unitAddress"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     }
 
     if(bridgeAddress != null) {
       // Optional Field: bridgeAddress
-      FieldWriterFactory.writeOptionalField((BridgeAddress) bridgeAddress, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("bridgeAddress"));
+      FieldWriterFactory.writeOptionalField((BridgeAddress) bridgeAddress, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("bridgeAddress"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     }
 
     // Simple Field: serialInterfaceAddress
-    FieldWriterFactory.writeSimpleField((SerialInterfaceAddress) serialInterfaceAddress, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("serialInterfaceAddress"));
+    FieldWriterFactory.writeSimpleField((SerialInterfaceAddress) serialInterfaceAddress, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("serialInterfaceAddress"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     if(reservedByte != null) {
       // Optional Field: reservedByte
-      FieldWriterFactory.writeOptionalField((Byte) reservedByte, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("reservedByte"));
+      FieldWriterFactory.writeOptionalField((Byte) reservedByte, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("reservedByte"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     }
 
     // Validation Field (Nothing needed here)
 
     if(replyNetwork != null) {
       // Optional Field: replyNetwork
-      FieldWriterFactory.writeOptionalField((ReplyNetwork) replyNetwork, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("replyNetwork"));
+      FieldWriterFactory.writeOptionalField((ReplyNetwork) replyNetwork, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("replyNetwork"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     }
 
     writeBuffer.popContext();

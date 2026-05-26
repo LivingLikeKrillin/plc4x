@@ -58,11 +58,11 @@ public class CIPEncapsulationReadResponse extends CIPEncapsulationPacket impleme
 
   public static CIPEncapsulationPacketBuilder staticParseCIPEncapsulationPacketBuilder(
       ReadBuffer readBuffer, int packetLen) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("CIPEncapsulationReadResponse"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("CIPEncapsulationReadResponse"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: response
-    DF1ResponseMessage response = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (DF1ResponseMessage) DF1ResponseMessage.staticParse(readBuffer, (int) (packetLen)), readBuffer), WithOption.WithName("response"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"));
+    DF1ResponseMessage response = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (DF1ResponseMessage) DF1ResponseMessage.staticParse(readBuffer, (int) (packetLen)), readBuffer), WithOption.WithName("response"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new CIPEncapsulationPacketBuilderImpl(response);
@@ -70,11 +70,11 @@ public class CIPEncapsulationReadResponse extends CIPEncapsulationPacket impleme
 
   protected void serializeCIPEncapsulationPacketChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CIPEncapsulationReadResponse"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("CIPEncapsulationReadResponse"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: response
-    FieldWriterFactory.writeSimpleField((DF1ResponseMessage) response, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("response"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((DF1ResponseMessage) response, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("response"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

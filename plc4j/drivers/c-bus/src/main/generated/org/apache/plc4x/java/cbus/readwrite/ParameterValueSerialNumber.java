@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.exceptions.ParseAssertException;
@@ -65,7 +66,7 @@ public class ParameterValueSerialNumber extends ParameterValue implements Messag
 
   public static ParameterValueBuilder staticParseParameterValueBuilder(ReadBuffer readBuffer,
       ParameterType parameterType, short numBytes) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("ParameterValueSerialNumber"));
+    readBuffer.pushContext(WithOption.WithName("ParameterValueSerialNumber"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Validation Field
@@ -74,26 +75,26 @@ public class ParameterValueSerialNumber extends ParameterValue implements Messag
     }
 
     // Simple Field: value
-    SerialNumber value = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (SerialNumber) SerialNumber.staticParse(readBuffer), readBuffer), WithOption.WithName("value"));
+    SerialNumber value = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (SerialNumber) SerialNumber.staticParse(readBuffer), readBuffer), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Array Field: data
-    byte[] data = readBuffer.readBits(Math.toIntExact(((numBytes) - (4)) * 8), WithOption.WithName("data"));
+    byte[] data = readBuffer.readBits(Math.toIntExact(((numBytes) - (4)) * 8), WithOption.WithName("data"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new ParameterValueBuilderImpl(value, data);
   }
 
   protected void serializeParameterValueChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("ParameterValueSerialNumber"));
+    writeBuffer.pushContext(WithOption.WithName("ParameterValueSerialNumber"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Validation Field (Nothing needed here)
 
     // Simple Field: value
-    FieldWriterFactory.writeSimpleField((SerialNumber) value, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("value"));
+    FieldWriterFactory.writeSimpleField((SerialNumber) value, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Array Field: data
-    FieldWriterFactory.writeByteArrayField(data, DataWriterFactory.writeByteArray(writeBuffer, (int) ((data != null) ? data.length : 0)), WithOption.WithName("data"));
+    FieldWriterFactory.writeByteArrayField(data, DataWriterFactory.writeByteArray(writeBuffer, (int) ((data != null) ? data.length : 0)), WithOption.WithName("data"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

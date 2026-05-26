@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -67,14 +68,14 @@ public abstract class CBusPointToPointCommand implements Message {
 
   public static CBusPointToPointCommand staticParse(ReadBuffer readBuffer, CBusOptions cBusOptions)
       throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("CBusPointToPointCommand"));
+    readBuffer.pushContext(WithOption.WithName("CBusPointToPointCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Peek Field: bridgeAddressCountPeek
-    int bridgeAddressCountPeek = FieldReaderFactory.readPeekField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("bridgeAddressCountPeek"));
+    int bridgeAddressCountPeek = FieldReaderFactory.readPeekField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("bridgeAddressCountPeek"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: isDirect (doesn't parse anything, just makes the value available)
-    boolean isDirect = FieldReaderFactory.readVirtualField(boolean.class, (((bridgeAddressCountPeek) & (0x00FF))) == (0x0000), WithOption.WithName("isDirect"));
+    boolean isDirect = FieldReaderFactory.readVirtualField(boolean.class, (((bridgeAddressCountPeek) & (0x00FF))) == (0x0000), WithOption.WithName("isDirect"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Switch Field
     CBusPointToPointCommandBuilder builder = null;
@@ -88,7 +89,7 @@ public abstract class CBusPointToPointCommand implements Message {
     }
 
     // Simple Field: calData
-    CALData calData = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (CALData) CALData.staticParse(readBuffer, (org.apache.plc4x.java.cbus.readwrite.RequestContext) (null)), readBuffer), WithOption.WithName("calData"));
+    CALData calData = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (CALData) CALData.staticParse(readBuffer, (org.apache.plc4x.java.cbus.readwrite.RequestContext) (null)), readBuffer), WithOption.WithName("calData"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return builder.build(bridgeAddressCountPeek, calData);
@@ -96,7 +97,7 @@ public abstract class CBusPointToPointCommand implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CBusPointToPointCommand"));
+    writeBuffer.pushContext(WithOption.WithName("CBusPointToPointCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Peek Field: bridgeAddressCountPeek
@@ -108,7 +109,7 @@ public abstract class CBusPointToPointCommand implements Message {
     serializeCBusPointToPointCommandChild(writeBuffer);
 
     // Simple Field: calData
-    FieldWriterFactory.writeSimpleField((CALData) calData, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("calData"));
+    FieldWriterFactory.writeSimpleField((CALData) calData, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("calData"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

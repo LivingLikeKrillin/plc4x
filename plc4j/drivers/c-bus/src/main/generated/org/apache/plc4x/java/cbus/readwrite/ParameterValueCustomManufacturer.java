@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -54,22 +55,22 @@ public class ParameterValueCustomManufacturer extends ParameterValue implements 
 
   public static ParameterValueBuilder staticParseParameterValueBuilder(ReadBuffer readBuffer,
       ParameterType parameterType, short numBytes) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("ParameterValueCustomManufacturer"));
+    readBuffer.pushContext(WithOption.WithName("ParameterValueCustomManufacturer"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: value
-    CustomManufacturer value = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (CustomManufacturer) CustomManufacturer.staticParse(readBuffer, (short) (numBytes)), readBuffer), WithOption.WithName("value"));
+    CustomManufacturer value = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (CustomManufacturer) CustomManufacturer.staticParse(readBuffer, (short) (numBytes)), readBuffer), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new ParameterValueBuilderImpl(value);
   }
 
   protected void serializeParameterValueChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("ParameterValueCustomManufacturer"));
+    writeBuffer.pushContext(WithOption.WithName("ParameterValueCustomManufacturer"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: value
-    FieldWriterFactory.writeSimpleField((CustomManufacturer) value, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("value"));
+    FieldWriterFactory.writeSimpleField((CustomManufacturer) value, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

@@ -22,6 +22,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -57,14 +58,14 @@ public class NetworkRoute implements Message {
   }
 
   public static NetworkRoute staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("NetworkRoute"));
+    readBuffer.pushContext(WithOption.WithName("NetworkRoute"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: networkPCI
-    NetworkProtocolControlInformation networkPCI = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (NetworkProtocolControlInformation) NetworkProtocolControlInformation.staticParse(readBuffer), readBuffer), WithOption.WithName("networkPCI"));
+    NetworkProtocolControlInformation networkPCI = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (NetworkProtocolControlInformation) NetworkProtocolControlInformation.staticParse(readBuffer), readBuffer), WithOption.WithName("networkPCI"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Array Field: additionalBridgeAddresses
-    List<BridgeAddress> additionalBridgeAddresses = FieldReaderFactory.readCountArrayField(DataReaderFactory.readComplex(() -> (BridgeAddress) BridgeAddress.staticParse(readBuffer), readBuffer), (networkPCI.getStackDepth()) - (1), WithOption.WithName("additionalBridgeAddresses"));
+    List<BridgeAddress> additionalBridgeAddresses = FieldReaderFactory.readCountArrayField(DataReaderFactory.readComplex(() -> (BridgeAddress) BridgeAddress.staticParse(readBuffer), readBuffer), (networkPCI.getStackDepth()) - (1), WithOption.WithName("additionalBridgeAddresses"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new NetworkRoute(networkPCI, additionalBridgeAddresses);
@@ -72,14 +73,14 @@ public class NetworkRoute implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("NetworkRoute"));
+    writeBuffer.pushContext(WithOption.WithName("NetworkRoute"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: networkPCI
-    FieldWriterFactory.writeSimpleField((NetworkProtocolControlInformation) networkPCI, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("networkPCI"));
+    FieldWriterFactory.writeSimpleField((NetworkProtocolControlInformation) networkPCI, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("networkPCI"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Array Field: additionalBridgeAddresses
-    FieldWriterFactory.writeComplexTypeArrayField(additionalBridgeAddresses, writeBuffer, WithOption.WithName("additionalBridgeAddresses"));
+    FieldWriterFactory.writeComplexTypeArrayField(additionalBridgeAddresses, writeBuffer, WithOption.WithName("additionalBridgeAddresses"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

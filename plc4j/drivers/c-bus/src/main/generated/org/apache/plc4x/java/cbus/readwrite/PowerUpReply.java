@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -47,22 +48,22 @@ public class PowerUpReply extends Reply implements Message {
 
   public static ReplyBuilder staticParseReplyBuilder(ReadBuffer readBuffer, CBusOptions cBusOptions,
       RequestContext requestContext) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("PowerUpReply"));
+    readBuffer.pushContext(WithOption.WithName("PowerUpReply"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: powerUpIndicator
-    PowerUp powerUpIndicator = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (PowerUp) PowerUp.staticParse(readBuffer), readBuffer), WithOption.WithName("powerUpIndicator"));
+    PowerUp powerUpIndicator = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (PowerUp) PowerUp.staticParse(readBuffer), readBuffer), WithOption.WithName("powerUpIndicator"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new ReplyBuilderImpl(powerUpIndicator);
   }
 
   protected void serializeReplyChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("PowerUpReply"));
+    writeBuffer.pushContext(WithOption.WithName("PowerUpReply"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: powerUpIndicator
-    FieldWriterFactory.writeSimpleField((PowerUp) powerUpIndicator, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("powerUpIndicator"));
+    FieldWriterFactory.writeSimpleField((PowerUp) powerUpIndicator, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("powerUpIndicator"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

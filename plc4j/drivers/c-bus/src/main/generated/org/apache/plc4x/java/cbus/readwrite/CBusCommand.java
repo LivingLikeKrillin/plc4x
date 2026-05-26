@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -63,17 +64,17 @@ public abstract class CBusCommand implements Message {
 
   public static CBusCommand staticParse(ReadBuffer readBuffer, CBusOptions cBusOptions) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("CBusCommand"));
+    readBuffer.pushContext(WithOption.WithName("CBusCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: header
-    CBusHeader header = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (CBusHeader) CBusHeader.staticParse(readBuffer), readBuffer), WithOption.WithName("header"));
+    CBusHeader header = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (CBusHeader) CBusHeader.staticParse(readBuffer), readBuffer), WithOption.WithName("header"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: isDeviceManagement (doesn't parse anything, just makes the value available)
-    boolean isDeviceManagement = FieldReaderFactory.readVirtualField(boolean.class, header.getDp(), WithOption.WithName("isDeviceManagement"));
+    boolean isDeviceManagement = FieldReaderFactory.readVirtualField(boolean.class, header.getDp(), WithOption.WithName("isDeviceManagement"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: destinationAddressType (doesn't parse anything, just makes the value available)
-    DestinationAddressType destinationAddressType = FieldReaderFactory.readVirtualField(DestinationAddressType.class, header.getDestinationAddressType(), WithOption.WithName("destinationAddressType"));
+    DestinationAddressType destinationAddressType = FieldReaderFactory.readVirtualField(DestinationAddressType.class, header.getDestinationAddressType(), WithOption.WithName("destinationAddressType"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Switch Field
     CBusCommandBuilder builder = null;
@@ -96,11 +97,11 @@ public abstract class CBusCommand implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CBusCommand"));
+    writeBuffer.pushContext(WithOption.WithName("CBusCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: header
-    FieldWriterFactory.writeSimpleField((CBusHeader) header, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("header"));
+    FieldWriterFactory.writeSimpleField((CBusHeader) header, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("header"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: isDeviceManagement (doesn't serialize anything, just makes the value available)
     boolean isDeviceManagement = (boolean) getIsDeviceManagement();

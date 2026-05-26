@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
 import org.apache.plc4x.java.spi.fields.utils.EvaluationHelper;
@@ -65,14 +66,14 @@ public abstract class EncodedReply implements Message {
 
   public static EncodedReply staticParse(ReadBuffer readBuffer, CBusOptions cBusOptions,
       RequestContext requestContext) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("EncodedReply"));
+    readBuffer.pushContext(WithOption.WithName("EncodedReply"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Peek Field: peekedByte
-    byte peekedByte = FieldReaderFactory.readPeekField(DataReaderFactory.readByte(readBuffer, 8), WithOption.WithName("peekedByte"));
+    byte peekedByte = FieldReaderFactory.readPeekField(DataReaderFactory.readByte(readBuffer, 8), WithOption.WithName("peekedByte"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: isMonitoredSAL (doesn't parse anything, just makes the value available)
-    boolean isMonitoredSAL = FieldReaderFactory.readVirtualField(boolean.class, (((((((peekedByte) & (0x3F))) == (0x05)) || ((peekedByte) == (0x00))) || ((((peekedByte) & (0xF8))) == (0x00)))) && (!(requestContext.getSendIdentifyRequestBefore())), WithOption.WithName("isMonitoredSAL"));
+    boolean isMonitoredSAL = FieldReaderFactory.readVirtualField(boolean.class, (((((((peekedByte) & (0x3F))) == (0x05)) || ((peekedByte) == (0x00))) || ((((peekedByte) & (0xF8))) == (0x00)))) && (!(requestContext.getSendIdentifyRequestBefore())), WithOption.WithName("isMonitoredSAL"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Switch Field
     EncodedReplyBuilder builder = null;
@@ -91,7 +92,7 @@ public abstract class EncodedReply implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("EncodedReply"));
+    writeBuffer.pushContext(WithOption.WithName("EncodedReply"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Peek Field: peekedByte

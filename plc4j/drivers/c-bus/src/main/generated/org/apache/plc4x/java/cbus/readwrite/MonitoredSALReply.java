@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -48,22 +49,22 @@ public class MonitoredSALReply extends EncodedReply implements Message {
 
   public static EncodedReplyBuilder staticParseEncodedReplyBuilder(ReadBuffer readBuffer,
       CBusOptions cBusOptions, RequestContext requestContext) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("MonitoredSALReply"));
+    readBuffer.pushContext(WithOption.WithName("MonitoredSALReply"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: monitoredSAL
-    MonitoredSAL monitoredSAL = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (MonitoredSAL) MonitoredSAL.staticParse(readBuffer, (org.apache.plc4x.java.cbus.readwrite.CBusOptions) (cBusOptions)), readBuffer), WithOption.WithName("monitoredSAL"));
+    MonitoredSAL monitoredSAL = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (MonitoredSAL) MonitoredSAL.staticParse(readBuffer, (org.apache.plc4x.java.cbus.readwrite.CBusOptions) (cBusOptions)), readBuffer), WithOption.WithName("monitoredSAL"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new EncodedReplyBuilderImpl(monitoredSAL);
   }
 
   protected void serializeEncodedReplyChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("MonitoredSALReply"));
+    writeBuffer.pushContext(WithOption.WithName("MonitoredSALReply"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: monitoredSAL
-    FieldWriterFactory.writeSimpleField((MonitoredSAL) monitoredSAL, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("monitoredSAL"));
+    FieldWriterFactory.writeSimpleField((MonitoredSAL) monitoredSAL, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("monitoredSAL"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -71,17 +72,17 @@ public abstract class CBusPointToPointToMultiPointCommand implements Message {
 
   public static CBusPointToPointToMultiPointCommand staticParse(ReadBuffer readBuffer,
       CBusOptions cBusOptions) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("CBusPointToPointToMultiPointCommand"));
+    readBuffer.pushContext(WithOption.WithName("CBusPointToPointToMultiPointCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: bridgeAddress
-    BridgeAddress bridgeAddress = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (BridgeAddress) BridgeAddress.staticParse(readBuffer), readBuffer), WithOption.WithName("bridgeAddress"));
+    BridgeAddress bridgeAddress = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (BridgeAddress) BridgeAddress.staticParse(readBuffer), readBuffer), WithOption.WithName("bridgeAddress"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: networkRoute
-    NetworkRoute networkRoute = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (NetworkRoute) NetworkRoute.staticParse(readBuffer), readBuffer), WithOption.WithName("networkRoute"));
+    NetworkRoute networkRoute = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (NetworkRoute) NetworkRoute.staticParse(readBuffer), readBuffer), WithOption.WithName("networkRoute"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Peek Field: peekedApplication
-    byte peekedApplication = FieldReaderFactory.readPeekField(DataReaderFactory.readByte(readBuffer, 8), WithOption.WithName("peekedApplication"));
+    byte peekedApplication = FieldReaderFactory.readPeekField(DataReaderFactory.readByte(readBuffer, 8), WithOption.WithName("peekedApplication"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Switch Field
     CBusPointToPointToMultiPointCommandBuilder builder = null;
@@ -100,14 +101,14 @@ public abstract class CBusPointToPointToMultiPointCommand implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CBusPointToPointToMultiPointCommand"));
+    writeBuffer.pushContext(WithOption.WithName("CBusPointToPointToMultiPointCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: bridgeAddress
-    FieldWriterFactory.writeSimpleField((BridgeAddress) bridgeAddress, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("bridgeAddress"));
+    FieldWriterFactory.writeSimpleField((BridgeAddress) bridgeAddress, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("bridgeAddress"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: networkRoute
-    FieldWriterFactory.writeSimpleField((NetworkRoute) networkRoute, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("networkRoute"));
+    FieldWriterFactory.writeSimpleField((NetworkRoute) networkRoute, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("networkRoute"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Peek Field: peekedApplication
 

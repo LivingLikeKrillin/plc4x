@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.writer.FieldWriterFactory;
 import org.apache.plc4x.java.spi.fields.utils.ThreadLocalHelper;
@@ -52,11 +53,11 @@ public class IdentifyReplyCommandNetworkTerminalLevels extends IdentifyReplyComm
 
   public static IdentifyReplyCommandBuilder staticParseIdentifyReplyCommandBuilder(
       ReadBuffer readBuffer, Attribute attribute, byte numBytes) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandNetworkTerminalLevels"));
+    readBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandNetworkTerminalLevels"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Array Field: networkTerminalLevels
-    byte[] networkTerminalLevels = readBuffer.readBits(Math.toIntExact((numBytes) * 8), WithOption.WithName("networkTerminalLevels"));
+    byte[] networkTerminalLevels = readBuffer.readBits(Math.toIntExact((numBytes) * 8), WithOption.WithName("networkTerminalLevels"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new IdentifyReplyCommandBuilderImpl(networkTerminalLevels);
@@ -64,11 +65,11 @@ public class IdentifyReplyCommandNetworkTerminalLevels extends IdentifyReplyComm
 
   protected void serializeIdentifyReplyCommandChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandNetworkTerminalLevels"));
+    writeBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandNetworkTerminalLevels"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Array Field: networkTerminalLevels
-    FieldWriterFactory.writeByteArrayField(networkTerminalLevels, DataWriterFactory.writeByteArray(writeBuffer, (int) ((networkTerminalLevels != null) ? networkTerminalLevels.length : 0)), WithOption.WithName("networkTerminalLevels"));
+    FieldWriterFactory.writeByteArrayField(networkTerminalLevels, DataWriterFactory.writeByteArray(writeBuffer, (int) ((networkTerminalLevels != null) ? networkTerminalLevels.length : 0)), WithOption.WithName("networkTerminalLevels"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

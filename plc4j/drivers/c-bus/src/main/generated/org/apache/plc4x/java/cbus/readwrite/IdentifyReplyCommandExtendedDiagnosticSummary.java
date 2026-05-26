@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -253,38 +254,38 @@ public class IdentifyReplyCommandExtendedDiagnosticSummary extends IdentifyReply
 
   public static IdentifyReplyCommandBuilder staticParseIdentifyReplyCommandBuilder(
       ReadBuffer readBuffer, Attribute attribute, byte numBytes) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandExtendedDiagnosticSummary"));
+    readBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandExtendedDiagnosticSummary"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): lowApplication
-    ApplicationIdContainer lowApplication = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ApplicationIdContainer::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("lowApplication"));
+    ApplicationIdContainer lowApplication = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ApplicationIdContainer::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("lowApplication"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): highApplication
-    ApplicationIdContainer highApplication = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ApplicationIdContainer::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("highApplication"));
+    ApplicationIdContainer highApplication = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ApplicationIdContainer::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("highApplication"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: area
-    byte area = FieldReaderFactory.readSimpleField(DataReaderFactory.readByte(readBuffer, 8), WithOption.WithName("area"));
+    byte area = FieldReaderFactory.readSimpleField(DataReaderFactory.readByte(readBuffer, 8), WithOption.WithName("area"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: crc
-    int crc = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("crc"));
+    int crc = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("crc"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: serialNumber
-    long serialNumber = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 32), WithOption.WithName("serialNumber"));
+    long serialNumber = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 32), WithOption.WithName("serialNumber"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: networkVoltage
-    byte networkVoltage = FieldReaderFactory.readSimpleField(DataReaderFactory.readByte(readBuffer, 8), WithOption.WithName("networkVoltage"));
+    byte networkVoltage = FieldReaderFactory.readSimpleField(DataReaderFactory.readByte(readBuffer, 8), WithOption.WithName("networkVoltage"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: networkVoltageInVolts (doesn't parse anything, just makes the value available)
-    float networkVoltageInVolts = FieldReaderFactory.readVirtualField(float.class, (networkVoltage) / (6.375F), WithOption.WithName("networkVoltageInVolts"));
+    float networkVoltageInVolts = FieldReaderFactory.readVirtualField(float.class, (networkVoltage) / (6.375F), WithOption.WithName("networkVoltageInVolts"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: unitInLearnMode
-    boolean unitInLearnMode = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("unitInLearnMode"));
+    boolean unitInLearnMode = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("unitInLearnMode"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: networkVoltageLow
-    boolean networkVoltageLow = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("networkVoltageLow"));
+    boolean networkVoltageLow = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("networkVoltageLow"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: networkVoltageMarginal
-    boolean networkVoltageMarginal = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("networkVoltageMarginal"));
+    boolean networkVoltageMarginal = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("networkVoltageMarginal"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldReaderFactory.readReservedField(DataReaderFactory.readUnsignedByte(readBuffer, 1), (byte) 0, WithOption.WithName("IdentifyReplyCommandExtendedDiagnosticSummary.reserved10"));
@@ -296,34 +297,34 @@ public class IdentifyReplyCommandExtendedDiagnosticSummary extends IdentifyReply
     FieldReaderFactory.readReservedField(DataReaderFactory.readUnsignedByte(readBuffer, 1), (byte) 0, WithOption.WithName("IdentifyReplyCommandExtendedDiagnosticSummary.reserved12"));
 
     // Simple Field: enableChecksumAlarm
-    boolean enableChecksumAlarm = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("enableChecksumAlarm"));
+    boolean enableChecksumAlarm = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("enableChecksumAlarm"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: outputUnit
-    boolean outputUnit = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("outputUnit"));
+    boolean outputUnit = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("outputUnit"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: installationMMIError
-    boolean installationMMIError = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("installationMMIError"));
+    boolean installationMMIError = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("installationMMIError"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: EEWriteError
-    boolean EEWriteError = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("EEWriteError"));
+    boolean EEWriteError = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("EEWriteError"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: EEChecksumError
-    boolean EEChecksumError = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("EEChecksumError"));
+    boolean EEChecksumError = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("EEChecksumError"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: EEDataError
-    boolean EEDataError = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("EEDataError"));
+    boolean EEDataError = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("EEDataError"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: microReset
-    boolean microReset = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("microReset"));
+    boolean microReset = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("microReset"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: commsTxError
-    boolean commsTxError = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("commsTxError"));
+    boolean commsTxError = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("commsTxError"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: internalStackOverflow
-    boolean internalStackOverflow = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("internalStackOverflow"));
+    boolean internalStackOverflow = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("internalStackOverflow"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: microPowerReset
-    boolean microPowerReset = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("microPowerReset"));
+    boolean microPowerReset = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("microPowerReset"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new IdentifyReplyCommandBuilderImpl(lowApplication, highApplication, area, crc, serialNumber, networkVoltage, unitInLearnMode, networkVoltageLow, networkVoltageMarginal, enableChecksumAlarm, outputUnit, installationMMIError, EEWriteError, EEChecksumError, EEDataError, microReset, commsTxError, internalStackOverflow, microPowerReset);
@@ -331,38 +332,38 @@ public class IdentifyReplyCommandExtendedDiagnosticSummary extends IdentifyReply
 
   protected void serializeIdentifyReplyCommandChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandExtendedDiagnosticSummary"));
+    writeBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandExtendedDiagnosticSummary"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): lowApplication
-    FieldWriterFactory.writeSimpleEnumField((ApplicationIdContainer) lowApplication, DataWriterFactory.writeEnum(ApplicationIdContainer::getValue, ApplicationIdContainer::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("lowApplication"));
+    FieldWriterFactory.writeSimpleEnumField((ApplicationIdContainer) lowApplication, DataWriterFactory.writeEnum(ApplicationIdContainer::getValue, ApplicationIdContainer::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("lowApplication"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): highApplication
-    FieldWriterFactory.writeSimpleEnumField((ApplicationIdContainer) highApplication, DataWriterFactory.writeEnum(ApplicationIdContainer::getValue, ApplicationIdContainer::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("highApplication"));
+    FieldWriterFactory.writeSimpleEnumField((ApplicationIdContainer) highApplication, DataWriterFactory.writeEnum(ApplicationIdContainer::getValue, ApplicationIdContainer::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("highApplication"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: area
-    FieldWriterFactory.writeSimpleField((byte) area, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("area"));
+    FieldWriterFactory.writeSimpleField((byte) area, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("area"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: crc
-    FieldWriterFactory.writeSimpleField((int) crc, DataWriterFactory.writeUnsignedInt(writeBuffer, 16), WithOption.WithName("crc"));
+    FieldWriterFactory.writeSimpleField((int) crc, DataWriterFactory.writeUnsignedInt(writeBuffer, 16), WithOption.WithName("crc"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: serialNumber
-    FieldWriterFactory.writeSimpleField((long) serialNumber, DataWriterFactory.writeUnsignedLong(writeBuffer, 32), WithOption.WithName("serialNumber"));
+    FieldWriterFactory.writeSimpleField((long) serialNumber, DataWriterFactory.writeUnsignedLong(writeBuffer, 32), WithOption.WithName("serialNumber"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: networkVoltage
-    FieldWriterFactory.writeSimpleField((byte) networkVoltage, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("networkVoltage"));
+    FieldWriterFactory.writeSimpleField((byte) networkVoltage, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("networkVoltage"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: networkVoltageInVolts (doesn't serialize anything, just makes the value available)
     float networkVoltageInVolts = (float) getNetworkVoltageInVolts();
 
     // Simple Field: unitInLearnMode
-    FieldWriterFactory.writeSimpleField((boolean) unitInLearnMode, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("unitInLearnMode"));
+    FieldWriterFactory.writeSimpleField((boolean) unitInLearnMode, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("unitInLearnMode"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: networkVoltageLow
-    FieldWriterFactory.writeSimpleField((boolean) networkVoltageLow, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("networkVoltageLow"));
+    FieldWriterFactory.writeSimpleField((boolean) networkVoltageLow, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("networkVoltageLow"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: networkVoltageMarginal
-    FieldWriterFactory.writeSimpleField((boolean) networkVoltageMarginal, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("networkVoltageMarginal"));
+    FieldWriterFactory.writeSimpleField((boolean) networkVoltageMarginal, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("networkVoltageMarginal"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldWriterFactory.writeReservedField((byte) 0, DataWriterFactory.writeUnsignedByte(writeBuffer, 1));
@@ -374,34 +375,34 @@ public class IdentifyReplyCommandExtendedDiagnosticSummary extends IdentifyReply
     FieldWriterFactory.writeReservedField((byte) 0, DataWriterFactory.writeUnsignedByte(writeBuffer, 1));
 
     // Simple Field: enableChecksumAlarm
-    FieldWriterFactory.writeSimpleField((boolean) enableChecksumAlarm, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("enableChecksumAlarm"));
+    FieldWriterFactory.writeSimpleField((boolean) enableChecksumAlarm, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("enableChecksumAlarm"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: outputUnit
-    FieldWriterFactory.writeSimpleField((boolean) outputUnit, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("outputUnit"));
+    FieldWriterFactory.writeSimpleField((boolean) outputUnit, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("outputUnit"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: installationMMIError
-    FieldWriterFactory.writeSimpleField((boolean) installationMMIError, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("installationMMIError"));
+    FieldWriterFactory.writeSimpleField((boolean) installationMMIError, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("installationMMIError"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: EEWriteError
-    FieldWriterFactory.writeSimpleField((boolean) EEWriteError, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("EEWriteError"));
+    FieldWriterFactory.writeSimpleField((boolean) EEWriteError, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("EEWriteError"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: EEChecksumError
-    FieldWriterFactory.writeSimpleField((boolean) EEChecksumError, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("EEChecksumError"));
+    FieldWriterFactory.writeSimpleField((boolean) EEChecksumError, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("EEChecksumError"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: EEDataError
-    FieldWriterFactory.writeSimpleField((boolean) EEDataError, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("EEDataError"));
+    FieldWriterFactory.writeSimpleField((boolean) EEDataError, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("EEDataError"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: microReset
-    FieldWriterFactory.writeSimpleField((boolean) microReset, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("microReset"));
+    FieldWriterFactory.writeSimpleField((boolean) microReset, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("microReset"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: commsTxError
-    FieldWriterFactory.writeSimpleField((boolean) commsTxError, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("commsTxError"));
+    FieldWriterFactory.writeSimpleField((boolean) commsTxError, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("commsTxError"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: internalStackOverflow
-    FieldWriterFactory.writeSimpleField((boolean) internalStackOverflow, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("internalStackOverflow"));
+    FieldWriterFactory.writeSimpleField((boolean) internalStackOverflow, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("internalStackOverflow"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: microPowerReset
-    FieldWriterFactory.writeSimpleField((boolean) microPowerReset, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("microPowerReset"));
+    FieldWriterFactory.writeSimpleField((boolean) microPowerReset, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("microPowerReset"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

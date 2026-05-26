@@ -44,7 +44,7 @@ public class CIPEncapsulationConnectionResponse extends CIPEncapsulationPacket i
 
   public static CIPEncapsulationPacketBuilder staticParseCIPEncapsulationPacketBuilder(
       ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("CIPEncapsulationConnectionResponse"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("CIPEncapsulationConnectionResponse"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     readBuffer.popContext();
@@ -53,7 +53,7 @@ public class CIPEncapsulationConnectionResponse extends CIPEncapsulationPacket i
 
   protected void serializeCIPEncapsulationPacketChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CIPEncapsulationConnectionResponse"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("CIPEncapsulationConnectionResponse"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     writeBuffer.popContext();

@@ -22,6 +22,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -71,34 +72,34 @@ public class CALDataStatus extends CALData implements Message {
   public static CALDataBuilder staticParseCALDataBuilder(ReadBuffer readBuffer,
       CALCommandTypeContainer commandTypeContainer, RequestContext requestContext) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("CALDataStatus"));
+    readBuffer.pushContext(WithOption.WithName("CALDataStatus"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): application
-    ApplicationIdContainer application = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ApplicationIdContainer::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("application"));
+    ApplicationIdContainer application = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ApplicationIdContainer::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("application"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: blockStart
-    short blockStart = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("blockStart"));
+    short blockStart = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("blockStart"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Array Field: statusBytes
-    List<StatusByte> statusBytes = FieldReaderFactory.readCountArrayField(DataReaderFactory.readComplex(() -> (StatusByte) StatusByte.staticParse(readBuffer), readBuffer), (commandTypeContainer.getNumBytes()) - (2), WithOption.WithName("statusBytes"));
+    List<StatusByte> statusBytes = FieldReaderFactory.readCountArrayField(DataReaderFactory.readComplex(() -> (StatusByte) StatusByte.staticParse(readBuffer), readBuffer), (commandTypeContainer.getNumBytes()) - (2), WithOption.WithName("statusBytes"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new CALDataBuilderImpl(application, blockStart, statusBytes);
   }
 
   protected void serializeCALDataChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CALDataStatus"));
+    writeBuffer.pushContext(WithOption.WithName("CALDataStatus"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): application
-    FieldWriterFactory.writeSimpleEnumField((ApplicationIdContainer) application, DataWriterFactory.writeEnum(ApplicationIdContainer::getValue, ApplicationIdContainer::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("application"));
+    FieldWriterFactory.writeSimpleEnumField((ApplicationIdContainer) application, DataWriterFactory.writeEnum(ApplicationIdContainer::getValue, ApplicationIdContainer::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("application"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: blockStart
-    FieldWriterFactory.writeSimpleField((short) blockStart, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("blockStart"));
+    FieldWriterFactory.writeSimpleField((short) blockStart, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("blockStart"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Array Field: statusBytes
-    FieldWriterFactory.writeComplexTypeArrayField(statusBytes, writeBuffer, WithOption.WithName("statusBytes"));
+    FieldWriterFactory.writeComplexTypeArrayField(statusBytes, writeBuffer, WithOption.WithName("statusBytes"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

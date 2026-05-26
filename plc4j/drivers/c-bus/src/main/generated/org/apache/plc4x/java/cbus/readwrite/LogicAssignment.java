@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -100,14 +101,14 @@ public class LogicAssignment implements Message {
   }
 
   public static LogicAssignment staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("LogicAssignment"));
+    readBuffer.pushContext(WithOption.WithName("LogicAssignment"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: greaterOfOrLogic
-    boolean greaterOfOrLogic = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("greaterOfOrLogic"));
+    boolean greaterOfOrLogic = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("greaterOfOrLogic"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: reStrikeDelay
-    boolean reStrikeDelay = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("reStrikeDelay"));
+    boolean reStrikeDelay = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("reStrikeDelay"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldReaderFactory.readReservedField(DataReaderFactory.readBoolean(readBuffer), (boolean) false, WithOption.WithName("LogicAssignment.reserved2"));
@@ -116,16 +117,16 @@ public class LogicAssignment implements Message {
     FieldReaderFactory.readReservedField(DataReaderFactory.readBoolean(readBuffer), (boolean) false, WithOption.WithName("LogicAssignment.reserved3"));
 
     // Simple Field: assignedToGav16
-    boolean assignedToGav16 = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("assignedToGav16"));
+    boolean assignedToGav16 = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("assignedToGav16"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: assignedToGav15
-    boolean assignedToGav15 = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("assignedToGav15"));
+    boolean assignedToGav15 = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("assignedToGav15"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: assignedToGav14
-    boolean assignedToGav14 = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("assignedToGav14"));
+    boolean assignedToGav14 = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("assignedToGav14"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: assignedToGav13
-    boolean assignedToGav13 = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("assignedToGav13"));
+    boolean assignedToGav13 = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("assignedToGav13"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new LogicAssignment(greaterOfOrLogic, reStrikeDelay, assignedToGav16, assignedToGav15, assignedToGav14, assignedToGav13);
@@ -133,14 +134,14 @@ public class LogicAssignment implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("LogicAssignment"));
+    writeBuffer.pushContext(WithOption.WithName("LogicAssignment"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: greaterOfOrLogic
-    FieldWriterFactory.writeSimpleField((boolean) greaterOfOrLogic, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("greaterOfOrLogic"));
+    FieldWriterFactory.writeSimpleField((boolean) greaterOfOrLogic, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("greaterOfOrLogic"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: reStrikeDelay
-    FieldWriterFactory.writeSimpleField((boolean) reStrikeDelay, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("reStrikeDelay"));
+    FieldWriterFactory.writeSimpleField((boolean) reStrikeDelay, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("reStrikeDelay"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldWriterFactory.writeReservedField((boolean) false, DataWriterFactory.writeBoolean(writeBuffer));
@@ -149,16 +150,16 @@ public class LogicAssignment implements Message {
     FieldWriterFactory.writeReservedField((boolean) false, DataWriterFactory.writeBoolean(writeBuffer));
 
     // Simple Field: assignedToGav16
-    FieldWriterFactory.writeSimpleField((boolean) assignedToGav16, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("assignedToGav16"));
+    FieldWriterFactory.writeSimpleField((boolean) assignedToGav16, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("assignedToGav16"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: assignedToGav15
-    FieldWriterFactory.writeSimpleField((boolean) assignedToGav15, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("assignedToGav15"));
+    FieldWriterFactory.writeSimpleField((boolean) assignedToGav15, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("assignedToGav15"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: assignedToGav14
-    FieldWriterFactory.writeSimpleField((boolean) assignedToGav14, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("assignedToGav14"));
+    FieldWriterFactory.writeSimpleField((boolean) assignedToGav14, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("assignedToGav14"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: assignedToGav13
-    FieldWriterFactory.writeSimpleField((boolean) assignedToGav13, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("assignedToGav13"));
+    FieldWriterFactory.writeSimpleField((boolean) assignedToGav13, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("assignedToGav13"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

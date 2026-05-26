@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -72,20 +73,20 @@ public class Confirmation implements Message {
   }
 
   public static Confirmation staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("Confirmation"));
+    readBuffer.pushContext(WithOption.WithName("Confirmation"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: alpha
-    Alpha alpha = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (Alpha) Alpha.staticParse(readBuffer), readBuffer), WithOption.WithName("alpha"));
+    Alpha alpha = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (Alpha) Alpha.staticParse(readBuffer), readBuffer), WithOption.WithName("alpha"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Optional Field: secondAlpha
-    Alpha secondAlpha = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (Alpha) Alpha.staticParse(readBuffer), readBuffer), WithOption.WithName("secondAlpha"));
+    Alpha secondAlpha = FieldReaderFactory.readOptionalField(DataReaderFactory.readComplex(() -> (Alpha) Alpha.staticParse(readBuffer), readBuffer), WithOption.WithName("secondAlpha"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): confirmationType
-    ConfirmationType confirmationType = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ConfirmationType::enumForValue, DataReaderFactory.readByte(readBuffer, 8)), WithOption.WithName("confirmationType"));
+    ConfirmationType confirmationType = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ConfirmationType::enumForValue, DataReaderFactory.readByte(readBuffer, 8)), WithOption.WithName("confirmationType"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: isSuccess (doesn't parse anything, just makes the value available)
-    boolean isSuccess = FieldReaderFactory.readVirtualField(boolean.class, (confirmationType) == (ConfirmationType.CONFIRMATION_SUCCESSFUL), WithOption.WithName("isSuccess"));
+    boolean isSuccess = FieldReaderFactory.readVirtualField(boolean.class, (confirmationType) == (ConfirmationType.CONFIRMATION_SUCCESSFUL), WithOption.WithName("isSuccess"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new Confirmation(alpha, secondAlpha, confirmationType);
@@ -93,19 +94,19 @@ public class Confirmation implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("Confirmation"));
+    writeBuffer.pushContext(WithOption.WithName("Confirmation"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: alpha
-    FieldWriterFactory.writeSimpleField((Alpha) alpha, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("alpha"));
+    FieldWriterFactory.writeSimpleField((Alpha) alpha, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("alpha"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     if(secondAlpha != null) {
       // Optional Field: secondAlpha
-      FieldWriterFactory.writeOptionalField((Alpha) secondAlpha, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("secondAlpha"));
+      FieldWriterFactory.writeOptionalField((Alpha) secondAlpha, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("secondAlpha"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     }
 
     // Simple Field (enum): confirmationType
-    FieldWriterFactory.writeSimpleEnumField((ConfirmationType) confirmationType, DataWriterFactory.writeEnum(ConfirmationType::getValue, ConfirmationType::name, DataWriterFactory.writeByte(writeBuffer, 8)), WithOption.WithName("confirmationType"));
+    FieldWriterFactory.writeSimpleEnumField((ConfirmationType) confirmationType, DataWriterFactory.writeEnum(ConfirmationType::getValue, ConfirmationType::name, DataWriterFactory.writeByte(writeBuffer, 8)), WithOption.WithName("confirmationType"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: isSuccess (doesn't serialize anything, just makes the value available)
     boolean isSuccess = (boolean) getIsSuccess();

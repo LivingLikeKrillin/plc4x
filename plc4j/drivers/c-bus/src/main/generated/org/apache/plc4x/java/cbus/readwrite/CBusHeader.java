@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -76,20 +77,20 @@ public class CBusHeader implements Message {
   }
 
   public static CBusHeader staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("CBusHeader"));
+    readBuffer.pushContext(WithOption.WithName("CBusHeader"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): priorityClass
-    PriorityClass priorityClass = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(PriorityClass::enumForValue, DataReaderFactory.readUnsignedByte(readBuffer, 2)), WithOption.WithName("priorityClass"));
+    PriorityClass priorityClass = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(PriorityClass::enumForValue, DataReaderFactory.readUnsignedByte(readBuffer, 2)), WithOption.WithName("priorityClass"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: dp
-    boolean dp = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("dp"));
+    boolean dp = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("dp"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: rc
-    byte rc = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 2), WithOption.WithName("rc"));
+    byte rc = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 2), WithOption.WithName("rc"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): destinationAddressType
-    DestinationAddressType destinationAddressType = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(DestinationAddressType::enumForValue, DataReaderFactory.readUnsignedByte(readBuffer, 3)), WithOption.WithName("destinationAddressType"));
+    DestinationAddressType destinationAddressType = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(DestinationAddressType::enumForValue, DataReaderFactory.readUnsignedByte(readBuffer, 3)), WithOption.WithName("destinationAddressType"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new CBusHeader(priorityClass, dp, rc, destinationAddressType);
@@ -97,20 +98,20 @@ public class CBusHeader implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CBusHeader"));
+    writeBuffer.pushContext(WithOption.WithName("CBusHeader"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): priorityClass
-    FieldWriterFactory.writeSimpleEnumField((PriorityClass) priorityClass, DataWriterFactory.writeEnum(PriorityClass::getValue, PriorityClass::name, DataWriterFactory.writeUnsignedByte(writeBuffer, 2)), WithOption.WithName("priorityClass"));
+    FieldWriterFactory.writeSimpleEnumField((PriorityClass) priorityClass, DataWriterFactory.writeEnum(PriorityClass::getValue, PriorityClass::name, DataWriterFactory.writeUnsignedByte(writeBuffer, 2)), WithOption.WithName("priorityClass"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: dp
-    FieldWriterFactory.writeSimpleField((boolean) dp, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("dp"));
+    FieldWriterFactory.writeSimpleField((boolean) dp, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("dp"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: rc
-    FieldWriterFactory.writeSimpleField((byte) rc, DataWriterFactory.writeUnsignedByte(writeBuffer, 2), WithOption.WithName("rc"));
+    FieldWriterFactory.writeSimpleField((byte) rc, DataWriterFactory.writeUnsignedByte(writeBuffer, 2), WithOption.WithName("rc"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): destinationAddressType
-    FieldWriterFactory.writeSimpleEnumField((DestinationAddressType) destinationAddressType, DataWriterFactory.writeEnum(DestinationAddressType::getValue, DestinationAddressType::name, DataWriterFactory.writeUnsignedByte(writeBuffer, 3)), WithOption.WithName("destinationAddressType"));
+    FieldWriterFactory.writeSimpleEnumField((DestinationAddressType) destinationAddressType, DataWriterFactory.writeEnum(DestinationAddressType::getValue, DestinationAddressType::name, DataWriterFactory.writeUnsignedByte(writeBuffer, 3)), WithOption.WithName("destinationAddressType"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

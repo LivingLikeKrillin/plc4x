@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -119,32 +120,32 @@ public class IdentifyReplyCommandUnitSummary implements Message {
 
   public static IdentifyReplyCommandUnitSummary staticParse(ReadBuffer readBuffer) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandUnitSummary"));
+    readBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandUnitSummary"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: assertingNetworkBurden
-    boolean assertingNetworkBurden = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("assertingNetworkBurden"));
+    boolean assertingNetworkBurden = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("assertingNetworkBurden"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: restrikeTimingActive
-    boolean restrikeTimingActive = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("restrikeTimingActive"));
+    boolean restrikeTimingActive = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("restrikeTimingActive"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: remoteOFFInputAsserted
-    boolean remoteOFFInputAsserted = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("remoteOFFInputAsserted"));
+    boolean remoteOFFInputAsserted = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("remoteOFFInputAsserted"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: remoteONInputAsserted
-    boolean remoteONInputAsserted = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("remoteONInputAsserted"));
+    boolean remoteONInputAsserted = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("remoteONInputAsserted"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: localToggleEnabled
-    boolean localToggleEnabled = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("localToggleEnabled"));
+    boolean localToggleEnabled = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("localToggleEnabled"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: localToggleActiveState
-    boolean localToggleActiveState = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("localToggleActiveState"));
+    boolean localToggleActiveState = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("localToggleActiveState"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: clockGenerationEnabled
-    boolean clockGenerationEnabled = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("clockGenerationEnabled"));
+    boolean clockGenerationEnabled = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("clockGenerationEnabled"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: unitGeneratingClock
-    boolean unitGeneratingClock = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("unitGeneratingClock"));
+    boolean unitGeneratingClock = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("unitGeneratingClock"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new IdentifyReplyCommandUnitSummary(assertingNetworkBurden, restrikeTimingActive, remoteOFFInputAsserted, remoteONInputAsserted, localToggleEnabled, localToggleActiveState, clockGenerationEnabled, unitGeneratingClock);
@@ -152,32 +153,32 @@ public class IdentifyReplyCommandUnitSummary implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandUnitSummary"));
+    writeBuffer.pushContext(WithOption.WithName("IdentifyReplyCommandUnitSummary"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: assertingNetworkBurden
-    FieldWriterFactory.writeSimpleField((boolean) assertingNetworkBurden, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("assertingNetworkBurden"));
+    FieldWriterFactory.writeSimpleField((boolean) assertingNetworkBurden, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("assertingNetworkBurden"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: restrikeTimingActive
-    FieldWriterFactory.writeSimpleField((boolean) restrikeTimingActive, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("restrikeTimingActive"));
+    FieldWriterFactory.writeSimpleField((boolean) restrikeTimingActive, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("restrikeTimingActive"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: remoteOFFInputAsserted
-    FieldWriterFactory.writeSimpleField((boolean) remoteOFFInputAsserted, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("remoteOFFInputAsserted"));
+    FieldWriterFactory.writeSimpleField((boolean) remoteOFFInputAsserted, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("remoteOFFInputAsserted"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: remoteONInputAsserted
-    FieldWriterFactory.writeSimpleField((boolean) remoteONInputAsserted, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("remoteONInputAsserted"));
+    FieldWriterFactory.writeSimpleField((boolean) remoteONInputAsserted, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("remoteONInputAsserted"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: localToggleEnabled
-    FieldWriterFactory.writeSimpleField((boolean) localToggleEnabled, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("localToggleEnabled"));
+    FieldWriterFactory.writeSimpleField((boolean) localToggleEnabled, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("localToggleEnabled"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: localToggleActiveState
-    FieldWriterFactory.writeSimpleField((boolean) localToggleActiveState, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("localToggleActiveState"));
+    FieldWriterFactory.writeSimpleField((boolean) localToggleActiveState, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("localToggleActiveState"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: clockGenerationEnabled
-    FieldWriterFactory.writeSimpleField((boolean) clockGenerationEnabled, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("clockGenerationEnabled"));
+    FieldWriterFactory.writeSimpleField((boolean) clockGenerationEnabled, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("clockGenerationEnabled"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: unitGeneratingClock
-    FieldWriterFactory.writeSimpleField((boolean) unitGeneratingClock, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("unitGeneratingClock"));
+    FieldWriterFactory.writeSimpleField((boolean) unitGeneratingClock, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("unitGeneratingClock"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

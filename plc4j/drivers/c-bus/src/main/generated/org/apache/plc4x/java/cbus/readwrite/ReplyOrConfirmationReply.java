@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -58,28 +59,28 @@ public class ReplyOrConfirmationReply extends ReplyOrConfirmation implements Mes
   public static ReplyOrConfirmationBuilder staticParseReplyOrConfirmationBuilder(
       ReadBuffer readBuffer, CBusOptions cBusOptions, RequestContext requestContext) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("ReplyOrConfirmationReply"));
+    readBuffer.pushContext(WithOption.WithName("ReplyOrConfirmationReply"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: reply
-    Reply reply = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (Reply) Reply.staticParse(readBuffer, (org.apache.plc4x.java.cbus.readwrite.CBusOptions) (cBusOptions), (org.apache.plc4x.java.cbus.readwrite.RequestContext) (requestContext)), readBuffer), WithOption.WithName("reply"));
+    Reply reply = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (Reply) Reply.staticParse(readBuffer, (org.apache.plc4x.java.cbus.readwrite.CBusOptions) (cBusOptions), (org.apache.plc4x.java.cbus.readwrite.RequestContext) (requestContext)), readBuffer), WithOption.WithName("reply"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: termination
-    ResponseTermination termination = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (ResponseTermination) ResponseTermination.staticParse(readBuffer), readBuffer), WithOption.WithName("termination"));
+    ResponseTermination termination = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (ResponseTermination) ResponseTermination.staticParse(readBuffer), readBuffer), WithOption.WithName("termination"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new ReplyOrConfirmationBuilderImpl(reply, termination);
   }
 
   protected void serializeReplyOrConfirmationChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("ReplyOrConfirmationReply"));
+    writeBuffer.pushContext(WithOption.WithName("ReplyOrConfirmationReply"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: reply
-    FieldWriterFactory.writeSimpleField((Reply) reply, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("reply"));
+    FieldWriterFactory.writeSimpleField((Reply) reply, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("reply"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: termination
-    FieldWriterFactory.writeSimpleField((ResponseTermination) termination, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("termination"));
+    FieldWriterFactory.writeSimpleField((ResponseTermination) termination, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("termination"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

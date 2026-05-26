@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -79,41 +80,41 @@ public class RequestReset extends Request implements Message {
 
   public static RequestBuilder staticParseRequestBuilder(ReadBuffer readBuffer,
       CBusOptions cBusOptions) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("RequestReset"));
+    readBuffer.pushContext(WithOption.WithName("RequestReset"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Peek Field: tildePeek
-    RequestType tildePeek = FieldReaderFactory.readPeekField(DataReaderFactory.readEnum(RequestType::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("tildePeek"));
+    RequestType tildePeek = FieldReaderFactory.readPeekField(DataReaderFactory.readEnum(RequestType::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("tildePeek"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Optional Field (conditional): secondTilde
-    RequestType secondTilde = FieldReaderFactory.readOptionalField(DataReaderFactory.readEnum(RequestType::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), (tildePeek) == (RequestType.RESET), WithOption.WithName("secondTilde"));
+    RequestType secondTilde = FieldReaderFactory.readOptionalField(DataReaderFactory.readEnum(RequestType::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), (tildePeek) == (RequestType.RESET), WithOption.WithName("secondTilde"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Peek Field: tildePeek2
-    RequestType tildePeek2 = FieldReaderFactory.readPeekField(DataReaderFactory.readEnum(RequestType::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("tildePeek2"));
+    RequestType tildePeek2 = FieldReaderFactory.readPeekField(DataReaderFactory.readEnum(RequestType::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("tildePeek2"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Optional Field (conditional): thirdTilde
-    RequestType thirdTilde = FieldReaderFactory.readOptionalField(DataReaderFactory.readEnum(RequestType::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), (tildePeek2) == (RequestType.RESET), WithOption.WithName("thirdTilde"));
+    RequestType thirdTilde = FieldReaderFactory.readOptionalField(DataReaderFactory.readEnum(RequestType::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), (tildePeek2) == (RequestType.RESET), WithOption.WithName("thirdTilde"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new RequestBuilderImpl(tildePeek, secondTilde, tildePeek2, thirdTilde);
   }
 
   protected void serializeRequestChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("RequestReset"));
+    writeBuffer.pushContext(WithOption.WithName("RequestReset"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Peek Field: tildePeek
 
     if(secondTilde != null) {
       // Optional Field (enum): secondTilde
-      FieldWriterFactory.writeOptionalField((short) secondTilde.getValue(), DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("secondTilde"));
+      FieldWriterFactory.writeOptionalField((short) secondTilde.getValue(), DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("secondTilde"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     }
 
     // Peek Field: tildePeek2
 
     if(thirdTilde != null) {
       // Optional Field (enum): thirdTilde
-      FieldWriterFactory.writeOptionalField((short) thirdTilde.getValue(), DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("thirdTilde"));
+      FieldWriterFactory.writeOptionalField((short) thirdTilde.getValue(), DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("thirdTilde"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     }
 
     writeBuffer.popContext();

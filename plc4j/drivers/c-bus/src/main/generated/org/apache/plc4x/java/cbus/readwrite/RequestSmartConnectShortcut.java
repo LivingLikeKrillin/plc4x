@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -68,34 +69,34 @@ public class RequestSmartConnectShortcut extends Request implements Message {
 
   public static RequestBuilder staticParseRequestBuilder(ReadBuffer readBuffer,
       CBusOptions cBusOptions) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("RequestSmartConnectShortcut"));
+    readBuffer.pushContext(WithOption.WithName("RequestSmartConnectShortcut"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Const Field: pipe
-    byte pipe = FieldReaderFactory.readConstField(DataReaderFactory.readByte(readBuffer, 8), PIPE, WithOption.WithName("pipe"));
+    byte pipe = FieldReaderFactory.readConstField(DataReaderFactory.readByte(readBuffer, 8), PIPE, WithOption.WithName("pipe"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Peek Field: pipePeek
-    RequestType pipePeek = FieldReaderFactory.readPeekField(DataReaderFactory.readEnum(RequestType::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("pipePeek"));
+    RequestType pipePeek = FieldReaderFactory.readPeekField(DataReaderFactory.readEnum(RequestType::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("pipePeek"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Optional Field (conditional): secondPipe
-    Byte secondPipe = FieldReaderFactory.readOptionalField(DataReaderFactory.readByte(readBuffer, 8), (pipePeek) == (RequestType.SMART_CONNECT_SHORTCUT), WithOption.WithName("secondPipe"));
+    Byte secondPipe = FieldReaderFactory.readOptionalField(DataReaderFactory.readByte(readBuffer, 8), (pipePeek) == (RequestType.SMART_CONNECT_SHORTCUT), WithOption.WithName("secondPipe"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new RequestBuilderImpl(pipePeek, secondPipe);
   }
 
   protected void serializeRequestChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("RequestSmartConnectShortcut"));
+    writeBuffer.pushContext(WithOption.WithName("RequestSmartConnectShortcut"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Const Field: pipe
-    FieldWriterFactory.writeConstField((byte) PIPE, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("pipe"));
+    FieldWriterFactory.writeConstField((byte) PIPE, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("pipe"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Peek Field: pipePeek
 
     if(secondPipe != null) {
       // Optional Field: secondPipe
-      FieldWriterFactory.writeOptionalField((Byte) secondPipe, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("secondPipe"));
+      FieldWriterFactory.writeOptionalField((Byte) secondPipe, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("secondPipe"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     }
 
     writeBuffer.popContext();

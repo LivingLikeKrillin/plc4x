@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -97,23 +98,23 @@ public abstract class Request implements Message {
 
   public static Request staticParse(ReadBuffer readBuffer, CBusOptions cBusOptions) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("Request"));
+    readBuffer.pushContext(WithOption.WithName("Request"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Peek Field: peekedByte
-    RequestType peekedByte = FieldReaderFactory.readPeekField(DataReaderFactory.readEnum(RequestType::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("peekedByte"));
+    RequestType peekedByte = FieldReaderFactory.readPeekField(DataReaderFactory.readEnum(RequestType::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("peekedByte"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Optional Field (conditional): startingCR
-    RequestType startingCR = FieldReaderFactory.readOptionalField(DataReaderFactory.readEnum(RequestType::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), (peekedByte) == (RequestType.EMPTY), WithOption.WithName("startingCR"));
+    RequestType startingCR = FieldReaderFactory.readOptionalField(DataReaderFactory.readEnum(RequestType::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), (peekedByte) == (RequestType.EMPTY), WithOption.WithName("startingCR"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Optional Field (conditional): resetMode
-    RequestType resetMode = FieldReaderFactory.readOptionalField(DataReaderFactory.readEnum(RequestType::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), (peekedByte) == (RequestType.RESET), WithOption.WithName("resetMode"));
+    RequestType resetMode = FieldReaderFactory.readOptionalField(DataReaderFactory.readEnum(RequestType::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), (peekedByte) == (RequestType.RESET), WithOption.WithName("resetMode"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Peek Field: secondPeek
-    RequestType secondPeek = FieldReaderFactory.readPeekField(DataReaderFactory.readEnum(RequestType::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("secondPeek"));
+    RequestType secondPeek = FieldReaderFactory.readPeekField(DataReaderFactory.readEnum(RequestType::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("secondPeek"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Virtual Field: actualPeek (doesn't parse anything, just makes the value available)
-    RequestType actualPeek = FieldReaderFactory.readVirtualField(RequestType.class, ((((((startingCR) == (null)) && ((resetMode) == (null)))) || (((((startingCR) == (null)) && ((resetMode) != (null))) && ((secondPeek) == (RequestType.EMPTY))))) ? peekedByte : secondPeek), WithOption.WithName("actualPeek"));
+    RequestType actualPeek = FieldReaderFactory.readVirtualField(RequestType.class, ((((((startingCR) == (null)) && ((resetMode) == (null)))) || (((((startingCR) == (null)) && ((resetMode) != (null))) && ((secondPeek) == (RequestType.EMPTY))))) ? peekedByte : secondPeek), WithOption.WithName("actualPeek"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Switch Field
     RequestBuilder builder = null;
@@ -137,7 +138,7 @@ public abstract class Request implements Message {
     }
 
     // Simple Field: termination
-    RequestTermination termination = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (RequestTermination) RequestTermination.staticParse(readBuffer), readBuffer), WithOption.WithName("termination"));
+    RequestTermination termination = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (RequestTermination) RequestTermination.staticParse(readBuffer), readBuffer), WithOption.WithName("termination"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return builder.build(peekedByte, startingCR, resetMode, secondPeek, termination);
@@ -145,19 +146,19 @@ public abstract class Request implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("Request"));
+    writeBuffer.pushContext(WithOption.WithName("Request"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Peek Field: peekedByte
 
     if(startingCR != null) {
       // Optional Field (enum): startingCR
-      FieldWriterFactory.writeOptionalField((short) startingCR.getValue(), DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("startingCR"));
+      FieldWriterFactory.writeOptionalField((short) startingCR.getValue(), DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("startingCR"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     }
 
     if(resetMode != null) {
       // Optional Field (enum): resetMode
-      FieldWriterFactory.writeOptionalField((short) resetMode.getValue(), DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("resetMode"));
+      FieldWriterFactory.writeOptionalField((short) resetMode.getValue(), DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("resetMode"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     }
 
     // Peek Field: secondPeek
@@ -169,7 +170,7 @@ public abstract class Request implements Message {
     serializeRequestChild(writeBuffer);
 
     // Simple Field: termination
-    FieldWriterFactory.writeSimpleField((RequestTermination) termination, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("termination"));
+    FieldWriterFactory.writeSimpleField((RequestTermination) termination, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("termination"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

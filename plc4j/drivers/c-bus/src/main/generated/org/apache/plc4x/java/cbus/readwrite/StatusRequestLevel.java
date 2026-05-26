@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.exceptions.ParseAssertException;
@@ -63,7 +64,7 @@ public class StatusRequestLevel extends StatusRequest implements Message {
 
   public static StatusRequestBuilder staticParseStatusRequestBuilder(ReadBuffer readBuffer) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("StatusRequestLevel"));
+    readBuffer.pushContext(WithOption.WithName("StatusRequestLevel"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Reserved Field
@@ -73,10 +74,10 @@ public class StatusRequestLevel extends StatusRequest implements Message {
     FieldReaderFactory.readReservedField(DataReaderFactory.readByte(readBuffer, 8), (byte) 0x07, WithOption.WithName("StatusRequestLevel.reserved1"));
 
     // Simple Field (enum): application
-    ApplicationIdContainer application = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ApplicationIdContainer::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("application"));
+    ApplicationIdContainer application = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(ApplicationIdContainer::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("application"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: startingGroupAddressLabel
-    byte startingGroupAddressLabel = FieldReaderFactory.readSimpleField(DataReaderFactory.readByte(readBuffer, 8), WithOption.WithName("startingGroupAddressLabel"));
+    byte startingGroupAddressLabel = FieldReaderFactory.readSimpleField(DataReaderFactory.readByte(readBuffer, 8), WithOption.WithName("startingGroupAddressLabel"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Validation Field
     if(!(((((((((startingGroupAddressLabel) == (0x00)) || ((startingGroupAddressLabel) == (0x20))) || ((startingGroupAddressLabel) == (0x40))) || ((startingGroupAddressLabel) == (0x60))) || ((startingGroupAddressLabel) == (0x80))) || ((startingGroupAddressLabel) == (0xA0))) || ((startingGroupAddressLabel) == (0xC0))) || ((startingGroupAddressLabel) == (0xE0)))) {
@@ -88,7 +89,7 @@ public class StatusRequestLevel extends StatusRequest implements Message {
   }
 
   protected void serializeStatusRequestChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("StatusRequestLevel"));
+    writeBuffer.pushContext(WithOption.WithName("StatusRequestLevel"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Reserved Field
@@ -98,10 +99,10 @@ public class StatusRequestLevel extends StatusRequest implements Message {
     FieldWriterFactory.writeReservedField((byte) 0x07, DataWriterFactory.writeByte(writeBuffer, 8));
 
     // Simple Field (enum): application
-    FieldWriterFactory.writeSimpleEnumField((ApplicationIdContainer) application, DataWriterFactory.writeEnum(ApplicationIdContainer::getValue, ApplicationIdContainer::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("application"));
+    FieldWriterFactory.writeSimpleEnumField((ApplicationIdContainer) application, DataWriterFactory.writeEnum(ApplicationIdContainer::getValue, ApplicationIdContainer::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("application"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: startingGroupAddressLabel
-    FieldWriterFactory.writeSimpleField((byte) startingGroupAddressLabel, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("startingGroupAddressLabel"));
+    FieldWriterFactory.writeSimpleField((byte) startingGroupAddressLabel, DataWriterFactory.writeByte(writeBuffer, 8), WithOption.WithName("startingGroupAddressLabel"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Validation Field (Nothing needed here)
 

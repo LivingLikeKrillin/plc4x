@@ -20,7 +20,7 @@ package org.apache.plc4x.java.cbus;
 
 import org.apache.commons.codec.binary.Hex;
 import org.apache.plc4x.java.cbus.readwrite.*;
-import org.apache.plc4x.java.spi.generation.ReadBufferByteBased;
+import org.apache.plc4x.java.spi.buffers.bytebased.ReadBufferByteBased;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;

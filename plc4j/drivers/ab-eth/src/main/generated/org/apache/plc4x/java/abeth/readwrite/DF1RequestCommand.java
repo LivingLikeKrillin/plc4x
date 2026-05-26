@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -44,11 +45,11 @@ public abstract class DF1RequestCommand implements Message {
       BufferException;
 
   public static DF1RequestCommand staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("DF1RequestCommand"));
+    readBuffer.pushContext(WithOption.WithName("DF1RequestCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Discriminator Field: functionCode
-    short functionCode = FieldReaderFactory.readDiscriminatorField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("functionCode"));
+    short functionCode = FieldReaderFactory.readDiscriminatorField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("functionCode"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Switch Field
     DF1RequestCommandBuilder builder = null;
@@ -65,12 +66,12 @@ public abstract class DF1RequestCommand implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("DF1RequestCommand"));
+    writeBuffer.pushContext(WithOption.WithName("DF1RequestCommand"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     short functionCode = (short) getFunctionCode();
     // Discriminator Field: functionCode
-    FieldWriterFactory.writeDiscriminatorField((short) functionCode, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("functionCode"));
+    FieldWriterFactory.writeDiscriminatorField((short) functionCode, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("functionCode"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Switch Field
     serializeDF1RequestCommandChild(writeBuffer);

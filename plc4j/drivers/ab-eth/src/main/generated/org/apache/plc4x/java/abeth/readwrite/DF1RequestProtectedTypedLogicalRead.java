@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -95,46 +96,46 @@ public class DF1RequestProtectedTypedLogicalRead extends DF1RequestCommand imple
 
   public static DF1RequestCommandBuilder staticParseDF1RequestCommandBuilder(ReadBuffer readBuffer)
       throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("DF1RequestProtectedTypedLogicalRead"));
+    readBuffer.pushContext(WithOption.WithName("DF1RequestProtectedTypedLogicalRead"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: byteSize
-    short byteSize = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("byteSize"));
+    short byteSize = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("byteSize"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: fileNumber
-    short fileNumber = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("fileNumber"));
+    short fileNumber = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("fileNumber"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: fileType
-    short fileType = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("fileType"));
+    short fileType = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("fileType"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: elementNumber
-    short elementNumber = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("elementNumber"));
+    short elementNumber = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("elementNumber"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: subElementNumber
-    short subElementNumber = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("subElementNumber"));
+    short subElementNumber = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("subElementNumber"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new DF1RequestCommandBuilderImpl(byteSize, fileNumber, fileType, elementNumber, subElementNumber);
   }
 
   protected void serializeDF1RequestCommandChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("DF1RequestProtectedTypedLogicalRead"));
+    writeBuffer.pushContext(WithOption.WithName("DF1RequestProtectedTypedLogicalRead"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: byteSize
-    FieldWriterFactory.writeSimpleField((short) byteSize, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("byteSize"));
+    FieldWriterFactory.writeSimpleField((short) byteSize, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("byteSize"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: fileNumber
-    FieldWriterFactory.writeSimpleField((short) fileNumber, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("fileNumber"));
+    FieldWriterFactory.writeSimpleField((short) fileNumber, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("fileNumber"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: fileType
-    FieldWriterFactory.writeSimpleField((short) fileType, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("fileType"));
+    FieldWriterFactory.writeSimpleField((short) fileType, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("fileType"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: elementNumber
-    FieldWriterFactory.writeSimpleField((short) elementNumber, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("elementNumber"));
+    FieldWriterFactory.writeSimpleField((short) elementNumber, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("elementNumber"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: subElementNumber
-    FieldWriterFactory.writeSimpleField((short) subElementNumber, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("subElementNumber"));
+    FieldWriterFactory.writeSimpleField((short) subElementNumber, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("subElementNumber"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

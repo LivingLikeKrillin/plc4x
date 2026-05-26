@@ -22,6 +22,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -57,22 +58,22 @@ public class DF1CommandResponseMessageProtectedTypedLogicalRead extends DF1Respo
 
   public static DF1ResponseMessageBuilder staticParseDF1ResponseMessageBuilder(
       ReadBuffer readBuffer, int payloadLength) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("DF1CommandResponseMessageProtectedTypedLogicalRead"));
+    readBuffer.pushContext(WithOption.WithName("DF1CommandResponseMessageProtectedTypedLogicalRead"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Array Field: data
-    List<Short> data = FieldReaderFactory.readLengthArrayField(DataReaderFactory.readUnsignedShort(readBuffer, 8), (payloadLength) - (8), WithOption.WithName("data"));
+    List<Short> data = FieldReaderFactory.readLengthArrayField(DataReaderFactory.readUnsignedShort(readBuffer, 8), (payloadLength) - (8), WithOption.WithName("data"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new DF1ResponseMessageBuilderImpl(data);
   }
 
   protected void serializeDF1ResponseMessageChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("DF1CommandResponseMessageProtectedTypedLogicalRead"));
+    writeBuffer.pushContext(WithOption.WithName("DF1CommandResponseMessageProtectedTypedLogicalRead"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Array Field: data
-    FieldWriterFactory.writeSimpleTypeArrayField(data, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("data"));
+    FieldWriterFactory.writeSimpleTypeArrayField(data, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("data"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("BIG_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }
