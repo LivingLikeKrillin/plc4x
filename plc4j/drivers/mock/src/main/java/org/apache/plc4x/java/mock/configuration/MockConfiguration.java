@@ -16,14 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.java.plc4x.readwrite;
+package org.apache.plc4x.java.mock.configuration;
 
-import org.apache.plc4x.test.parserserializer.ParserSerializerTestsuiteRunner;
+import org.apache.plc4x.java.spi.config.Configuration;
 
-public class Plc4xParserSerializerTest extends ParserSerializerTestsuiteRunner {
-
-    public Plc4xParserSerializerTest() {
-        super("/protocols/plc4x/ParserSerializerTestsuite.xml");
-    }
-
+/** Empty configuration — the mock driver takes a device name on the URL and nothing else. */
+public class MockConfiguration implements Configuration {
 }
