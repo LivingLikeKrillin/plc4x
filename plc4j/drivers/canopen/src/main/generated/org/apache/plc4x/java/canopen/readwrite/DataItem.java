@@ -22,6 +22,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -51,7 +52,7 @@ public class DataItem {
 
   public static PlcValue staticParse(ReadBuffer readBuffer, CANOpenDataType dataType, int size)
       throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("DataItem"));
+    readBuffer.pushContext(WithOption.WithName("DataItem"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     try {
       if (EvaluationHelper.equals(dataType, CANOpenDataType.BOOLEAN)) {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,7 +60,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        boolean value = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("value"));
+        boolean value = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcBOOL(value);
       } else if (EvaluationHelper.equals(dataType, CANOpenDataType.UNSIGNED8)) {
@@ -68,7 +69,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        short value = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("value"));
+        short value = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcUSINT(value);
       } else if (EvaluationHelper.equals(dataType, CANOpenDataType.UNSIGNED16)) {
@@ -77,7 +78,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        int value = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("value"));
+        int value = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedInt(readBuffer, 16), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcUINT(value);
       } else if (EvaluationHelper.equals(dataType, CANOpenDataType.UNSIGNED24)) {
@@ -86,7 +87,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        int value = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedInt(readBuffer, 24), WithOption.WithName("value"));
+        int value = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedInt(readBuffer, 24), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcUDINT(value);
       } else if (EvaluationHelper.equals(dataType, CANOpenDataType.UNSIGNED32)) {
@@ -95,7 +96,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        long value = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 32), WithOption.WithName("value"));
+        long value = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 32), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcUDINT(value);
       } else if (EvaluationHelper.equals(dataType, CANOpenDataType.UNSIGNED40)) {
@@ -104,7 +105,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        long value = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 40), WithOption.WithName("value"));
+        long value = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 40), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcULINT(value);
       } else if (EvaluationHelper.equals(dataType, CANOpenDataType.UNSIGNED48)) {
@@ -113,7 +114,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        long value = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 48), WithOption.WithName("value"));
+        long value = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 48), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcULINT(value);
       } else if (EvaluationHelper.equals(dataType, CANOpenDataType.UNSIGNED56)) {
@@ -122,7 +123,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        long value = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 56), WithOption.WithName("value"));
+        long value = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 56), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcULINT(value);
       } else if (EvaluationHelper.equals(dataType, CANOpenDataType.UNSIGNED64)) {
@@ -131,7 +132,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        BigInteger value = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedBigInteger(readBuffer, 64), WithOption.WithName("value"));
+        BigInteger value = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedBigInteger(readBuffer, 64), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcULINT(value);
       } else if (EvaluationHelper.equals(dataType, CANOpenDataType.INTEGER8)) {
@@ -140,7 +141,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        byte value = FieldReaderFactory.readSimpleField(DataReaderFactory.readSignedByte(readBuffer, 8), WithOption.WithName("value"));
+        byte value = FieldReaderFactory.readSimpleField(DataReaderFactory.readSignedByte(readBuffer, 8), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcSINT(value);
       } else if (EvaluationHelper.equals(dataType, CANOpenDataType.INTEGER16)) {
@@ -149,7 +150,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        short value = FieldReaderFactory.readSimpleField(DataReaderFactory.readSignedShort(readBuffer, 16), WithOption.WithName("value"));
+        short value = FieldReaderFactory.readSimpleField(DataReaderFactory.readSignedShort(readBuffer, 16), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcINT(value);
       } else if (EvaluationHelper.equals(dataType, CANOpenDataType.INTEGER24)) {
@@ -158,7 +159,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        int value = FieldReaderFactory.readSimpleField(DataReaderFactory.readSignedInt(readBuffer, 24), WithOption.WithName("value"));
+        int value = FieldReaderFactory.readSimpleField(DataReaderFactory.readSignedInt(readBuffer, 24), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcDINT(value);
       } else if (EvaluationHelper.equals(dataType, CANOpenDataType.INTEGER32)) {
@@ -167,7 +168,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        int value = FieldReaderFactory.readSimpleField(DataReaderFactory.readSignedInt(readBuffer, 32), WithOption.WithName("value"));
+        int value = FieldReaderFactory.readSimpleField(DataReaderFactory.readSignedInt(readBuffer, 32), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcDINT(value);
       } else if (EvaluationHelper.equals(dataType, CANOpenDataType.INTEGER40)) {
@@ -176,7 +177,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        long value = FieldReaderFactory.readSimpleField(DataReaderFactory.readSignedLong(readBuffer, 40), WithOption.WithName("value"));
+        long value = FieldReaderFactory.readSimpleField(DataReaderFactory.readSignedLong(readBuffer, 40), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcLINT(value);
       } else if (EvaluationHelper.equals(dataType, CANOpenDataType.INTEGER48)) {
@@ -185,7 +186,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        long value = FieldReaderFactory.readSimpleField(DataReaderFactory.readSignedLong(readBuffer, 48), WithOption.WithName("value"));
+        long value = FieldReaderFactory.readSimpleField(DataReaderFactory.readSignedLong(readBuffer, 48), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcLINT(value);
       } else if (EvaluationHelper.equals(dataType, CANOpenDataType.INTEGER56)) {
@@ -194,7 +195,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        long value = FieldReaderFactory.readSimpleField(DataReaderFactory.readSignedLong(readBuffer, 56), WithOption.WithName("value"));
+        long value = FieldReaderFactory.readSimpleField(DataReaderFactory.readSignedLong(readBuffer, 56), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcLINT(value);
       } else if (EvaluationHelper.equals(dataType, CANOpenDataType.INTEGER64)) {
@@ -203,7 +204,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        long value = FieldReaderFactory.readSimpleField(DataReaderFactory.readSignedLong(readBuffer, 64), WithOption.WithName("value"));
+        long value = FieldReaderFactory.readSimpleField(DataReaderFactory.readSignedLong(readBuffer, 64), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcLINT(value);
       } else if (EvaluationHelper.equals(dataType, CANOpenDataType.REAL32)) {
@@ -212,7 +213,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        float value = FieldReaderFactory.readSimpleField(DataReaderFactory.readFloat(readBuffer, 32), WithOption.WithName("value"));
+        float value = FieldReaderFactory.readSimpleField(DataReaderFactory.readFloat(readBuffer, 32), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcREAL(value);
       } else if (EvaluationHelper.equals(dataType, CANOpenDataType.REAL64)) {
@@ -221,7 +222,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        double value = FieldReaderFactory.readSimpleField(DataReaderFactory.readDouble(readBuffer, 64), WithOption.WithName("value"));
+        double value = FieldReaderFactory.readSimpleField(DataReaderFactory.readDouble(readBuffer, 64), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcLREAL(value);
       } else if (EvaluationHelper.equals(dataType, CANOpenDataType.RECORD)) {
@@ -230,7 +231,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Array Field: value
-        byte[] value = readBuffer.readBits(Math.toIntExact((size) * 8), WithOption.WithName("value"));
+        byte[] value = readBuffer.readBits(Math.toIntExact((size) * 8), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcRawByteArray(value);
       } else if (EvaluationHelper.equals(dataType, CANOpenDataType.OCTET_STRING)) {
@@ -239,7 +240,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        String value = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, size), WithOption.WithName("value"));
+        String value = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, size), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcSTRING(value);
       } else if (EvaluationHelper.equals(dataType, CANOpenDataType.VISIBLE_STRING)) {
@@ -248,7 +249,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        String value = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, size), WithOption.WithName("value"));
+        String value = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, size), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcSTRING(value);
       } else if (EvaluationHelper.equals(dataType, CANOpenDataType.UNICODE_STRING)) {
@@ -257,7 +258,7 @@ public class DataItem {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Simple Field: value
-        String value = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, (size) / (8)), WithOption.WithName("value"));
+        String value = FieldReaderFactory.readSimpleField(DataReaderFactory.readString(readBuffer, (size) / (8)), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
         return new PlcSTRING(value);
       }
@@ -269,145 +270,145 @@ public class DataItem {
 
   public static void staticSerialize(WriteBuffer writeBuffer, PlcValue _value,
       CANOpenDataType dataType, int size) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("DataItem"));
+    writeBuffer.pushContext(WithOption.WithName("DataItem"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     if (EvaluationHelper.equals(dataType, CANOpenDataType.BOOLEAN)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // BOOL
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((boolean) _value.getBoolean(), DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("value"));
+      FieldWriterFactory.writeSimpleField((boolean) _value.getBoolean(), DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, CANOpenDataType.UNSIGNED8)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // USINT
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((short) _value.getShort(), DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("value"));
+      FieldWriterFactory.writeSimpleField((short) _value.getShort(), DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, CANOpenDataType.UNSIGNED16)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // UINT
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((int) _value.getInteger(), DataWriterFactory.writeUnsignedInt(writeBuffer, 16), WithOption.WithName("value"));
+      FieldWriterFactory.writeSimpleField((int) _value.getInteger(), DataWriterFactory.writeUnsignedInt(writeBuffer, 16), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, CANOpenDataType.UNSIGNED24)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // UDINT
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((int) _value.getInteger(), DataWriterFactory.writeUnsignedInt(writeBuffer, 24), WithOption.WithName("value"));
+      FieldWriterFactory.writeSimpleField((int) _value.getInteger(), DataWriterFactory.writeUnsignedInt(writeBuffer, 24), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, CANOpenDataType.UNSIGNED32)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // UDINT
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((long) _value.getLong(), DataWriterFactory.writeUnsignedLong(writeBuffer, 32), WithOption.WithName("value"));
+      FieldWriterFactory.writeSimpleField((long) _value.getLong(), DataWriterFactory.writeUnsignedLong(writeBuffer, 32), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, CANOpenDataType.UNSIGNED40)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // ULINT
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((long) _value.getLong(), DataWriterFactory.writeUnsignedLong(writeBuffer, 40), WithOption.WithName("value"));
+      FieldWriterFactory.writeSimpleField((long) _value.getLong(), DataWriterFactory.writeUnsignedLong(writeBuffer, 40), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, CANOpenDataType.UNSIGNED48)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // ULINT
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((long) _value.getLong(), DataWriterFactory.writeUnsignedLong(writeBuffer, 48), WithOption.WithName("value"));
+      FieldWriterFactory.writeSimpleField((long) _value.getLong(), DataWriterFactory.writeUnsignedLong(writeBuffer, 48), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, CANOpenDataType.UNSIGNED56)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // ULINT
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((long) _value.getLong(), DataWriterFactory.writeUnsignedLong(writeBuffer, 56), WithOption.WithName("value"));
+      FieldWriterFactory.writeSimpleField((long) _value.getLong(), DataWriterFactory.writeUnsignedLong(writeBuffer, 56), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, CANOpenDataType.UNSIGNED64)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // ULINT
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((BigInteger) _value.getBigInteger(), DataWriterFactory.writeUnsignedBigInteger(writeBuffer, 64), WithOption.WithName("value"));
+      FieldWriterFactory.writeSimpleField((BigInteger) _value.getBigInteger(), DataWriterFactory.writeUnsignedBigInteger(writeBuffer, 64), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, CANOpenDataType.INTEGER8)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // SINT
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((byte) _value.getByte(), DataWriterFactory.writeSignedByte(writeBuffer, 8), WithOption.WithName("value"));
+      FieldWriterFactory.writeSimpleField((byte) _value.getByte(), DataWriterFactory.writeSignedByte(writeBuffer, 8), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, CANOpenDataType.INTEGER16)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // INT
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((short) _value.getShort(), DataWriterFactory.writeSignedShort(writeBuffer, 16), WithOption.WithName("value"));
+      FieldWriterFactory.writeSimpleField((short) _value.getShort(), DataWriterFactory.writeSignedShort(writeBuffer, 16), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, CANOpenDataType.INTEGER24)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // DINT
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((int) _value.getInteger(), DataWriterFactory.writeSignedInt(writeBuffer, 24), WithOption.WithName("value"));
+      FieldWriterFactory.writeSimpleField((int) _value.getInteger(), DataWriterFactory.writeSignedInt(writeBuffer, 24), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, CANOpenDataType.INTEGER32)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // DINT
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((int) _value.getInteger(), DataWriterFactory.writeSignedInt(writeBuffer, 32), WithOption.WithName("value"));
+      FieldWriterFactory.writeSimpleField((int) _value.getInteger(), DataWriterFactory.writeSignedInt(writeBuffer, 32), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, CANOpenDataType.INTEGER40)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // LINT
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((long) _value.getLong(), DataWriterFactory.writeSignedLong(writeBuffer, 40), WithOption.WithName("value"));
+      FieldWriterFactory.writeSimpleField((long) _value.getLong(), DataWriterFactory.writeSignedLong(writeBuffer, 40), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, CANOpenDataType.INTEGER48)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // LINT
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((long) _value.getLong(), DataWriterFactory.writeSignedLong(writeBuffer, 48), WithOption.WithName("value"));
+      FieldWriterFactory.writeSimpleField((long) _value.getLong(), DataWriterFactory.writeSignedLong(writeBuffer, 48), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, CANOpenDataType.INTEGER56)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // LINT
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((long) _value.getLong(), DataWriterFactory.writeSignedLong(writeBuffer, 56), WithOption.WithName("value"));
+      FieldWriterFactory.writeSimpleField((long) _value.getLong(), DataWriterFactory.writeSignedLong(writeBuffer, 56), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, CANOpenDataType.INTEGER64)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // LINT
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((long) _value.getLong(), DataWriterFactory.writeSignedLong(writeBuffer, 64), WithOption.WithName("value"));
+      FieldWriterFactory.writeSimpleField((long) _value.getLong(), DataWriterFactory.writeSignedLong(writeBuffer, 64), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, CANOpenDataType.REAL32)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // REAL
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((float) _value.getFloat(), DataWriterFactory.writeFloat(writeBuffer, 32), WithOption.WithName("value"));
+      FieldWriterFactory.writeSimpleField((float) _value.getFloat(), DataWriterFactory.writeFloat(writeBuffer, 32), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, CANOpenDataType.REAL64)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // LREAL
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((double) _value.getDouble(), DataWriterFactory.writeDouble(writeBuffer, 64), WithOption.WithName("value"));
+      FieldWriterFactory.writeSimpleField((double) _value.getDouble(), DataWriterFactory.writeDouble(writeBuffer, 64), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, CANOpenDataType.RECORD)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // List
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Array Field: value
-      FieldWriterFactory.writeByteArrayField(_value.getRaw(), DataWriterFactory.writeByteArray(writeBuffer, (int) ((_value.getRaw() != null) ? _value.getRaw().length : 0)), WithOption.WithName("value"));
+      FieldWriterFactory.writeByteArrayField(_value.getRaw(), DataWriterFactory.writeByteArray(writeBuffer, (int) ((_value.getRaw() != null) ? _value.getRaw().length : 0)), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, CANOpenDataType.OCTET_STRING)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // STRING
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((String) _value.getString(), DataWriterFactory.writeString(writeBuffer, size), WithOption.WithName("value"));
+      FieldWriterFactory.writeSimpleField((String) _value.getString(), DataWriterFactory.writeString(writeBuffer, size), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, CANOpenDataType.VISIBLE_STRING)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // STRING
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((String) _value.getString(), DataWriterFactory.writeString(writeBuffer, size), WithOption.WithName("value"));
+      FieldWriterFactory.writeSimpleField((String) _value.getString(), DataWriterFactory.writeString(writeBuffer, size), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     } else if (EvaluationHelper.equals(dataType, CANOpenDataType.UNICODE_STRING)) {
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // STRING
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Simple Field: value
-      FieldWriterFactory.writeSimpleField((String) _value.getString(), DataWriterFactory.writeString(writeBuffer, (size) / (8)), WithOption.WithName("value"));
+      FieldWriterFactory.writeSimpleField((String) _value.getString(), DataWriterFactory.writeString(writeBuffer, (size) / (8)), WithOption.WithName("value"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     }
   }
 

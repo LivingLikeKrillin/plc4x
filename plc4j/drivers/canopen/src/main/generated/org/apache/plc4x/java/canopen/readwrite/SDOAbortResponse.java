@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -54,22 +55,22 @@ public class SDOAbortResponse extends SDOResponse implements Message {
 
   public static SDOResponseBuilder staticParseSDOResponseBuilder(ReadBuffer readBuffer,
       SDOResponseCommand command) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("SDOAbortResponse"));
+    readBuffer.pushContext(WithOption.WithName("SDOAbortResponse"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: abort
-    SDOAbort abort = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (SDOAbort) SDOAbort.staticParse(readBuffer), readBuffer), WithOption.WithName("abort"));
+    SDOAbort abort = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (SDOAbort) SDOAbort.staticParse(readBuffer), readBuffer), WithOption.WithName("abort"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new SDOResponseBuilderImpl(abort);
   }
 
   protected void serializeSDOResponseChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("SDOAbortResponse"));
+    writeBuffer.pushContext(WithOption.WithName("SDOAbortResponse"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: abort
-    FieldWriterFactory.writeSimpleField((SDOAbort) abort, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("abort"));
+    FieldWriterFactory.writeSimpleField((SDOAbort) abort, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("abort"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

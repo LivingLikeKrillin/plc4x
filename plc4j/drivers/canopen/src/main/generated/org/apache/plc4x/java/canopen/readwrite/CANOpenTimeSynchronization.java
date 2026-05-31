@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -54,22 +55,22 @@ public class CANOpenTimeSynchronization extends CANOpenPayload implements Messag
 
   public static CANOpenPayloadBuilder staticParseCANOpenPayloadBuilder(ReadBuffer readBuffer,
       CANOpenService service) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("CANOpenTimeSynchronization"));
+    readBuffer.pushContext(WithOption.WithName("CANOpenTimeSynchronization"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: timeOfDay
-    CANOpenTime timeOfDay = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (CANOpenTime) CANOpenTime.staticParse(readBuffer), readBuffer), WithOption.WithName("timeOfDay"));
+    CANOpenTime timeOfDay = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (CANOpenTime) CANOpenTime.staticParse(readBuffer), readBuffer), WithOption.WithName("timeOfDay"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new CANOpenPayloadBuilderImpl(timeOfDay);
   }
 
   protected void serializeCANOpenPayloadChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CANOpenTimeSynchronization"));
+    writeBuffer.pushContext(WithOption.WithName("CANOpenTimeSynchronization"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: timeOfDay
-    FieldWriterFactory.writeSimpleField((CANOpenTime) timeOfDay, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("timeOfDay"));
+    FieldWriterFactory.writeSimpleField((CANOpenTime) timeOfDay, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("timeOfDay"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

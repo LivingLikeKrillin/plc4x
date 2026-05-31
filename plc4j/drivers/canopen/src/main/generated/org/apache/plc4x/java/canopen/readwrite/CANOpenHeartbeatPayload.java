@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -54,22 +55,22 @@ public class CANOpenHeartbeatPayload extends CANOpenPayload implements Message {
 
   public static CANOpenPayloadBuilder staticParseCANOpenPayloadBuilder(ReadBuffer readBuffer,
       CANOpenService service) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("CANOpenHeartbeatPayload"));
+    readBuffer.pushContext(WithOption.WithName("CANOpenHeartbeatPayload"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): state
-    NMTState state = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(NMTState::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("state"));
+    NMTState state = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(NMTState::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("state"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new CANOpenPayloadBuilderImpl(state);
   }
 
   protected void serializeCANOpenPayloadChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CANOpenHeartbeatPayload"));
+    writeBuffer.pushContext(WithOption.WithName("CANOpenHeartbeatPayload"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): state
-    FieldWriterFactory.writeSimpleEnumField((NMTState) state, DataWriterFactory.writeEnum(NMTState::getValue, NMTState::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("state"));
+    FieldWriterFactory.writeSimpleEnumField((NMTState) state, DataWriterFactory.writeEnum(NMTState::getValue, NMTState::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("state"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

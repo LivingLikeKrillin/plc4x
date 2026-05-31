@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -55,17 +56,17 @@ public class SDOAbort implements Message {
   }
 
   public static SDOAbort staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("SDOAbort"));
+    readBuffer.pushContext(WithOption.WithName("SDOAbort"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Reserved Field
     FieldReaderFactory.readReservedField(DataReaderFactory.readUnsignedByte(readBuffer, 5), (byte) 0x00, WithOption.WithName("SDOAbort.reserved0"));
 
     // Simple Field: address
-    IndexAddress address = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (IndexAddress) IndexAddress.staticParse(readBuffer), readBuffer), WithOption.WithName("address"));
+    IndexAddress address = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (IndexAddress) IndexAddress.staticParse(readBuffer), readBuffer), WithOption.WithName("address"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: code
-    long code = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 32), WithOption.WithName("code"));
+    long code = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 32), WithOption.WithName("code"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new SDOAbort(address, code);
@@ -73,17 +74,17 @@ public class SDOAbort implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("SDOAbort"));
+    writeBuffer.pushContext(WithOption.WithName("SDOAbort"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Reserved Field
     FieldWriterFactory.writeReservedField((byte) 0x00, DataWriterFactory.writeUnsignedByte(writeBuffer, 5));
 
     // Simple Field: address
-    FieldWriterFactory.writeSimpleField((IndexAddress) address, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("address"));
+    FieldWriterFactory.writeSimpleField((IndexAddress) address, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("address"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: code
-    FieldWriterFactory.writeSimpleField((long) code, DataWriterFactory.writeUnsignedLong(writeBuffer, 32), WithOption.WithName("code"));
+    FieldWriterFactory.writeSimpleField((long) code, DataWriterFactory.writeUnsignedLong(writeBuffer, 32), WithOption.WithName("code"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

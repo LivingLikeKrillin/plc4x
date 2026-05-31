@@ -27,12 +27,26 @@ import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
 import org.apache.plc4x.java.spi.buffers.bytebased.ReadBufferByteBased;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.buffers.bytebased.WriteBufferByteBased;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 public class StaticHelper {
+
+    /**
+     * Full set of buffer options the C-Bus binary encoding relies on. Just the
+     * byte-order isn't enough — the typed field writers/readers query the buffer
+     * for the integer/float/string encodings too, and fail without them.
+     */
+    public static final WithOption[] OPTIONS = {
+        WithByteBasedOption.WithByteOrder("BIG_ENDIAN"),
+        WithOption.WithUnsignedIntegerEncoding("unsigned-binary"),
+        WithOption.WithSignedIntegerEncoding("twos-complement"),
+        WithOption.WithFloatEncoding("IEEE754"),
+        WithOption.WithStringEncoding("UTF8")
+    };
 
     public static Checksum readAndValidateChecksum(ReadBuffer readBuffer, Message message, boolean srchk) throws BufferException {
         if (!srchk) {
@@ -56,7 +70,7 @@ public class StaticHelper {
 
     private static byte getChecksum(Message message) throws BufferException {
         byte checksum = 0x0;
-        WriteBufferByteBased checksumWriteBuffer = new WriteBufferByteBased(new byte[message.getLengthInBytes()]);
+        WriteBufferByteBased checksumWriteBuffer = new WriteBufferByteBased(new byte[message.getLengthInBytes()], OPTIONS);
         message.serialize(checksumWriteBuffer);
         for (byte aByte : checksumWriteBuffer.getBytes()) {
             checksum += aByte;
@@ -72,7 +86,7 @@ public class StaticHelper {
 
     public static CBusCommand readCBusCommand(ReadBuffer readBuffer, CBusOptions cBusOptions, boolean srchk) throws BufferException {
         byte[] rawBytes = readBytesFromHex("cbusCommand", readBuffer, srchk);
-        return CBusCommand.staticParse(new ReadBufferByteBased(rawBytes), cBusOptions);
+        return CBusCommand.staticParse(new ReadBufferByteBased(rawBytes, OPTIONS), cBusOptions);
     }
 
     public static void writeEncodedReply(WriteBuffer writeBuffer, EncodedReply encodedReply) throws BufferException {
@@ -81,7 +95,7 @@ public class StaticHelper {
 
     public static EncodedReply readEncodedReply(ReadBuffer readBuffer, CBusOptions cBusOptions, RequestContext requestContext, boolean srchk) throws BufferException {
         byte[] rawBytes = readBytesFromHex("encodedReply", readBuffer, srchk);
-        return EncodedReply.staticParse(new ReadBufferByteBased(rawBytes), cBusOptions, requestContext);
+        return EncodedReply.staticParse(new ReadBufferByteBased(rawBytes, OPTIONS), cBusOptions, requestContext);
     }
 
     public static void writeCALData(WriteBuffer writeBuffer, CALData calData) throws BufferException {
@@ -90,7 +104,7 @@ public class StaticHelper {
 
     public static CALData readCALData(ReadBuffer readBuffer) throws BufferException {
         byte[] rawBytes = readBytesFromHex("calData", readBuffer, false);
-        return CALData.staticParse(new ReadBufferByteBased(rawBytes), (RequestContext) null);
+        return CALData.staticParse(new ReadBufferByteBased(rawBytes, OPTIONS), (RequestContext) null);
     }
 
     private static byte[] readBytesFromHex(String logicalName, ReadBuffer readBuffer, boolean srchk) throws BufferException {
@@ -146,8 +160,11 @@ public class StaticHelper {
     }
 
     private static void writeToHex(String logicalName, WriteBuffer writeBuffer, Message message) throws BufferException {
-        // TODO: maybe we use a writeBuffer hex based
-        WriteBufferByteBased payloadWriteBuffer = new WriteBufferByteBased(new byte[message.getLengthInBytes() * 2]);
+        // Size the staging buffer to the message's actual byte length — not 2x.
+        // getBytes() returns the whole backing array (including any unused tail),
+        // and hex-encoding doubles that, so 2x sizing leads to a 4x overrun on
+        // the outer writeBuffer.
+        WriteBufferByteBased payloadWriteBuffer = new WriteBufferByteBased(new byte[message.getLengthInBytes()], OPTIONS);
         message.serialize(payloadWriteBuffer);
         writeToHex(logicalName, writeBuffer, payloadWriteBuffer.getBytes());
     }

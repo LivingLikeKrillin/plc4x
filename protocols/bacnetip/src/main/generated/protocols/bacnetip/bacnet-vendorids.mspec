@@ -1634,6 +1634,10 @@
   ['1621' ES_OTOMASYON_SAN_TIC_LTD_STI ['1621', '"3ES Otomasyon San. Tic. Ltd. Sti."']]
   ['1622' NETWORK_CORPORATION ['1622', '"Network Corporation"']]
   ['1623' VEAWE_INFO_DYNAMICS_PRIVATE_LIMITED ['1623', '"Veawe Info Dynamics Private Limited"']]
+  ['1624' VISUAL_SOLUTIONSUK_LTD ['1624', '"Visual Solutions UK Ltd"']]
+  ['1625' NICOR_LIGHTING ['1625', '"NICOR Lighting"']]
+  ['1626' EME_AUTOMATION ['1626', '"EME Automation"']]
+  ['1627' CONTROL_COM_TECHNOLOGIESLLC ['1627', '"ControlCom Technologies, LLC"']]
  
   ['0xFFFF' UNKNOWN_VENDOR ['0xFFFF', '"Unknown"']]
 ]

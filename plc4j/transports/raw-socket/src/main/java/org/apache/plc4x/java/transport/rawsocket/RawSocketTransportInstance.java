@@ -334,9 +334,16 @@ public class RawSocketTransportInstance extends BaseTransportInstance<RawSocketT
     }
 
     /**
-     * Extracts the payload from an Ethernet packet.
+     * Extracts the bytes we hand to the driver. In default mode this is the
+     * Ethernet payload (the driver speaks an upper-layer protocol). With
+     * {@code includeEthernetHeader} true (L2 protocols like PROFINET) we
+     * return the full frame so the driver can inspect MAC addresses and the
+     * EtherType itself.
      */
     private byte[] extractPayload(EthernetPacket ethPacket) {
+        if (getConfiguration().includeEthernetHeader) {
+            return ethPacket.getRawData();
+        }
         Packet payload = ethPacket.getPayload();
         if (payload != null) {
             return payload.getRawData();
@@ -347,6 +354,36 @@ public class RawSocketTransportInstance extends BaseTransportInstance<RawSocketT
     @Override
     public boolean isOpen() {
         return open && handle.isOpen();
+    }
+
+    /**
+     * Local MAC address of the interface this transport is bound to.
+     * Needed by L2 protocols like PROFINET that build Ethernet frames manually.
+     */
+    public byte[] getLocalMacAddress() {
+        return localMac.getAddress();
+    }
+
+    /**
+     * Remote MAC address this transport is configured to communicate with.
+     * Needed by L2 protocols like PROFINET that build Ethernet frames manually.
+     */
+    public byte[] getRemoteMacAddress() {
+        return remoteMac.getAddress();
+    }
+
+    /**
+     * Local IPv4 address of the interface this transport is bound to, if available.
+     * Returns {@code null} when the interface has no IPv4 address (for example a
+     * pure L2 raw-socket interface).
+     */
+    public byte[] getLocalIpAddress() {
+        for (org.pcap4j.core.PcapAddress address : networkInterface.getAddresses()) {
+            if (address instanceof org.pcap4j.core.PcapIpV4Address && address.getAddress() != null) {
+                return address.getAddress().getAddress();
+            }
+        }
+        return null;
     }
 
     @Override
@@ -447,6 +484,22 @@ public class RawSocketTransportInstance extends BaseTransportInstance<RawSocketT
         writeLock.lock();
         try {
             ensureOpen();
+
+            // L2 mode: the driver hands us a fully-formed Ethernet frame; send
+            // it as-is without re-wrapping.
+            if (getConfiguration().includeEthernetHeader) {
+                try {
+                    Packet rawPacket = EthernetPacket.newPacket(bytes, 0, bytes.length);
+                    handle.sendPacket(rawPacket);
+                } catch (org.pcap4j.packet.IllegalRawDataException e) {
+                    throw new TransportException("Failed to parse outgoing Ethernet frame", e);
+                }
+                if (getAuditLog().isEnabled()) {
+                    getAuditLog().write(AuditLogEventType.OUTGOING_BYTES,
+                        "Write (raw L2): " + StaticHelper.ENCODE_HEX(bytes));
+                }
+                return;
+            }
 
             // Build Ethernet frame
             EthernetPacket.Builder ethBuilder = new EthernetPacket.Builder()

@@ -70,6 +70,42 @@
         </executions>
       </plugin>
       <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>report</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+            <configuration>
+              <excludes combine.children="append">
+                <!-- I/O-heavy driver-shell classes; require integration tests rather than unit tests. -->
+                <exclude>org/apache/plc4x/java/cbus/CBusConnection.class</exclude>
+                <exclude>org/apache/plc4x/java/cbus/CBusMessageCodec.class</exclude>
+                <exclude>org/apache/plc4x/java/cbus/CBusDriver.class</exclude>
+              </excludes>
+            </configuration>
+          </execution>
+          <execution>
+            <id>check-coverage</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <excludes combine.children="append">
+                <!-- See report execution above for rationale. -->
+                <exclude>org/apache/plc4x/java/cbus/CBusConnection.class</exclude>
+                <exclude>org/apache/plc4x/java/cbus/CBusMessageCodec.class</exclude>
+                <exclude>org/apache/plc4x/java/cbus/CBusDriver.class</exclude>
+              </excludes>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
         <extensions>true</extensions>
@@ -131,6 +167,8 @@
       <groupId>org.apache.plc4x</groupId>
       <artifactId>plc4j-spi-utils</artifactId>
       <version>0.14.0-SNAPSHOT</version>
+      <!-- Pulled in transitively at runtime via plc4j-spi-fields/plc4j-spi-drivers; no compile-time references in this driver. -->
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.plc4x</groupId>

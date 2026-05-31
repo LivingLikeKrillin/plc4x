@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -64,28 +65,28 @@ public class CANOpenSDOResponse extends CANOpenPayload implements Message {
 
   public static CANOpenPayloadBuilder staticParseCANOpenPayloadBuilder(ReadBuffer readBuffer,
       CANOpenService service) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("CANOpenSDOResponse"));
+    readBuffer.pushContext(WithOption.WithName("CANOpenSDOResponse"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): command
-    SDOResponseCommand command = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(SDOResponseCommand::enumForValue, DataReaderFactory.readUnsignedByte(readBuffer, 3)), WithOption.WithName("command"));
+    SDOResponseCommand command = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(SDOResponseCommand::enumForValue, DataReaderFactory.readUnsignedByte(readBuffer, 3)), WithOption.WithName("command"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: response
-    SDOResponse response = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (SDOResponse) SDOResponse.staticParse(readBuffer, (org.apache.plc4x.java.canopen.readwrite.SDOResponseCommand) (command)), readBuffer), WithOption.WithName("response"));
+    SDOResponse response = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (SDOResponse) SDOResponse.staticParse(readBuffer, (org.apache.plc4x.java.canopen.readwrite.SDOResponseCommand) (command)), readBuffer), WithOption.WithName("response"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new CANOpenPayloadBuilderImpl(command, response);
   }
 
   protected void serializeCANOpenPayloadChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CANOpenSDOResponse"));
+    writeBuffer.pushContext(WithOption.WithName("CANOpenSDOResponse"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): command
-    FieldWriterFactory.writeSimpleEnumField((SDOResponseCommand) command, DataWriterFactory.writeEnum(SDOResponseCommand::getValue, SDOResponseCommand::name, DataWriterFactory.writeUnsignedByte(writeBuffer, 3)), WithOption.WithName("command"));
+    FieldWriterFactory.writeSimpleEnumField((SDOResponseCommand) command, DataWriterFactory.writeEnum(SDOResponseCommand::getValue, SDOResponseCommand::name, DataWriterFactory.writeUnsignedByte(writeBuffer, 3)), WithOption.WithName("command"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: response
-    FieldWriterFactory.writeSimpleField((SDOResponse) response, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("response"));
+    FieldWriterFactory.writeSimpleField((SDOResponse) response, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("response"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -63,11 +64,11 @@ public class SDOInitiateSegmentedUploadResponse extends SDOInitiateUploadRespons
   public static SDOInitiateUploadResponsePayloadBuilder staticParseSDOInitiateUploadResponsePayloadBuilder(
       ReadBuffer readBuffer, boolean expedited, boolean indicated, byte size) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("SDOInitiateSegmentedUploadResponse"));
+    readBuffer.pushContext(WithOption.WithName("SDOInitiateSegmentedUploadResponse"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: bytes
-    long bytes = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 32), WithOption.WithName("bytes"));
+    long bytes = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedLong(readBuffer, 32), WithOption.WithName("bytes"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new SDOInitiateUploadResponsePayloadBuilderImpl(bytes);
@@ -75,11 +76,11 @@ public class SDOInitiateSegmentedUploadResponse extends SDOInitiateUploadRespons
 
   protected void serializeSDOInitiateUploadResponsePayloadChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("SDOInitiateSegmentedUploadResponse"));
+    writeBuffer.pushContext(WithOption.WithName("SDOInitiateSegmentedUploadResponse"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: bytes
-    FieldWriterFactory.writeSimpleField((long) bytes, DataWriterFactory.writeUnsignedLong(writeBuffer, 32), WithOption.WithName("bytes"));
+    FieldWriterFactory.writeSimpleField((long) bytes, DataWriterFactory.writeUnsignedLong(writeBuffer, 32), WithOption.WithName("bytes"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

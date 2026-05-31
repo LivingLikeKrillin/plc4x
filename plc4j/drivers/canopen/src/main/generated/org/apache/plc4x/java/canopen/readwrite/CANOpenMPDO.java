@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -65,17 +66,17 @@ public class CANOpenMPDO implements Message {
   }
 
   public static CANOpenMPDO staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("CANOpenMPDO"));
+    readBuffer.pushContext(WithOption.WithName("CANOpenMPDO"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: node
-    short node = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("node"));
+    short node = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("node"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: address
-    IndexAddress address = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (IndexAddress) IndexAddress.staticParse(readBuffer), readBuffer), WithOption.WithName("address"));
+    IndexAddress address = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (IndexAddress) IndexAddress.staticParse(readBuffer), readBuffer), WithOption.WithName("address"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Array Field: data
-    byte[] data = readBuffer.readBits(Math.toIntExact((4) * 8), WithOption.WithName("data"));
+    byte[] data = readBuffer.readBits(Math.toIntExact((4) * 8), WithOption.WithName("data"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new CANOpenMPDO(node, address, data);
@@ -83,17 +84,17 @@ public class CANOpenMPDO implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CANOpenMPDO"));
+    writeBuffer.pushContext(WithOption.WithName("CANOpenMPDO"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: node
-    FieldWriterFactory.writeSimpleField((short) node, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("node"));
+    FieldWriterFactory.writeSimpleField((short) node, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("node"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: address
-    FieldWriterFactory.writeSimpleField((IndexAddress) address, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("address"));
+    FieldWriterFactory.writeSimpleField((IndexAddress) address, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("address"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Array Field: data
-    FieldWriterFactory.writeByteArrayField(data, DataWriterFactory.writeByteArray(writeBuffer, (int) ((data != null) ? data.length : 0)), WithOption.WithName("data"));
+    FieldWriterFactory.writeByteArrayField(data, DataWriterFactory.writeByteArray(writeBuffer, (int) ((data != null) ? data.length : 0)), WithOption.WithName("data"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

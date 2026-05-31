@@ -20,8 +20,10 @@ package org.apache.plc4x.java.cbus;
 
 import org.apache.plc4x.java.cbus.readwrite.CBusCommand;
 import org.apache.plc4x.java.cbus.readwrite.CBusOptions;
+import org.apache.plc4x.java.cbus.readwrite.utils.StaticHelper;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
 import org.apache.plc4x.java.spi.buffers.bytebased.ReadBufferByteBased;
+import org.apache.plc4x.java.spi.buffers.bytebased.WriteBufferByteBased;
 import org.apache.plc4x.java.spi.drivers.MessageCodecBase;
 import org.apache.plc4x.java.spi.drivers.exceptions.MessageCodecException;
 import org.apache.plc4x.java.spi.transports.api.TransportInstance;
@@ -84,6 +86,16 @@ public class CBusMessageCodec extends MessageCodecBase<CBusCommand> {
     @Override
     protected CBusCommand parseMessage(ReadBufferByteBased readBuffer) throws BufferException {
         return CBusCommand.staticParse(readBuffer, cBusOptions);
+    }
+
+    @Override
+    protected ReadBufferByteBased createReadBuffer(byte[] data) {
+        return new ReadBufferByteBased(data, StaticHelper.OPTIONS);
+    }
+
+    @Override
+    protected WriteBufferByteBased createWriteBuffer(int size) {
+        return new WriteBufferByteBased(new byte[size], StaticHelper.OPTIONS);
     }
 
 }

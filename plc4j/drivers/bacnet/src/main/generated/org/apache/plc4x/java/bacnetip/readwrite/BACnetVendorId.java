@@ -3251,6 +3251,14 @@ public enum BACnetVendorId {
 
   VEAWE_INFO_DYNAMICS_PRIVATE_LIMITED((int) 1623, (int) 1623, "Veawe Info Dynamics Private Limited"),
 
+  VISUAL_SOLUTIONSUK_LTD((int) 1624, (int) 1624, "Visual Solutions UK Ltd"),
+
+  NICOR_LIGHTING((int) 1625, (int) 1625, "NICOR Lighting"),
+
+  EME_AUTOMATION((int) 1626, (int) 1626, "EME Automation"),
+
+  CONTROL_COM_TECHNOLOGIESLLC((int) 1627, (int) 1627, "ControlCom Technologies, LLC"),
+
   UNKNOWN_VENDOR((int) 0xFFFF, (int) 0xFFFF, "Unknown");
 
   private static final Map<Integer, BACnetVendorId> map;

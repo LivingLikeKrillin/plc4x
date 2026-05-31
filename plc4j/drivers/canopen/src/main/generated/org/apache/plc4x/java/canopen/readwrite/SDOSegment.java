@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -76,26 +77,26 @@ public class SDOSegment implements Message {
   }
 
   public static SDOSegment staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("SDOSegment"));
+    readBuffer.pushContext(WithOption.WithName("SDOSegment"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Reserved Field
     FieldReaderFactory.readReservedField(DataReaderFactory.readUnsignedByte(readBuffer, 1), (byte) 0x00, WithOption.WithName("SDOSegment.reserved0"));
 
     // Implicit Field: size
-    byte size = FieldReaderFactory.readImplicitField(DataReaderFactory.readUnsignedByte(readBuffer, 2), WithOption.WithName("size"));
+    byte size = FieldReaderFactory.readImplicitField(DataReaderFactory.readUnsignedByte(readBuffer, 2), WithOption.WithName("size"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: expedited
-    boolean expedited = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("expedited"));
+    boolean expedited = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("expedited"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: indicated
-    boolean indicated = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("indicated"));
+    boolean indicated = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("indicated"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: address
-    IndexAddress address = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (IndexAddress) IndexAddress.staticParse(readBuffer), readBuffer), WithOption.WithName("address"));
+    IndexAddress address = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (IndexAddress) IndexAddress.staticParse(readBuffer), readBuffer), WithOption.WithName("address"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Array Field: data
-    byte[] data = readBuffer.readBits(Math.toIntExact((((((expedited) && (indicated))) ? (4) - (size) : 0)) * 8), WithOption.WithName("data"));
+    byte[] data = readBuffer.readBits(Math.toIntExact((((((expedited) && (indicated))) ? (4) - (size) : 0)) * 8), WithOption.WithName("data"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Padding Field: padding6
     FieldReaderFactory.readPaddingField(DataReaderFactory.readUnsignedShort(readBuffer, 8), (int) (4) - ((StaticHelper.COUNT(data))));
@@ -106,7 +107,7 @@ public class SDOSegment implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("SDOSegment"));
+    writeBuffer.pushContext(WithOption.WithName("SDOSegment"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Reserved Field
@@ -114,19 +115,19 @@ public class SDOSegment implements Message {
 
     // Implicit Field: size
     byte size = (byte) ((((expedited) && (indicated)) ? (4) - (StaticHelper.COUNT(data)) : 0));
-    FieldWriterFactory.writeImplicitField((byte) size, DataWriterFactory.writeUnsignedByte(writeBuffer, 2), WithOption.WithName("size"));
+    FieldWriterFactory.writeImplicitField((byte) size, DataWriterFactory.writeUnsignedByte(writeBuffer, 2), WithOption.WithName("size"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: expedited
-    FieldWriterFactory.writeSimpleField((boolean) expedited, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("expedited"));
+    FieldWriterFactory.writeSimpleField((boolean) expedited, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("expedited"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: indicated
-    FieldWriterFactory.writeSimpleField((boolean) indicated, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("indicated"));
+    FieldWriterFactory.writeSimpleField((boolean) indicated, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("indicated"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: address
-    FieldWriterFactory.writeSimpleField((IndexAddress) address, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("address"));
+    FieldWriterFactory.writeSimpleField((IndexAddress) address, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("address"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Array Field: data
-    FieldWriterFactory.writeByteArrayField(data, DataWriterFactory.writeByteArray(writeBuffer, (int) ((data != null) ? data.length : 0)), WithOption.WithName("data"));
+    FieldWriterFactory.writeByteArrayField(data, DataWriterFactory.writeByteArray(writeBuffer, (int) ((data != null) ? data.length : 0)), WithOption.WithName("data"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Padding Field: padding6
     FieldWriterFactory.writePaddingField((int) (4) - ((StaticHelper.COUNT(data))), (short) 0x00, DataWriterFactory.writeUnsignedShort(writeBuffer, 8));

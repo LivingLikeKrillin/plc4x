@@ -22,6 +22,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -86,33 +87,33 @@ public class SDOInitiateDownloadRequest extends SDORequest implements Message {
 
   public static SDORequestBuilder staticParseSDORequestBuilder(ReadBuffer readBuffer,
       SDORequestCommand command) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("SDOInitiateDownloadRequest"));
+    readBuffer.pushContext(WithOption.WithName("SDOInitiateDownloadRequest"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Reserved Field
     FieldReaderFactory.readReservedField(DataReaderFactory.readUnsignedByte(readBuffer, 1), (byte) 0x00, WithOption.WithName("SDOInitiateDownloadRequest.reserved0"));
 
     // Implicit Field: size
-    byte size = FieldReaderFactory.readImplicitField(DataReaderFactory.readUnsignedByte(readBuffer, 2), WithOption.WithName("size"));
+    byte size = FieldReaderFactory.readImplicitField(DataReaderFactory.readUnsignedByte(readBuffer, 2), WithOption.WithName("size"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: expedited
-    boolean expedited = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("expedited"));
+    boolean expedited = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("expedited"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: indicated
-    boolean indicated = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("indicated"));
+    boolean indicated = FieldReaderFactory.readSimpleField(DataReaderFactory.readBoolean(readBuffer), WithOption.WithName("indicated"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: address
-    IndexAddress address = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (IndexAddress) IndexAddress.staticParse(readBuffer), readBuffer), WithOption.WithName("address"));
+    IndexAddress address = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (IndexAddress) IndexAddress.staticParse(readBuffer), readBuffer), WithOption.WithName("address"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: payload
-    SDOInitiateUploadResponsePayload payload = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (SDOInitiateUploadResponsePayload) SDOInitiateUploadResponsePayload.staticParse(readBuffer, (boolean) (expedited), (boolean) (indicated), (byte) (size)), readBuffer), WithOption.WithName("payload"));
+    SDOInitiateUploadResponsePayload payload = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (SDOInitiateUploadResponsePayload) SDOInitiateUploadResponsePayload.staticParse(readBuffer, (boolean) (expedited), (boolean) (indicated), (byte) (size)), readBuffer), WithOption.WithName("payload"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new SDORequestBuilderImpl(expedited, indicated, address, payload);
   }
 
   protected void serializeSDORequestChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("SDOInitiateDownloadRequest"));
+    writeBuffer.pushContext(WithOption.WithName("SDOInitiateDownloadRequest"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Reserved Field
@@ -120,19 +121,19 @@ public class SDOInitiateDownloadRequest extends SDORequest implements Message {
 
     // Implicit Field: size
     byte size = (byte) (StaticHelper.count(expedited, indicated, payload));
-    FieldWriterFactory.writeImplicitField((byte) size, DataWriterFactory.writeUnsignedByte(writeBuffer, 2), WithOption.WithName("size"));
+    FieldWriterFactory.writeImplicitField((byte) size, DataWriterFactory.writeUnsignedByte(writeBuffer, 2), WithOption.WithName("size"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: expedited
-    FieldWriterFactory.writeSimpleField((boolean) expedited, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("expedited"));
+    FieldWriterFactory.writeSimpleField((boolean) expedited, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("expedited"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: indicated
-    FieldWriterFactory.writeSimpleField((boolean) indicated, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("indicated"));
+    FieldWriterFactory.writeSimpleField((boolean) indicated, DataWriterFactory.writeBoolean(writeBuffer), WithOption.WithName("indicated"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: address
-    FieldWriterFactory.writeSimpleField((IndexAddress) address, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("address"));
+    FieldWriterFactory.writeSimpleField((IndexAddress) address, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("address"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: payload
-    FieldWriterFactory.writeSimpleField((SDOInitiateUploadResponsePayload) payload, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("payload"));
+    FieldWriterFactory.writeSimpleField((SDOInitiateUploadResponsePayload) payload, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("payload"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

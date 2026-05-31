@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -64,11 +65,11 @@ public class SDOInitiateExpeditedUploadResponse extends SDOInitiateUploadRespons
   public static SDOInitiateUploadResponsePayloadBuilder staticParseSDOInitiateUploadResponsePayloadBuilder(
       ReadBuffer readBuffer, boolean expedited, boolean indicated, byte size) throws
       BufferException {
-    readBuffer.pushContext(WithOption.WithName("SDOInitiateExpeditedUploadResponse"));
+    readBuffer.pushContext(WithOption.WithName("SDOInitiateExpeditedUploadResponse"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Array Field: data
-    byte[] data = readBuffer.readBits(Math.toIntExact(((4) - (size)) * 8), WithOption.WithName("data"));
+    byte[] data = readBuffer.readBits(Math.toIntExact(((4) - (size)) * 8), WithOption.WithName("data"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Padding Field: padding1
     FieldReaderFactory.readPaddingField(DataReaderFactory.readUnsignedShort(readBuffer, 8), (int) (4) - (StaticHelper.COUNT(data)));
@@ -79,11 +80,11 @@ public class SDOInitiateExpeditedUploadResponse extends SDOInitiateUploadRespons
 
   protected void serializeSDOInitiateUploadResponsePayloadChild(WriteBuffer writeBuffer) throws
       BufferException {
-    writeBuffer.pushContext(WithOption.WithName("SDOInitiateExpeditedUploadResponse"));
+    writeBuffer.pushContext(WithOption.WithName("SDOInitiateExpeditedUploadResponse"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Array Field: data
-    FieldWriterFactory.writeByteArrayField(data, DataWriterFactory.writeByteArray(writeBuffer, (int) ((data != null) ? data.length : 0)), WithOption.WithName("data"));
+    FieldWriterFactory.writeByteArrayField(data, DataWriterFactory.writeByteArray(writeBuffer, (int) ((data != null) ? data.length : 0)), WithOption.WithName("data"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Padding Field: padding1
     FieldWriterFactory.writePaddingField((int) (4) - (StaticHelper.COUNT(data)), (short) 0x00, DataWriterFactory.writeUnsignedShort(writeBuffer, 8));

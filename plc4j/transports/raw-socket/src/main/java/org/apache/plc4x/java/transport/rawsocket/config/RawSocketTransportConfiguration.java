@@ -139,4 +139,17 @@ public class RawSocketTransportConfiguration implements TransportConfiguration {
     @Description( "Read timeout for blocking reads in milliseconds.")
     @IntDefaultValue(0)
     public int readTimeout;
+
+    /**
+     * When {@code true} the transport delivers full Ethernet frames (including the
+     * destination/source MAC + EtherType header) to the driver, and expects the
+     * driver to write full Ethernet frames on send (the transport will not wrap
+     * payload in an Ethernet header). Required for L2 protocols (PROFINET, EtherCAT)
+     * that build their own Ethernet frames and need visibility into source MAC for
+     * routing.
+     */
+    @ConfigurationParameter("include-ethernet-header")
+    @Description("Deliver full Ethernet frames to the driver and accept raw Ethernet frames on send. Required for L2 protocols that build their own Ethernet headers.")
+    @BooleanDefaultValue(false)
+    public boolean includeEthernetHeader;
 }

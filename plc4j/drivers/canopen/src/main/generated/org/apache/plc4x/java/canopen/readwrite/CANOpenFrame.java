@@ -75,20 +75,20 @@ public class CANOpenFrame implements Message {
   }
 
   public static CANOpenFrame staticParse(ReadBuffer readBuffer) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("CANOpenFrame"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    readBuffer.pushContext(WithOption.WithName("CANOpenFrame"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: nodeId
-    short nodeId = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("nodeId"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    short nodeId = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedShort(readBuffer, 8), WithOption.WithName("nodeId"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): service
-    CANOpenService service = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(CANOpenService::enumForValue, DataReaderFactory.readUnsignedByte(readBuffer, 4)), WithOption.WithName("service"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    CANOpenService service = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(CANOpenService::enumForValue, DataReaderFactory.readUnsignedByte(readBuffer, 4)), WithOption.WithName("service"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Const Field: alignment
-    byte alignment = FieldReaderFactory.readConstField(DataReaderFactory.readUnsignedByte(readBuffer, 4), ALIGNMENT, WithOption.WithName("alignment"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    byte alignment = FieldReaderFactory.readConstField(DataReaderFactory.readUnsignedByte(readBuffer, 4), ALIGNMENT, WithOption.WithName("alignment"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: payload
-    CANOpenPayload payload = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (CANOpenPayload) CANOpenPayload.staticParse(readBuffer, (org.apache.plc4x.java.canopen.readwrite.CANOpenService) (service)), readBuffer), WithOption.WithName("payload"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    CANOpenPayload payload = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (CANOpenPayload) CANOpenPayload.staticParse(readBuffer, (org.apache.plc4x.java.canopen.readwrite.CANOpenService) (service)), readBuffer), WithOption.WithName("payload"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Padding Field: padding4
     FieldReaderFactory.readPaddingField(DataReaderFactory.readUnsignedShort(readBuffer, 8), (int) (8) - ((payload.getLengthInBytes())));
@@ -99,20 +99,20 @@ public class CANOpenFrame implements Message {
 
   @Override
   public void serialize(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CANOpenFrame"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    writeBuffer.pushContext(WithOption.WithName("CANOpenFrame"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: nodeId
-    FieldWriterFactory.writeSimpleField((short) nodeId, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("nodeId"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((short) nodeId, DataWriterFactory.writeUnsignedShort(writeBuffer, 8), WithOption.WithName("nodeId"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field (enum): service
-    FieldWriterFactory.writeSimpleEnumField((CANOpenService) service, DataWriterFactory.writeEnum(CANOpenService::getValue, CANOpenService::name, DataWriterFactory.writeUnsignedByte(writeBuffer, 4)), WithOption.WithName("service"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleEnumField((CANOpenService) service, DataWriterFactory.writeEnum(CANOpenService::getValue, CANOpenService::name, DataWriterFactory.writeUnsignedByte(writeBuffer, 4)), WithOption.WithName("service"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Const Field: alignment
-    FieldWriterFactory.writeConstField((byte) ALIGNMENT, DataWriterFactory.writeUnsignedByte(writeBuffer, 4), WithOption.WithName("alignment"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeConstField((byte) ALIGNMENT, DataWriterFactory.writeUnsignedByte(writeBuffer, 4), WithOption.WithName("alignment"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: payload
-    FieldWriterFactory.writeSimpleField((CANOpenPayload) payload, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("payload"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"));
+    FieldWriterFactory.writeSimpleField((CANOpenPayload) payload, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("payload"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Padding Field: padding4
     FieldWriterFactory.writePaddingField((int) (8) - ((payload.getLengthInBytes())), (short) 0x00, DataWriterFactory.writeUnsignedShort(writeBuffer, 8));

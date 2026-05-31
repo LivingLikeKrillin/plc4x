@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -64,28 +65,28 @@ public class CANOpenSDORequest extends CANOpenPayload implements Message {
 
   public static CANOpenPayloadBuilder staticParseCANOpenPayloadBuilder(ReadBuffer readBuffer,
       CANOpenService service) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("CANOpenSDORequest"));
+    readBuffer.pushContext(WithOption.WithName("CANOpenSDORequest"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): command
-    SDORequestCommand command = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(SDORequestCommand::enumForValue, DataReaderFactory.readUnsignedByte(readBuffer, 3)), WithOption.WithName("command"));
+    SDORequestCommand command = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(SDORequestCommand::enumForValue, DataReaderFactory.readUnsignedByte(readBuffer, 3)), WithOption.WithName("command"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: request
-    SDORequest request = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (SDORequest) SDORequest.staticParse(readBuffer, (org.apache.plc4x.java.canopen.readwrite.SDORequestCommand) (command)), readBuffer), WithOption.WithName("request"));
+    SDORequest request = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (SDORequest) SDORequest.staticParse(readBuffer, (org.apache.plc4x.java.canopen.readwrite.SDORequestCommand) (command)), readBuffer), WithOption.WithName("request"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new CANOpenPayloadBuilderImpl(command, request);
   }
 
   protected void serializeCANOpenPayloadChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CANOpenSDORequest"));
+    writeBuffer.pushContext(WithOption.WithName("CANOpenSDORequest"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): command
-    FieldWriterFactory.writeSimpleEnumField((SDORequestCommand) command, DataWriterFactory.writeEnum(SDORequestCommand::getValue, SDORequestCommand::name, DataWriterFactory.writeUnsignedByte(writeBuffer, 3)), WithOption.WithName("command"));
+    FieldWriterFactory.writeSimpleEnumField((SDORequestCommand) command, DataWriterFactory.writeEnum(SDORequestCommand::getValue, SDORequestCommand::name, DataWriterFactory.writeUnsignedByte(writeBuffer, 3)), WithOption.WithName("command"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Simple Field: request
-    FieldWriterFactory.writeSimpleField((SDORequest) request, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("request"));
+    FieldWriterFactory.writeSimpleField((SDORequest) request, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("request"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

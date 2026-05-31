@@ -61,7 +61,9 @@ public class GenericFrame implements Message {
 
     @Override
     public void serialize(WriteBuffer writeBuffer) throws BufferException {
-        writeBuffer.writeUnsignedInt(32, nodeId);
+        // writeUnsignedInt only supports 1..31 bits; a full 32-bit CAN ID has
+        // to go through writeUnsignedLong.
+        writeBuffer.writeUnsignedLong(32, nodeId);
         int dlc = Math.min(data.length, 8);
         writeBuffer.writeUnsignedInt(8, dlc);
         writeBuffer.writeUnsignedInt(8, 0);

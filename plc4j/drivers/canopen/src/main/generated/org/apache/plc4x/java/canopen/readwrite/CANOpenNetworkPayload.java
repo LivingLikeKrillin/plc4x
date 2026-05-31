@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -64,34 +65,34 @@ public class CANOpenNetworkPayload extends CANOpenPayload implements Message {
 
   public static CANOpenPayloadBuilder staticParseCANOpenPayloadBuilder(ReadBuffer readBuffer,
       CANOpenService service) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("CANOpenNetworkPayload"));
+    readBuffer.pushContext(WithOption.WithName("CANOpenNetworkPayload"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): request
-    NMTStateRequest request = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(NMTStateRequest::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("request"));
+    NMTStateRequest request = FieldReaderFactory.readEnumField(DataReaderFactory.readEnum(NMTStateRequest::enumForValue, DataReaderFactory.readUnsignedShort(readBuffer, 8)), WithOption.WithName("request"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldReaderFactory.readReservedField(DataReaderFactory.readUnsignedByte(readBuffer, 1), (byte) 0x00, WithOption.WithName("CANOpenNetworkPayload.reserved1"));
 
     // Simple Field: node
-    byte node = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 7), WithOption.WithName("node"));
+    byte node = FieldReaderFactory.readSimpleField(DataReaderFactory.readUnsignedByte(readBuffer, 7), WithOption.WithName("node"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new CANOpenPayloadBuilderImpl(request, node);
   }
 
   protected void serializeCANOpenPayloadChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("CANOpenNetworkPayload"));
+    writeBuffer.pushContext(WithOption.WithName("CANOpenNetworkPayload"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field (enum): request
-    FieldWriterFactory.writeSimpleEnumField((NMTStateRequest) request, DataWriterFactory.writeEnum(NMTStateRequest::getValue, NMTStateRequest::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("request"));
+    FieldWriterFactory.writeSimpleEnumField((NMTStateRequest) request, DataWriterFactory.writeEnum(NMTStateRequest::getValue, NMTStateRequest::name, DataWriterFactory.writeUnsignedShort(writeBuffer, 8)), WithOption.WithName("request"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     // Reserved Field
     FieldWriterFactory.writeReservedField((byte) 0x00, DataWriterFactory.writeUnsignedByte(writeBuffer, 1));
 
     // Simple Field: node
-    FieldWriterFactory.writeSimpleField((byte) node, DataWriterFactory.writeUnsignedByte(writeBuffer, 7), WithOption.WithName("node"));
+    FieldWriterFactory.writeSimpleField((byte) node, DataWriterFactory.writeUnsignedByte(writeBuffer, 7), WithOption.WithName("node"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }

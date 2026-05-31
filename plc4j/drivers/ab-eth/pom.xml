@@ -69,6 +69,42 @@
         </executions>
       </plugin>
       <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>report</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+            <configuration>
+              <excludes combine.children="append">
+                <!-- I/O-heavy driver-shell classes; require integration tests rather than unit tests. -->
+                <exclude>org/apache/plc4x/java/abeth/AbEthConnection.class</exclude>
+                <exclude>org/apache/plc4x/java/abeth/AbEthMessageCodec.class</exclude>
+                <exclude>org/apache/plc4x/java/abeth/AbEthDriver.class</exclude>
+              </excludes>
+            </configuration>
+          </execution>
+          <execution>
+            <id>check-coverage</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <excludes combine.children="append">
+                <!-- See report execution above for rationale. -->
+                <exclude>org/apache/plc4x/java/abeth/AbEthConnection.class</exclude>
+                <exclude>org/apache/plc4x/java/abeth/AbEthMessageCodec.class</exclude>
+                <exclude>org/apache/plc4x/java/abeth/AbEthDriver.class</exclude>
+              </excludes>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
         <extensions>true</extensions>

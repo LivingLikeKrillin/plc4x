@@ -21,6 +21,7 @@ import org.apache.plc4x.java.spi.buffers.api.ReadBuffer;
 import org.apache.plc4x.java.spi.buffers.api.WithOption;
 import org.apache.plc4x.java.spi.buffers.api.WriteBuffer;
 import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.buffers.bytebased.WithByteBasedOption;
 import org.apache.plc4x.java.spi.fields.data.reader.DataReaderFactory;
 import org.apache.plc4x.java.spi.fields.data.writer.DataWriterFactory;
 import org.apache.plc4x.java.spi.fields.fields.reader.FieldReaderFactory;
@@ -54,22 +55,22 @@ public class SDOBlockResponse extends SDOResponse implements Message {
 
   public static SDOResponseBuilder staticParseSDOResponseBuilder(ReadBuffer readBuffer,
       SDOResponseCommand command) throws BufferException {
-    readBuffer.pushContext(WithOption.WithName("SDOBlockResponse"));
+    readBuffer.pushContext(WithOption.WithName("SDOBlockResponse"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = readBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: block
-    SDOBlockData block = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (SDOBlockData) SDOBlockData.staticParse(readBuffer), readBuffer), WithOption.WithName("block"));
+    SDOBlockData block = FieldReaderFactory.readSimpleField(DataReaderFactory.readComplex(() -> (SDOBlockData) SDOBlockData.staticParse(readBuffer), readBuffer), WithOption.WithName("block"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     readBuffer.popContext();
     return new SDOResponseBuilderImpl(block);
   }
 
   protected void serializeSDOResponseChild(WriteBuffer writeBuffer) throws BufferException {
-    writeBuffer.pushContext(WithOption.WithName("SDOBlockResponse"));
+    writeBuffer.pushContext(WithOption.WithName("SDOBlockResponse"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
     int startPos = writeBuffer.getPositionInBits();
     boolean _lastItem = ThreadLocalHelper.lastItemThreadLocal.get();
     // Simple Field: block
-    FieldWriterFactory.writeSimpleField((SDOBlockData) block, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("block"));
+    FieldWriterFactory.writeSimpleField((SDOBlockData) block, DataWriterFactory.writeComplex(writeBuffer), WithOption.WithName("block"), WithOption.WithFloatEncoding("IEEE754"), WithOption.WithSignedIntegerEncoding("twos-complement"), WithOption.WithUnsignedIntegerEncoding("unsigned-binary"), WithByteBasedOption.WithByteOrder("LITTLE_ENDIAN"), WithOption.WithStringEncoding("UTF8"));
 
     writeBuffer.popContext();
   }
