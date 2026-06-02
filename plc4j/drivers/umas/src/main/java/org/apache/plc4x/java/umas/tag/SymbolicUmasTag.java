@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.java.umas.readwrite.tag;
+package org.apache.plc4x.java.umas.tag;
 
 import org.apache.plc4x.java.api.exceptions.PlcInvalidTagException;
 import org.apache.plc4x.java.api.model.ArrayInfo;
@@ -74,7 +74,7 @@ public class SymbolicUmasTag implements UmasTag {
 
     @Override
     public PlcValueType getPlcValueType() {
-        // Return null (not PlcValueType.NULL) when type is unknown so the
+        // Returning null (not PlcValueType.NULL) when type is unknown so the
         // DefaultPlcValueHandler preserves the original PlcValue on writes
         // instead of discarding it as PlcNull.
         return dataType;

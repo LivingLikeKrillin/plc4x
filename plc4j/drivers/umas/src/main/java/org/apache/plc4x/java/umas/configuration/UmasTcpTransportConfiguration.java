@@ -16,12 +16,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.java.umas.readwrite.configuration;
+package org.apache.plc4x.java.umas.configuration;
 
+import org.apache.plc4x.java.transport.tcp.config.TcpTransportConfiguration;
 import org.apache.plc4x.java.umas.readwrite.Constants;
-import org.apache.plc4x.java.transport.tcp.DefaultTcpTransportConfiguration;
 
-public class UmasTcpTransportConfiguration extends DefaultTcpTransportConfiguration {
+public class UmasTcpTransportConfiguration extends TcpTransportConfiguration {
 
     @Override
     public int getDefaultPort() {

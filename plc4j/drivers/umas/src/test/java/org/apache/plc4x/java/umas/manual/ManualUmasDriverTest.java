@@ -31,7 +31,7 @@ public class ManualUmasDriverTest extends BasicPlcTest {
     }
 
     public static void main(String[] args) throws Exception {
-        String spsIp = "192.168.42.99";
+        String spsIp = "192.168.24.31";
         String connectionString = String.format("umas://%s", spsIp);
         ManualUmasDriverTest test = new ManualUmasDriverTest(connectionString);
 

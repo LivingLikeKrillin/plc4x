@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.java.umas.readwrite;
+package org.apache.plc4x.java.umas;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -25,8 +25,8 @@ import java.util.concurrent.ConcurrentHashMap;
  * Tracks UMAS request function keys for response discrimination during parsing.
  * <p>
  * UMAS responses use a generic function key (0xFE) and require the original
- * request's function key to determine the correct response subtype. The protocol
- * logic records the function key before sending each request, and the parser
+ * request's function key to determine the correct response subtype. The connection
+ * records the function key before sending each request, and the parser
  * retrieves it by peeking at the transaction ID from the MBAP header bytes.
  */
 public class UmasFunctionKeyTracker {
@@ -35,7 +35,7 @@ public class UmasFunctionKeyTracker {
 
     /**
      * Records that a request with the given transaction ID used the specified
-     * UMAS function key. Called by the protocol logic before sending a request.
+     * UMAS function key. Called by the connection before sending a request.
      */
     public static void trackRequest(int transactionId, short functionKey) {
         PENDING_FUNCTION_KEYS.put(transactionId, functionKey);

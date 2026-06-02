@@ -16,27 +16,27 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.java.umas.readwrite.tag;
+package org.apache.plc4x.java.umas.tag;
 
-import org.apache.plc4x.java.api.model.ArrayInfo;
+import org.apache.plc4x.java.api.exceptions.PlcInvalidTagException;
+import org.apache.plc4x.java.api.model.PlcQuery;
 import org.apache.plc4x.java.api.model.PlcTag;
+import org.apache.plc4x.java.spi.drivers.tags.PlcTagHandler;
 
-/**
- * Marker interface for all UMAS tag types.
- * UMAS tags use symbolic names that correspond to variables in the Schneider Electric
- * PLC project.
- */
-public interface UmasTag extends PlcTag {
+public class UmasTagHandler implements PlcTagHandler {
 
-    default int getTotalNumberOfElements() {
-        if (getArrayInfo() == null || getArrayInfo().isEmpty()) {
-            return 1;
+    @Override
+    public PlcTag parseTag(String tagAddress) {
+        if (SymbolicUmasTag.matches(tagAddress)) {
+            return SymbolicUmasTag.of(tagAddress);
         }
-        int total = 1;
-        for (ArrayInfo arrayInfo : getArrayInfo()) {
-            total *= arrayInfo.getSize();
-        }
-        return total;
+        throw new PlcInvalidTagException(tagAddress);
+    }
+
+    @Override
+    public PlcQuery parseQuery(String query) {
+        // Browse queries are passed through; the browse operation handles filtering
+        return null;
     }
 
 }

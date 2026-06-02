@@ -16,15 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.java.umas.readwrite.configuration;
+package org.apache.plc4x.java.umas.configuration;
 
-import org.apache.plc4x.java.spi.configuration.PlcConnectionConfiguration;
-import org.apache.plc4x.java.spi.configuration.annotations.ConfigurationParameter;
-import org.apache.plc4x.java.spi.configuration.annotations.Description;
-import org.apache.plc4x.java.spi.configuration.annotations.defaults.BooleanDefaultValue;
-import org.apache.plc4x.java.spi.configuration.annotations.defaults.IntDefaultValue;
+import org.apache.plc4x.java.spi.config.Configuration;
+import org.apache.plc4x.java.spi.config.annotations.ConfigurationParameter;
+import org.apache.plc4x.java.spi.config.annotations.Description;
+import org.apache.plc4x.java.spi.config.annotations.defaults.BooleanDefaultValue;
+import org.apache.plc4x.java.spi.config.annotations.defaults.IntDefaultValue;
 
-public class UmasConfiguration implements PlcConnectionConfiguration {
+public class UmasConfiguration implements Configuration {
 
     @ConfigurationParameter("unit-identifier")
     @IntDefaultValue(0)
@@ -40,6 +40,11 @@ public class UmasConfiguration implements PlcConnectionConfiguration {
     @IntDefaultValue(65535)
     @Description("Maximum UMAS frame size. The PLC reports its actual limit during InitComms.")
     private int maxFrameSize;
+
+    @ConfigurationParameter("browser-generate-array-nodes")
+    @BooleanDefaultValue(true)
+    @Description("Tells the browser to generate artificial child nodes representing individual array elements.")
+    private boolean browserGenerateArrayNodes;
 
     public int getUnitIdentifier() {
         return unitIdentifier;
@@ -64,11 +69,6 @@ public class UmasConfiguration implements PlcConnectionConfiguration {
     public void setMaxFrameSize(int maxFrameSize) {
         this.maxFrameSize = maxFrameSize;
     }
-
-    @ConfigurationParameter("browser-generate-array-nodes")
-    @BooleanDefaultValue(true)
-    @Description("Tells the browser to generate artificial child nodes representing individual array elements.")
-    private boolean browserGenerateArrayNodes;
 
     public boolean isBrowserGenerateArrayNodes() {
         return browserGenerateArrayNodes;

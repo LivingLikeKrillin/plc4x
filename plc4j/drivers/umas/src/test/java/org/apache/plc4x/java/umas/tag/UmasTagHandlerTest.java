@@ -16,27 +16,33 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.java.umas.readwrite.tag;
+package org.apache.plc4x.java.umas.tag;
 
 import org.apache.plc4x.java.api.exceptions.PlcInvalidTagException;
-import org.apache.plc4x.java.api.model.PlcQuery;
-import org.apache.plc4x.java.api.model.PlcTag;
-import org.apache.plc4x.java.spi.connection.PlcTagHandler;
+import org.junit.jupiter.api.Test;
 
-public class UmasTagHandler implements PlcTagHandler {
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-    @Override
-    public PlcTag parseTag(String tagAddress) {
-        if (SymbolicUmasTag.matches(tagAddress)) {
-            return SymbolicUmasTag.of(tagAddress);
-        }
-        throw new PlcInvalidTagException(tagAddress);
+class UmasTagHandlerTest {
+
+    private final UmasTagHandler handler = new UmasTagHandler();
+
+    @Test
+    void parsesValidSymbolicTag() {
+        assertThat(handler.parseTag("MyVar")).isInstanceOf(SymbolicUmasTag.class);
     }
 
-    @Override
-    public PlcQuery parseQuery(String query) {
-        // Browse queries are passed through; the browse operation handles filtering
-        return null;
+    @Test
+    void rejectsInvalidTag() {
+        assertThatThrownBy(() -> handler.parseTag("9invalid"))
+            .isInstanceOf(PlcInvalidTagException.class);
     }
 
+    @Test
+    void browseQueryReturnsNullForPassThrough() {
+        // The driver routes browse queries straight through the connection
+        // without parsing — confirmed by returning null here.
+        assertThat(handler.parseQuery("anything")).isNull();
+    }
 }
