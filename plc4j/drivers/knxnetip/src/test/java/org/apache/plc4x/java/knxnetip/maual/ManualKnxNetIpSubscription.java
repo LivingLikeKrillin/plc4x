@@ -16,29 +16,27 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.java.knxnetip;
+package org.apache.plc4x.java.knxnetip.maual;
 
 import org.apache.plc4x.java.DefaultPlcDriverManager;
 import org.apache.plc4x.java.api.PlcConnection;
 import org.apache.plc4x.java.api.exceptions.PlcRuntimeException;
 import org.apache.plc4x.java.api.messages.PlcSubscriptionRequest;
-import org.apache.plc4x.java.api.messages.PlcSubscriptionResponse;
-import org.apache.plc4x.java.api.model.PlcSubscriptionHandle;
-import org.apache.plc4x.java.spi.messages.DefaultPlcSubscriptionEvent;
+import org.apache.plc4x.java.api.value.PlcValue;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Instant;
 
-public class ManualKnxNetIp {
+public class ManualKnxNetIpSubscription {
 
     // Addresses:
     // */*/10: Temperature
     // */*/12: Heating
     // */*/60: Primary Window
     // */*/64: Second Window
-    // */*/101: Power Line 1
+    // */*/101: Power Line 1[10..15]
 
     public static void main(String[] args) throws Exception {
-        final PlcConnection connection = new DefaultPlcDriverManager().getConnection("knxnet-ip://192.168.42.11?knxproj-file-path=/Users/christofer.dutz/Projects/Apache/PLC4X-Documents/KNX/Stettiner%20Str.%2013/StettinerStr-Soll-Ist-Temperatur.knxproj");
+        final PlcConnection connection = new DefaultPlcDriverManager().getConnection("knxnet-ip://192.168.42.28?knxproj-file-path=/Users/christoferdutz/Projects/Privat/NLNet/plc4x/plc4j/drivers/knxnetip/Stettiner-Str-13.knxproj&knxproj-password=cW171998$");
         //final PlcConnection connection = new DefaultPlcDriverManager().getConnection("knxnet-ip:pcap:///Users/christofer.dutz/Projects/Apache/PLC4X-Documents/KNX/Recording-01.03.2020-2.pcapng?knxproj-file-path=/Users/christofer.dutz/Projects/Apache/PLC4X-Documents/KNX/Stettiner%20Str.%2013/StettinerStr-Soll-Ist-Temperatur.knxproj");
         // Make sure we hang up correctly when terminating.
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
@@ -54,18 +52,19 @@ public class ManualKnxNetIp {
         // We will probably refactor the API in the near future.
         final PlcSubscriptionRequest subscriptionRequest = connection.subscriptionRequestBuilder()
             .addEventTagAddress("knxData", "*/*/*")
+            //.addEventTagAddress("houseData", "1/1/[210..219]")
+            .setConsumer(knxData -> {
+                Instant timestamp = knxData.getTimestamp();
+                for (String tagName : knxData.getTagNames()) {
+                    PlcValue value = knxData.getPlcValue(tagName);
+                    System.out.println(timestamp + " - " + tagName + ": " + timestamp + " - " + value.getMetaData("groupAddress") + " / " + value.getMetaData("description") + " / " + value.getMetaData("name") + " = " + value);
+                }
+            })
             .build();
+        subscriptionRequest.execute();
 
-        // Register the subscription
-        // The timeout is also just a bogus value as the data is coming in actively
-        // We will probably refactor the API in the near future.
-        final PlcSubscriptionResponse subscriptionResponse =
-            subscriptionRequest.execute().get(1000, TimeUnit.MILLISECONDS);
-
-        // Register a callback which is called on new data being available.
-        final PlcSubscriptionHandle subscriptionHandle = subscriptionResponse.getSubscriptionHandle("knxData");
-        subscriptionHandle.register(knxData -> System.out.println(knxData.getTimestamp().toString() + " - " +
-            ((DefaultPlcSubscriptionEvent) knxData).getValues().get("knxData")));
+        // Block main forever so the daemon receive thread keeps running.
+        Thread.currentThread().join();
     }
 
 }

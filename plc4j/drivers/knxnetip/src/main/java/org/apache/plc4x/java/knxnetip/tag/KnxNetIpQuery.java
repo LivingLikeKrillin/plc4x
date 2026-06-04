@@ -16,23 +16,27 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+package org.apache.plc4x.java.knxnetip.tag;
 
-package org.apache.plc4x.java.knxnetip.configuration;
+import org.apache.plc4x.java.api.model.PlcQuery;
 
-import org.apache.plc4x.java.knxnetip.KnxNetIpDriver;
-import org.apache.plc4x.java.transport.rawsocket.DefaultRawSocketTransportConfiguration;
-import org.apache.plc4x.java.utils.pcap.netty.handlers.PacketHandler;
+/**
+ * Trivial {@link PlcQuery} that just carries the user's address pattern string
+ * straight through to the connection. KNX query patterns are simple textual
+ * group-address globs ({@code *}, {@code 1/*}, {@code 1/2/*}, {@code 1/2/3});
+ * compiling them to a regex happens lazily inside the connection's browse path.
+ */
+public class KnxNetIpQuery implements PlcQuery {
 
-public class KnxNetIpRawSocketTransportConfiguration extends DefaultRawSocketTransportConfiguration {
+    private final String queryString;
 
-    @Override
-    public int getDefaultPort() {
-        return KnxNetIpDriver.KNXNET_IP_PORT;
+    public KnxNetIpQuery(String queryString) {
+        this.queryString = queryString;
     }
 
     @Override
-    public PacketHandler getPcapPacketHandler() {
-        return packet -> packet.getPayload().getPayload().getPayload().getRawData();
+    public String getQueryString() {
+        return queryString;
     }
 
 }

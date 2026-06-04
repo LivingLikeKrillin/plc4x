@@ -16,23 +16,17 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
-package org.apache.plc4x.java.knxnetip.configuration;
+package org.apache.plc4x.java.knxnetip.maual;
 
 import org.apache.plc4x.java.knxnetip.KnxNetIpDriver;
-import org.apache.plc4x.java.transport.pcapreplay.DefaultPcapReplayTransportConfiguration;
-import org.apache.plc4x.java.utils.pcap.netty.handlers.PacketHandler;
 
-public class KnxNetIpPcapReplayTransportConfiguration extends DefaultPcapReplayTransportConfiguration {
+public class ManualKnxNetIpDiscovery {
 
-    @Override
-    public int getDefaultPort() {
-        return KnxNetIpDriver.KNXNET_IP_PORT;
-    }
-
-    @Override
-    public PacketHandler getPcapPacketHandler() {
-        return packet -> packet.getPayload().getPayload().getPayload().getRawData();
+    public static void main(String[] args) throws Exception {
+        new KnxNetIpDriver().discoveryRequestBuilder().addQuery("all", "*")
+            .build()
+            .executeWithHandler(discoveryItem -> System.out.println("Found new device: " + discoveryItem.getConnectionUrl() + " (" + discoveryItem.getName() + ")"))
+            .get();
     }
 
 }
