@@ -1656,6 +1656,12 @@ const (
 	BACnetVendorId_ES_OTOMASYON_SAN_TIC_LTD_STI                                                 BACnetVendorId = 1621
 	BACnetVendorId_NETWORK_CORPORATION                                                          BACnetVendorId = 1622
 	BACnetVendorId_VEAWE_INFO_DYNAMICS_PRIVATE_LIMITED                                          BACnetVendorId = 1623
+	BACnetVendorId_VISUAL_SOLUTIONSUK_LTD                                                       BACnetVendorId = 1624
+	BACnetVendorId_NICOR_LIGHTING                                                               BACnetVendorId = 1625
+	BACnetVendorId_EME_AUTOMATION                                                               BACnetVendorId = 1626
+	BACnetVendorId_CONTROL_COM_TECHNOLOGIESLLC                                                  BACnetVendorId = 1627
+	BACnetVendorId_ELECTR_SOL                                                                   BACnetVendorId = 1628
+	BACnetVendorId_CORPORACIN_EMPRESARIAL_ALTRA                                                 BACnetVendorId = 1629
 	BACnetVendorId_UNKNOWN_VENDOR                                                               BACnetVendorId = 0xFFFF
 )
 
@@ -3277,6 +3283,12 @@ func init() {
 		BACnetVendorId_ES_OTOMASYON_SAN_TIC_LTD_STI,
 		BACnetVendorId_NETWORK_CORPORATION,
 		BACnetVendorId_VEAWE_INFO_DYNAMICS_PRIVATE_LIMITED,
+		BACnetVendorId_VISUAL_SOLUTIONSUK_LTD,
+		BACnetVendorId_NICOR_LIGHTING,
+		BACnetVendorId_EME_AUTOMATION,
+		BACnetVendorId_CONTROL_COM_TECHNOLOGIESLLC,
+		BACnetVendorId_ELECTR_SOL,
+		BACnetVendorId_CORPORACIN_EMPRESARIAL_ALTRA,
 		BACnetVendorId_UNKNOWN_VENDOR,
 	}
 }
@@ -6050,6 +6062,30 @@ func (e BACnetVendorId) VendorId() uint16 {
 	case 1623:
 		{ /* '1623' */
 			return 1623
+		}
+	case 1624:
+		{ /* '1624' */
+			return 1624
+		}
+	case 1625:
+		{ /* '1625' */
+			return 1625
+		}
+	case 1626:
+		{ /* '1626' */
+			return 1626
+		}
+	case 1627:
+		{ /* '1627' */
+			return 1627
+		}
+	case 1628:
+		{ /* '1628' */
+			return 1628
+		}
+	case 1629:
+		{ /* '1629' */
+			return 1629
 		}
 	case 163:
 		{ /* '163' */
@@ -12525,6 +12561,30 @@ func (e BACnetVendorId) VendorName() string {
 		{ /* '1623' */
 			return "Veawe Info Dynamics Private Limited"
 		}
+	case 1624:
+		{ /* '1624' */
+			return "Visual Solutions UK Ltd"
+		}
+	case 1625:
+		{ /* '1625' */
+			return "NICOR Lighting"
+		}
+	case 1626:
+		{ /* '1626' */
+			return "EME Automation"
+		}
+	case 1627:
+		{ /* '1627' */
+			return "ControlCom Technologies, LLC"
+		}
+	case 1628:
+		{ /* '1628' */
+			return "ElectrSol"
+		}
+	case 1629:
+		{ /* '1629' */
+			return "Corporación Empresarial Altra’"
+		}
 	case 163:
 		{ /* '163' */
 			return "SysMik GmbH Dresden"
@@ -17614,6 +17674,18 @@ func BACnetVendorIdByValue(value uint16) (enum BACnetVendorId, ok bool) {
 		return BACnetVendorId_NETWORK_CORPORATION, true
 	case 1623:
 		return BACnetVendorId_VEAWE_INFO_DYNAMICS_PRIVATE_LIMITED, true
+	case 1624:
+		return BACnetVendorId_VISUAL_SOLUTIONSUK_LTD, true
+	case 1625:
+		return BACnetVendorId_NICOR_LIGHTING, true
+	case 1626:
+		return BACnetVendorId_EME_AUTOMATION, true
+	case 1627:
+		return BACnetVendorId_CONTROL_COM_TECHNOLOGIESLLC, true
+	case 1628:
+		return BACnetVendorId_ELECTR_SOL, true
+	case 1629:
+		return BACnetVendorId_CORPORACIN_EMPRESARIAL_ALTRA, true
 	case 163:
 		return BACnetVendorId_SYS_MIK_GMBH_DRESDEN, true
 	case 164:
@@ -20848,6 +20920,18 @@ func BACnetVendorIdByName(value string) (enum BACnetVendorId, ok bool) {
 		return BACnetVendorId_NETWORK_CORPORATION, true
 	case "VEAWE_INFO_DYNAMICS_PRIVATE_LIMITED":
 		return BACnetVendorId_VEAWE_INFO_DYNAMICS_PRIVATE_LIMITED, true
+	case "VISUAL_SOLUTIONSUK_LTD":
+		return BACnetVendorId_VISUAL_SOLUTIONSUK_LTD, true
+	case "NICOR_LIGHTING":
+		return BACnetVendorId_NICOR_LIGHTING, true
+	case "EME_AUTOMATION":
+		return BACnetVendorId_EME_AUTOMATION, true
+	case "CONTROL_COM_TECHNOLOGIESLLC":
+		return BACnetVendorId_CONTROL_COM_TECHNOLOGIESLLC, true
+	case "ELECTR_SOL":
+		return BACnetVendorId_ELECTR_SOL, true
+	case "CORPORACIN_EMPRESARIAL_ALTRA":
+		return BACnetVendorId_CORPORACIN_EMPRESARIAL_ALTRA, true
 	case "SYS_MIK_GMBH_DRESDEN":
 		return BACnetVendorId_SYS_MIK_GMBH_DRESDEN, true
 	case "HSC_REGELUNGSTECHNIK_GMBH":
@@ -24154,6 +24238,18 @@ func (e BACnetVendorId) PLC4XEnumName() string {
 		return "NETWORK_CORPORATION"
 	case BACnetVendorId_VEAWE_INFO_DYNAMICS_PRIVATE_LIMITED:
 		return "VEAWE_INFO_DYNAMICS_PRIVATE_LIMITED"
+	case BACnetVendorId_VISUAL_SOLUTIONSUK_LTD:
+		return "VISUAL_SOLUTIONSUK_LTD"
+	case BACnetVendorId_NICOR_LIGHTING:
+		return "NICOR_LIGHTING"
+	case BACnetVendorId_EME_AUTOMATION:
+		return "EME_AUTOMATION"
+	case BACnetVendorId_CONTROL_COM_TECHNOLOGIESLLC:
+		return "CONTROL_COM_TECHNOLOGIESLLC"
+	case BACnetVendorId_ELECTR_SOL:
+		return "ELECTR_SOL"
+	case BACnetVendorId_CORPORACIN_EMPRESARIAL_ALTRA:
+		return "CORPORACIN_EMPRESARIAL_ALTRA"
 	case BACnetVendorId_SYS_MIK_GMBH_DRESDEN:
 		return "SYS_MIK_GMBH_DRESDEN"
 	case BACnetVendorId_HSC_REGELUNGSTECHNIK_GMBH:

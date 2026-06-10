@@ -21,6 +21,7 @@ package model
 
 import (
 	"context"
+	"encoding/binary"
 	stdErrors "errors"
 	"fmt"
 
@@ -234,7 +235,7 @@ func (m *_CBusMessage) GetLengthInBytes(ctx context.Context) uint16 {
 }
 
 func CBusMessageParse[T CBusMessage](ctx context.Context, theBytes []byte, isResponse bool, requestContext RequestContext, cBusOptions CBusOptions) (T, error) {
-	return CBusMessageParseWithBuffer[T](ctx, utils.NewReadBufferByteBased(theBytes), isResponse, requestContext, cBusOptions)
+	return CBusMessageParseWithBuffer[T](ctx, utils.NewReadBufferByteBased(theBytes, utils.WithByteOrderForReadBufferByteBased(binary.BigEndian)), isResponse, requestContext, cBusOptions)
 }
 
 func CBusMessageParseWithBufferProducer[T CBusMessage](isResponse bool, requestContext RequestContext, cBusOptions CBusOptions) func(ctx context.Context, readBuffer utils.ReadBuffer) (T, error) {
