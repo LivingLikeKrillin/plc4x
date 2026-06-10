@@ -23,15 +23,16 @@ import (
 	"bufio"
 	"context"
 	"fmt"
+	"io"
 	"net"
 	"sync"
 	"sync/atomic"
+	"syscall"
 	"time"
 
-	"github.com/libp2p/go-reuseport"
-	"github.com/pkg/errors"
 	"github.com/rs/zerolog"
 
+	"github.com/apache/plc4x/plc4go/spi/errors"
 	"github.com/apache/plc4x/plc4go/spi/options"
 	"github.com/apache/plc4x/plc4go/spi/transports"
 	"github.com/apache/plc4x/plc4go/spi/utils"
@@ -40,7 +41,15 @@ import (
 type TransportInstance struct {
 	LocalAddress  *net.UDPAddr
 	RemoteAddress *net.UDPAddr
-	SoReUse       bool
+	// SoReUse historically toggled SO_REUSEPORT via github.com/libp2p/go-reuseport.
+	// In practice that does not deliver broadcast traffic to multiple host-local
+	// BACnet stacks (the kernel hashes each broadcast to one socket on Linux,
+	// and behaviour is platform-dependent elsewhere), so this field is kept for
+	// API compatibility but no longer changes how the socket is bound.
+	//
+	// Deprecated: no-op as of plc4go 1.0; will be removed once the API contract
+	// can absorb the signature change.
+	SoReUse bool
 
 	transport *Transport
 	udpConn   *net.UDPConn
@@ -93,28 +102,20 @@ func (m *TransportInstance) Connect(ctx context.Context) error {
 		if m.udpConn, err = net.DialUDP("udp", m.LocalAddress, m.RemoteAddress); err != nil {
 			return errors.Wrapf(err, "error connecting to remote address '%s'", m.RemoteAddress)
 		}
-	} else if m.SoReUse && m.LocalAddress != nil {
-		if packetConn, err := reuseport.ListenPacket("udp", m.LocalAddress.String()); err != nil {
-			return errors.Wrapf(err, "error connecting to local address '%s'", m.LocalAddress)
-		} else {
-			m.udpConn = packetConn.(*net.UDPConn)
-		}
 	} else {
+		// Listen-only mode (no RemoteAddress). The SoReUse field used to switch
+		// to a SO_REUSEPORT-enabled bind via libp2p/go-reuseport; that did not
+		// actually solve the "multiple BACnet stacks on one host" problem (see
+		// the SoReUse doc comment), so both branches now use stdlib net.ListenUDP.
 		if m.udpConn, err = net.ListenUDP("udp", m.LocalAddress); err != nil {
 			return errors.Wrapf(err, "error connecting to local address '%s'", m.LocalAddress)
 		}
 	}
 
-	// TODO: Start a worker that uses m.udpConn.ReadFromUDP() to fill a buffer
-	/*	m.wg.Go(func() {
-	    buf := make([]byte, 1024)
-	    for {
-	        rsize, raddr, err := m.udpConn.ReadFromUDP(buf)
-	        if err != nil {
-	            fmt.Printf("Got %d bytes from %v: %v", rsize, raddr, buf)
-	        }
-	    }
-	}()*/
+	// Passive bufio.Reader over the UDP socket — same pattern the TCP
+	// transport uses. The codec's Receive worker drives reads through
+	// PeekReadableBytes/Read/FillBuffer with a deadline set from the request
+	// context, so we don't need a separate pump goroutine.
 	m.reader = bufio.NewReader(m.udpConn)
 
 	m.connected.Store(true)
@@ -227,11 +228,16 @@ func (m *TransportInstance) Write(ctx context.Context, data []byte) error {
 	}
 	var num int
 	var err error
-	if m.RemoteAddress == nil {
-		// TODO: usually this happens on the dial port... is there a better way to catch that?
+	// A connected UDP socket (obtained via net.DialUDP) rejects WriteToUDP with
+	// "use of WriteTo with pre-connected connection" — we have to use the plain
+	// Write() path instead. udpConn.RemoteAddr() is nil for ListenUDP sockets and
+	// the connected remote for DialUDP sockets, so that's the right discriminator.
+	if m.udpConn.RemoteAddr() != nil {
 		num, err = m.udpConn.Write(data)
-	} else {
+	} else if m.RemoteAddress != nil {
 		num, err = m.udpConn.WriteToUDP(data, m.RemoteAddress)
+	} else {
+		num, err = m.udpConn.Write(data)
 	}
 	if err != nil {
 		return errors.Wrapf(err, "error writing (remote address: %s)", m.RemoteAddress)
@@ -244,4 +250,39 @@ func (m *TransportInstance) Write(ctx context.Context, data []byte) error {
 
 func (m *TransportInstance) String() string {
 	return fmt.Sprintf("udp:%s->%s", m.LocalAddress, m.RemoteAddress)
+}
+
+func (m *TransportInstance) ClassifyError(err error) transports.TransportErrorKind {
+	if err == nil {
+		return transports.TransportErrorUnknown
+	}
+	if transports.ErrorIs(err, io.EOF) || transports.ErrorIs(err, net.ErrClosed) || transports.ErrorIs(err, syscall.EPIPE) {
+		return transports.TransportErrorFatal
+	}
+	if netErr, ok := err.(net.Error); ok {
+		if netErr.Timeout() {
+			return transports.TransportErrorRetryable
+		}
+	}
+	if transports.IsTransientSyscallError(err) {
+		return transports.TransportErrorTransient
+	}
+	var opErr *net.OpError
+	if transports.ErrorAs(err, &opErr) && opErr != nil {
+		if opErr.Timeout() {
+			return transports.TransportErrorRetryable
+		}
+		if transports.IsTransientSyscallError(opErr.Err) {
+			return transports.TransportErrorTransient
+		}
+		if syscallErr, ok := opErr.Err.(syscall.Errno); ok {
+			switch syscallErr {
+			case syscall.ECONNRESET, syscall.ECONNREFUSED, syscall.ENETDOWN, syscall.ENETUNREACH:
+				return transports.TransportErrorFatal
+			case syscall.ETIMEDOUT:
+				return transports.TransportErrorRetryable
+			}
+		}
+	}
+	return transports.TransportErrorFatal
 }

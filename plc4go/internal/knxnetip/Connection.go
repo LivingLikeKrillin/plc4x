@@ -23,21 +23,21 @@ import (
 	"bytes"
 	"context"
 	"encoding/hex"
-	stdErrors "errors"
 	"fmt"
 	"runtime/debug"
 	"strconv"
 	"strings"
 	"sync"
+	"sync/atomic"
 	"time"
 
-	"github.com/pkg/errors"
 	"github.com/rs/zerolog"
 
 	apiModel "github.com/apache/plc4x/plc4go/pkg/api/model"
 	"github.com/apache/plc4x/plc4go/pkg/api/values"
 	driverModel "github.com/apache/plc4x/plc4go/protocols/knxnetip/readwrite/model"
 	"github.com/apache/plc4x/plc4go/spi"
+	"github.com/apache/plc4x/plc4go/spi/errors"
 	"github.com/apache/plc4x/plc4go/spi/interceptors"
 	spiModel "github.com/apache/plc4x/plc4go/spi/model"
 	"github.com/apache/plc4x/plc4go/spi/options"
@@ -141,6 +141,8 @@ type Connection struct {
 	passLogToModel bool
 	log            zerolog.Logger
 	_options       []options.WithOption // Used to pass them downstream
+
+	invalidated atomic.Bool
 }
 
 var (
@@ -230,6 +232,9 @@ func (m *Connection) GetTracer() tracer.Tracer {
 }
 
 func (m *Connection) Connect(ctx context.Context) error {
+	// Reset invalidation state before we start a new connection attempt.
+	m.invalidated.Store(false)
+
 	// Open the UDP Connection
 	err := m.messageCodec.Connect(ctx)
 	if err != nil {
@@ -365,12 +370,13 @@ func (m *Connection) Connect(ctx context.Context) error {
 		return m.doSomethingAndClose(func() error { return errors.New("this device doesn't support tunneling") })
 	}
 
+	m.invalidated.Store(false)
 	return nil
 }
 
 func (m *Connection) doSomethingAndClose(something func() error) error {
 	err := something()
-	return stdErrors.Join(err, m.messageCodec.Disconnect())
+	return errors.Join(err, m.messageCodec.Disconnect())
 }
 
 func (m *Connection) Close() error {
@@ -420,11 +426,28 @@ func (m *Connection) IsConnected() bool {
 }
 
 func (m *Connection) Ping(ctx context.Context) error {
+	if m.IsInvalidated() {
+		return errors.New("connection has been invalidated")
+	}
 	// Send the connection state request
 	if _, err := m.sendConnectionStateRequest(ctx); err != nil {
 		return errors.Wrap(err, "got an error")
 	}
 	return nil
+}
+
+func (m *Connection) Invalidate() {
+	if m.invalidated.Swap(true) {
+		return
+	}
+	m.log.Debug().Msg("invalidating connection")
+	if err := m.Close(); err != nil {
+		m.log.Warn().Err(err).Msg("error closing invalidated connection")
+	}
+}
+
+func (m *Connection) IsInvalidated() bool {
+	return m.invalidated.Load()
 }
 
 func (m *Connection) GetMetadata() apiModel.PlcConnectionMetadata {

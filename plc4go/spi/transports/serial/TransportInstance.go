@@ -24,14 +24,15 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"strings"
 	"sync"
 	"sync/atomic"
 	"time"
 
 	"github.com/jacobsa/go-serial/serial"
-	"github.com/pkg/errors"
 	"github.com/rs/zerolog"
 
+	"github.com/apache/plc4x/plc4go/spi/errors"
 	"github.com/apache/plc4x/plc4go/spi/options"
 	"github.com/apache/plc4x/plc4go/spi/transports"
 	transportUtils "github.com/apache/plc4x/plc4go/spi/transports/utils"
@@ -153,4 +154,26 @@ func (m *TransportInstance) SetReadDeadline(deadline time.Time) error {
 
 func (m *TransportInstance) String() string {
 	return fmt.Sprintf("serial:%s:%d", m.SerialPortName, m.BaudRate)
+}
+
+func (m *TransportInstance) ClassifyError(err error) transports.TransportErrorKind {
+	if err == nil {
+		return transports.TransportErrorUnknown
+	}
+	if transports.IsTransientSyscallError(err) {
+		return transports.TransportErrorTransient
+	}
+	if transports.ErrorIs(err, io.EOF) {
+		return transports.TransportErrorFatal
+	}
+	lower := strings.ToLower(err.Error())
+	switch {
+	case strings.Contains(lower, "timeout"):
+		return transports.TransportErrorRetryable
+	case strings.Contains(lower, "temporarily unavailable"):
+		return transports.TransportErrorTransient
+	case strings.Contains(lower, "closed"):
+		return transports.TransportErrorFatal
+	}
+	return transports.TransportErrorFatal
 }

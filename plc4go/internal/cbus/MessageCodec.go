@@ -22,16 +22,17 @@ package cbus
 import (
 	"context"
 	"hash/crc32"
+	"reflect"
 	"sync"
 	"sync/atomic"
 	"time"
 
-	"github.com/pkg/errors"
 	"github.com/rs/zerolog"
 
 	readWriteModel "github.com/apache/plc4x/plc4go/protocols/cbus/readwrite/model"
 	"github.com/apache/plc4x/plc4go/spi"
 	"github.com/apache/plc4x/plc4go/spi/default"
+	"github.com/apache/plc4x/plc4go/spi/errors"
 	"github.com/apache/plc4x/plc4go/spi/options"
 	"github.com/apache/plc4x/plc4go/spi/transports"
 )
@@ -75,6 +76,16 @@ func NewMessageCodec(transportInstance transports.TransportInstance, _options ..
 
 func (m *MessageCodec) GetCodec() spi.MessageCodec {
 	return m
+}
+
+func (m *MessageCodec) SetTransportErrorHandler(handler transports.TransportErrorHandler) {
+	if m.DefaultCodec == nil {
+		return
+	}
+	if value := reflect.ValueOf(m.DefaultCodec); value.Kind() == reflect.Pointer && value.IsNil() {
+		return
+	}
+	m.DefaultCodec.SetTransportErrorHandler(handler)
 }
 
 func (m *MessageCodec) Connect(ctx context.Context) error {

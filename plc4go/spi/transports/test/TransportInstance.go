@@ -27,9 +27,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/pkg/errors"
 	"github.com/rs/zerolog"
 
+	"github.com/apache/plc4x/plc4go/spi/errors"
 	"github.com/apache/plc4x/plc4go/spi/options"
 	"github.com/apache/plc4x/plc4go/spi/transports"
 	"github.com/apache/plc4x/plc4go/spi/utils"
@@ -324,6 +324,20 @@ func (m *TransportInstance) Reset() {
 
 func (m *TransportInstance) String() string {
 	return "test"
+}
+
+// ClassifyError maps test-transport specific error values to the shared severity enum.
+func (m *TransportInstance) ClassifyError(err error) transports.TransportErrorKind {
+	if err == nil {
+		return transports.TransportErrorUnknown
+	}
+	if transports.ErrorIs(err, context.Canceled) {
+		return transports.TransportErrorTransient
+	}
+	if transports.ErrorIs(err, context.DeadlineExceeded) || transports.ErrorIs(err, bufio.ErrBufferFull) {
+		return transports.TransportErrorRetryable
+	}
+	return transports.TransportErrorFatal
 }
 
 func (m *TransportInstance) availableBytes() uint32 {
