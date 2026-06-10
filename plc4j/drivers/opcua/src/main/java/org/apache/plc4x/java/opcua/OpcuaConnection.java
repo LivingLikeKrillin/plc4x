@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.java.opcua.protocol;
+package org.apache.plc4x.java.opcua;
 
 import static org.apache.plc4x.java.opcua.context.SecureChannel.getX509Certificate;
 
@@ -25,7 +25,11 @@ import java.nio.ByteOrder;
 import java.time.*;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import org.apache.plc4x.java.api.authentication.PlcAuthentication;
+import org.apache.plc4x.java.api.authentication.PlcUsernamePasswordAuthentication;
 import org.apache.plc4x.java.api.exceptions.PlcConnectionException;
 import org.apache.plc4x.java.api.exceptions.PlcRuntimeException;
 import org.apache.plc4x.java.api.messages.*;
@@ -37,29 +41,31 @@ import org.apache.plc4x.java.api.model.PlcTag;
 import org.apache.plc4x.java.api.types.PlcResponseCode;
 import org.apache.plc4x.java.api.types.PlcValueType;
 import org.apache.plc4x.java.api.value.PlcValue;
-import org.apache.plc4x.java.opcua.OpcMetadataKeys;
 import org.apache.plc4x.java.opcua.config.OpcuaConfiguration;
 import org.apache.plc4x.java.opcua.context.Conversation;
 import org.apache.plc4x.java.opcua.context.OpcuaDriverContext;
+import org.apache.plc4x.java.opcua.context.OpcuaWire;
 import org.apache.plc4x.java.opcua.context.SecureChannel;
+import org.apache.plc4x.java.opcua.protocol.OpcuaSubscriptionHandle;
 import org.apache.plc4x.java.opcua.readwrite.*;
 import org.apache.plc4x.java.opcua.tag.OpcuaPlcTagHandler;
 import org.apache.plc4x.java.opcua.tag.OpcuaQualityStatus;
 import org.apache.plc4x.java.opcua.tag.OpcuaTag;
-import org.apache.plc4x.java.spi.ConversationContext;
-import org.apache.plc4x.java.spi.Plc4xProtocolBase;
-import org.apache.plc4x.java.spi.configuration.HasConfiguration;
-import org.apache.plc4x.java.spi.connection.PlcTagHandler;
-import org.apache.plc4x.java.spi.context.DriverContext;
-import org.apache.plc4x.java.spi.messages.*;
-import org.apache.plc4x.java.spi.messages.utils.DefaultPlcResponseItem;
-import org.apache.plc4x.java.spi.messages.utils.PlcResponseItem;
-import org.apache.plc4x.java.spi.metadata.DefaultMetadata.Builder;
-import org.apache.plc4x.java.spi.model.DefaultPlcConsumerRegistration;
-import org.apache.plc4x.java.spi.model.DefaultPlcSubscriptionTag;
-import org.apache.plc4x.java.spi.transaction.RequestTransactionManager;
-import org.apache.plc4x.java.spi.transaction.RequestTransactionManager.RequestTransaction;
+import org.apache.plc4x.java.spi.buffers.api.exceptions.BufferException;
+import org.apache.plc4x.java.spi.drivers.ConnectionBase;
+import org.apache.plc4x.java.spi.drivers.exceptions.MessageCodecException;
+import org.apache.plc4x.java.spi.drivers.tags.PlcTagHandler;
+import org.apache.plc4x.java.spi.drivers.messages.*;
+import org.apache.plc4x.java.spi.drivers.messages.items.DefaultPlcResponseItem;
+import org.apache.plc4x.java.spi.drivers.messages.items.PlcResponseItem;
+import org.apache.plc4x.java.spi.drivers.messages.DefaultPlcConsumerRegistration;
+import org.apache.plc4x.java.spi.drivers.messages.DefaultPlcSubscriptionTag;
+import org.apache.plc4x.java.spi.transports.api.TransportInstance;
+import org.apache.plc4x.java.transport.tcp.TcpTransportInstance;
+
+import java.net.InetSocketAddress;
 import org.apache.plc4x.java.spi.values.*;
+import org.apache.plc4x.java.utils.auditlog.api.AuditLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -67,11 +73,12 @@ import java.math.BigInteger;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 
-public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements HasConfiguration<OpcuaConfiguration>, PlcSubscriber {
+public class OpcuaConnection extends ConnectionBase<OpcuaConfiguration> implements OpcuaWire {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(OpcuaProtocolLogic.class);
-    protected static final PascalString NULL_STRING = new PascalString(null);
+    private static final Logger LOGGER = LoggerFactory.getLogger(OpcuaConnection.class);
+    public static final PascalString NULL_STRING = new PascalString(null);
     private static final ExpandedNodeId NULL_EXPANDED_NODEID = new ExpandedNodeId(false,
         false,
         new NodeIdTwoByte((short) 0),
@@ -79,7 +86,7 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
         null
     );
 
-    protected static final ExtensionObject NULL_EXTENSION_OBJECT = new NullExtensionObjectWithMask(
+    public static final ExtensionObject NULL_EXTENSION_OBJECT = new NullExtensionObjectWithMask(
         NULL_EXPANDED_NODEID,
         new ExtensionObjectEncodingMask(false, false, false));
 
@@ -87,127 +94,188 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
     // IEC 61131-3 date types use 1990-01-01 as epoch, PlcDATE etc. use Unix epoch (1970-01-01).
     private static final long IEC_DATE_EPOCH_OFFSET_DAYS = LocalDate.of(1990, 1, 1).toEpochDay();
     private final Map<Long, OpcuaSubscriptionHandle> subscriptions = new ConcurrentHashMap<>();
-    private final RequestTransactionManager tm = new RequestTransactionManager();
 
-    private OpcuaConfiguration configuration;
-    private OpcuaDriverContext driverContext;
+    // Listener registry backing the OpcuaWire implementation: every incoming
+    // OpcuaAPU off the codec is dispatched to each registered listener whose
+    // predicate matches. One-shot listeners (expect) self-remove on first match.
+    private final List<WireListener> listeners = new CopyOnWriteArrayList<>();
+    private final Map<DefaultPlcConsumerRegistration, Consumer<PlcSubscriptionEvent>> consumers = new ConcurrentHashMap<>();
+
+    private final OpcuaDriverContext driverContext = new OpcuaDriverContext();
+    private OpcuaMessageCodec messageCodec;
     private SecureChannel channel;
     private Conversation conversation;
+    private volatile boolean connected = false;
 
-    @Override
-    public void setConfiguration(OpcuaConfiguration configuration) {
-        this.configuration = configuration;
+    public OpcuaConnection(OpcuaConfiguration configuration,
+                           TransportInstance<?> transportInstance,
+                           AuditLog auditLog) {
+        super(configuration, transportInstance, auditLog);
     }
 
     @Override
-    public PlcTagHandler getTagHandler() {
+    protected PlcTagHandler getTagHandler() {
         return new OpcuaPlcTagHandler();
     }
 
     @Override
-    public void close(ConversationContext<OpcuaAPU> context) {
-        tm.shutdown();
+    protected PlcValueHandler getValueHandler() {
+        return new DefaultPlcValueHandler();
     }
 
     @Override
-    public void onDisconnect(ConversationContext<OpcuaAPU> context) {
-        if (channel == null) {
-            return;
+    public boolean isConnected() {
+        return connected && messageCodec != null && messageCodec.isOpen();
+    }
+
+    @Override
+    protected void onConnect() throws PlcConnectionException {
+        LOGGER.debug("Opcua Driver running in ACTIVE mode.");
+        // The new SPI hands us a resolved transport instance — pull the host/port
+        // back out so the driver context can build the OPC UA endpoint URL.
+        if (!(transportInstance instanceof TcpTransportInstance tcp)) {
+            throw new PlcConnectionException(
+                "OPC UA driver requires a TCP transport instance, got " + transportInstance.getClass().getName());
         }
+        InetSocketAddress remote = tcp.getRemoteAddress();
+        driverContext.initialize(
+            getTransportCode(),
+            remote.getHostString(),
+            String.valueOf(remote.getPort()),
+            "",
+            configuration);
+
+        messageCodec = new OpcuaMessageCodec(transportInstance, this::handleIncoming);
+        startReceiving(() -> {
+            try {
+                messageCodec.processIncomingData();
+            } catch (MessageCodecException e) {
+                LOGGER.error("Error processing incoming OPC UA data", e);
+            }
+        });
+
+        this.conversation = new Conversation(this, driverContext, configuration);
+        this.channel = new SecureChannel(conversation, driverContext, configuration, getAuthentication());
+
+        try {
+            // Discovery only carries information needed for the encrypted modes
+            // (it fetches the server certificate). For SecurityPolicy.NONE the
+            // GetEndpoints call adds nothing and — running on the same TCP
+            // socket as the real handshake — a second HELLO after the discovery
+            // CloseSecureChannel makes most servers either reset the connection
+            // or hang waiting for nothing.
+            if (configuration.isDiscovery()
+                && configuration.getSecurityPolicy() != null
+                && configuration.getSecurityPolicy() != org.apache.plc4x.java.opcua.security.SecurityPolicy.NONE) {
+                LOGGER.debug("Discovering endpoints before connecting");
+                EndpointDescription endpoint = channel.onDiscover()
+                    .get(configuration.getNegotiationTimeout(), TimeUnit.MILLISECONDS);
+                configuration.setServerCertificate(
+                    getX509Certificate(endpoint.getServerCertificate().getStringValue()));
+            }
+            channel.onConnect().get(configuration.getNegotiationTimeout(), TimeUnit.MILLISECONDS);
+            connected = true;
+            LOGGER.info("Established connection to server");
+        } catch (Exception e) {
+            throw new PlcConnectionException("Failed to establish OPC UA connection", e);
+        }
+    }
+
+    private PlcAuthentication getAuthentication() {
+        if (configuration.getUsername() != null && configuration.getPassword() != null) {
+            return new PlcUsernamePasswordAuthentication(configuration.getUsername(), configuration.getPassword());
+        }
+        return null;
+    }
+
+    @Override
+    public void close() throws Exception {
+        connected = false;
         for (Entry<Long, OpcuaSubscriptionHandle> subscriber : subscriptions.entrySet()) {
             subscriber.getValue().stopSubscriber();
         }
-
-        RequestTransaction tx = tm.startRequest();
-        tx.submit(() -> {
+        if (channel != null) {
             try {
                 channel.onDisconnect();
-                tx.endRequest();
             } catch (Exception e) {
-                tx.failRequest(e);
-            }
-        });
-    }
-
-    @Override
-    public void setDriverContext(DriverContext driverContext) {
-        this.driverContext = (OpcuaDriverContext) driverContext;
-    }
-
-    @Override
-    public void onConnect(ConversationContext<OpcuaAPU> context) {
-        LOGGER.debug("Opcua Driver running in ACTIVE mode.");
-
-        if (this.channel == null) {
-            try {
-                this.channel = createSecureChannel(context, context.getAuthentication());
-            } catch (PlcRuntimeException ex) {
-                context.getChannel().pipeline().fireExceptionCaught(new PlcConnectionException(ex));
-                return;
+                LOGGER.warn("Error during secure channel disconnect", e);
             }
         }
+        stopReceiving();
+        if (messageCodec != null) {
+            messageCodec.close();
+        }
+        listeners.clear();
+        consumers.clear();
+        super.close();
+    }
 
-        CompletableFuture<ActivateSessionResponse> future = new CompletableFuture<>();
-        RequestTransaction transaction = tm.startRequest();
-        transaction.submit(() -> {
-            channel.onConnect().whenComplete(((response, error) -> bridge(transaction, future, response, error)));
-        });
-        future.whenComplete((response, error) -> {
-            if (error != null) {
-                LOGGER.error("Failed to establish connection", error);
-                context.fireDisconnected();
-                return;
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // OpcuaWire implementation — the conversation layer drives the transport through this.
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    private void handleIncoming(OpcuaAPU apu) {
+        for (WireListener listener : listeners) {
+            if (listener.predicate.test(apu)) {
+                if (listener.oneShot) {
+                    listeners.remove(listener);
+                }
+                listener.handler.accept(apu);
+                if (listener.oneShot) {
+                    return;
+                }
             }
-            LOGGER.info("Established connection to server");
-            context.fireConnected();
-        });
+        }
     }
 
     @Override
-    public void onDiscover(ConversationContext<OpcuaAPU> context) {
-        if (!configuration.isDiscovery()) {
-            LOGGER.debug("not encrypted, ignoring onDiscover");
-            context.fireDiscovered(configuration);
-            return;
+    public void sendToWire(OpcuaAPU apu) {
+        try {
+            messageCodec.send(apu);
+        } catch (MessageCodecException e) {
+            throw new PlcRuntimeException("Error sending OPC UA message", e);
         }
-
-        // Only the TCP transport supports login.
-        LOGGER.debug("Opcua Driver running in ACTIVE mode, discovering endpoints");
-        if (this.channel == null) {
-            try {
-                this.channel = createSecureChannel(context, context.getAuthentication());
-            } catch (PlcRuntimeException ex) {
-                context.getChannel().pipeline().fireExceptionCaught(new PlcConnectionException(ex));
-                return;
-            }
-        }
-
-        CompletableFuture<EndpointDescription> future = new CompletableFuture<>();
-        RequestTransaction transaction = tm.startRequest();
-        transaction.submit(() ->
-            channel.onDiscover().whenComplete((response, error) -> bridge(transaction, future, response, error))
-        );
-        future.whenComplete((response, error) -> {
-          if (error != null) {
-              PlcConnectionException exception = new PlcConnectionException(error);
-              context.getChannel().pipeline().fireExceptionCaught(exception);
-              transaction.failRequest(exception);
-              return;
-          }
-          configuration.setServerCertificate(getX509Certificate(response.getServerCertificate().getStringValue()));
-          context.fireDiscovered(configuration);
-          context.fireDisconnected();
-          transaction.endRequest();
-        });
-    }
-
-    private SecureChannel createSecureChannel(ConversationContext<OpcuaAPU> context, PlcAuthentication authentication) {
-        this.conversation = new Conversation(context, driverContext, configuration);
-        return new SecureChannel(conversation, tm, driverContext, configuration, authentication);
     }
 
     @Override
-    public CompletableFuture<PlcReadResponse> read(PlcReadRequest readRequest) {
+    public CompletableFuture<OpcuaAPU> expect(Predicate<OpcuaAPU> predicate, Duration timeout) {
+        CompletableFuture<OpcuaAPU> future = new CompletableFuture<>();
+        WireListener listener = new WireListener(predicate, future::complete, true);
+        listeners.add(listener);
+        future.orTimeout(timeout.toMillis(), TimeUnit.MILLISECONDS)
+            .exceptionally(error -> {
+                listeners.remove(listener);
+                return null;
+            });
+        return future;
+    }
+
+    @Override
+    public Subscription subscribe(Predicate<OpcuaAPU> predicate, Consumer<OpcuaAPU> handler) {
+        WireListener listener = new WireListener(predicate, handler, false);
+        listeners.add(listener);
+        return () -> listeners.remove(listener);
+    }
+
+    @Override
+    public void fireDisconnected() {
+        connected = false;
+    }
+
+    private static final class WireListener {
+        private final Predicate<OpcuaAPU> predicate;
+        private final Consumer<OpcuaAPU> handler;
+        private final boolean oneShot;
+
+        WireListener(Predicate<OpcuaAPU> predicate, Consumer<OpcuaAPU> handler, boolean oneShot) {
+            this.predicate = predicate;
+            this.handler = handler;
+            this.oneShot = oneShot;
+        }
+    }
+
+    @Override
+    protected CompletableFuture<PlcReadResponse> onRead(PlcReadRequest readRequest) {
         LOGGER.trace("Reading Value");
 
         DefaultPlcReadRequest request = (DefaultPlcReadRequest) readRequest;
@@ -237,26 +305,18 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
             readValueArray
         );
 
-        CompletableFuture<ReadResponse> future = new CompletableFuture<>();
-        RequestTransaction transaction = tm.startRequest();
-        transaction.submit(() -> {
-            conversation.submit(opcuaReadRequest, ReadResponse.class).whenComplete((response, error) -> bridge(transaction, future, response, error));
-        });
-        return future.thenApply(response -> {
-            Metadata responseMetadata = new Builder()
-                .put(PlcMetadataKeys.RECEIVE_TIMESTAMP, System.currentTimeMillis())
-                .build();
-            Entry<Map<String, Metadata>, Map<String, PlcResponseItem<PlcValue>>> mappedResponse = readResponse(tagMap, response.getResults(), responseMetadata);
-            return new DefaultPlcReadResponse(request, mappedResponse.getValue(), mappedResponse.getKey());
+        return conversation.submit(opcuaReadRequest, ReadResponse.class).thenApply(response -> {
+            Map<String, PlcResponseItem<PlcValue>> mappedResponse = readResponse(tagMap, response.getResults());
+            return new DefaultPlcReadResponse(request, mappedResponse);
         });
     }
 
-    static NodeId generateNodeId(OpcuaTag tag) {
+    public static NodeId generateNodeId(OpcuaTag tag) {
         NodeId nodeId = null;
         if (tag.getIdentifierType() == OpcuaIdentifierType.BINARY_IDENTIFIER) {
             nodeId = new NodeId(new NodeIdTwoByte(Short.parseShort(tag.getIdentifier())));
         } else if (tag.getIdentifierType() == OpcuaIdentifierType.NUMBER_IDENTIFIER) {
-            nodeId = new NodeId(new NodeIdNumeric((short) tag.getNamespace(), Long.parseLong(tag.getIdentifier())));
+            nodeId = new NodeId(new NodeIdNumeric(tag.getNamespace(), Long.parseLong(tag.getIdentifier())));
         } else if (tag.getIdentifierType() == OpcuaIdentifierType.GUID_IDENTIFIER) {
             UUID guid = UUID.fromString(tag.getIdentifier());
             ByteBuffer bb = ByteBuffer.allocate(16)
@@ -266,16 +326,15 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
                     .putShort((short)guid.getMostSignificantBits())
                     .order(ByteOrder.BIG_ENDIAN)
                     .putLong(guid.getLeastSignificantBits());
-            nodeId = new NodeId(new NodeIdGuid((short) tag.getNamespace(), bb.array()));
+            nodeId = new NodeId(new NodeIdGuid(tag.getNamespace(), bb.array()));
         } else if (tag.getIdentifierType() == OpcuaIdentifierType.STRING_IDENTIFIER) {
-            nodeId = new NodeId(new NodeIdString((short) tag.getNamespace(), new PascalString(tag.getIdentifier())));
+            nodeId = new NodeId(new NodeIdString(tag.getNamespace(), new PascalString(tag.getIdentifier())));
         }
         return nodeId;
     }
 
-    Entry<Map<String, Metadata>, Map<String, PlcResponseItem<PlcValue>>> readResponse(Map<String, PlcTag> tagMap, List<DataValue> results, Metadata responseMetadata) {
+    public Map<String, PlcResponseItem<PlcValue>> readResponse(Map<String, PlcTag> tagMap, List<DataValue> results) {
         Map<String, PlcResponseItem<PlcValue>> response = new HashMap<>();
-        Map<String, Metadata> metadata = new HashMap<>();
         int index = 0;
         for (String tagName : tagMap.keySet()) {
             PlcTag tag = tagMap.get(tagName);
@@ -294,20 +353,12 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
                 LOGGER.error("Error while reading value from OPC UA server error code: {}", statusCode.toString());
             }
 
-            Metadata tagMetadata = new Builder(responseMetadata)
-                .put(OpcMetadataKeys.QUALITY, new OpcuaQualityStatus(dataValue.getStatusCode()))
-                .put(OpcMetadataKeys.SERVER_TIMESTAMP, dataValue.getServerTimestamp())
-                .put(OpcMetadataKeys.SOURCE_TIMESTAMP, dataValue.getSourceTimestamp())
-                .put(PlcMetadataKeys.TIMESTAMP, dataValue.getSourceTimestamp())
-                .put(PlcMetadataKeys.TIMESTAMP_SOURCE, TimeSource.SOFTWARE)
-                .build();
             response.put(tagName, new DefaultPlcResponseItem<>(responseCode, value));
-            metadata.put(tagName, tagMetadata);
         }
-        return Map.entry(metadata, response);
+        return response;
     }
 
-    static PlcValue variantToPlcValue(PlcTag tag, Variant variant) {
+    public static PlcValue variantToPlcValue(PlcTag tag, Variant variant) {
         PlcValue value = null;
         if (variant instanceof VariantBoolean) {
             byte[] array = ((VariantBoolean) variant).getValue();
@@ -599,6 +650,36 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
         return fallback;
     }
 
+    /**
+     * Walks a (possibly nested) {@link PlcList} and produces a flat 1-D
+     * {@link PlcList} of leaf values along with the per-level dimensions in
+     * outermost-first order. For a 1-D input the returned list is the input
+     * itself and {@code dimsOut} stays empty.
+     */
+    private static PlcList flattenMultidim(PlcList input, List<Integer> dimsOut) {
+        if (input.getLength() == 0 || !(input.getIndex(0) instanceof PlcList)) {
+            return input;
+        }
+        List<PlcValue> flat = new ArrayList<>();
+        List<Integer> innerDims = new ArrayList<>();
+        for (int i = 0; i < input.getLength(); i++) {
+            PlcList inner = (PlcList) input.getIndex(i);
+            List<Integer> tmp = new ArrayList<>();
+            PlcList innerFlat = flattenMultidim(inner, tmp);
+            if (i == 0) {
+                if (tmp.isEmpty()) {
+                    innerDims.add(inner.getLength());
+                } else {
+                    innerDims.addAll(tmp);
+                }
+            }
+            flat.addAll(innerFlat.getList());
+        }
+        dimsOut.add(input.getLength());
+        dimsOut.addAll(innerDims);
+        return new PlcList(flat);
+    }
+
     private Variant fromPlcValue(String tagName, OpcuaTag tag, PlcWriteRequest request) {
         PlcList valueObject;
         if (request.getPlcValue(tagName).getObject() instanceof List) {
@@ -609,10 +690,27 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
             valueObject = new PlcList(list);
         }
 
+        // OPC UA carries matrices/cubes as a flat value array plus an
+        // arrayDimensions field; collapse any nested PlcList structure
+        // into one buffer and capture the shape. For 1D input dims stays
+        // empty and the rest of the path behaves as before.
+        List<Integer> dims = new ArrayList<>();
+        valueObject = flattenMultidim(valueObject, dims);
+        boolean dimsSpec = !dims.isEmpty();
+        Integer noOfDims = dimsSpec ? dims.size() : null;
+        List<Integer> arrayDims = dimsSpec ? dims : java.util.Collections.emptyList();
+
         List<PlcValue> plcValueList = valueObject.getList();
         PlcValueType dataType = tag.getPlcValueType();
-        if (dataType.equals(PlcValueType.NULL)) {
-            if (plcValueList.get(0).getObject() instanceof Boolean) {
+        if (dataType.equals(PlcValueType.NULL) || dataType.equals(PlcValueType.List)) {
+            // When the tag address didn't carry a type suffix, infer from the
+            // PlcValue's own type. Falling back on getObject().getClass()
+            // collapses BYTE/USINT/WORD/UINT (all back-by Short) into INT,
+            // so the server rejects the write with INVALID_DATATYPE.
+            PlcValueType inferred = plcValueList.get(0).getPlcValueType();
+            if (inferred != null && inferred != PlcValueType.NULL) {
+                dataType = inferred;
+            } else if (plcValueList.get(0).getObject() instanceof Boolean) {
                 dataType = PlcValueType.BOOL;
             } else if (plcValueList.get(0).getObject() instanceof Byte) {
                 dataType = PlcValueType.SINT;
@@ -639,9 +737,9 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
                     tmpBOOL[i] = valueObject.getIndex(i).getByte();
                 }
                 return new VariantBoolean(length != 1,
-                    false,
-                    null,
-                    null,
+                    dimsSpec,
+                    noOfDims,
+                    arrayDims,
                     length == 1 ? null : length,
                     tmpBOOL);
 
@@ -652,9 +750,9 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
                     tmpBYTE.add(valueObject.getIndex(i).getShort());
                 }
                 return new VariantByte(length != 1,
-                    false,
-                    null,
-                    null,
+                    dimsSpec,
+                    noOfDims,
+                    arrayDims,
                     length == 1 ? null : length,
                     tmpBYTE);
 
@@ -665,9 +763,9 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
                     tmpWORD.add(valueObject.getIndex(i).getInteger());
                 }
                 return new VariantUInt16(length != 1,
-                    false,
-                    null,
-                    null,
+                    dimsSpec,
+                    noOfDims,
+                    arrayDims,
                     length == 1 ? null : length,
                     tmpWORD);
 
@@ -678,9 +776,9 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
                     tmpDWORD.add(valueObject.getIndex(i).getLong());
                 }
                 return new VariantUInt32(length != 1,
-                    false,
-                    null,
-                    null,
+                    dimsSpec,
+                    noOfDims,
+                    arrayDims,
                     length == 1 ? null : length,
                     tmpDWORD);
 
@@ -691,9 +789,9 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
                     tmpLWORD.add(valueObject.getIndex(i).getBigInteger());
                 }
                 return new VariantUInt64(length != 1,
-                    false,
-                    null,
-                    null,
+                    dimsSpec,
+                    noOfDims,
+                    arrayDims,
                     length == 1 ? null : length,
                     tmpLWORD);
 
@@ -704,9 +802,9 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
                     tmpUSINT.add(valueObject.getIndex(i).getShort());
                 }
                 return new VariantByte(length != 1,
-                    false,
-                    null,
-                    null,
+                    dimsSpec,
+                    noOfDims,
+                    arrayDims,
                     length == 1 ? null : length,
                     tmpUSINT);
 
@@ -717,9 +815,9 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
                     tmpSINT[i] = valueObject.getIndex(i).getByte();
                 }
                 return new VariantSByte(length != 1,
-                    false,
-                    null,
-                    null,
+                    dimsSpec,
+                    noOfDims,
+                    arrayDims,
                     length == 1 ? null : length,
                     tmpSINT);
 
@@ -730,9 +828,9 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
                     tmpUINT.add(valueObject.getIndex(i).getInt());
                 }
                 return new VariantUInt16(length != 1,
-                    false,
-                    null,
-                    null,
+                    dimsSpec,
+                    noOfDims,
+                    arrayDims,
                     length == 1 ? null : length,
                     tmpUINT);
 
@@ -743,9 +841,9 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
                     tmpINT16.add(valueObject.getIndex(i).getShort());
                 }
                 return new VariantInt16(length != 1,
-                    false,
-                    null,
-                    null,
+                    dimsSpec,
+                    noOfDims,
+                    arrayDims,
                     length == 1 ? null : length,
                     tmpINT16);
 
@@ -756,9 +854,9 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
                     tmpUDINT.add(valueObject.getIndex(i).getLong());
                 }
                 return new VariantUInt32(length != 1,
-                    false,
-                    null,
-                    null,
+                    dimsSpec,
+                    noOfDims,
+                    arrayDims,
                     length == 1 ? null : length,
                     tmpUDINT);
 
@@ -769,9 +867,9 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
                     tmpDINT.add(valueObject.getIndex(i).getInt());
                 }
                 return new VariantInt32(length != 1,
-                    false,
-                    null,
-                    null,
+                    dimsSpec,
+                    noOfDims,
+                    arrayDims,
                     length == 1 ? null : length,
                     tmpDINT);
 
@@ -782,9 +880,9 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
                     tmpULINT.add(valueObject.getIndex(i).getBigInteger());
                 }
                 return new VariantUInt64(length != 1,
-                    false,
-                    null,
-                    null,
+                    dimsSpec,
+                    noOfDims,
+                    arrayDims,
                     length == 1 ? null : length,
                     tmpULINT);
 
@@ -795,9 +893,9 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
                     tmpLINT.add(valueObject.getIndex(i).getLong());
                 }
                 return new VariantInt64(length != 1,
-                    false,
-                    null,
-                    null,
+                    dimsSpec,
+                    noOfDims,
+                    arrayDims,
                     length == 1 ? null : length,
                     tmpLINT);
 
@@ -808,9 +906,9 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
                     tmpREAL.add(valueObject.getIndex(i).getFloat());
                 }
                 return new VariantFloat(length != 1,
-                    false,
-                    null,
-                    null,
+                    dimsSpec,
+                    noOfDims,
+                    arrayDims,
                     length == 1 ? null : length,
                     tmpREAL);
 
@@ -821,9 +919,9 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
                     tmpLREAL.add(valueObject.getIndex(i).getDouble());
                 }
                 return new VariantDouble(length != 1,
-                    false,
-                    null,
-                    null,
+                    dimsSpec,
+                    noOfDims,
+                    arrayDims,
                     length == 1 ? null : length,
                     tmpLREAL);
 
@@ -840,9 +938,9 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
                     tmpString.add(new PascalString(s));
                 }
                 return new VariantString(length != 1,
-                    false,
-                    null,
-                    null,
+                    dimsSpec,
+                    noOfDims,
+                    arrayDims,
                     length == 1 ? null : length,
                     tmpString);
 
@@ -852,18 +950,32 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
                     tmpDateTime.add(valueObject.getIndex(i).getDateTime().toEpochSecond(ZoneOffset.UTC));
                 }
                 return new VariantDateTime(length != 1,
-                    false,
-                    null,
-                    null,
+                    dimsSpec,
+                    noOfDims,
+                    arrayDims,
                     length == 1 ? null : length,
                     tmpDateTime);
+
+            // IEC 61131-3 TIME is modelled by S7-1500 OPC UA as a signed
+            // 32-bit integer holding the duration in milliseconds.
+            case TIME:
+                List<Integer> tmpTime = new ArrayList<>(length);
+                for (int i = 0; i < length; i++) {
+                    tmpTime.add((int) valueObject.getIndex(i).getDuration().toMillis());
+                }
+                return new VariantInt32(length != 1,
+                    dimsSpec,
+                    noOfDims,
+                    arrayDims,
+                    length == 1 ? null : length,
+                    tmpTime);
             default:
                 throw new PlcRuntimeException("Unsupported write tag type " + dataType);
         }
     }
 
     @Override
-    public CompletableFuture<PlcWriteResponse> write(PlcWriteRequest writeRequest) {
+    protected CompletableFuture<PlcWriteResponse> onWrite(PlcWriteRequest writeRequest) {
         LOGGER.trace("Writing Value");
         DefaultPlcWriteRequest request = (DefaultPlcWriteRequest) writeRequest;
 
@@ -894,12 +1006,8 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
 
         WriteRequest opcuaWriteRequest = new WriteRequest(requestHeader, writeValueList);
 
-        CompletableFuture<WriteResponse> future = new CompletableFuture<>();
-        RequestTransaction transaction = tm.startRequest();
-        transaction.submit(() -> {
-            conversation.submit(opcuaWriteRequest, WriteResponse.class).whenComplete((response, error) -> bridge(transaction, future, response, error));
-        });
-        return future.thenApply(response -> writeResponse(request, response));
+        return conversation.submit(opcuaWriteRequest, WriteResponse.class)
+            .thenApply(response -> writeResponse(request, response));
     }
 
     private PlcWriteResponse writeResponse(DefaultPlcWriteRequest request, WriteResponse writeResponse) {
@@ -917,16 +1025,13 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
 
 
     @Override
-    public CompletableFuture<PlcSubscriptionResponse> subscribe(PlcSubscriptionRequest subscriptionRequest) {
+    protected CompletableFuture<PlcSubscriptionResponse> onSubscribe(PlcSubscriptionRequest subscriptionRequest) {
         List<String> tagNames = new ArrayList<>(subscriptionRequest.getTagNames());
         long cycleTime = (subscriptionRequest.getTag(tagNames.get(0))).getDuration().orElse(Duration.ofMillis(1000)).toMillis();
 
-        CompletableFuture<PlcSubscriptionResponse> future = new CompletableFuture<>();
-        RequestTransaction transaction = tm.startRequest();
-        transaction.submit(() -> {
-            onSubscribeCreateSubscription(cycleTime).thenApply(response -> {
+        return onSubscribeCreateSubscription(cycleTime).thenApply(response -> {
                 long subscriptionId = response.getSubscriptionId();
-                OpcuaSubscriptionHandle handle = new OpcuaSubscriptionHandle(this, tm,
+                OpcuaSubscriptionHandle handle = new OpcuaSubscriptionHandle(this,
                     conversation, subscriptionRequest, subscriptionId, cycleTime);
                 if (subscriptionRequest.getConsumer() != null) {
                     handle.register(subscriptionRequest.getConsumer());
@@ -953,10 +1058,7 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
                 }
 
                 return new DefaultPlcSubscriptionResponse(subscriptionRequest, values);
-            })
-            .whenComplete((response, error) -> bridge(transaction, future, response, error));
-        });
-        return future;
+            });
     }
 
     private CompletableFuture<CreateSubscriptionResponse> onSubscribeCreateSubscription(long cycleTime) {
@@ -965,10 +1067,10 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
         RequestHeader requestHeader = conversation.createRequestHeader();
         CreateSubscriptionRequest createSubscriptionRequest = new CreateSubscriptionRequest(
             requestHeader,
-            cycleTime,
-            12000,
-            5,
-            65536,
+            (double) cycleTime,
+            12000L,
+            5L,
+            65536L,
             true,
             (short) 0
         );
@@ -977,12 +1079,12 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
     }
 
     @Override
-    public CompletableFuture<PlcUnsubscriptionResponse> unsubscribe(PlcUnsubscriptionRequest unsubscriptionRequest) {
+    protected CompletableFuture<PlcUnsubscriptionResponse> onUnsubscribe(PlcUnsubscriptionRequest unsubscriptionRequest) {
         unsubscriptionRequest.getSubscriptionHandles().forEach(o -> {
             OpcuaSubscriptionHandle opcuaSubHandle = (OpcuaSubscriptionHandle) o;
             opcuaSubHandle.stopSubscriber();
         });
-        return null;
+        return CompletableFuture.completedFuture(new DefaultPlcUnsubscriptionResponse(unsubscriptionRequest));
     }
 
     public void removeSubscription(Long subscriptionId) {
@@ -990,20 +1092,22 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
     }
 
     @Override
-    public PlcConsumerRegistration register(Consumer<PlcSubscriptionEvent> consumer, Collection<PlcSubscriptionHandle> handles) {
-        List<PlcConsumerRegistration> registrations = new LinkedList<>();
+    protected PlcConsumerRegistration onRegisterConsumer(Consumer<PlcSubscriptionEvent> consumer, Collection<PlcSubscriptionHandle> handles) {
         // Register the current consumer for each of the given subscription handles
         for (PlcSubscriptionHandle subscriptionHandle : handles) {
             LOGGER.debug("Registering Consumer");
-            final PlcConsumerRegistration consumerRegistration = subscriptionHandle.register(consumer);
-            registrations.add(consumerRegistration);
+            subscriptionHandle.register(consumer);
         }
-        return new DefaultPlcConsumerRegistration(this, consumer, handles.toArray(new PlcSubscriptionHandle[0]));
+        DefaultPlcConsumerRegistration registration =
+            new DefaultPlcConsumerRegistration(this, consumer, handles.toArray(new PlcSubscriptionHandle[0]));
+        consumers.put(registration, consumer);
+        return registration;
     }
 
     @Override
-    public void unregister(PlcConsumerRegistration registration) {
+    protected void onUnregisterConsumer(PlcConsumerRegistration registration) {
         registration.unregister();
+        consumers.remove(registration);
     }
 
     public static long getDateTime(long dateTime) {
@@ -1017,14 +1121,5 @@ public class OpcuaProtocolLogic extends Plc4xProtocolBase<OpcuaAPU> implements H
         return new GuidValue(0L, 0, 0, data4, data5);
     }
 
-    private static <T> void bridge(RequestTransaction transaction, CompletableFuture<T> future, T response, Throwable error) {
-        if (error != null) {
-            future.completeExceptionally(error);
-            transaction.failRequest(error);
-        } else {
-            future.complete(response);
-            transaction.endRequest();
-        }
-    }
 
 }

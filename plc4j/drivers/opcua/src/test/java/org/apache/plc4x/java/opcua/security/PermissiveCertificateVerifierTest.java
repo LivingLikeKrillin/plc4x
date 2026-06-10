@@ -16,15 +16,19 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.java.opcua;
+package org.apache.plc4x.java.opcua.security;
 
-import org.apache.plc4x.test.driver.DriverTestsuiteRunner;
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
-public class OpcuaDriverIT extends DriverTestsuiteRunner {
+import static org.assertj.core.api.Assertions.assertThatCode;
 
-    public OpcuaDriverIT() {
-        super("/protocols/opcua/DriverTestsuite.xml", false);
+class PermissiveCertificateVerifierTest {
+
+    @Test
+    void trustsEverything() {
+        // The permissive verifier intentionally does nothing — even a null cert
+        // (which a strict verifier would reject) must not throw.
+        assertThatCode(() -> new PermissiveCertificateVerifier().checkCertificateTrusted(null))
+            .doesNotThrowAnyException();
     }
-
 }

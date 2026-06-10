@@ -18,12 +18,21 @@
  */
 package org.apache.plc4x.java.opcua;
 
-import org.apache.plc4x.test.parserserializer.ParserSerializerTestsuiteRunner;
+import org.apache.plc4x.java.opcua.tag.OpcuaQualityStatus;
+import org.junit.jupiter.api.Test;
 
-public class OpcuaParserSerializerTest extends ParserSerializerTestsuiteRunner {
+import static org.assertj.core.api.Assertions.assertThat;
 
-    public OpcuaParserSerializerTest() {
-        super("/protocols/opcua/ParserSerializerTestsuite.xml");
+class OpcMetadataKeysTest {
+
+    @Test
+    void exposesOpcuaScopedMetadataKeys() {
+        assertThat(OpcMetadataKeys.QUALITY.getKey()).isEqualTo("opcua_quality");
+        assertThat(OpcMetadataKeys.SERVER_TIMESTAMP.getKey()).isEqualTo("opcua_server_timestamp");
+        assertThat(OpcMetadataKeys.SOURCE_TIMESTAMP.getKey()).isEqualTo("opcua_source_timestamp");
+        // Sanity-check Key validation accepts typed values for each.
+        assertThat(OpcMetadataKeys.QUALITY.validate(new OpcuaQualityStatus(null))).isTrue();
+        assertThat(OpcMetadataKeys.SERVER_TIMESTAMP.validate(42L)).isTrue();
+        assertThat(OpcMetadataKeys.SOURCE_TIMESTAMP.validate(42L)).isTrue();
     }
-
 }

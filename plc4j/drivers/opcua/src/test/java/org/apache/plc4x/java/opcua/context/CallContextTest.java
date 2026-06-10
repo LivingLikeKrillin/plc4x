@@ -16,22 +16,26 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+package org.apache.plc4x.java.opcua.context;
 
-package org.apache.plc4x.java.opcua;
+import org.apache.plc4x.java.opcua.readwrite.SecurityHeader;
+import org.junit.jupiter.api.Test;
 
-import org.apache.plc4x.java.spi.values.PlcBOOL;
-import org.apache.plc4x.test.manual.ManualTest;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class ManualMiloOpcua extends ManualTest {
+import static org.assertj.core.api.Assertions.assertThat;
 
-    public ManualMiloOpcua(String connectionString) {
-        super(connectionString);
-    }
+class CallContextTest {
 
-    public static void main(String[] args) throws Exception {
-        ManualMiloOpcua manualMiloOpcua = new ManualMiloOpcua("opcua:tcp://milo.digitalpetri.com:62541/milo");
-        manualMiloOpcua
-            .addTestCase("ns=2;i=10846;BOOL", new PlcBOOL(false))
-            .run();
+    @Test
+    void exposesHeaderRequestIdAndSequencedNextNumber() {
+        SecurityHeader header = new SecurityHeader(7L, 11L);
+        AtomicInteger counter = new AtomicInteger(100);
+        CallContext ctx = new CallContext(header, counter::incrementAndGet, 42);
+
+        assertThat(ctx.getSecurityHeader()).isSameAs(header);
+        assertThat(ctx.getRequestId()).isEqualTo(42);
+        assertThat(ctx.getNextSequenceNumber()).isEqualTo(101);
+        assertThat(ctx.getNextSequenceNumber()).isEqualTo(102);
     }
 }

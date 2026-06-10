@@ -19,22 +19,31 @@
 package org.apache.plc4x.java.opcua.tag;
 
 import org.apache.plc4x.java.api.exceptions.PlcInvalidTagException;
-import org.apache.plc4x.java.api.model.PlcQuery;
-import org.apache.plc4x.java.spi.drivers.tags.PlcTagHandler;
+import org.junit.jupiter.api.Test;
 
-public class OpcuaPlcTagHandler implements PlcTagHandler {
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-    @Override
-    public OpcuaTag parseTag(String tagAddress) {
-        if (OpcuaTag.matches(tagAddress)) {
-            return OpcuaTag.of(tagAddress);
-        }
-        throw new PlcInvalidTagException(tagAddress);
+class OpcuaPlcTagHandlerTest {
+
+    private final OpcuaPlcTagHandler handler = new OpcuaPlcTagHandler();
+
+    @Test
+    void parsesValidTag() {
+        OpcuaTag tag = handler.parseTag("ns=2;i=10846");
+        assertThat(tag).isNotNull();
+        assertThat(tag.getNamespace()).isEqualTo(2);
     }
 
-    @Override
-    public PlcQuery parseQuery(String query) {
-        throw new UnsupportedOperationException("This driver doesn't support browsing");
+    @Test
+    void rejectsInvalidTag() {
+        assertThatThrownBy(() -> handler.parseTag("nonsense"))
+            .isInstanceOf(PlcInvalidTagException.class);
     }
 
+    @Test
+    void doesNotSupportBrowsing() {
+        assertThatThrownBy(() -> handler.parseQuery("anything"))
+            .isInstanceOf(UnsupportedOperationException.class);
+    }
 }

@@ -16,22 +16,19 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.plc4x.java.opcua;
+package org.apache.plc4x.java.opcua.manual;
 
+import org.apache.plc4x.java.api.authentication.PlcNullAuthentication;
 import org.apache.plc4x.java.spi.values.*;
-import org.apache.plc4x.test.manual.ManualTest;
+import org.apache.plc4x.java.utils.testutils.manual.BasicPlcTest;
 
-import java.math.BigDecimal;
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 
-public class ManualOpcUaS71500NewFWDriverTest extends ManualTest {
+public class ManualOpcUaS71500NewFWDriverTest extends BasicPlcTest {
 
     public ManualOpcUaS71500NewFWDriverTest(String connectionString) {
-        super(connectionString, true, true, true, true, 100);
+        super(connectionString, new PlcNullAuthentication(), true, true, true, true, 100);
     }
 
     public static void main(String[] args) throws Exception {
