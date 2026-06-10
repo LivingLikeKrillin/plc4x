@@ -3259,6 +3259,10 @@ public enum BACnetVendorId {
 
   CONTROL_COM_TECHNOLOGIESLLC((int) 1627, (int) 1627, "ControlCom Technologies, LLC"),
 
+  ELECTR_SOL((int) 1628, (int) 1628, "ElectrSol"),
+
+  CORPORACIN_EMPRESARIAL_ALTRA((int) 1629, (int) 1629, "Corporación Empresarial Altra’"),
+
   UNKNOWN_VENDOR((int) 0xFFFF, (int) 0xFFFF, "Unknown");
 
   private static final Map<Integer, BACnetVendorId> map;

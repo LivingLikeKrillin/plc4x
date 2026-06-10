@@ -789,7 +789,7 @@ public enum KnxManufacturer {
 
   M_EWTECH((int) 381, (int) 432, "EWTech"),
 
-  M_KLUGER_AUTOMATION_GMBH((int) 382, (int) 433, "Kluger Automation GmbH"),
+  M_KLUGER_AUTOMATION((int) 382, (int) 433, "Kluger Automation"),
 
   M_JOONGANG_CONTROL((int) 383, (int) 434, "JoongAng Control"),
 
@@ -1549,7 +1549,7 @@ public enum KnxManufacturer {
 
   M_FOSHAN_BRISDOM_TECHNOLOGY_CO___LTD_((int) 761, (int) 822, "Foshan Brisdom Technology Co., Ltd."),
 
-  M_YUEOING_ZHONGYI_ELECTRICALCO__LTD((int) 762, (int) 823, "YUEOING ZHONGYI ELECTRICALCO.,LTD"),
+  M_YUEQING_ZHONGYI_ELECTRIC_CO___LTD_((int) 762, (int) 823, "YUEQING ZHONGYI ELECTRIC CO., LTD."),
 
   M_HYUNDAI((int) 763, (int) 824, "HYUNDAI"),
 
@@ -1631,9 +1631,13 @@ public enum KnxManufacturer {
 
   M_BI_TECH_ELECTRONICS((int) 802, (int) 863, "BI-TECH Electronics"),
 
-  M_ABB___RESERVED((int) 803, (int) 43954, "ABB - reserved"),
+  M_BELFAST_CABLES_UK_SOLUTIONS_LTD((int) 803, (int) 864, "BELFAST CABLES UK SOLUTIONS LTD"),
 
-  M_BUSCH_JAEGER_ELEKTRO___RESERVED((int) 804, (int) 43959, "Busch-Jaeger Elektro - reserved");
+  M_KAYBE_NETWORKING_LLP((int) 804, (int) 865, "KAYBE NETWORKING LLP"),
+
+  M_ABB___RESERVED((int) 805, (int) 43954, "ABB - reserved"),
+
+  M_BUSCH_JAEGER_ELEKTRO___RESERVED((int) 806, (int) 43959, "Busch-Jaeger Elektro - reserved");
 
   private static final Map<Integer, KnxManufacturer> map;
 

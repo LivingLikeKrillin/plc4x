@@ -1638,6 +1638,8 @@
   ['1625' NICOR_LIGHTING ['1625', '"NICOR Lighting"']]
   ['1626' EME_AUTOMATION ['1626', '"EME Automation"']]
   ['1627' CONTROL_COM_TECHNOLOGIESLLC ['1627', '"ControlCom Technologies, LLC"']]
+  ['1628' ELECTR_SOL ['1628', '"ElectrSol"']]
+  ['1629' CORPORACIN_EMPRESARIAL_ALTRA ['1629', '"Corporación Empresarial Altra’"']]
  
   ['0xFFFF' UNKNOWN_VENDOR ['0xFFFF', '"Unknown"']]
 ]
